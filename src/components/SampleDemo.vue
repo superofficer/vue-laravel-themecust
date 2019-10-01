@@ -6,8 +6,8 @@
 					<div class="p-messages-wrapper">
 						<ul>
 							<li>
-								<span class="p-messages-icon pi pi-fw pi-check"></span>
-								<span class="p-messages-summary" style="font-size: 16px">Sapphire provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
+								<span class="p-messages-icon pi-md-check"></span>
+								<span class="p-messages-summary" style="font-weight: normal">Ultima provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
 							</li>
 						</ul>
 					</div>

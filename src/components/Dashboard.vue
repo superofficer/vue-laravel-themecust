@@ -463,7 +463,7 @@ export default {
 				header: {
 					left: 'prev,next',
 					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+					right: ''
 				},
 				editable: true
 			}

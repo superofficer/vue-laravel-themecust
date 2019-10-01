@@ -155,7 +155,7 @@ body {
                       font-size:12px;
                     }
                     
-                    input.ui-state-filled ~ label {
+                    input.p-filled ~ label {
                         display: none;
                     }
                     
@@ -1501,7 +1501,7 @@ body {
                             }
                             
                             input:focus ~ label,
-                            input.ui-state-filled ~ label  {
+                            input.p-filled ~ label  {
                                 top: -20px;
                                 color: $primaryColor;
                             }
