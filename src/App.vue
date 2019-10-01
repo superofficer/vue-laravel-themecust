@@ -7,6 +7,7 @@
 			<div :class="menuClass" @click="onMenuClick">
 				<div class="menu-scroll-content">
 					<AppInlineProfile v-if="profileMode === 'inline' && layoutMode !== 'horizontal'"></AppInlineProfile>
+					<AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
 				</div>
 			</div>
 
@@ -24,15 +25,6 @@
 			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
 			<div class="layout-mask"></div>
 		</div>
-		<!--<div class="layout-top">
-			<AppTopBar @menu-click="onMenuClick" @usermenu-button-click="onTopbarUserMenuButtonClick" @usermenu-click="onTopbarUserMenuClick"
-						:menuActive="menuActive" :topbarUserMenuActive="topbarUserMenuActive" :model="menu" :horizontal="horizontal" :menuHoverActive="menuHoverActive"
-						@sidebar-click="onSidebarClick" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick" :isMobile="isMobile"/>
-
-			<div class="layout-topbar-separator"></div>
-
-			<AppBreadcrumb></AppBreadcrumb>
-		</div>-->
 	</div>
 </template>
 
@@ -59,20 +51,40 @@ export default {
 			darkMenu: false,
 			rightPanelActive: false,
 			menuActive: false,
-
-
-
-			horizontal: true,
-			topbarSize: 'large',
-			topbarColor: 'layout-topbar-blue',
-			menuColor: 'layout-menu-light',
-			menuHoverActive: false,
-			topbarUserMenuActive: false,
-
             menu : [
 				{label: 'Dashboard', icon: 'dashboard', to: '/'},
 				{
-					label: 'Components', icon: 'list',
+					label: 'Themes', icon: 'palette', badge: '6',
+					items: [
+						{label: 'Indigo - Pink', icon: 'brush', command: () => {this.changeTheme('indigo')}},
+						{label: 'Brown - Green', icon: 'brush', command: () => {this.changeTheme('brown')}},
+						{label: 'Blue - Amber', icon: 'brush', command: () => {this.changeTheme('blue')}},
+						{label: 'Blue Grey - Green', icon: 'brush', command: () => {this.changeTheme('blue-grey')}},
+						{label: 'Dark - Blue', icon: 'brush', command: () => {this.changeTheme('dark-blue')}},
+						{label: 'Dark - Green', icon: 'brush', command: () => {this.changeTheme('dark-green')}},
+						{label: 'Green - Yellow', icon: 'brush', command: () => {this.changeTheme('green')}},
+						{label: 'Purple - Cyan', icon: 'brush', command: () => {this.changeTheme('purple-cyan')}},
+						{label: 'Purple - Amber', icon: 'brush', command: () => {this.changeTheme('purple-amber')}},
+						{label: 'Teal - Lime', icon: 'brush', command: () => {this.changeTheme('teal')}},
+						{label: 'Cyan - Amber', icon: 'brush', command: () => {this.changeTheme('cyan')}},
+						{label: 'Grey - Deep Orange', icon: 'brush', command: () => {this.changeTheme('grey')}}
+					]
+				},
+				{
+					label: 'Customization', icon: 'settings_application',
+					items: [
+						{label: 'Static Menu', icon: 'menu',  command: () => this.layoutMode = 'static'},
+						{label: 'Overlay Menu', icon: 'exit_to_app',  command: () => this.layoutMode = 'overlay'},
+						{label: 'Slim Menu', icon: 'more_vert',  command: () => this.layoutMode = 'slim'},
+						{label: 'Horizontal Menu', icon: 'border_horizontal',  command: () => this.layoutMode = 'horizontal'},
+						{label: 'Light Menu', icon: 'label_outline',  command: () => this.darkMenu = false},
+						{label: 'Dark Menu', icon: 'label',  command: () => this.darkMenu = true},
+						{label: 'Inline Profile', icon: 'contacts',  command: () => this.profileMode = 'inline'},
+						{label: 'Top Profile', icon: 'person_pin',  command: () => this.profileMode = 'top'},
+					]
+				},
+				{
+					label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
 					items: [
 						{label: 'Sample Page', icon: 'desktop_mac', to: '/sample'},
 						{label: 'Forms', icon: 'input', to: '/forms'},
@@ -86,49 +98,7 @@ export default {
 					]
 				},
 				{
-					label: 'Mega', icon: 'list', badge: 2, mega: true,
-					items: [
-						{
-							label: 'Components',
-							items: [
-								{label: 'Sample Page', icon: 'desktop_mac', to: '/sample'},
-								{label: 'Forms', icon: 'input', to: '/forms'},
-								{label: 'Data', icon: 'grid_on', to: '/data'},
-								{label: 'Panels', icon: 'content_paste', to: '/panels'},
-								{label: 'Overlays', icon: 'content_copy', to: '/overlays'},
-								{label: 'Menus', icon: 'menu', to: '/menus'},
-								{label: 'Messages', icon: 'message',to: '/messages'},
-								{label: 'Charts', icon: 'insert_chart', to: '/charts'},
-								{label: 'Misc', icon: 'toys', to: '/misc'}
-							]
-						},
-						{
-							label: 'Templates',
-							items: [
-								{label: 'Ultima', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/ultima-ng' },
-								{label: 'Serenity', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/serenity-ng'},
-								{label: 'Avalon', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/avalon-ng'},
-								{label: 'Apollo', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/apollo-ng'},
-								{label: 'Roma', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/roma-ng'},
-								{label: 'Babylon', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/babylon-ng'},
-								{label: 'Manhattan', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/manhattan-ng'},
-								{label: 'Verona', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/verona-ng'},
-								{label: 'Olympia', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/olympia-ng'},
-								{label: 'Ecuador', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/ecuador-ng'}
-							]
-						},
-						{
-							label: 'Demo',
-							items: [
-								{label: 'PrimeFaces', icon: 'desktop_mac', url: 'https://www.primefaces.org/showcase'},
-								{label: 'PrimeNG', icon: 'desktop_mac',  url: 'https://www.primefaces.org/primeng'},
-								{label: 'PrimeReact', icon: 'desktop_mac',  url: 'https://www.primefaces.org/primereact'}
-							]
-						}
-					]
-				},
-				{
-					label: 'Pages', icon: 'get_app',
+					label: 'Template Pages', icon: 'get_app',
 					items: [
 						{label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
 						{label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
@@ -139,7 +109,7 @@ export default {
 					]
 				},
 				{
-					label: 'Hierarchy', icon: 'menu',
+					label: 'Menu Hierarchy', icon: 'menu',
 					items: [
 						{
 							label: 'Submenu 1', icon: 'subject',
@@ -277,70 +247,30 @@ export default {
 		onMenuClick() {
 			this.menuClick = true;
 		},
-
-
-
-
-
-        blockBodyScroll() {
-            let blockScrollClass = this.horizontal ? 'blocked-scroll-horizontal' : 'blocked-scroll';
-            if (document.body.classList)
-                document.body.classList.add(blockScrollClass);
-            else
-            document.body.className += ' ' + blockScrollClass;
-		},
-		unblockBodyScroll() {
-			let blockScrollClass = this.horizontal ? 'blocked-scroll-horizontal' : 'blocked-scroll';
-			if (document.body.classList) {
-				document.body.classList.remove(blockScrollClass);
-			} 
-			else {
-				document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
-					blockScrollClass.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-			}
-		},
-		onTopbarUserMenuButtonClick(event) {
-			this.userMenuClick = true;
-			this.topbarUserMenuActive = !this.topbarUserMenuActive;
-
-			event.preventDefault();
-		},
-		onTopbarUserMenuClick(event) {
-			this.userMenuClick = true;
-
-			if (event.target.nodeName === 'BUTTON' || event.target.parentNode.nodeName === 'BUTTON') {
-				this.topbarUserMenuActive = false;
-			}
-
-			event.preventDefault();
-		},
-		onSidebarClick() {
-			this.menuClick = true;
-		},
-		onRootMenuItemClick(event) {
-			this.menuClick = true;
-
-			if (this.horizontal && this.isMobile()) {
-				this.menuHoverActive = event.isSameIndex ? false : true;
-			}
-			else {
-				this.menuHoverActive = !this.menuHoverActive;
-			}	
+		onRootMenuItemClick() {
+			this.menuActive = !this.menuActive;
 		},
 		onMenuItemClick(event) {
-			if (event.item && !event.item.items) {
-				if (!this.horizontal) {
-					this.menuActive = false;
-					this.unblockBodyScroll();
-				}
-
+			if(!event.item.items) {
+				this.hideOverlayMenu();
 				EventBus.$emit('reset_active_index');
-				this.menuHoverActive = false;
+			}
+
+			if(!event.item.items && (this.isHorizontal() || this.isSlim())) {
+				this.menuActive = false;
 			}
 		},
-		isMobile() {
-			return window.innerWidth <= 1024;
-		}
+		changeTheme(theme) {
+			this.changeStyleSheetUrl('layout-css', theme, 'layout');
+			this.changeStyleSheetUrl('theme-css', theme, 'theme');
+		},
+		changeStyleSheetUrl(id, value, prefix) {
+			let element = document.getElementById(id);
+			let urlTokens = element.getAttribute('href').split('/');
+			urlTokens[urlTokens.length - 1] = prefix + '-' + value + '.css';
+			let newURL = urlTokens.join('/');
+			element.setAttribute('href', newURL);
+		},
     },
     computed: {
 		layoutContainerClass() {

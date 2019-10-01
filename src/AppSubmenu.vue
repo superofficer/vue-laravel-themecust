@@ -1,25 +1,22 @@
 <template>
-	<ul>
-		<li v-for="(item,i) of items" :key="item.label || i" :class="[{'active-menuitem': activeIndex === i && !item.to}]">
+	<ul v-if="items">
+		<li v-for="(item,i) of items" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to}]">
             <router-link v-if="item.to" :to="item.to" :class="[{'active-menuitem-routerlink': activeIndex === i}]" @click.native="onMenuItemClick($event,item,i)"
                     :target="item.target" exact @mouseenter.native="onMenuItemMouseEnter(i)">
                 <i class="material-icons">{{item.icon}}</i>
-                <span class="menuitem-text">{{item.label}}</span>
-                <i v-if="item.items" class="material-icons layout-submenu-toggler">keyboard_arrow_down</i>
+                <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
+                <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
             </router-link>
-            <a v-if="!item.to" :href="item.url" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)">
+            <a v-if="!item.to" class="ripplelink" :href="item.url" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)">
                 <i class="material-icons">{{item.icon}}</i>
-                <span class="menuitem-text">{{item.label}}</span>
-                <i v-if="item.items" class="material-icons layout-submenu-toggler">keyboard_arrow_down</i>
+                <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
+                <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
             </a>
-            <span class="layout-megamenu-submenu-text" v-if="!root && mega">{{item.label}}</span>
             <transition name="layout-submenu-container">
-                <div v-if="item.items && (mega ? true : activeIndex === i)" :class="['layout-submenu-container',{'layout-submenu-megamenu-container':item.mega}]" :style="[{'padding':activeIndex === i ? '' : '0'}]">
-                    <AppSubmenu v-if="item.items" :class="['layout-submenu',{'layout-megamenu':item.mega}]" :items="item.items" @menuitem-click="$emit('menuitem-click', $event)"
-                                :horizontal="horizontal" :mega="item.mega" :menuHoverActive="menuHoverActive" :isMobile="isMobile"></AppSubmenu>
-                </div>
+                <AppSubmenu :items="item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
+                            :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></AppSubmenu>
             </transition>
         </li>
 	</ul>
@@ -35,10 +32,15 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		horizontal: Boolean,
-		menuHoverActive: Boolean,
-		mega: Boolean,
-		isMobile: Function
+		menuActive: {
+			type: Boolean,
+			default: false
+		},
+		parentMenuItemActive: {
+			type: Boolean,
+			default: false
+		},
+		layoutMode: String,
 	},
 	data() {
 		return {
@@ -47,7 +49,7 @@ export default {
 	},
 	mounted() {
 		EventBus.$on('reset_active_index', () => {
-			if(this.horizontal && !this.isMobile()) {
+			if(this.isHorizontalOrSlim() && !this.isMobile()) {
 				this.activeIndex = null;
 			}
 		});
@@ -79,12 +81,17 @@ export default {
 				item: item
 			});
 		},
-
 		onMenuItemMouseEnter(index) {
-			if(this.root && this.menuHoverActive && this.horizontal && !this.isMobile()) {
+			if(this.root && this.menuActive && this.isHorizontalOrSlim() && !this.isMobile()) {
 				this.activeIndex =  index;
 			}
-        }
+        },
+		isHorizontalOrSlim() {
+			return (this.layoutMode === 'horizontal' || this.layoutMode === 'slim');
+		},
+		isMobile() {
+			return window.innerWidth <= 640;
+		}
 	},
 	components: {
 		"AppSubmenu": this

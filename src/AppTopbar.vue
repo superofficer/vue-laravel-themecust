@@ -16,7 +16,7 @@
 				<i class="material-icons">menu</i>
 			</button>
 			<ul :class="topbarItemsClass">
-				<li v-if="profileMode === 'top' && horizontal" :class="['profile-item', {'active-top-menu': activeTopbarItem === 'profile'}]">
+				<li v-if="profileMode === 'top' || horizontal" :class="['profile-item', {'active-top-menu': activeTopbarItem === 'profile'}]">
 					<button class="p-link" @click="onTopbarItemClick($event,'profile')">
 						<img class="profile-image" src="assets/layout/images/avatar.png" alt="Profile"/>
 						<span class="topbar-item-name">Jane Williams</span>
@@ -173,8 +173,6 @@
 </template>
 
 <script>
-import AppMenu from './AppMenu.vue';
-
 export default {
 	data() {
 		return {
@@ -216,9 +214,6 @@ export default {
 				'topbar-items-visible': this.topbarMenuActive
 			}];
 		}
-	},
-	components: {
-		'AppMenu': AppMenu,
 	}
 }
 </script>

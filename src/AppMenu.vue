@@ -1,10 +1,6 @@
 <template>
-	<div class="layout-menu-container" @click="onSidebarClick">
-		<div class="layout-menu-wrapper">
-			<AppSubmenu :items="model" class="layout-menu" :mega="false" :horizontal="horizontal" :menuHoverActive="menuHoverActive" :root="true" @menuitem-click="onMenuItemClick"
-						@root-menuitem-click="onRootMenuItemClick" :isMobile="isMobile"/>
-		</div>
-	</div>
+	<AppSubmenu class="ultima-menu ultima-main-menu clearfix" :items="model" :layoutMode="layoutMode" :menuActive="active" :root="true" :parentMenuItemActive="true"
+				@root-menuitem-click="onRootMenuItemClick" @menuitem-click="onMenuItemClick"/>
 </template>
 
 <script>
@@ -13,9 +9,8 @@ import AppSubmenu from './AppSubmenu';
 export default {
 	props: {
 		model: Array,
-		horizontal: Boolean,
-		menuHoverActive: Boolean,
-		isMobile: Function
+		layoutMode: String,
+		active: Boolean
 	},
     methods: {
         onMenuItemClick(event) {
@@ -23,9 +18,6 @@ export default {
         },
 		onRootMenuItemClick(event) {
 			this.$emit('root-menuitem-click', event);
-		},
-		onSidebarClick(event){
-			this.$emit('sidebar-click', event);
 		}
     },
 	components: {
