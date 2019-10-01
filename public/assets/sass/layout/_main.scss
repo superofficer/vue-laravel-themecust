@@ -766,6 +766,7 @@ body {
         height: 100%;
         right: -240px;
         width: 240px;
+        overflow: auto;
         background-color: $rightPanelBgColor;
         @include box-sizing(border-box);
         @include transition(right $transitionDuration);
@@ -778,21 +779,12 @@ body {
             z-index: 100;
         }
 
-        .layout-rightpanel-content {
-            padding: 14px 32px 14px 14px;
+        .right-panel-scroll-content {
+            padding-bottom: 120px;
         }
 
-        .p-scrollpanel  {
-            border-radius: 0;
-            border: none;
-            .p-scrollpanel-hidden {
-                display: block;
-                visibility: hidden;
-            }
-            .right-panel-scroll-content{
-                width: 258px;
-                padding-bottom: 120px;
-            }
+        .layout-rightpanel-content {
+            padding: 14px;
         }
     }
 }

@@ -3,6 +3,9 @@
 		<div :class="layoutContainerClass">
 			<AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
 			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
+
+			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
+			<div class="layout-mask"></div>
 		</div>
 		<!--<div class="layout-top">
 			<AppTopBar @menu-click="onMenuClick" @usermenu-button-click="onTopbarUserMenuButtonClick" @usermenu-click="onTopbarUserMenuClick"
@@ -20,9 +23,7 @@
 
 		<AppConfig :topbarSize.sync="topbarSize" :topbarColor.sync="topbarColor" :menuColor.sync="menuColor" :horizontal.sync="horizontal"></AppConfig>
 
-        <AppFooter />
-
-		<div class="layout-mask" v-if="menuActive"></div>-->
+        <AppFooter />-->
 	</div>
 </template>
 
@@ -260,6 +261,9 @@ export default {
 			this.rightPanelActive = !this.rightPanelActive;
 
 			event.preventDefault();
+		},
+		onRightPanelClick(){
+			this.rightPanelClick = true;
 		},
 
 
