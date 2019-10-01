@@ -1,0 +1,101 @@
+<template>
+	<div class="p-grid">
+		<div class="p-col-12">
+			<div class="card card-w-title">
+				<div class="card-title">AccordionPanel</div>
+				<Accordion>
+					<AccordionTab header="Godfather I">
+						The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+					</AccordionTab>
+					<AccordionTab header="Godfather II">
+						Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy.
+					</AccordionTab>
+					<AccordionTab header="Godfather III">
+						The Godfather Part III is set in 1979 and 1980. Michael has moved back to New York and taken great strides to remove the family from crime. He turns over his New York criminal interests to longtime enforcer Joey Zasa. He uses his wealth in an attempt to rehabilitate his reputation through numerous philanthropic acts, administered by a foundation named after his father. A decade earlier, he gave custody of his two children to Kay, who has since remarried.
+					</AccordionTab>
+				</Accordion>
+			</div>
+		</div>
+
+		<div class="p-col-12">
+			<div class="card card-w-title">
+				<div class="card-title">Panel</div>
+				<Panel header="Default" :toggleable="true">
+					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+						Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+						kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.</p>
+				</Panel>
+				<Panel header="Light" :toggleable="true" style="margin-top: 1em" class="p-panel-light">
+					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+						Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+						kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.</p>
+				</Panel>
+				<Panel header="Dark" :toggleable="true" style="margin-top: 1em" class="p-panel-dark">
+					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+						Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+						kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.</p>
+				</Panel>
+			</div>
+		</div>
+
+		<div class="p-col-12">
+			<div class="card card-w-title">
+				<div class="card-title">TabView</div>
+				<TabView>
+                    <TabPanel header="Godfather I">
+                        The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+                    </TabPanel>
+                    <TabPanel header="Godfather II">
+                        Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy.
+                    </TabPanel>
+                    <TabPanel header="Godfather III">
+                        The Godfather Part III is set in 1979 and 1980. Michael has moved back to New York and taken great strides to remove the family from crime. He turns over his New York criminal interests to longtime enforcer Joey Zasa. He uses his wealth in an attempt to rehabilitate his reputation through numerous philanthropic acts, administered by a foundation named after his father. A decade earlier, he gave custody of his two children to Kay, who has since remarried.
+                    </TabPanel>
+                </TabView>
+			</div>
+		</div>
+
+		<div class="p-col-12">
+			<div class="card card-w-title">
+				<div class="card-title">Fieldset</div>
+				<Fieldset legend="Toggleable" :toggleable="true">
+					The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+					His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+					Through life of Michael the nature of the family business becomes clear. The business of the family is just like the head of the family,
+					kind and benevolent to those who give respect,
+					but given to ruthless violence whenever anything stands against the good of the family.
+				</Fieldset>
+			</div>
+		</div>
+
+		<div class="p-col-12">
+			<div class="card card-w-title">
+				<div class="card-title">Toolbar</div>
+				<Toolbar>
+					<template slot="left">
+						<Button label="New" icon="pi-md-plus" style="margin-right: .25em" />
+						<Button label="Upload" icon="pi-md-file-upload" class="p-button-success" />
+						<i class="p-toolbar-separator material-icons" style="vertical-align:middle; margin-right: .25em" >dehaze</i>
+						<Button label="Save" icon="pi-md-check" class="p-button-warning" />
+					</template>
+					<template slot="right">
+						<Button icon="pi-md-search" style="margin-right: .25em" />
+						<Button icon="pi-md-date-range" class="p-button-success" style="margin-right: .25em" />
+						<Button icon="pi-md-close" class="p-button-danger" />
+					</template>
+				</Toolbar>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {}
+</script>
+
+<style scoped>
+
+</style>
