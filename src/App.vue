@@ -4,6 +4,12 @@
 			<AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
 			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
+			<div :class="menuClass" @click="onMenuClick">
+				<div class="menu-scroll-content">
+					<AppInlineProfile v-if="profileMode === 'inline' && layoutMode !== 'horizontal'"></AppInlineProfile>
+				</div>
+			</div>
+
 			<div class="layout-main">
 
 				<AppBreadcrumb></AppBreadcrumb>
@@ -268,6 +274,9 @@ export default {
 		onRightPanelClick(){
 			this.rightPanelClick = true;
 		},
+		onMenuClick() {
+			this.menuClick = true;
+		},
 
 
 
@@ -290,22 +299,6 @@ export default {
 					blockScrollClass.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
 			}
 		},
-        onMenuClick(event) {
-			this.menuClick = true;
-
-			if (!this.horizontal || this.isMobile()) {
-				this.menuActive = !this.menuActive;
-
-				if (this.menuActive) {
-					this.blockBodyScroll();
-				} 
-				else {
-					this.unblockBodyScroll();
-				}
-			}
-
-            event.preventDefault();
-        },
 		onTopbarUserMenuButtonClick(event) {
 			this.userMenuClick = true;
 			this.topbarUserMenuActive = !this.topbarUserMenuActive;
@@ -360,7 +353,10 @@ export default {
 				'layout-menu-static-inactive': this.staticMenuDesktopInactive,
 				'layout-menu-static-active': this.staticMenuMobileActive
 			}];
-        }
+        },
+		menuClass(){
+			return ['layout-menu', {'layout-menu-dark': this.darkMenu}];
+		}
     },
     components: {
         'AppTopBar': AppTopBar,
