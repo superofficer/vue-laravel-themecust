@@ -4,6 +4,17 @@
 			<AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
 			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
+			<div class="layout-main">
+
+				<AppBreadcrumb></AppBreadcrumb>
+
+				<div class="layout-content">
+					<router-view />
+
+					<AppFooter />
+				</div>
+			</div>
+
 			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
 			<div class="layout-mask"></div>
 		</div>
@@ -15,15 +26,7 @@
 			<div class="layout-topbar-separator"></div>
 
 			<AppBreadcrumb></AppBreadcrumb>
-		</div>
-
-		<div class="layout-content">
-			<router-view />
-		</div>
-
-		<AppConfig :topbarSize.sync="topbarSize" :topbarColor.sync="topbarColor" :menuColor.sync="menuColor" :horizontal.sync="horizontal"></AppConfig>
-
-        <AppFooter />-->
+		</div>-->
 	</div>
 </template>
 
