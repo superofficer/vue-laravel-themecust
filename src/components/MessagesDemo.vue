@@ -12,7 +12,7 @@
 				<h1>Messages</h1>
 				<div class="p-grid">
 					<div class="p-col-12 p-md-3">
-						<Message severity="info" :closable="false">PrimeReact Rocks</Message>
+						<Message severity="info" :closable="false">PrimeVue Rocks</Message>
 					</div>
 					<div class="p-col-12 p-md-3">
 						<Message severity="success" :closable="false">Record Saved</Message>

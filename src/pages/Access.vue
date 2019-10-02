@@ -1,15 +1,14 @@
 <template>
-	<div class="exception-body accessdenied">
-		<div class="exception-panel">
-			<div class="exception-image">
-				<img src="assets/layout/images/exception/icon-access.png" alt="sapphire"/>
-			</div>
+	<div class="exception-body accessdenied-page">
+		<div class="exception-type">
+			<img src="assets/layout/images/401.svg" alt="ultima"/>
+		</div>
 
-			<div class="exception-detail">
-				<h1>ACCESS DENIED</h1>
-				<p>You do not have the necessary permissons.</p>
-				<Button label="GO TO DASHBOARD" @click="goDashboard" />
-			</div>
+		<div class="card exception-panel">
+			<i class="material-icons">&#xE32A;</i>
+			<h1>Access Denied</h1>
+			<div class="exception-detail">You are not authorized to access this resource.</div>
+			<Button label="Homepage"  @click="goDashboard" />
 		</div>
 	</div>
 </template>

@@ -1,15 +1,14 @@
 <template>
-	<div class="exception-body  error">
-		<div class="exception-panel">
-			<div class="exception-image">
-				<img src="assets/layout/images/exception/icon-error.png" alt="sapphire"/>
-			</div>
+	<div class="exception-body  error-page">
+		<div class="exception-type">
+			<img src="assets/layout/images/error.svg" alt="ultima"/>
+		</div>
 
-			<div class="exception-detail">
-				<h1>ERROR OCCURED</h1>
-				<p>Something went wrong.</p>
-				<Button label="GO TO DASHBOARD" @click="goDashboard" />
-			</div>
+		<div class="card exception-panel">
+			<i class="material-icons">&#xE000;</i>
+			<h1>Exception Occured</h1>
+			<div class="exception-detail">Please contact system administrator</div>
+			<Button label="Homepage" @click="goDashboard" />
 		</div>
 	</div>
 </template>

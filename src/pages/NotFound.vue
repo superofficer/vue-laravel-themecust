@@ -1,15 +1,14 @@
 <template>
-	<div class="exception-body notfound">
-		<div class="exception-panel">
-			<div class="exception-image">
-				<img src="assets/layout/images/exception/icon-404.png" alt="sapphire"/>
-			</div>
+	<div class="exception-body notfound-page">
+		<div class="exception-type">
+			<img src="assets/layout/images/404.svg" alt="ultima"/>
+		</div>
 
-			<div class="exception-detail">
-				<h1>PAGE NOT FOUND</h1>
-				<p>Requested resource is not available.</p>
-				<Button label="GO TO DASHBOARD" @click="goDashboard" />
-			</div>
+		<div class="card exception-panel">
+			<i class="material-icons">&#xE001;</i>
+			<h1>Page Not Found</h1>
+			<div class="exception-detail">The resource you are looking for does not exist.</div>
+			<Button label="Homepage" @click="goDashboard"/>
 		</div>
 	</div>
 </template>
