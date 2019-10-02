@@ -50,7 +50,7 @@ body {
             vertical-align: middle;
             width: 200px;
             height: 30px;
-            background: url("../images/logo2x.png") top left no-repeat;
+            background: url("../../layout/images/logo2x.png") top left no-repeat;
             background-size: 200px 30px;
         }
         
@@ -177,26 +177,7 @@ body {
         height: 100%;
         background-color: $layoutMenuBgColor;
         @include shadow(3px 0 6px rgba(0,0,0,0.3));
-        @include transition(margin-left $transitionDuration);
-
-        .p-scrollpanel {
-            background: transparent;
-            border-radius: 0;
-            border: none;
-            .p-scrollpanel-bar {
-                background-color: $layoutMenuScrollbarBgColor;
-                @include opacity(.3);
-            }
-            .p-scrollpanel-hidden {
-                display: block;
-                visibility: hidden;
-            }
-
-            .menu-scroll-content {
-                width: 268px;
-                padding-bottom: 120px;
-            }
-        }
+        @include transition(margin-left 0.3s);
                 
         .profile {
             box-sizing: border-box;
@@ -204,7 +185,7 @@ body {
             width: 250px;
             height: 145px;
             text-align: center;
-            background: url("../images/profile-bg.png") top left no-repeat;
+            background: url("../../layout/images/profile-bg.png") top left no-repeat;
             background-size: 250px 145px;
             @include shadow(0 2px 5px 0 rgba(0,0,0,0.16));
 
@@ -306,7 +287,7 @@ body {
             background-color: $darkMenuBgColor;
             
             .profile {
-                background-image: url("../images/profile-bg-dark.png");
+                background-image: url("../../layout/images/profile-bg-dark.png");
             
                 .profile-name {
                     color: $darkMenuColor;
@@ -330,15 +311,6 @@ body {
                         &:hover {
                             background-color: $darkMenuHoverColor;
                         }
-                    }
-                }
-            }
-
-            .p-scrollpanel {
-                .p-scrollpanel-wrapper {
-                    .p-scrollpanel-content {
-                        border-radius: 0;
-                        border: none;
                     }
                 }
             }
@@ -650,19 +622,30 @@ body {
             }
 
             ul {
-                max-height: 0;
                 padding: 0;
                 margin: 0;
                 list-style: none;
                 overflow: hidden;
-                -moz-transition-duration: 0.4s;
-                -webkit-transition-duration: 0.4s;
-                -o-transition-duration: 0.4s;
-                transition-duration: 0.4s;
-                -moz-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-                -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-                -o-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-                transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);  
+
+                &.layout-submenu-container-enter,
+                &.layout-submenu-container-leave-to {
+                    max-height: 0;
+                }
+
+                &.layout-submenu-container-enter-to,
+                &.layout-submenu-container-leave {
+                    max-height: 1000px;
+                }
+
+                &.layout-submenu-container-leave-active {
+                    overflow: hidden;
+                    transition: max-height 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+
+                &.layout-submenu-container-enter-active {
+                    overflow: hidden;
+                    transition: max-height 1s ease-in-out;
+                }
                 
                 li {
                     a, button {
@@ -934,22 +917,6 @@ body {
                 height: auto;
                 background-color: $primaryDarkColor;
                 @include shadow(0 2px 5px 0 rgba(0,0,0,0.26));
-
-                .p-scrollpanel {
-                    overflow: visible;
-                    border: none;
-                    .p-scrollpanel-wrapper {
-                        overflow: visible;
-                        .p-scrollpanel-content {
-                            overflow: visible;
-                            padding: 0;
-                        }
-                    }
-                    .menu-scroll-content {
-                        width: 100%;
-                        padding-bottom: 0;
-                    }
-                }
                 
                 ul.ultima-menu {
 
@@ -1176,25 +1143,6 @@ body {
                 overflow: visible;
                 z-index: 100;
                 top: 0;
-
-                .p-scrollpanel {
-                    border: none;
-                    border-radius: 0;
-                    .p-scrollpanel-wrapper {
-                        overflow: visible;
-                        .p-scrollpanel-content {
-                            overflow: visible;
-                        }
-                    }
-
-                    .p-scrollpanel-bar {
-                        display: none;
-                    }
-
-                    .menu-scroll-content {
-                        width: 100%;
-                    }
-                }
                 
                 .profile {
                     width: 100%;
@@ -1524,7 +1472,7 @@ body {
                                 vertical-align: middle;
                                 width: 24px;
                                 height: 24px;
-                                background: url("../images/avatar.png") top left no-repeat;
+                                background: url("../../layout/images/avatar.png") top left no-repeat;
                                 background-size: 24px 24px;
                                 margin-right: 14px;
                             }

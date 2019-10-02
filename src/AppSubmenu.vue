@@ -15,7 +15,7 @@
                 <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
             </a>
             <transition name="layout-submenu-container">
-                <AppSubmenu :items="item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
+                <AppSubmenu v-show="activeIndex === i" :items="item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
                             :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></AppSubmenu>
             </transition>
         </li>
