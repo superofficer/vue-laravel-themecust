@@ -3,33 +3,31 @@ body {
         @include corner-all();
         @include content();
         @include overlay-content-shadow();
-        
+
         .p-dialog-titlebar {
             @include corner-top();
             background-color: #ffffff;
             color: $textColor;
             padding: $headerPadding;
-            
+
             .p-dialog-title {
                 font-weight: 500;
                 font-size: 20px;
                 line-height: 32px;
                 margin: 0;
             }
-            
+
             .p-dialog-titlebar-icon {
                 padding: 0;
-                height: 1.65em;
-                width: 1.65em;
                 text-align: center;
                 margin-top: 0.5em;
                 @include border-radius(50%);
                 @include transition(background-color $transitionDuration);
-                
+
                 &:hover, &:focus {
                     @include hover-element();
                 }
-                
+
                 .pi {
                     color: $textSecondaryColor;
                     display: inline-block;
@@ -44,16 +42,16 @@ body {
                 }
             }
         }
-        
+
         .p-dialog-content {
             padding: $contentPadding;
         }
-        
+
         .p-dialog-footer {
             text-align: right;
             padding: $headerPadding;
             border: 0 none;
-            
+
             .p-button {
                 width: auto;
                 margin-right: .5em;
@@ -64,18 +62,18 @@ body {
             }
         }
     }
-    
+
     .p-lightbox {
         @include corner-all();
         @include overlay-content-shadow();
 
         .p-lightbox-caption {
             padding: $headerPadding;
-            
+
             .p-lightbox-caption-text {
                 margin: 0;
             }
-            
+
             .p-lightbox-close {
                 @include border-radius(50%);
                 @include transition(background-color$transitionDuration);
@@ -83,18 +81,18 @@ body {
                 margin: 0;
                 width: 1.5em;
                 height: 1.5em;
-                            
+
                 &:hover {
                     @include hover-element-primary();
                     padding: 0;
                 }
             }
         }
-        
+
         .p-lightbox-content-wrapper {
             .p-lightbox-nav-right, .p-lightbox-nav-left {
                 top: 40%;
-                
+
                 .pi {
                     @include transition(color $transitionDuration);
                     font-size: 48px;
@@ -113,7 +111,7 @@ body {
             }
         }
     }
-    
+
     .p-overlaypanel {
         @include content();
         @include corner-all();
@@ -138,7 +136,7 @@ body {
                 border-top-color: $contentBorderColor;
             }
         }
-        
+
         .p-overlaypanel-close {
             background-color: $accentColor;
             @include border-radius(50%);
@@ -150,46 +148,46 @@ body {
             line-height: 2em;
             text-align: center;
             @include content-shadow();
-            
+
             span {
                 color: $accentTextColor;
                 line-height: inherit;
             }
-            
+
             &:hover {
                 background-color: $accentDarkColor;
             }
         }
     }
-    
+
     .p-tooltip {
         @include opacity(.9);
-        
+
         .p-tooltip-text {
             background-color: #323232;
             @include overlay-content-shadow();
         }
-        
+
         &.p-tooltip-top {
             .p-tooltip-arrow {
                 bottom: 1px;
                 border-top-color: #323232;
             }
         }
-        
+
         &.p-tooltip-bottom {
             .p-tooltip-arrow {
                 top: 1px;
                 border-bottom-color: #323232;
             }
         }
-        
+
         &.p-tooltip-left {
             .p-tooltip-arrow {
                 border-left-color: #323232;
             }
         }
-        
+
         &.p-tooltip-right {
             .p-tooltip-arrow {
                 left: 1px;

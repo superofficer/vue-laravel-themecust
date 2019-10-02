@@ -14,22 +14,23 @@ body {
 
     .p-widget-content {
         background-color: $contentBgColor;
-        font-size: $contentFontSize;
-        border: 1px solid $dividerColor;
+        border: 1px solid $contentBorderColor;
+        padding: $contentPadding;
 
         .pi {
-            color: $contentIconColor;
+            color: $textSecondaryColor;
         }
     }
-    
+
     .p-widget-header {
-        background-color: $headerBgColor;
+        background-color: $primaryColor;
         color: $headerTextColor;
-        font-size: $headerFontSize;
         border: 1px solid $primaryColor;
+        padding: $headerPadding;
+        font-weight: $headerFontWeight;
 
         .pi {
-            color: $headerIconColor;
+            color: $headerTextColor;
         }
     }
 
@@ -51,10 +52,10 @@ body {
     }
 
     .p-component-overlay {
-        background-color: #424242;
-        @include opacity(.8);
+        background-color: #000000;
+        @include opacity(.32);
     }
-        
+
     a {
         color: $primaryColor;
         text-decoration: none;

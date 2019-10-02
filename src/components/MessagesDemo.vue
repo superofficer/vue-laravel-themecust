@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title first">Toast</div>
+				<h1 class="first">Toast</h1>
                 <Toast />
 				<Button @click="showInfo()" label="Info" class="p-button-info" style="width: 10em; margin-right: .25em" />
 				<Button @click="showSuccess()" label="Success" class="p-button-success" style="width: 10em; margin-right: .25em" />

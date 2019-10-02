@@ -1,21 +1,21 @@
 body {
     .p-panel {
-        padding: 0;
         @include content();
         @include corner-all();
-        
+        padding: 0;
+
         .p-panel-titlebar {
             @include header();
             border: 0 none;
             padding: $headerPadding;
             @include border-radius-top(2px);
             @include border-radius-bottom(0);
-            
+
             .p-panel-title {
                 margin: 0;
                 line-height: $panelContentLineHeight;
             }
-                        
+
             .p-panel-titlebar-icon {
                 position: relative;
                 width: 1.5em;
@@ -26,20 +26,20 @@ body {
                 margin: 0;
                 @include transition(background-color $transitionDuration);
                 @include border-radius(50%);
-                
+
                 &:hover {
                     background-color: $primaryLightColor;
                 }
             }
         }
-        
+
         .p-panel-content {
             height: 100%;
             box-sizing: border-box;
             padding: $contentPadding;
             line-height: $panelContentLineHeight;
         }
-        
+
         .p-panel-footer {
             padding: $headerPadding;
             border: 0 none;
@@ -47,19 +47,19 @@ body {
             margin: 0;
         }
     }
-    
+
     .p-fieldset {
         @include content();
         @include corner-all();
         padding: $contentPadding;
-                
+
         .p-fieldset-legend {
             @include corner-all();
             padding: $headerPadding;
             padding-left: 2px;
             padding-right: 8px;
             color: $primaryColor;
-            
+
             .p-fieldset-toggler {
                 width: 2em;
                 height: 2em;
@@ -73,7 +73,7 @@ body {
                 margin-right: 8px;
                 @include content-shadow();
                 @include rippleitem();
-                
+
                 &:hover {
                     background-color: $primaryDarkColor;
                 }
@@ -91,7 +91,7 @@ body {
             }
         }
     }
-        
+
     .p-accordion {
         .p-accordion-header {
             margin-top: .25em;
@@ -132,7 +132,8 @@ body {
                     color: $accentTextColor;
                 }
 
-                .p-accordion-toggle-icon {
+                .p-accordion-toggle-icon,
+                .p-accordion-header-text  {
                     color: $accentTextColor;
                 }
             }
@@ -146,7 +147,7 @@ body {
             @include border-radius-bottom($borderRadius);
         }
     }
-        
+
     .p-toolbar {
         @include header();
         background-color: $primaryDarkColor;
@@ -157,24 +158,24 @@ body {
             margin-right: 0.25em;
         }
     }
-    
+
     .p-tabview {
         @include content();
         @include corner-all();
         padding: 0;
         border: 0 none;
-        
+
         .p-tabview-nav {
             @include header();
             background-color: #ffffff;
             border: 0 none;
             @include border-radius(0);
-            
+
             > li {
                 padding: 0;
                 overflow: hidden;
                 @include transition(border-color $transitionDuration);
-                
+
                 > a {
                     cursor: pointer;
                     padding: $headerPadding;
@@ -184,7 +185,7 @@ body {
                         outline: 0 none;
                     }
                 }
-                
+
                 > .pi-times {
                     margin: .5em 0 0 0;
                     @include transition(color $transitionDuration);
@@ -228,57 +229,57 @@ body {
                     vertical-align: middle;
                     font-size: $iconFontSize;
                 }
-                
+
                 .p-tabview-title {
                     line-height: 1.5em;
                     vertical-align: middle;
                 }
             }
         }
-        
+
         .p-tabview-panel {
             padding: $contentPadding;
             line-height: $panelContentLineHeight;
         }
-        
+
         &.p-tabview-top {
             > .p-tabview-nav {
                 padding: 0;
                 margin: 0;
                 @include border-radius-top(4px);
                 border-bottom: 1px solid $dividerColor;
-                
+
                 > li {
                     border-style: solid;
                     border-width: 0 0 2px 0;
                 }
             }
         }
-        
+
         &.p-tabview-bottom {
             > .p-tabview-nav {
                 padding: 0;
                 margin: 0;
                 @include border-radius-bottom(4px);
                 border-top: 1px solid $dividerColor;
-                
+
                 > li {
                     border-width: 2px 0 0 0;
                 }
             }
         }
-        
+
         &.p-tabview-left {
             > .p-tabview-nav {
                 padding: 0;
                 margin: 0;
                 @include border-radius-left($borderRadius + 1);
                 border-right: 1px solid $dividerColor;
-                
+
                 > li {
                     box-sizing: border-box;
                     border-width: 0 2px 0 0;
-                    
+
                     > a {
                         width: 100%;
                         box-sizing: border-box;
@@ -286,22 +287,22 @@ body {
                 }
             }
         }
-        
+
         &.p-tabview-right {
             > .p-tabview-nav {
                 padding: 0;
                 @include border-radius-right($borderRadius + 1);
                 border-left: 1px solid $dividerColor;
-                
+
                 > li {
                     box-sizing: border-box;
                     border-width: 0 0 0 2px;
-                    
+
                     > a {
                         width: 100%;
                         box-sizing: border-box;
                     }
-                    
+
                     &.p-highlight {
                         > a {
                             padding-left: 0.875em;

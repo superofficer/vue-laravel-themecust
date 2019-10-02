@@ -22,7 +22,7 @@
 					<template #header>
 						<div class="p-grid p-nogutter">
 							<div class="p-col-6" style="text-align: left">
-								<Dropdown v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By" @change="onSortChange($event)"/>
+								<Dropdown v-model="sortKey" style="min-width: 12.5em" :options="sortOptions" optionLabel="label" placeholder="Sort By" @change="onSortChange($event)"/>
 							</div>
 							<div class="p-col-6" style="text-align: right">
 								<DataViewLayoutOptions v-model="layout" />

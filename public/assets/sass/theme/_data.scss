@@ -5,29 +5,29 @@ body {
             @include header();
             padding: $headerPadding;
         }
-        
+
         .p-picklist-list {
             @include content();
             @include corner-bottom();
             padding: 0;
         }
-        
+
         li.p-picklist-item {
             padding: $listItemPadding;
             margin: 0;
             @include border-radius(0);
             color: $textColor;
-            
+
             &:not(.p-highlight):hover {
                 @include hover-element();
             }
-            
+
             &.p-highlight {
                 background-color: $accentColor;
                 color: $accentTextColor;
             }
         }
-        
+
         .p-picklist-buttons {
             .p-button {
                 margin: 0 auto 0.571em auto;
@@ -38,41 +38,12 @@ body {
                 }
             }
         }
-        
+
         .p-picklist-buttons-cell {
             text-align: center;
         }
-
-        &.p-picklist-responsive {
-            .p-picklist-buttons {
-                width: 3.429em;
-
-                .p-button {
-                    &.p-button-icon-only {
-                        margin: 0 auto;
-                        display: block;
-                        margin-bottom: 0.571em;
-
-                    }
-                }
-            }
-
-            .p-picklist-list {
-                .p-picklist-item {
-                    .p-checkbox {
-                        margin-right: 0.571em;
-                        vertical-align: top;
-
-                    }
-                    .p-checkbox, .p-checkbox * {
-                        box-sizing: content-box;
-
-                    }
-                }
-            }
-        }
     }
-    
+
     .p-organizationchart {
         .p-organizationchart-node-content {
             @include content();
@@ -81,7 +52,7 @@ body {
             &.p-organizationchart-selectable-node:not(.p-highlight):hover {
                 @include hover-element();
             }
-            
+
             &.p-highlight {
                 .p-node-toggler {
                     i {
@@ -93,51 +64,51 @@ body {
         .p-organizationchart-line-down {
             background-color: darken($contentBorderColor, 10%);
         }
-        
+
         .p-organizationchart-line-left {
             border-right: 1px solid darken($contentBorderColor, 10%);
         }
-        
+
         .p-organizationchart-line-right {
-            
+
         }
-        
+
         .p-organizationchart-line-top {
             border-top: 1px solid darken($contentBorderColor, 10%);
         }
-        
+
         .p-organizationchart-node-content {
             border-color: darken($contentBorderColor, 10%);
         }
-        
+
         .p-organizationchart-node-content .p-node-toggler {
             bottom: -1.143em;
             margin-left: -.825em;
             color: darken($contentBorderColor, 10%);
-            
+
             .pi-chevron-down {
                 @include material-icon("keyboard_arrow_down");
             }
-            
+
             .pi-chevron-up {
                 @include material-icon("keyboard_arrow_up");
             }
         }
     }
-    
+
     .p-orderlist {
         .p-orderlist-caption {
             @include header();
             padding: $headerPadding;
             @include border-box-sizing();
         }
-        
+
         .p-orderlist-list {
             @include content();
             @include corner-bottom();
             padding: 0;
             box-sizing: border-box;
-            
+
             li.p-orderlist-item {
                 padding: $listItemPadding;
                 margin: 0;
@@ -147,24 +118,15 @@ body {
                 &:not(.p-highlight):hover {
                     @include hover-element();
                 }
-                
+
                 &.p-highlight {
                     background-color: $accentColor;
                     color: $accentTextColor;
                 }
             }
         }
-        
-        &.p-orderlist-responsive {
-            .p-orderlist-controls {
-                width: 4.286em;
-            }
-        }
-        
+
         .p-orderlist-controls {
-            width: 4.286em;
-            text-align: center;
-            
             .p-button {
                 &.p-button-icon-only {
                     width: 2.5em;
@@ -174,13 +136,15 @@ body {
             }
         }
     }
-    
+
     .p-paginator {
         @include header();
         background-color: $primaryDarkColor;
         padding: $paginatorPadding;
 
         > button {
+            font-size: $fontSize;
+            font-family: $fontFamily;
             box-sizing: border-box;
             color: #ffffff;
 
@@ -194,7 +158,7 @@ body {
                 @include transition(background-color $transitionDuration);
             }
         }
-        
+
         .p-paginator-next {
             padding: 0;
             vertical-align: middle;
@@ -228,13 +192,16 @@ body {
             height: 1.200em;
             line-height: 1.2;
         }
-        
+
         .p-paginator-pages {
             vertical-align: middle;
             margin: 0 6px 0 12px;
             padding: 0;
 
             .p-paginator-page {
+                font-size: $fontSize;
+                font-family: $fontFamily;
+                font-weight: 500;
                 padding: 0;
                 color: $headerTextColor;
                 min-width: 1.714em;
@@ -242,11 +209,11 @@ body {
                 line-height: 1.714em;
                 @include border-radius(50%);
                 @include transition(background-color$transitionDuration);
-                
+
                 &:not(.p-highlight):hover {
                     background-color: $primaryLightColor;
-                }        
-                
+                }
+
                 &.p-highlight {
                     background-color: $accentColor;
                     color: $accentTextColor;
@@ -276,6 +243,7 @@ body {
         }
 
         .p-dataview-content {
+            @include content();
             background-color: $contentBgColor;
             color: $textColor;
             border: 1px solid $contentBorderColor;
@@ -288,19 +256,13 @@ body {
             border: 1px solid $dividerColor;
             border-top: 0 none;
         }
-
-        .p-dataview-layout-options {
-            button:first-child {
-                margin-right: .5em;
-            }
-        }
     }
-    
+
     .p-datagrid {
         .p-datagrid-header {
             padding: $headerPadding;
         }
-        
+
         .p-panel {
             .p-panel-titlebar {
                 background-color: #ffffff;
@@ -308,7 +270,7 @@ body {
             }
         }
     }
-    
+
     .p-datalist {
         .p-datalist-header {
             padding: $headerPadding;
@@ -332,7 +294,7 @@ body {
             padding: $headerPadding;
         }
     }
-    
+
     .p-datatable {
         .p-datatable-header,
         .p-datatable-footer {
@@ -614,7 +576,7 @@ body {
             }
         }
     }
-    
+
     .p-tree-draghelper {
         border: 1px solid $primaryColor;
     }
@@ -671,7 +633,7 @@ body {
                 @include material-icon("play_circle_outline");
                 text-indent: 0;
                 position: relative;
-                top: 1px;
+                top: -1px;
             }
 
             .fc-icon-chevron-left {
@@ -680,7 +642,7 @@ body {
                 @include rotate(180deg);
                 text-indent: 0;
                 position: relative;
-                top: 1px;
+                top: -1px;
             }
 
             .ui-state-active {
@@ -703,7 +665,7 @@ body {
             padding-right: 0px;
         }
     }
-    
+
     .p-treetable {
         .p-treetable-header,
         .p-treetable-footer {
@@ -809,8 +771,8 @@ body {
 
             .p-sortable-column-icon {
                 vertical-align: middle;
-                margin: 0 0 0 4px;
                 color: $textSecondaryColor;
+                margin: 0 0 0 4px;
             }
 
             &:not(.p-highlight):hover {
@@ -907,6 +869,7 @@ body {
         }
 
         &.p-treetable-hoverable-rows {
+            cursor: pointer;
             .p-treetable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
                 cursor: pointer;
                 @include hover-element();
@@ -961,58 +924,49 @@ body {
     }
 }
 
-@media (max-width: 640px) {
-    body {                
+@media (max-width: 767px) {
+    body {
         .p-picklist {
-            &.p-picklist-responsive {
-                .p-picklist-list-wrapper {
-                    margin-bottom: .5em;
+            .p-picklist-list-wrapper {
+                margin-bottom: .5em;
+            }
+
+            .p-picklist-buttons {
+                padding: .5em 0;
+
+                .p-button {
+                    &.p-button-icon-only {
+                        display: inline-block;
+                        margin-right: .25em;
+                        margin-bottom: 0;
+                    }
                 }
 
-                .p-picklist-buttons {
-                    padding: .5em 0;
+                .pi-angle-right {
+                    @include icon-override("play_arrow"); @include rotate(90deg);
+                }
+                .pi-angle-double-right {
+                    @include icon-override("skip_previous"); @include rotate(-90deg);
 
-                    .p-button {
-                        &.p-button-icon-only {
-                            display: inline-block;
-                            margin-right: .25em;
-                            margin-bottom: 0;
-                        }
-                    }
-
-                    .pi-angle-right {
-                        @include icon-override("play_arrow");
-                        @include rotate(90deg);
-                    }
-                    .pi-angle-double-right {
-                        @include icon-override("skip_previous");
-                        @include rotate(-90deg);
-
-                    }
-                    .pi-angle-left {
-                        @include icon-override("play_arrow");
-                        @include rotate(-90deg);
-                    }
-                    .pi-angle-double-left {
-                        @include icon-override("skip_next");
-                        @include rotate(-90deg);
-                    }
+                }
+                .pi-angle-left {
+                    @include icon-override("play_arrow"); @include rotate(-90deg);
+                }
+                .pi-angle-double-left {
+                    @include icon-override("skip_next"); @include rotate(-90deg);
                 }
             }
         }
-        
-        .p-orderlist {
-            &.p-grid-responsive {
-                .p-orderlist-controls {
-                    text-align: center;
-                    width: auto;
 
-                    .p-button {
-                        margin-right: .25em;
-                    }
+        .p-orderlist.p-component {
+            .p-orderlist-controls {
+                text-align: center;
+
+                .p-button.p-button-icon-only {
+                    width: 2.5em;
+                    margin-right: .25em;
                 }
             }
-
         }
     }
 }

@@ -27,7 +27,7 @@
 		"eslint-plugin-vue": "^5.0.0",
 		"node-sass": "^4.9.0",
 		"primeflex": "1.0.0-rc.1",
-		"primevue": "1.0.0-beta.7",
+		"primevue": "1.0.0-beta.9",
 		"quill": "1.3.3",
 		"sass-loader": "^7.1.0",
 		"vue": "^2.6.10",

@@ -28,23 +28,23 @@ body {
         }
 
     }
-    
+
     .p-steps {
         position: relative;
-        
+
         .p-steps-item {
             background-color: transparent;
-            
+
             &.p-disabled {
                 @include opacity(1);
             }
-            
+
             .p-menuitem-link {
                 display: inline-block;
                 text-align: left;
                 background-color: #ffffff;
                 overflow: hidden;
-                
+
                 .p-steps-number {
                     display: inline-block;
                     background-color: #757575;
@@ -58,25 +58,25 @@ body {
                     padding: 0;
                     line-height: 2em;
                 }
-                
+
                 .p-steps-title {
                     display: inline;
                     margin-left: .714em;
                     color: $textSecondaryColor;
                 }
             }
-            
-            &.p-highlight {                
+
+            &.p-highlight {
                 .p-steps-number {
                     background-color: $primaryColor;
                 }
-                
-                .p-steps-title { 
+
+                .p-steps-title {
                     font-weight: 700;
                     color: $textColor;
                 }
             }
-            
+
             &:last-child {
                 .p-menuitem-link {
                     display: block;
@@ -180,6 +180,7 @@ body {
         &.p-menu-overlay {
             @include content();
             @include overlay-input-shadow();
+            padding:  .5em 0;
         }
 
         .p-submenu-header {
@@ -525,7 +526,7 @@ body {
             }
         }
     }
-    
+
     .p-panelmenu {
 
         span {
@@ -535,7 +536,7 @@ body {
         .p-panelmenu-header {
             background-color: $accordionHeaderBgColor;
             margin-top: .25em;
-            
+
             a {
                 color: $accordionHeaderTextColor;
                 font-weight: $headerFontWeight;
@@ -543,20 +544,21 @@ body {
 
             .p-panelmenu-icon,
             .p-menuitem-icon {
+                color: $accordionHeaderTextColor;
                 font-size: $iconFontSize - 2;
             }
-            
+
             .pi {
-                color:  $primaryTextColor;;
+                color:  $accordionHeaderTextColor;
             }
-            
+
             &.p-highlight {
-                background-color: $accentColor;
-                color: $accentTextColor;
+                background-color: $primaryColor;
+                color: $primaryTextColor;
                 @include border-radius-bottom(0);
 
-                a, .pi {
-                    color: $accentTextColor;
+                a, .pi, .p-menuitem-icon {
+                    color: $primaryTextColor;
                 }
             }
         }
@@ -576,15 +578,15 @@ body {
                 }
             }
         }
-        
+
         .p-panelmenu-content {
             @include content();
             padding: 0;
-            
+
             .p-menuitem {
                 @include corner-all();
                 margin: 0;
-                
+
                 .p-menuitem-link {
                     border: 0 none;
                     padding: $menuitemPadding;
@@ -594,7 +596,7 @@ body {
                     color: $textColor;
                     @include border-radius(0);
                     position: relative;
-                    
+
                     &:hover {
                         @include hover-element();
                     }
@@ -603,13 +605,13 @@ body {
                     .p-menuitem-icon {
                         font-size: $iconFontSize - 2;
                     }
-                                        
+
                     .p-menuitem-text {
                         display: inline-block;
                         vertical-align: middle;
                         float: none;
                     }
-                    
+
                     .pi {
                         position: static;
                         display: inline-block;
@@ -618,7 +620,7 @@ body {
                 }
             }
         }
-        
+
         .p-menu-parent .p-menu-list {
             margin-left: 28px;
         }
@@ -626,7 +628,7 @@ body {
 }
 
 @media (max-width: 640px) {
-    body {        
+    body {
         .p-steps {
             .p-steps-item {
                 .p-menuitem-link {

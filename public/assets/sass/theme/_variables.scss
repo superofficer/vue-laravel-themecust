@@ -1,19 +1,12 @@
-@import '../_variables';
-$iconFontSize:1.5em;
-$primaryTextColor:#ffffff;
+@import '../variables';
 
 $headerPadding:.714em 1em;
-$headerBgColor:$primaryColor;
 $headerTextColor:#ffffff;
-$headerIconColor:#ffffff;
 $headerFontWeight:500;
-$headerFontSize:1em;
 
 $contentPadding:.857em 1em;
 $contentBorderColor:#d8d8d8;
 $contentBgColor:#ffffff;
-$contentFontSize:1em;
-$contentIconColor:#757575;  //??
 
 $inputBorderColor:#bdbdbd;
 $inputInvalidBorderColor:#e62a10;
