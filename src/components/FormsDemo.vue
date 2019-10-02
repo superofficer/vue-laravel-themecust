@@ -2,7 +2,7 @@
 	<div class="p-grid p-fluid">
 		<div class="p-col-12 p-lg-6">
 			<div class="card">
-				<div class="card-title">InputText</div>
+				<h1>InputText</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-4 form-cell">
 						<span class="md-inputfield">
@@ -40,7 +40,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="card-title">Filled InputText</div>
+				<h1>Filled InputText</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-4">
                             <span class="md-inputfield md-inputfield-fill">
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 
-				<div class="card-title">TextBox</div>
+				<h1>TextBox</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-4">
                             <span class="md-inputfield md-inputfield-box">
@@ -86,12 +86,12 @@
 			</div>
 
 			<div class="card">
-				<div class="card-title">TextArea</div>
+				<h1>TextArea</h1>
 				<Textarea placeholder="Your Message" :autoResize="true" rows="3" cols="30" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">AutoComplete</div>
+				<h1>AutoComplete</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12">
 						<label htmlFor="acSimple">Simple</label>
@@ -116,7 +116,7 @@
 			</div>
 
 			<div class="card">
-				<div class="card-title">Calendar</div>
+				<h1>Calendar</h1>
 				<Calendar v-model="date1" :inline="true"/>
 
 				<div class="p-grid form-group" style="margin-top: 20px">
@@ -144,7 +144,7 @@
 
 		<div class="p-col-12 p-lg-6">
 			<div class="card">
-				<div class="card-title">Checkboxes</div>
+				<h1>Checkboxes</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-4">
 						<Checkbox id="theme1" name="theme" value="Ultima" v-model="themesCheckbox" />
@@ -160,7 +160,7 @@
 					</div>
 				</div>
 
-				<div class="card-title">RadioButtons</div>
+				<h1>RadioButtons</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-4">
 						<RadioButton id="themeR1" name="theme" value="Ultima" v-model="themesRadioButton" />
@@ -178,52 +178,52 @@
 			</div>
 
 			<div class="card">
-				<div class="card-title">Dropdown</div>
+				<h1>Dropdown</h1>
 				<Dropdown v-model="dropdownCity" :options="dropdownCities" optionLabel="name" placeholder="Select a City" />
 
-				<div class="card-title">MultiSelect</div>
+				<h1>MultiSelect</h1>
 				<MultiSelect v-model="multiselectedCars" :options="multiselectCars" optionLabel="brand" placeholder="Select Brands" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">ListBox</div>
+				<h1>ListBox</h1>
 				<Listbox v-model="listboxCity" :options="listboxCities" optionLabel="name" :filter="true"/>
 			</div>
 
 			<div class="card">
-				<div class="card-title">Password</div>
+				<h1>Password</h1>
 				<Password v-model="passwordValue" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">Spinner</div>
+				<h1>Spinner</h1>
 				<Spinner v-model="spinnerValue" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">Rating</div>
+				<h1>Rating</h1>
 				<Rating v-model="ratingValue" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">InputSwitch</div>
+				<h1>InputSwitch</h1>
 				<InputSwitch v-model="switchValue" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">Slider</div>
+				<h1>Slider</h1>
 				<Slider v-model="sliderValue" :range="true" />
 			</div>
 
 			<div class="card">
-				<div class="card-title">Chips</div>
+				<h1>Chips</h1>
 				<Chips v-model="chipsValue" />
 			</div>
 		</div>
 
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">Input Groups</div>
+				<h1>Input Groups</h1>
 				<div class="p-grid form-group">
 					<div class="p-col-12 p-md-6">
 						<div class="p-inputgroup">
@@ -263,7 +263,7 @@
 
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">Editor</div>
+				<h1>Editor</h1>
 				<Editor v-model="editorValue" editorStyle="height: 320px"/>
 			</div>
 		</div>
@@ -272,7 +272,7 @@
 			<div class="p-grid">
 				<div class="p-col-12 p-lg-6">
 					<div class="card">
-						<div class="card-title">Buttons</div>
+						<h1>Buttons</h1>
 
 						<div class="p-grid">
 							<div class="p-col-12">ToggleButton</div>
@@ -317,7 +317,7 @@
 				</div>
 				<div class="p-col-12 p-lg-6">
 					<div class="card">
-						<div class="card-title">Colored Buttons</div>
+						<h1>Colored Buttons</h1>
 						<p>Flat buttons with various color alternatives.</p>
 
 						<div class="p-grid">

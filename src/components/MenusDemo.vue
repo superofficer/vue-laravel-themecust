@@ -2,7 +2,7 @@
 	<div class="p-grid p-fluid">
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">Menu</div>
+				<h1>Menu</h1>
 				<Menu :model="menuItems"></Menu>
                 
 				<Menu ref="menu" :model="menuItems" :popup="true"></Menu>

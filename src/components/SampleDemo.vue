@@ -14,7 +14,7 @@
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">Form Elements</div>
+					<h1>Form Elements</h1>
 					<div class="p-grid form-group">
 						<div class="p-col-12 p-md-2">
 							<label for="input">Input</label>
@@ -167,7 +167,7 @@
 
 			<div class="p-col-12">
 				<div class="card card-w-title">
-					<div class="card-title">DataTable</div>
+					<h1>DataTable</h1>
 					<DataTable :value="dataTableCars" class="p-datatable-responsive" :selection.sync="dataTableSelectedCar" selectionMode="single" dataKey="vin">
 						<template #header>
 							DataTable
@@ -182,7 +182,7 @@
 
 			<div class="p-col-12">
 				<div class="card card-w-title">
-					<div class="card-title">DataView</div>
+					<h1>DataView</h1>
 					<DataView :value="dataViewCars" :layout="layout" paginatorPosition="both" :paginator="true" :rows="10" :sortOrder="sortOrder" :sortField="sortField">
 						<template #header>
 							<div class="p-grid p-nogutter ">
@@ -232,7 +232,7 @@
 			</div>
 			<div class="p-col-12 p-lg-6">
 				<div class="card card-w-title">
-					<div class="card-title">PickList</div>
+					<h1>PickList</h1>
 					<PickList v-model="picklistCars" dataKey="vin">
 						<template #sourceHeader>
 							Available
@@ -248,7 +248,7 @@
 
 
 				<div class="card card-w-title">
-					<div class="card-title">OrderList</div>
+					<h1>OrderList</h1>
 					<OrderList v-model="orderlistCars" listStyle="height:250px" dataKey="vin">
 						<template #header>
 							OrderList
@@ -263,7 +263,7 @@
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">Panel</div>
+					<h1>Panel</h1>
 					<Panel header="Godfather I" :toggleable="true">
 						The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
 						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
@@ -275,7 +275,7 @@
 
 			<div class="p-col-12 p-lg-6">
 				<div class="card card-w-title">
-					<div class="card-title">Accordion Panel</div>
+					<h1>Acoordion Panel</h1>
 					<Accordion>
 						<AccordionTab header="Godfather I">
 							The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughters wedding.
@@ -298,7 +298,7 @@
 						</AccordionTab>
 					</Accordion>
 
-					<div class="card-title">TabView</div>
+					<h1>TabView</h1>
 					<TabView>
 						<TabPanel header="Godfather I">
 							The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
@@ -313,17 +313,17 @@
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">ProgressBar</div>
+					<h1>ProgressBar</h1>
 					<ProgressBar :value="50" />
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">Tree</div>
+					<h1>Tree</h1>
 					<Tree :value="nodes" selectionMode="single" :selectionKeys.sync="selectedTree"></Tree>
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">Menu</div>
+					<h1>Menu</h1>
 					<Menu :model="menuItems"></Menu>
 				</div>
 			</div>

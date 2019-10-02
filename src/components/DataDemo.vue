@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">DataTable</div>
+				<h1>DataTable</h1>
 				<DataTable :value="dataTableCars" class="p-datatable-responsive" :selection.sync="dataTableSelectedCar" selectionMode="single" dataKey="vin" :paginator="true" paginatorPosition="both" :rows="10">
 					<template #header>
 						Cars List
@@ -17,7 +17,7 @@
 
 		<div class="p-col-12">
 			<div class="card card-w-title">
-                <div class="card-title">DataView</div>
+                <h1>DataView</h1>
 				<DataView :value="dataViewCars" :layout="layout" paginatorPosition="both" :paginator="true" :rows="10" :sortOrder="sortOrder" :sortField="sortField">
 					<template #header>
 						<div class="p-grid p-nogutter">
@@ -68,7 +68,7 @@
 
 		<div class="p-col-12 p-md-8">
 			<div class="card">
-				<div class="card-title">PickList</div>
+				<h1>PickList</h1>
 				<PickList v-model="picklistCars" listStyle="height:250px" dataKey="vin">
 					<template #sourceHeader>
 						Available
@@ -88,7 +88,7 @@
 
 		<div class="p-col-12 p-md-4">
 			<div class="card">
-				<div class="card-title">OrderList</div>
+				<h1>OrderList</h1>
 				<OrderList v-model="orderlistCars" listStyle="height:250px" dataKey="vin" class="p-orderlist-responsive">
 					<template #header>
 						OrderList
@@ -107,11 +107,11 @@
 			<div class="card">
 				<div class="p-grid p-fluid">
 					<div class="p-col-12 p-md-6">
-						<div class="card-title">Tree</div>
+						<h1>Tree</h1>
 						<Tree :value="treeValue1" selectionMode="single" :selectionKeys.sync="selectedTreeValue1"></Tree>
 					</div>
 					<div class="p-col-12 p-md-6">
-						<div class="card-title">Checkbox Tree</div>
+						<h1>Checkbox Tree</h1>
 						<Tree :value="treeValue2" selectionMode="checkbox" :selectionKeys.sync="selectedTreeValue2"></Tree>
 					</div>
 				</div>
@@ -120,7 +120,7 @@
 
         <div class="p-col-12">
 			<div class="card">
-                <div class="card-title">TreeTable</div>
+                <h1>TreeTable</h1>
 				<TreeTable :value="ttNodes" selectionMode="checkbox" :selectionKeys.sync="selectedTTNodes">
                     <template #header>
                         FileSystem
@@ -148,7 +148,7 @@
 
 		<div class="p-col-12">
 			<div class="card" style="overflow: auto">
-				<div class="card-title">Organization Chart</div>
+				<h1>Organization Chart</h1>
 				<OrganizationChart :value="organizationChartValue">
 					<template #default="slotProps">
 						<span>{{slotProps.node.data.label}}</span>

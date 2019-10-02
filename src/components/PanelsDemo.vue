@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">AccordionPanel</div>
+				<h1>AccordionPanel</h1>
 				<Accordion>
 					<AccordionTab header="Godfather I">
 						The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
@@ -19,7 +19,7 @@
 
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">Panel</div>
+				<h1>Panel</h1>
 				<Panel header="Default" :toggleable="true">
 					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
 						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
@@ -43,7 +43,7 @@
 
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">TabView</div>
+				<h1>TabView</h1>
 				<TabView>
                     <TabPanel header="Godfather I">
                         The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
@@ -60,7 +60,7 @@
 
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">Fieldset</div>
+				<h1>Fieldset</h1>
 				<Fieldset legend="Toggleable" :toggleable="true">
 					The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
 					His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
@@ -73,7 +73,7 @@
 
 		<div class="p-col-12">
 			<div class="card card-w-title">
-				<div class="card-title">Toolbar</div>
+				<h1>Toolbar</h1>
 				<Toolbar>
 					<template slot="left">
 						<Button label="New" icon="pi-md-plus" style="margin-right: .25em" />

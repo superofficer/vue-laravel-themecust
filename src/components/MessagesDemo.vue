@@ -9,7 +9,7 @@
 				<Button @click="showWarn()" label="Warn" class="p-button-warning" style="width: 10em; margin-right: .25em" />
 				<Button @click="showError()" label="Error" class="p-button-danger" style="width: 10em; margin-right: .25em" />
 
-				<div class="card-title">Messages</div>
+				<h1>Messages</h1>
 				<div class="p-grid">
 					<div class="p-col-12 p-md-3">
 						<Message severity="info" :closable="false">PrimeReact Rocks</Message>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 
-                <div class="card-title">Validation Message</div>
+                <h1>Validation Message</h1>
                 <div class="p-grid validation-grid">
                     <div class="p-col-12">
                         <InputText placeholder="Username" class="p-error" style="margin-right: .25em" />

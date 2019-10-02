@@ -2,33 +2,33 @@
 	<div class="p-grid p-fluid">
 		<div class="p-col-12 p-lg-6">
 			<div class="card">
-				<div class="centerText card-title">Linear Chart</div>
+				<h1 class="centerText">Linear Chart</h1>
 				<Chart type="line" :data="lineData" />
 			</div>
 
 			<div class="card">
-				<div class="centerText card-title">Pie Chart</div>
+				<h1 class="centerText">Pie Chart</h1>
 				<Chart type="pie" :data="pieData" />
 			</div>
 
 			<div class="card">
-				<div class="centerText card-title">Polar Area Chart</div>
+				<h1 class="centerText">Polar Area Chart</h1>
 				<Chart type="polarArea" :data="polarData" />
 			</div>
 		</div>
 		<div class="p-col-12 p-lg-6">
 			<div class="card">
-				<div class="centerText card-title">Bar Chart</div>
+				<h1 class="centerText">Bar Chart</h1>
 				<Chart type="bar" :data="barData" />
 			</div>
 
 			<div class="card">
-				<div class="centerText card-title">Doughnut Chart</div>
+				<h1 class="centerText">Doughnut Chart</h1>
 				<Chart type="doughnut" :data="doughnutData" />
 			</div>
 
 			<div class="card">
-				<div class="centerText card-title">Radar Chart</div>
+				<h1 class="centerText">Radar Chart</h1>
 				<Chart type="radar" :data="radarData" />
 			</div>
 		</div>

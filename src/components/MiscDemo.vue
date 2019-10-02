@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">Upload</div>
+				<h1>Upload</h1>
 
 				<FileUpload name="demo[]" url="./upload.php" @upload="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000" />
 			</div>
@@ -10,7 +10,7 @@
 
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">ProgressBar</div>
+				<h1>ProgressBar</h1>
 				<ProgressBar :value="value" />
 			</div>
 		</div>

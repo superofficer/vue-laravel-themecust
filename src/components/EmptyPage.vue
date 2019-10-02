@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">Empty Page</div>
+				<h1>Empty Page</h1>
 				<p>Use this page to start from scratch and place your custom content.</p>
 			</div>
 		</div>

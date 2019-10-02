@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<div class="card-title">Card</div>
+				<h1>Card</h1>
 				<p>Card is a section to group content and layout provides a built-in css for it. Apply .card style class to your container to use it. If the
 					card has a title defined with h1 tag, add card-w-title to adjust paddings.</p>
 				<pre>
@@ -20,11 +20,11 @@
 				</div>
 
 				<div class="card card-w-title">
-					<div class="card-title">Card with Title</div>
+					<h1>Card with Title</h1>
 					Content
 				</div>
 
-				<div class="card-title">Input Animations</div>
+				<h1>Input Animations</h1>
 				<p>Label of an input can be animated on focus by wrapping both the input and label in an element with md-inputfield style class.</p>
 				<br />
 
@@ -40,7 +40,7 @@
 &lt;/span>
 </pre>
 
-				<div class="card-title">Shadows</div>
+				<h1>Shadows</h1>
 				<p>5 levels of shadows are provided varying from ui-shadow-1 to ui-shadow-5 to define the level of depth.</p>
 
 				<div class="p-grid">
@@ -86,7 +86,7 @@
 &lt;/div&gt;
 </pre>
 
-				<div class="card-title">Icons</div>
+				<h1>Icons</h1>
 				<p><a href="https://design.google.com/icons/">All material icons</a> have been ported
 					using <i>pi-md-</i> convention. To use an icon within a component
 					such as button below, define it using the icon attribute prefixed by <i>pi-md-</i>.</p>

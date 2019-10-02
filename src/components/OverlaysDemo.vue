@@ -2,7 +2,7 @@
 	<div class="p-grid p-fluid">
 		<div class="p-col-6">
             <div class="card">
-				<div class="card-title">Overlay Panel</div>
+				<h1>Overlay Panel</h1>
 				<div class="p-grid">
 					<div class="p-col-6">
 						<Button type="button" label="Image" @click="toggle" />
@@ -26,7 +26,7 @@
 		</div>
         <div class="p-col-6">
 			<div class="card">
-				<div class="card-title">Dialog</div>
+				<h1>Dialog</h1>
 				<Dialog header="Godfather I" :visible.sync="display" :style="{width: '30vw'}" :modal="true">
 					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
 						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
