@@ -543,13 +543,14 @@ body {
 
         &.ultima-main-menu {
             margin-top: 16px;
+            padding-bottom: 120px;
         }
         
         li {
             a, button {
                 font-size: 1em;
                 display: block;
-                padding: .5em 2em .5em 1em;
+                padding: .5em 1em .5em 1em;
                 color: $textColor;
                 width: 100%;
                 box-sizing: border-box;
@@ -922,6 +923,7 @@ body {
 
                     &.ultima-main-menu {
                         margin-top: 0;
+                        padding-bottom: 0;
                     }
                     
                     > li {
