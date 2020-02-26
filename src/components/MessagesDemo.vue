@@ -12,16 +12,16 @@
 				<h1>Messages</h1>
 				<div class="p-grid">
 					<div class="p-col-12 p-md-3">
-						<Message severity="info" :closable="false">PrimeVue Rocks</Message>
+						<Message severity="info">PrimeVue Rocks</Message>
 					</div>
 					<div class="p-col-12 p-md-3">
-						<Message severity="success" :closable="false">Record Saved</Message>
+						<Message severity="success">Record Saved</Message>
 					</div>
 					<div class="p-col-12 p-md-3">
-						<Message severity="warn" :closable="false">Are you sure?</Message>
+						<Message severity="warn">Are you sure?</Message>
 					</div>
 					<div class="p-col-12 p-md-3">
-						<Message severity="error" :closable="false">Field is required</Message>
+						<Message severity="error">Field is required</Message>
 					</div>
 				</div>
 

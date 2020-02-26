@@ -6,8 +6,8 @@
 					<div class="p-messages-wrapper">
 						<ul>
 							<li>
-								<span class="p-messages-icon pi-md-check"></span>
-								<span class="p-messages-summary" style="font-weight: normal">Ultima provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
+								<span class="p-messages-icon pi pi-fw pi-check"></span>
+								<span class="p-messages-summary" style="font-size: 16px">Ultima provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
 							</li>
 						</ul>
 					</div>
@@ -52,13 +52,13 @@
 						<div class="p-col-12 p-md-4">
 							<Password v-model="passwordValue" id="password"/>
 						</div>
-                        <div class="p-col-12 p-md-2">
+						<div class="p-col-12 p-md-2">
 							<label for="mask">Mask</label>
 						</div>
-                        <div class="p-col-12 p-md-4">
+						<div class="p-col-12 p-md-4">
 							<InputMask id="mask" v-model="maskValue" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Date" />
 						</div>
-                        <div class="p-col-12 p-md-2">
+						<div class="p-col-12 p-md-2">
 							<label for="spinner">Spinner</label>
 						</div>
 						<div class="p-col-12 p-md-4">
@@ -144,7 +144,7 @@
 						<div class="p-col-12 p-md-4">
 							<Listbox v-model="listboxCity" :options="listboxCities" optionLabel="name" :filter="true"/>
 						</div>
-                        <div class="p-col-12 p-md-2">
+						<div class="p-col-12 p-md-2">
 							Dialog
 						</div>
 						<div class="p-col-12 p-md-4">
@@ -168,14 +168,66 @@
 			<div class="p-col-12">
 				<div class="card card-w-title">
 					<h1>DataTable</h1>
-					<DataTable :value="dataTableCars" class="p-datatable-responsive" :selection.sync="dataTableSelectedCar" selectionMode="single" dataKey="vin">
+					<DataTable :value="dataTableCars" class="p-datatable-responsive" :selection.sync="dataTableSelectedCar" selectionMode="single" dataKey="vin" :paginator="true" :rows="10" :filters="filters">
 						<template #header>
-							DataTable
+							List of Cars
 						</template>
-						<Column field="vin" header="Vin" :sortable="true"></Column>
-						<Column field="year" header="Year" :sortable="true"></Column>
-						<Column field="brand" header="Brand" :sortable="true"></Column>
-						<Column field="color" header="Color" :sortable="true"></Column>
+						<Column field="vin" header="Vin" :sortable="true">
+							<template #body="slotProps">
+								<span class="p-column-title">Vin</span>
+								{{slotProps.data.vin}}
+							</template>
+							<template #filter>
+								<InputText type="text" v-model="filters['vin']" class="p-column-filter" placeholder="Starts with" />
+							</template>
+						</Column>
+						<Column field="year" header="Year" :sortable="true" filterMatchMode="contains">
+							<template #body="slotProps">
+								<span class="p-column-title">Year</span>
+								{{slotProps.data.year}}
+							</template>
+							<template #filter>
+								<InputText type="text" v-model="filters['year']" class="p-column-filter" placeholder="Contains" />
+							</template>
+						</Column>
+						<Column field="brand" header="Brand" :sortable="true" filterMatchMode="equals">
+							<template #body="slotProps">
+								<span class="p-column-title">Brand</span>
+								{{slotProps.data.brand}}
+							</template>
+							<template #filter>
+								<Dropdown v-model="filters['brand']" :options="brands" optionLabel="brand" optionValue="value" placeholder="Select a Brand" class="p-column-filter" :showClear="true">
+									<template #option="slotProps">
+										<div class="p-clearfix p-dropdown-car-option">
+											<img :alt="slotProps.option.brand" :src="'assets/demo/images/car/' + slotProps.option.brand + '.png'" />
+											<span>{{slotProps.option.brand}}</span>
+										</div>
+									</template>
+								</Dropdown>
+							</template>
+						</Column>
+						<Column field="color" header="Color" :sortable="true" filterMatchMode="in">
+							<template #body="slotProps">
+								<span class="p-column-title">Color</span>
+								{{slotProps.data.color}}
+							</template>
+							<template #filter>
+								<MultiSelect v-model="filters['color']" :options="colors" optionLabel="name" optionValue="value" placeholder="Select a Color" class="p-column-filter" />
+							</template>
+						</Column>
+						<Column headerStyle="width: 8em; text-align: center" bodyStyle="text-align: center">
+							<template #body="slotProps">
+								<span class="p-column-title">Color</span>
+								{{slotProps.data.color}}
+							</template>
+							<template #header>
+								<Button type="button" icon="pi-md-settings"></Button>
+							</template>
+							<template #body="slotProps">
+								<Button type="button" icon="pi-md-search" class="p-button-success" style="margin-right: .5em"></Button>
+								<Button type="button" icon="pi-md-edit" class="p-button-warning"></Button>
+							</template>
+						</Column>
 					</DataTable>
 				</div>
 			</div>
@@ -195,25 +247,18 @@
 							</div>
 						</template>
 						<template #list="slotProps" >
-							<div class="p-col-12 car-details" style="padding: 2em; border-bottom: 1px solid #d9d9d9">
-								<div class="p-grid">
-									<div class="p-col-12 p-md-3">
-										<img width="72" :src="'assets/demo/images/car/' + slotProps.data.brand + '.png'" :alt="slotProps.data.brand"/>
-									</div>
-									<div class="p-col-12 p-md-8 car-details">
+							<div class="p-col-12">
+								<div class="car-details">
+									<div>
+										<img :src="'assets/demo/images/car/' + slotProps.data.brand + '.png'" :alt="slotProps.data.brand"/>
 										<div class="p-grid">
 											<div class="p-col-12">Vin: <b>{{slotProps.data.vin}}</b></div>
-
 											<div class="p-col-12">Year: <b>{{slotProps.data.year}}</b></div>
-
 											<div class="p-col-12">Brand: <b>{{slotProps.data.brand}}</b></div>
-
 											<div class="p-col-12">Color: <b>{{slotProps.data.color}}</b></div>
 										</div>
 									</div>
-									<div class="p-col-12 p-md-1 search-icon" style="margin-top: 40px">
-										<Button icon="pi-md-search"></Button>
-									</div>
+									<Button icon="pi-md-search"></Button>
 								</div>
 							</div>
 						</template>
@@ -222,7 +267,6 @@
 								<Panel :header="slotProps.data.vin" style="text-align: center">
 									<img :src="'assets/demo/images/car/' + slotProps.data.brand + '.png'" :alt="slotProps.data.brand"/>
 									<div class="car-detail">{{slotProps.data.year}} - {{slotProps.data.color}}</div>
-									<hr class="ui-widget-content" style="border-top: 0" />
 									<Button icon="pi-md-search"></Button>
 								</Panel>
 							</div>
@@ -275,7 +319,7 @@
 
 			<div class="p-col-12 p-lg-6">
 				<div class="card card-w-title">
-					<h1>Acoordion Panel</h1>
+					<h1>Accordion Panel</h1>
 					<Accordion>
 						<AccordionTab header="Godfather I">
 							The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughters wedding.
@@ -332,164 +376,238 @@
 </template>
 
 <script>
-import CountryService from '../service/CountryService'
-import CarService from '../service/CarService'
-import NodeService from '../service/NodeService'
+	import CountryService from '../service/CountryService'
+	import CarService from '../service/CarService'
+	import NodeService from '../service/NodeService'
 
-export default {
-	data(){
-		return {
-			countries: null,
-			selectedCountry: null,
-			filteredCountriesBasic: null,
-			multiselectedCars: null,
-			multiselectCars: [
-				{brand: 'Audi', value: 'Audi'},
-				{brand: 'Bmw', value: 'Bmw'},
-				{brand: 'Fiat', value: 'Fiat'},
-				{brand: 'Honda', value: 'Honda'},
-				{brand: 'Jaguar', value: 'Jaguar'},
-				{brand: 'Mercedes', value: 'Mercedes'},
-				{brand: 'Renault', value: 'Renault'},
-				{brand: 'Volkswagen', value: 'Volkswagen'},
-				{brand: 'Volvo', value: 'Volvo'}
-			],
-			date: null,
-			themesCheckbox: [],
-			themesRadioButton: null,
-			dropdownCities: [
-				{name: 'New York', code: 'NY'},
-				{name: 'Rome', code: 'RM'},
-				{name: 'London', code: 'LDN'},
-				{name: 'Istanbul', code: 'IST'},
-				{name: 'Paris', code: 'PRS'}
-			],
-			dropdownCity: null,
-            passwordValue: '',
-            maskValue: null,
-			spinnerValue: null,
-			sliderValue: [20,80],
-			listboxCities: [
-				{name: 'New York', code: 'NY'},
-				{name: 'Rome', code: 'RM'},
-				{name: 'London', code: 'LDN'},
-				{name: 'Istanbul', code: 'IST'},
-				{name: 'Paris', code: 'PRS'}
-			],
-			listboxCity: null,
-			toggleValue: false,
-			selectButtonValues: [
-				{name: 'Apartment', code: 'Apartment'},
-				{name: 'House', code: 'House'},
-				{name: 'Studio', code: 'Studio'}
-			],
-			selectButtonValue: null,
-			splitItems: [
-				{
-					label: 'Update',
-					icon: 'pi-md-update'
-				},
-				{
-					label: 'Delete',
-					icon: 'pi-md-close'
-				},
-				{
-					label: 'Vue Website',
-					icon: 'pi-md-launch'
-				},
-				{
-					label: 'Home',
-					icon: 'pi-md-home'
-				}
-			],
-			display: false,
-			dataViewCars: null,
-			dataTableCars: null,
-			dataTableSelectedCar: null,
-			layout: 'list',
-			sortKey: null,
-			sortOrder: null,
-			sortField: null,
-			sortOptions: [
-				{label: 'Newest First', value: '!year'},
-				{label: 'Oldest First', value: 'year'},
-				{label: 'Brand', value: 'brand'}
-			],
-			picklistCars: null,
-			orderlistCars: null,
-			nodes: null,
-			selectedTree: null,
-			menuItems: [
-				{
-					label: 'File',
-					items: [
-						{label: 'New', icon: 'pi-md-plus'},
-						{label: 'Open', icon: 'pi-md-open-in-browser'}
-					]
-				},
-				{
-					label: 'Edit',
-					items: [
-						{label: 'Undo', icon: 'pi-md-undo'},
-						{label: 'Redo', icon: 'pi-md-redo'}
-					]
-				}
-			]
-		}
-	},
-	countryService: null,
-	carService: null,
-	nodeService: null,
-	created() {
-		this.carService = new CarService();
-		this.countryService = new CountryService();
-		this.nodeService = new NodeService();
-	},
-	mounted() {
-		this.carService.getCarsLarge().then(data => this.dataViewCars = data);
-		this.carService.getCarsSmall().then(data => this.dataTableCars = data);
-		this.countryService.getCountries().then(data => this.countries = data);
-		this.carService.getCarsSmall().then(data => this.picklistCars = [data.slice(0,10),[]]);
-		this.carService.getCarsSmall().then(data => this.orderlistCars = data);
-		this.nodeService.getTreeNodes().then(data => this.nodes = data);
-	},
-	methods: {
-		searchCountry(query) {
-			return this.countries.filter((country) => {
-				return country.name.toLowerCase().startsWith(query.toLowerCase());
-			});
-		},
-		searchCountryBasic(event) {
-			setTimeout(() => {
-				this.filteredCountriesBasic = this.searchCountry(event.query);
-			}, 250);
-		},
-		open() {
-			this.display = true;
-		},
-		onSortChange(event){
-			const value = event.value.value;
-			const sortValue = event.value;
-
-			if (value.indexOf('!') === 0) {
-				this.sortOrder = -1;
-				this.sortField = value.substring(1, value.length);
-				this.sortKey = sortValue;
+	export default {
+		data(){
+			return {
+				countries: null,
+				selectedCountry: null,
+				filteredCountriesBasic: null,
+				multiselectedCars: null,
+				multiselectCars: [
+					{brand: 'Audi', value: 'Audi'},
+					{brand: 'Bmw', value: 'Bmw'},
+					{brand: 'Fiat', value: 'Fiat'},
+					{brand: 'Honda', value: 'Honda'},
+					{brand: 'Jaguar', value: 'Jaguar'},
+					{brand: 'Mercedes', value: 'Mercedes'},
+					{brand: 'Renault', value: 'Renault'},
+					{brand: 'Volkswagen', value: 'Volkswagen'},
+					{brand: 'Volvo', value: 'Volvo'}
+				],
+				date: null,
+				themesCheckbox: [],
+				themesRadioButton: null,
+				dropdownCities: [
+					{name: 'New York', code: 'NY'},
+					{name: 'Rome', code: 'RM'},
+					{name: 'London', code: 'LDN'},
+					{name: 'Istanbul', code: 'IST'},
+					{name: 'Paris', code: 'PRS'}
+				],
+				dropdownCity: null,
+				passwordValue: '',
+				maskValue: null,
+				spinnerValue: null,
+				sliderValue: [20,80],
+				listboxCities: [
+					{name: 'New York', code: 'NY'},
+					{name: 'Rome', code: 'RM'},
+					{name: 'London', code: 'LDN'},
+					{name: 'Istanbul', code: 'IST'},
+					{name: 'Paris', code: 'PRS'}
+				],
+				listboxCity: null,
+				toggleValue: false,
+				selectButtonValues: [
+					{name: 'Apartment', code: 'Apartment'},
+					{name: 'House', code: 'House'},
+					{name: 'Studio', code: 'Studio'}
+				],
+				selectButtonValue: null,
+				splitItems: [
+					{
+						label: 'Update',
+						icon: 'pi-md-update'
+					},
+					{
+						label: 'Delete',
+						icon: 'pi-md-close'
+					},
+					{
+						label: 'Vue Website',
+						icon: 'pi-md-launch'
+					},
+					{
+						label: 'Home',
+						icon: 'pi-md-home'
+					}
+				],
+				display: false,
+				dataViewCars: null,
+				dataTableCars: null,
+				dataTableSelectedCar: null,
+				layout: 'list',
+				sortKey: null,
+				sortOrder: null,
+				sortField: null,
+				sortOptions: [
+					{label: 'Newest First', value: '!year'},
+					{label: 'Oldest First', value: 'year'},
+					{label: 'Brand', value: 'brand'}
+				],
+				picklistCars: null,
+				orderlistCars: null,
+				nodes: null,
+				selectedTree: null,
+				menuItems: [
+					{
+						label: 'File',
+						items: [
+							{label: 'New', icon: 'pi-md-plus'},
+							{label: 'Open', icon: 'pi-md-open-in-browser'}
+						]
+					},
+					{
+						label: 'Edit',
+						items: [
+							{label: 'Undo', icon: 'pi-md-undo'},
+							{label: 'Redo', icon: 'pi-md-redo'}
+						]
+					}
+				],
+				filters: {},
+				brands: [
+					{brand: 'Audi', value: 'Audi'},
+					{brand: 'BMW', value: 'BMW'},
+					{brand: 'Fiat', value: 'Fiat'},
+					{brand: 'Honda', value: 'Honda'},
+					{brand: 'Jaguar', value: 'Jaguar'},
+					{brand: 'Mercedes', value: 'Mercedes'},
+					{brand: 'Renault', value: 'Renault'},
+					{brand: 'Volkswagen', value: 'Volkswagen'},
+					{brand: 'Volvo', value: 'Volvo'}
+				],
+				colors: [
+					{name: 'White', value: 'White'},
+					{name: 'Green', value: 'Green'},
+					{name: 'Silver', value: 'Silver'},
+					{name: 'Black', value: 'Black'},
+					{name: 'Red', value: 'Red'},
+					{name: 'Maroon', value: 'Maroon'},
+					{name: 'Brown', value: 'Brown'},
+					{name: 'Orange', value: 'Orange'},
+					{name: 'Blue', value: 'Blue'}
+				]
 			}
-			else {
-				this.sortOrder = 1;
-				this.sortField = value;
-				this.sortKey = sortValue;
+		},
+		countryService: null,
+		carService: null,
+		nodeService: null,
+		created() {
+			this.carService = new CarService();
+			this.countryService = new CountryService();
+			this.nodeService = new NodeService();
+		},
+		mounted() {
+			this.carService.getCarsLarge().then(data => this.dataViewCars = data);
+			this.carService.getCarsMedium().then(data => this.dataTableCars = data);
+			this.countryService.getCountries().then(data => this.countries = data);
+			this.carService.getCarsSmall().then(data => this.picklistCars = [data.slice(0,10),[]]);
+			this.carService.getCarsSmall().then(data => this.orderlistCars = data);
+			this.nodeService.getTreeNodes().then(data => this.nodes = data);
+		},
+		methods: {
+			searchCountry(query) {
+				return this.countries.filter((country) => {
+					return country.name.toLowerCase().startsWith(query.toLowerCase());
+				});
+			},
+			searchCountryBasic(event) {
+				setTimeout(() => {
+					this.filteredCountriesBasic = this.searchCountry(event.query);
+				}, 250);
+			},
+			open() {
+				this.display = true;
+			},
+			onSortChange(event){
+				const value = event.value.value;
+				const sortValue = event.value;
+
+				if (value.indexOf('!') === 0) {
+					this.sortOrder = -1;
+					this.sortField = value.substring(1, value.length);
+					this.sortKey = sortValue;
+				}
+				else {
+					this.sortOrder = 1;
+					this.sortField = value;
+					this.sortKey = sortValue;
+				}
 			}
 		}
 	}
-}
 </script>
 
-<style>
-@media (max-width: 1024px) {
-	.p-dataview-list .p-dataview-content {
-		text-align: center
+<style lang="scss" scoped>
+	/deep/ .p-dropdown {
+		width: 12em;
 	}
-}
+
+	/deep/ .p-dataview {
+		.car-details {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 2em;
+
+			& > div {
+				display: flex;
+				align-items: center;
+
+				img {
+					margin-right: 14px;
+				}
+			}
+		}
+
+		.car-detail {
+			padding: 0 1em 1em 1em;
+			margin: 1em;
+		}
+
+		.p-dataview-layout-options {
+			.p-button {
+				float: right;
+			}
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.p-dataview {
+			.car-details {
+				img {
+					width: 75px;
+				}
+			}
+		}
+	}
+
+	.p-dropdown-car-option {
+
+		img {
+			vertical-align: middle;
+			margin-right: .5em;
+			width: 24px;
+		}
+
+		span {
+			float: right;
+			margin-top: .125em;
+		}
+	}
 </style>

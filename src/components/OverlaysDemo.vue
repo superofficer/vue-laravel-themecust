@@ -1,7 +1,7 @@
 <template>
-	<div class="p-grid p-fluid">
-		<div class="p-col-6">
-            <div class="card">
+	<div class="p-grid">
+		<div class="p-col-6 p-fluid">
+			<div class="card">
 				<h1>Overlay Panel</h1>
 				<div class="p-grid">
 					<div class="p-col-6">
@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-        <div class="p-col-6">
+		<div class="p-col-6 p-fluid">
 			<div class="card">
 				<h1>Dialog</h1>
 				<Dialog header="Godfather I" :visible.sync="display" :style="{width: '30vw'}" :modal="true">
@@ -35,48 +35,73 @@
 						but given to ruthless violence whenever anything stands against the good of the family.
 					</p>
 					<template #footer>
-						<Button label="Yes" @click="close" />
-						<Button label="No" @click="close" class="p-button-secondary"/>
+						<Button label="Yes" @click="close" icon="pi-md-check"/>
+						<Button label="No" @click="close" icon="pi-md-close" class="p-button-secondary"/>
 					</template>
 				</Dialog>
 				<Button label="Show" icon="pi-md-launch" @click="open"/>
+			</div>
+		</div>
+		<div class="p-col-12">
+			<div class="card">
+				<h1>Tooltip</h1>
+				<div class="p-grid p-fluid">
+					<div class="p-col-12 p-md-3">
+						<InputText type="text" placeholder="Right" v-tooltip.right="'Enter your username'" />
+					</div>
+					<div class="p-col-12 p-md-3">
+						<InputText type="text" placeholder="Top" v-tooltip.top="'Enter your username'" />
+					</div>
+					<div class="p-col-12 p-md-3">
+						<InputText type="text" placeholder="Bottom" v-tooltip.bottom="'Enter your username'" />
+					</div>
+					<div class="p-col-12 p-md-3">
+						<InputText type="text" placeholder="Left" v-tooltip.left="'Enter your username'" />
+					</div>
+				</div>
+
+				<h1>Focus and Blur</h1>
+				<InputText type="text" placeholder="Focus" v-tooltip.bottom.focus="'Enter your username'" />
+
+				<h1>Button</h1>
+				<Button type="button" label="Save" icon="pi-md-check" v-tooltip="'Click to proceed'" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import CarService from '../service/CarService'
+	import CarService from '../service/CarService'
 
-export default {
-	data() {
-		return {
-			dataTableValue: [],
-			display: false
-		}
-	},
-	carService: null,
-	created() {
-		this.carService = new CarService();
-	},
-	mounted() {
-		this.carService.getCarsSmall().then(data => this.dataTableValue = data.slice(0,5));
-	},
-	methods: {
-		open() {
-			this.display = true;
+	export default {
+		data() {
+			return {
+				dataTableValue: [],
+				display: false
+			}
 		},
-		close() {
-			this.display = false;
+		carService: null,
+		created() {
+			this.carService = new CarService();
 		},
-		toggle(event) {
-			this.$refs.op.toggle(event);
+		mounted() {
+			this.carService.getCarsSmall().then(data => this.dataTableValue = data.slice(0,5));
 		},
-		toggleDataTable(event) {
-			this.$refs.op2.toggle(event);
+		methods: {
+			open() {
+				this.display = true;
+			},
+			close() {
+				this.display = false;
+			},
+			toggle(event) {
+				this.$refs.op.toggle(event);
+			},
+			toggleDataTable(event) {
+				this.$refs.op2.toggle(event);
+			}
 		}
 	}
-}
 </script>
 
 <style scoped>

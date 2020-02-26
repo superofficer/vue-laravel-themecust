@@ -13,8 +13,10 @@ body {
 
         .p-messages-close {
             text-decoration: none;
-            color: #ffffff;
-            right: .25em;
+            right: 1em;
+            line-height: 1;
+            @include border-radius(50%);
+            @include transition(background-color $transitionDuration);
         }
 
         &.p-messages-info {
@@ -22,8 +24,12 @@ body {
             border-color: $infoMessageBgColor;
             color: $infoMessageTextColor;
 
-            .p-messages-close:hover {
-                background-color: lighten($infoMessageBgColor,15%);
+            .p-messages-close {
+                color: $infoMessageTextColor;
+
+                &:hover {
+                    background-color: lighten($infoMessageBgColor,15%);
+                }
             }
         }
 
@@ -39,10 +45,6 @@ body {
                     background-color: lighten($warnMessageBgColor,15%);
                 }
             }
-
-            .p-messages-icon {
-                color: $warnMessageTextColor;
-            }
         }
 
         &.p-messages-error {
@@ -50,8 +52,12 @@ body {
             border-color: $errorMessageBgColor;
             color: $errorMessageTextColor;
 
-            .p-messages-close:hover {
-                background-color: lighten($errorMessageBgColor,15%);
+            .p-messages-close {
+                color: $errorMessageTextColor;
+
+                &:hover {
+                    background-color: lighten($errorMessageBgColor,15%);
+                }
             }
         }
 
@@ -60,14 +66,13 @@ body {
             border-color: $successMessageBgColor;
             color: $successMessageTextColor;
 
-            .p-messages-close:hover {
-                background-color: lighten($successMessageBgColor,15%);
-            }
-        }
+            .p-messages-close {
+                color: $successMessageTextColor;
 
-        .p-messages-close {
-            text-decoration: none;
-            right: .25em;
+                &:hover {
+                    background-color: lighten($successMessageBgColor,15%);
+                }
+            }
         }
     }
 
@@ -102,10 +107,17 @@ body {
     }
 
     .p-message {
+        vertical-align: bottom;
         @include border-radius($borderRadius);
 
         .p-message-text {
             margin-left: 5px;
+        }
+
+        &.p-message-icon-only {
+            .p-message-text {
+                display: none;
+            }
         }
 
         &.p-message-info {
@@ -147,36 +159,36 @@ body {
                 color: $errorMessageTextColor;
             }
         }
-    }
 
-    .p-message .p-message-icon {
-        background: none;
-        color: #fff;
-        margin-top: -2px;
+        .p-message-icon {
+            background: none;
+            color: #fff;
+            margin-top: -2px;
 
-        &.pi-info-circle {
-            @include material-icon("info");
-            font-size: 1.286em;
-        }
+            &.pi-info-circle {
+                @include material-icon("info");
+                font-size: 1.286em;
+            }
 
-        &.pi-exclamation-triangle {
-            @include material-icon("warning");
-            font-size: 1.286em;
-        }
+            &.pi-exclamation-triangle {
+                @include material-icon("warning");
+                font-size: 1.286em;
+            }
 
-        &.pi-times {
-            @include material-icon("error_outline");
-            font-size: 1.286em;
-        }
+            &.pi-times {
+                @include material-icon("error_outline");
+                font-size: 1.286em;
+            }
 
-        &.pi-times-circle {
-            @include material-icon("cancel");
-            font-size: 1.286em;
-        }
+            &.pi-times-circle {
+                @include material-icon("cancel");
+                font-size: 1.286em;
+            }
 
-        &.pi-check {
-            @include material-icon("check_circle");
-            font-size: 1.286em;
+            &.pi-check {
+                @include material-icon("check_circle");
+                font-size: 1.286em;
+            }
         }
     }
 
@@ -198,10 +210,10 @@ body {
 
             &.p-toast-message-warn {
                 background-color: $warnMessageBgColor;
-                color: $warnMessageTextColor;
+                color: $warnMessageTextColor;;
 
                 .p-toast-icon-close-icon, .p-toast-message, .p-toast-image  {
-                    color: $warnMessageTextColor;
+                    color: $infoMessageTextColor;;
                 }
             }
 
