@@ -853,6 +853,24 @@ body {
                     -webkit-animation-duration: .5s;
                     -moz-animation-duration: .5s;
                     animation-duration: .5s;
+
+                    &.layout-submenu-container-enter,
+                    &.layout-submenu-container-leave-to {
+                        max-height: 0;
+                    }
+
+                    &.layout-submenu-container-enter-to,
+                    &.layout-submenu-container-leave {
+                        max-height: 1000px;
+                    }
+
+                    &.layout-submenu-container-leave-active {
+                        overflow: hidden;
+                    }
+
+                    &.layout-submenu-container-enter-active {
+                        overflow: hidden;
+                    }
                 }
 
                 &.active-top-menu {
