@@ -22,7 +22,11 @@
 				</div>
 			</div>
 
+			<AppConfig :layoutMode.sync="layoutMode" @menu-mode-change="onMenuModeChange" :darkMenu.sync="darkMenu" @menu-color-change="onMenuColorChange"
+						:profileMode.sync="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
+
 			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
+
 			<div class="layout-mask"></div>
 		</div>
 	</div>
@@ -33,6 +37,7 @@ import AppTopBar from './AppTopbar.vue';
 import AppInlineProfile from './AppInlineProfile.vue';
 import AppRightPanel from './AppRightPanel.vue';
 import AppMenu from './AppMenu.vue';
+import AppConfig from './AppConfig.vue';
 import AppFooter from './AppFooter.vue';
 import AppBreadcrumb from './AppBreadcrumb.vue';
 import EventBus from './event-bus';
@@ -49,6 +54,21 @@ export default {
 			topbarMenuActive: false,
 			activeTopbarItem: null,
 			darkMenu: false,
+			theme: 'indigo',
+			themeColors: [
+				{ name: 'Indigo Pink', file: 'indigo', image: 'indigo-pink.svg' },
+				{ name: 'Brown Green', file: 'brown', image: 'brown-green.svg' },
+				{ name: 'Blue Amber', file: 'blue', image: 'blue-amber.svg' },
+				{ name: 'BlueGrey Green', file: 'blue-grey', image: 'bluegrey-green.svg' },
+				{ name: 'Dark Blue', file: 'dark-blue', image: 'dark-blue.svg' },
+				{ name: 'Dark Green', file: 'dark-green', image: 'dark-green.svg' },
+				{ name: 'Green Yellow', file: 'green', image: 'green-yellow.svg' },
+				{ name: 'Purple Cyan', file: 'purple-cyan', image: 'purple-cyan.svg' },
+				{ name: 'Purple Amber', file: 'purple-amber', image: 'purple-amber.svg' },
+				{ name: 'Teal Lime', file: 'teal', image: 'teal-lime.svg' },
+				{ name: 'Cyan Amber', file: 'cyan', image: 'cyan-amber.svg' },
+				{ name: 'Grey DeepOrange', file: 'grey', image: 'grey-deeporange.svg' }
+			],
 			rightPanelActive: false,
 			menuActive: false,
             menu : [
@@ -182,6 +202,7 @@ export default {
 			if(!this.menuClick) {
 				if(this.isHorizontal() || this.isSlim()) {
 					this.menuActive = false;
+					EventBus.$emit('reset_active_index');
 				}
 
 				this.hideOverlayMenu();
@@ -267,6 +288,18 @@ export default {
 				this.menuActive = false;
 			}
 		},
+		onMenuModeChange(layoutMode) {
+			this.layoutMode = layoutMode;
+			if(layoutMode === 'horizontal') {
+				this.profileMode = 'top';
+			}
+		},
+		onMenuColorChange(menuColor) {
+			this.darkMenu = menuColor;
+		},
+		onProfileModeChange(profileMode) {
+			this.profileMode = profileMode;
+		},
 		changeTheme(theme) {
 			this.changeStyleSheetUrl('layout-css', theme, 'layout');
 			this.changeStyleSheetUrl('theme-css', theme, 'theme');
@@ -276,7 +309,22 @@ export default {
 			let urlTokens = element.getAttribute('href').split('/');
 			urlTokens[urlTokens.length - 1] = prefix + '-' + value + '.css';
 			let newURL = urlTokens.join('/');
-			element.setAttribute('href', newURL);
+
+			this.replaceLink(element, newURL);
+		},
+		replaceLink(linkElement, href) {
+			const id = linkElement.getAttribute('id');
+			const cloneLinkElement = linkElement.cloneNode(true);
+
+			cloneLinkElement.setAttribute('href', href);
+			cloneLinkElement.setAttribute('id', id + '-clone');
+
+			linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+			cloneLinkElement.addEventListener('load', () => {
+				linkElement.remove();
+				cloneLinkElement.setAttribute('id', id);
+			});
 		},
 		bindRipple() {
 			this.rippleListener = this.rippleMousedown.bind(this);
@@ -397,6 +445,7 @@ export default {
         'AppInlineProfile': AppInlineProfile,
         'AppRightPanel': AppRightPanel,
         'AppMenu': AppMenu,
+        'AppConfig': AppConfig,
         'AppFooter': AppFooter,
         'AppBreadcrumb': AppBreadcrumb
     }
