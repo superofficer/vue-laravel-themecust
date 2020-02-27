@@ -4,12 +4,14 @@
 			<AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
 			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
-			<div :class="menuClass" @click="onMenuClick">
-				<div class="menu-scroll-content">
-					<AppInlineProfile v-if="profileMode === 'inline' && layoutMode !== 'horizontal'"></AppInlineProfile>
-					<AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+			<transition name="layout-menu-container">
+				<div :class="menuClass" @click="onMenuClick">
+					<div class="menu-scroll-content">
+						<AppInlineProfile v-if="profileMode === 'inline' && layoutMode !== 'horizontal'"></AppInlineProfile>
+						<AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+					</div>
 				</div>
-			</div>
+			</transition>
 
 			<div class="layout-main">
 

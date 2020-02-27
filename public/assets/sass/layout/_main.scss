@@ -173,11 +173,17 @@ body {
         position: fixed;
         width: 250px;
         z-index: 99;
+        left: 0;
         top: 75px;
         height: 100%;
         background-color: $layoutMenuBgColor;
         @include shadow(3px 0 6px rgba(0,0,0,0.3));
-        @include transition(margin-left 0.3s);
+        @include transition(transform $transitionDuration);
+
+        &.layout-menu-container-enter,
+        &.layout-menu-container-leave-to {
+            transform: translateX(-100%);
+        }
 
         .profile {
             box-sizing: border-box;
@@ -418,7 +424,13 @@ body {
 
     &.menu-layout-overlay {
         .layout-menu {
-            margin-left: -250px;
+            transform: translateX(-100%);
+            @include transition(transform $transitionDuration);
+
+            &.layout-menu-container-enter,
+            &.layout-menu-container-leave-to {
+                transform: translateX(-100%);
+            }
         }
 
         .layout-main {
@@ -428,7 +440,7 @@ body {
         &.layout-menu-overlay-active {
             .layout-menu {
                 z-index: 999999999;
-                margin-left: 0px;
+                transform: translateX(0);
             }
 
             .layout-mask {
@@ -861,7 +873,12 @@ body {
 
         &.menu-layout-static {
             .layout-menu {
-                margin-left: 0;
+                transform: translateX(0);
+                transition: transform $transitionDuration;
+
+                &.layout-menu-container-enter {
+                    transform: translateX(0) !important;
+                }
             }
 
             .layout-main {
@@ -880,7 +897,7 @@ body {
                 }
 
                 .layout-menu {
-                    margin-left: -250px;
+                    transform: translateX(-100%);
                 }
 
                 .layout-main {
@@ -1296,7 +1313,13 @@ body {
                 }
             }
             .layout-menu {
-                margin-left: -265px;
+                transform: translateX(-100%);
+                @include transition(transform $transitionDuration);
+
+                &.layout-menu-container-enter,
+                &.layout-menu-container-leave-to {
+                    transform: translateX(-100%);
+                }
             }
 
             .layout-main {
@@ -1305,7 +1328,7 @@ body {
 
             &.layout-menu-static-active {
                 .layout-menu {
-                    margin-left: 0;
+                    transform: translateX(0);
                     z-index: 999999999;
                 }
 
