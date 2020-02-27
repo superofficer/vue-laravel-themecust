@@ -1,14 +1,14 @@
 <template>
-	<ul v-if="items">
-		<li v-for="(item,i) of items" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to}]">
-            <router-link v-if="item.to" :to="item.to" :class="[{'active-menuitem-routerlink': activeIndex === i}]" @click.native="onMenuItemClick($event,item,i)"
-                    :target="item.target" exact @mouseenter.native="onMenuItemMouseEnter(i)">
+	<ul v-if="items" role="menu">
+		<li v-for="(item,i) of items" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to}]" role="none">
+            <router-link v-if="item.to" :to="item.to" class="ripplelink" @click.native="onMenuItemClick($event,item,i)" :target="item.target" exact
+                         @mouseenter.native="onMenuItemMouseEnter(i)" role="menuitem">
                 <i class="material-icons">{{item.icon}}</i>
                 <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
                 <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
             </router-link>
-            <a v-if="!item.to" class="ripplelink" :href="item.url" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)">
+            <a v-if="!item.to" class="ripplelink" :href="item.url||'#'" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)" role="menuitem">
                 <i class="material-icons">{{item.icon}}</i>
                 <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
@@ -67,6 +67,10 @@ export default {
                 event.preventDefault();
 			}
 
+            if (item.items) {
+                event.preventDefault();
+            }
+
 			if (this.root) {
 				this.$emit('root-menuitem-click', {
 					originalEvent: event,
@@ -74,7 +78,9 @@ export default {
 				});
 			}
 
-			this.activeIndex = index === this.activeIndex ? null : index;
+            if (item.items) {
+                this.activeIndex = index === this.activeIndex ? null : index;
+            }
 
 			this.$emit('menuitem-click', {
 				originalEvent: event,
