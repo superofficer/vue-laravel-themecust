@@ -6,7 +6,7 @@
                 <p>Vue 2.6.0 and PrimeVue 1.0.x</p>
 
                 <h1>Getting Started</h1>
-                <p>Sapphire is an application template for Vue based on the <a href="https://cli.vuejs.org/">Vue CLI</a> that provides out-of-the-box standard
+                <p>Ultima is an application template for Vue based on the <a href="https://cli.vuejs.org/">Vue CLI</a> that provides out-of-the-box standard
                 tooling for Vue projects. If you don't have CLI installed already run the following command.</p>
 <pre>
 npm install -g @vue/cli
@@ -16,7 +16,7 @@ npm install -g @vue/cli
 yarn global add @vue/cli
 </pre>
 
-                <p>Once CLI is ready in your system, extract the contents of the Sapphire zip file distribution, cd to the directory and install the libraries from npm.</p>  
+                <p>Once CLI is ready in your system, extract the contents of the Ultima zip file distribution, cd to the directory and install the libraries from npm.</p>
 
 <pre>
 npm install
@@ -24,10 +24,10 @@ npm install
 # OR
 
 yarn
-</pre>              
+</pre>
 
                 <p>Final step is running the application using the serve script and navigate to <b>http://localhost:8080/</b> to view the application.
-                    That is it, you may now start with the development of your application using the Sapphire template.</p>
+                    That is it, you may now start with the development of your application using the Ultima template.</p>
 
 <pre>
 npm run serve
@@ -43,201 +43,202 @@ npm run serve
 </pre>
 
                 <h1>Structure</h1>
-                <p>Sapphire consists of 2 main parts; the application layout and the resources. <i>App.vue</i> inside src folder is the main component containing the template for the base layout
+                <p>Ultima consists of 2 main parts; the application layout and the resources. <i>App.vue</i> inside src folder is the main component containing the template for the base layout
                     whereas required resources such as SASS structure for the layout are placed inside the <b>src/assets/layout</b> folder.</p>
 
                 <h1>Template</h1>
                 <p>Main layout is the template of the <i>App.vue</i>, it is divided into a couple of child components such as topbar, content, menu and footer. Here is template of the
                     <i>App.vue</i> component that implements the logic such as menu state, layout modes and other configurable options.
                 </p>
-
-<pre>
+<CodeHighlight>
+<template v-pre>
 &lt;template&gt;
-    &lt;div :class="containerClass" @click="onWrapperClick"&gt;
-        &lt;div class="layout-top"&gt;
-            &lt;AppTopBar @menu-click="onMenuClick" @usermenu-button-click="onTopbarUserMenuButtonClick" @usermenu-click="onTopbarUserMenuClick"
-                :menuActive="menuActive" :topbarUserMenuActive="topbarUserMenuActive" :model="menu" :horizontal="horizontal" :menuHoverActive="menuHoverActive"
-                @sidebar-click="onSidebarClick" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick" :isMobile="isMobile"/&gt;
+    &lt;div class="layout-wrapper" @click="onDocumentClick"&gt;
+        &lt;div :class="layoutContainerClass"&gt;
+            &lt;AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
+                       @menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"&gt;&lt;/AppTopBar&gt;
 
-            &lt;div class="layout-topbar-separator"&gt;&lt;/div&gt;
+            &lt;transition name="layout-menu-container"&gt;
+                &lt;div :class="menuClass" @click="onMenuClick"&gt;
+                    &lt;div class="menu-scroll-content"&gt;
+                        &lt;AppInlineProfile v-if="profileMode === 'inline' &amp;&amp; layoutMode !== 'horizontal'"&gt;&lt;/AppInlineProfile&gt;
+                        &lt;AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"&gt;&lt;/AppMenu&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/transition&gt;
 
-            &lt;AppBreadcrumb&gt;&lt;/AppBreadcrumb&gt;
+            &lt;div class="layout-main"&gt;
+
+                &lt;AppBreadcrumb&gt;&lt;/AppBreadcrumb&gt;
+
+                &lt;div class="layout-content"&gt;
+                    &lt;router-view /&gt;
+
+                    &lt;AppFooter /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;AppConfig :layoutMode.sync="layoutMode" @menu-mode-change="onMenuModeChange" :darkMenu.sync="darkMenu" @menu-color-change="onMenuColorChange"
+                       :profileMode.sync="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"&gt;&lt;/AppConfig&gt;
+
+            &lt;AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"&gt;&lt;/AppRightPanel&gt;
+
+            &lt;div class="layout-mask"&gt;&lt;/div&gt;
         &lt;/div&gt;
-
-        &lt;div class="layout-content"&gt;
-            &lt;router-view /&gt;
-        &lt;/div&gt;
-
-        &lt;AppConfig :topbarSize.sync="topbarSize" :topbarColor.sync="topbarColor" :menuColor.sync="menuColor" :horizontal.sync="horizontal"&gt;&lt;/AppConfig&gt;
-
-        &lt;AppFooter /&gt;
-
-        &lt;div class="layout-mask" v-if="menuActive"&gt;&lt;/div&gt;
     &lt;/div&gt;
 &lt;/template&gt;
-</pre>
+</template>
+</CodeHighlight>
 
                 <h1>Menu</h1>
                 <p>Menu is a separate component defined in <i>AppMenu.vue</i> file based on PrimeNG MenuModel API. In order to define the menuitems,
-                    navigate to data section of <i>App.vue</i> file and define your own model as a nested structure using the menu property. 
+                    navigate to data section of <i>App.vue</i> file and define your own model as a nested structure using the menu property.
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
 
-<pre>
+<div style="overflow: auto; height: 400px; margin-bottom: 10px">
+<CodeHighlight lang="js">
 data() &#123;
     return &#123;
         menu : [
-            &#123;label: 'Dashboard', icon: 'dashboard', to: '/'&#125;,
-            &#123;
-                label: 'Components', icon: 'list',
+            {label: 'Dashboard', icon: 'dashboard', to: '/'},
+            {
+                label: 'Themes', icon: 'palette', badge: '6',
                 items: [
-                    &#123;label: 'Sample Page', icon: 'desktop_mac', to: '/sample'&#125;,
-                    &#123;label: 'Forms', icon: 'input', to: '/forms'&#125;,
-                    &#123;label: 'Data', icon: 'grid_on', to: '/data'&#125;,
-                    &#123;label: 'Panels', icon: 'content_paste', to: '/panels'&#125;,
-                    &#123;label: 'Overlays', icon: 'content_copy', to: '/overlays'&#125;,
-                    &#123;label: 'Menus', icon: 'menu', to: '/menus'&#125;,
-                    &#123;label: 'Messages', icon: 'message',to: '/messages'&#125;,
-                    &#123;label: 'Charts', icon: 'insert_chart', to: '/charts'&#125;,
-                    &#123;label: 'Misc', icon: 'toys', to: '/misc'&#125;
+                    {label: 'Indigo - Pink', icon: 'brush', command: () => {this.changeTheme('indigo')}},
+                    {label: 'Brown - Green', icon: 'brush', command: () => {this.changeTheme('brown')}},
+                    {label: 'Blue - Amber', icon: 'brush', command: () => {this.changeTheme('blue')}},
+                    {label: 'Blue Grey - Green', icon: 'brush', command: () => {this.changeTheme('blue-grey')}},
+                    {label: 'Dark - Blue', icon: 'brush', command: () => {this.changeTheme('dark-blue')}},
+                    {label: 'Dark - Green', icon: 'brush', command: () => {this.changeTheme('dark-green')}},
+                    {label: 'Green - Yellow', icon: 'brush', command: () => {this.changeTheme('green')}},
+                    {label: 'Purple - Cyan', icon: 'brush', command: () => {this.changeTheme('purple-cyan')}},
+                    {label: 'Purple - Amber', icon: 'brush', command: () => {this.changeTheme('purple-amber')}},
+                    {label: 'Teal - Lime', icon: 'brush', command: () => {this.changeTheme('teal')}},
+                    {label: 'Cyan - Amber', icon: 'brush', command: () => {this.changeTheme('cyan')}},
+                    {label: 'Grey - Deep Orange', icon: 'brush', command: () => {this.changeTheme('grey')}}
                 ]
-            &#125;,
-            &#123;
-                label: 'Mega', icon: 'list', badge: 2, mega: true,
+            },
+            {
+                label: 'Customization', icon: 'settings_application',
                 items: [
-                    &#123;
-                        label: 'Components',
-                        items: [
-                            &#123;label: 'Sample Page', icon: 'desktop_mac', to: '/sample'&#125;,
-                            &#123;label: 'Forms', icon: 'input', to: '/forms'&#125;,
-                            &#123;label: 'Data', icon: 'grid_on', to: '/data'&#125;,
-                            &#123;label: 'Panels', icon: 'content_paste', to: '/panels'&#125;,
-                            &#123;label: 'Overlays', icon: 'content_copy', to: '/overlays'&#125;,
-                            &#123;label: 'Menus', icon: 'menu', to: '/menus'&#125;,
-                            &#123;label: 'Messages', icon: 'message',to: '/messages'&#125;,
-                            &#123;label: 'Charts', icon: 'insert_chart', to: '/charts'&#125;,
-                            &#123;label: 'Misc', icon: 'toys', to: '/misc'&#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Templates',
-                        items: [
-                            &#123;label: 'Ultima', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/ultima-ng' &#125;,
-                            &#123;label: 'Serenity', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/serenity-ng'&#125;,
-                            &#123;label: 'Avalon', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/avalon-ng'&#125;,
-                            &#123;label: 'Apollo', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/apollo-ng'&#125;,
-                            &#123;label: 'Roma', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/roma-ng'&#125;,
-                            &#123;label: 'Babylon', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/babylon-ng'&#125;,
-                            &#123;label: 'Manhattan', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/manhattan-ng'&#125;,
-                            &#123;label: 'Verona', icon: 'desktop_mac', url: 'https://www.primefaces.org/layouts/verona-ng'&#125;,
-                            &#123;label: 'Olympia', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/olympia-ng'&#125;,
-                            &#123;label: 'Ecuador', icon: 'desktop_mac',  url: 'https://www.primefaces.org/layouts/ecuador-ng'&#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Demo',
-                        items: [
-                            &#123;label: 'PrimeFaces', icon: 'desktop_mac', url: 'https://www.primefaces.org/showcase'&#125;,
-                            &#123;label: 'PrimeNG', icon: 'desktop_mac',  url: 'https://www.primefaces.org/primeng'&#125;,
-                            &#123;label: 'PrimeReact', icon: 'desktop_mac',  url: 'https://www.primefaces.org/primereact'&#125;
-                        ]
-                    &#125;
+                    {label: 'Static Menu', icon: 'menu',  command: () => this.layoutMode = 'static'},
+                    {label: 'Overlay Menu', icon: 'exit_to_app',  command: () => this.layoutMode = 'overlay'},
+                    {label: 'Slim Menu', icon: 'more_vert',  command: () => this.layoutMode = 'slim'},
+                    {label: 'Horizontal Menu', icon: 'border_horizontal',  command: () => this.layoutMode = 'horizontal'},
+                    {label: 'Light Menu', icon: 'label_outline',  command: () => this.darkMenu = false},
+                    {label: 'Dark Menu', icon: 'label',  command: () => this.darkMenu = true},
+                    {label: 'Inline Profile', icon: 'contacts',  command: () => this.profileMode = 'inline'},
+                    {label: 'Top Profile', icon: 'person_pin',  command: () => this.profileMode = 'top'},
                 ]
-            &#125;,
-            &#123;
-                label: 'Pages', icon: 'get_app',
+            },
+            {
+                label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
                 items: [
-                    &#123;label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'&#125;,
-                    &#123;label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'&#125;,
-                    &#123;label: 'Login Page', icon: 'verified_user', to: '/login'&#125;,
-                    &#123;label: 'Error Page', icon: 'error', to: '/error'&#125;,
-                    &#123;label: '404 Page', icon: 'error_outline', to: '/notfound'&#125;,
-                    &#123;label: 'Access Denied Page', icon: 'security', to: '/access'&#125;
+                    {label: 'Sample Page', icon: 'desktop_mac', to: '/sample'},
+                    {label: 'Forms', icon: 'input', to: '/forms'},
+                    {label: 'Data', icon: 'grid_on', to: '/data'},
+                    {label: 'Panels', icon: 'content_paste', to: '/panels'},
+                    {label: 'Overlays', icon: 'content_copy', to: '/overlays'},
+                    {label: 'Menus', icon: 'menu', to: '/menus'},
+                    {label: 'Messages', icon: 'message',to: '/messages'},
+                    {label: 'Charts', icon: 'insert_chart', to: '/charts'},
+                    {label: 'Misc', icon: 'toys', to: '/misc'}
                 ]
-            &#125;,
-            &#123;
-                label: 'Hierarchy', icon: 'menu',
+            },
+            {
+                label: 'Template Pages', icon: 'get_app',
                 items: [
-                    &#123;
-                        label: 'Submenu 1', icon: 'subject',
-                        items: [
-                            &#123;
-                                label: 'Submenu 1.1', icon: 'subject',
-                                items: [
-                                    &#123;label: 'Submenu 1.1.1', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 1.1.2', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 1.1.3', icon: 'subject'&#125;,
+                    {label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
+                    {label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Login Page', icon: 'verified_user', to: '/login'},
+                    {label: 'Error Page', icon: 'error', to: '/error'},
+                    {label: '404 Page', icon: 'error_outline', to: '/notfound'},
+                    {label: 'Access Denied Page', icon: 'security', to: '/access'}
+                ]
+            },
+            {
+                label: 'Menu Hierarchy', icon: 'menu',
+                items: [
+                    {
+                    label: 'Submenu 1', icon: 'subject',
+                    items: [
+                        {
+                            label: 'Submenu 1.1', icon: 'subject',
+                            items: [
+                                    {label: 'Submenu 1.1.1', icon: 'subject'},
+                                    {label: 'Submenu 1.1.2', icon: 'subject'},
+                                    {label: 'Submenu 1.1.3', icon: 'subject'},
                                 ]
-                            &#125;,
-                            &#123;
+                            },
+                            {
                                 label: 'Submenu 1.2', icon: 'subject',
                                 items: [
-                                    &#123;label: 'Submenu 1.2.1', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 1.2.2', icon: 'subject'&#125;
+                                    {label: 'Submenu 1.2.1', icon: 'subject'},
+                                    {label: 'Submenu 1.2.2', icon: 'subject'}
                                 ]
-                            &#125;,
-                        ]&#125;,
-                        &#123;
-                            label: 'Submenu 2', icon: 'subject',
-                            items: [
-                            &#123;
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Submenu 2', icon: 'subject',
+                        items: [
+                            {
                                 label: 'Submenu 2.1', icon: 'subject',
                                 items: [
-                                    &#123;label: 'Submenu 2.1.1', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 2.1.2', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 2.1.3', icon: 'subject'&#125;,
+                                    {label: 'Submenu 2.1.1', icon: 'subject'},
+                                    {label: 'Submenu 2.1.2', icon: 'subject'},
+                                    {label: 'Submenu 2.1.3', icon: 'subject'},
                                 ]
-                            &#125;,
-                            &#123;
+                            },
+                            {
                                 label: 'Submenu 2.2', icon: 'subject',
                                 items: [
-                                    &#123;label: 'Submenu 2.2.1', icon: 'subject'&#125;,
-                                    &#123;label: 'Submenu 2.2.2', icon: 'subject'&#125;
+                                    {label: 'Submenu 2.2.1', icon: 'subject'},
+                                    {label: 'Submenu 2.2.2', icon: 'subject'}
                                 ]
-                            &#125;
+                            },
                         ]
-                    &#125;
+                    }
                 ]
-            &#125;,
-            &#123;label: 'Utils', icon: 'build',  command:()=>&#123; window.location = "#/utils"&#125;&#125;,
-            &#123;label: 'Documentation', icon: 'find_in_page',  command:()=>&#123; window.location = "#/documentation"&#125;&#125;,
-            &#123;label: 'Buy Now', icon: 'credit_card', command: () => &#123; window.location = "https://www.primefaces.org/store"&#125;&#125;,
+            },
+            {label: 'Utils', icon: 'build',  command:()=>{ window.location = "#/utils"}},
+            {label: 'Documentation', icon: 'find_in_page',  command:()=>{ window.location = "#/documentation"}},
+            {label: 'Buy Now', icon: 'credit_card', command: () => { window.location = "https://www.primefaces.org/store"}},
         ]
     &#125;
 &#125;
-</pre>
+</CodeHighlight>
+</div>
 
-                <p>Dependencies of Sapphire are listed below and needs to be added to package.json. Only required
-                    dependency is PrimeVue where optional dependencies exist to enable certain components in PrimeVue such as FullCalendar.</p>
+
+                <p>Dependencies of Ultima are listed below and needs to be added to package.json. Ultima has no direct dependency, even PrimeVue components
+                    are an optional dependency.</p>
 
                 <pre>
 {
-    "primevue": "^1.0.0-beta.7",         //required: PrimeVue components
+    "primevue": "^1.0.0",         //optional: PrimeVue components
+    "primeicons": "2.0.0",             //optional: Icons
+    "primeflex": "1.0.0",              //optional: Grid system
 }
 </pre>
 
                 <h1>Theme</h1>
-                <p>Sapphire provides 18 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
+                <p>Ultima provides 12 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
                 <p>In the demo application, theme css file is added to the index page to enable themeswitcher functionality however since VueCLI supports
                     SASS compilation via webpack, you may also import the sass of the theme to App.vue as well.</p>
                 <ul>
-                    <li>theme-amber</li>
+                    <li>theme-blue-grey</li>
                     <li>theme-blue</li>
-                    <li>theme-bluegrey</li>
                     <li>theme-brown</li>
                     <li>theme-cyan</li>
-                    <li>theme-deeporange</li>
-                    <li>theme-deeppurple</li>
-                    <li>theme-gray</li>
+                    <li>theme-dark-blue</li>
+                    <li>theme-dark-green</li>
                     <li>theme-green</li>
+                    <li>theme-grey</li>
                     <li>theme-indigo</li>
-                    <li>theme-lightblue</li>
-                    <li>theme-lightgreen</li>
-                    <li>theme-lime</li>
-                    <li>theme-orange</li>
-                    <li>theme-pink</li>
-                    <li>theme-purple</li>
+                    <li>theme-purple-amber</li>
+                    <li>theme-purple-cyan</li>
                     <li>theme-teal</li>
-                    <li>theme-yellow</li>
                 </ul>
 
                 <p>A custom theme can be developed by the following steps.</p>
@@ -251,24 +252,23 @@ data() &#123;
 
                 <p>Here are the variables required to create a theme which are the primary and accent colors along with their shades.</p>
 
-<pre>
-$primaryColor:#1E88E5;
-$primaryDarkColor:#1565C0;
-$primaryLightColor:#42A5F5;
-$primaryLightestColor:#E3F2FD;
-$primaryTextColor:#ffffff;
-$accentColor:#FFB300;
-$accentDarkColor: #FF8F00;
-$accentLightColor: #FFCA28;
-$accentTextColor: #212121;
+<CodeHighlight lang="css">
+$primaryColor: #3F51B5;
+$primaryDarkColor: #283593;
+$primaryLightColor: #9fa8da;
+$primaryTextColor: #ffffff;
+$accentColor: #E91E63;
+$accentDarkColor: #ad1457;
+$accentLightColor: #f48fb1;
+$accentTextColor: #ffffff;
 
 @import '../sass/theme/_theme';
-</pre>
+</CodeHighlight>
 
                 <p>If you prefer to compile manually, an example sass command to compile the css would be;</p>
 
 <pre>
-sass src/assets/theme-myown/theme.scss:src/assets/theme-myown/theme.css
+sass public/assets/theme-myown/theme.scss:public/assets/theme-myown/theme.css
 </pre>
 
                 <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
@@ -277,400 +277,40 @@ sass src/assets/theme-myown/theme.scss:src/assets/theme-myown/theme.css
 sass --watch public/assets:public/assets
 </pre>
 
-                <h1>TopBar</h1>
-                <p>TopBar comes in 3 sizes; large, medium and small. A specific style class with the layout-top-* prefix is defined at the main container element in order to apply a size. Below are the all 3 options;</p>
-<pre>
-&lt;div class="layout-container layout-top-small"&gt;
-&lt;div class="layout-container layout-top-medium"&gt;
-&lt;div class="layout-container layout-top-large"&gt;
-</pre>
 
-                <p>Similarly TopBar style theme is also defined at the main container element, template below uses the default blue topbar.</p>
-<pre>
-&lt;div class="layout-container layout-topbar-blue"&gt;
-</pre>
-
-                <p>Full list of topbar options are the following, note that <i>layout-topbar-</i> prefix needs to be added to apply the style such as <b>layout-topbar-midnight</b>.</p>
-
+                <p>Same can also be applied to layout itself;</p>
                 <ul>
-                    <li>aerial</li>
-                    <li>apricot</li>
-                    <li>aquarelle</li>
-                    <li>architecture</li>
-                    <li>ash</li>
-                    <li>balloon</li>
-                    <li>beach</li>
-                    <li>beyoglu</li>
-                    <li>bloom</li>
-                    <li>blue</li>
-                    <li>canvas</li>
-                    <li>circuit</li>
-                    <li>city</li>
-                    <li>classic</li>
-                    <li>coffee</li>
-                    <li>condo</li>
-                    <li>connectionsone</li>
-                    <li>connectionstwo</li>
-                    <li>crystal</li>
-                    <li>dark</li>
-                    <li>dawn</li>
-                    <li>desert</li>
-                    <li>destination</li>
-                    <li>disco</li>
-                    <li>dock</li>
-                    <li>downtown</li>
-                    <li>emptiness</li>
-                    <li>exposure</li>
-                    <li>faraway</li>
-                    <li>flamingo</li>
-                    <li>flight</li>
-                    <li>fluid</li>
-                    <li>forest</li>
-                    <li>fruity</li>
-                    <li>grape</li>
-                    <li>hallway</li>
-                    <li>harvey</li>
-                    <li>hazy</li>
-                    <li>highline</li>
-                    <li>island</li>
-                    <li>jet</li>
-                    <li>kashmir</li>
-                    <li>light</li>
-                    <li>lights</li>
-                    <li>lille</li>
-                    <li>louisville</li>
-                    <li>marley</li>
-                    <li>materialone</li>
-                    <li>materialtwo</li>
-                    <li>midnight</li>
-                    <li>mountain</li>
-                    <li>mural</li>
-                    <li>night</li>
-                    <li>norge</li>
-                    <li>northern</li>
-                    <li>olympic</li>
-                    <li>orange</li>
-                    <li>palm</li>
-                    <li>perfection</li>
-                    <li>pine</li>
-                    <li>polygons</li>
-                    <li>reflection</li>
-                    <li>revolt</li>
-                    <li>river</li>
-                    <li>road</li>
-                    <li>rose</li>
-                    <li>royal</li>
-                    <li>sandiego</li>
-                    <li>seagull</li>
-                    <li>sky</li>
-                    <li>skyline</li>
-                    <li>skyscaper</li>
-                    <li>snow</li>
-                    <li>splash</li>
-                    <li>spray</li>
-                    <li>station</li>
-                    <li>sunset</li>
-                    <li>symmetry</li>
-                    <li>timelapse</li>
-                    <li>tinfoil</li>
-                    <li>tractor</li>
-                    <li>tropical</li>
-                    <li>urban</li>
-                    <li>vanusa</li>
-                    <li>volcano</li>
-                    <li>wall</li>
-                    <li>waterfall</li>
-                    <li>waves</li>
-                    <li>wing</li>
-                </ul>
-
-                <p>Creating your own topbar requires a couple of steps.</p>
-                <ul>
-                    <li>Choose a topbar name such as mytopbar.</li>
-                    <li>Create an empty file named _topbar_mytopbar.scss inside <i>public/assets/sass/layout/topbar/themes</i> folder.</li>
-                    <li>Add your file to the import section of the _topbar.scss in the same folder.</li>
-                    <li>Define the variables listed below and import the <i>../_topbar_theme</i> file.</li>
+                    <li>Choose a layout name such as layout-myown.</li>
+                    <li>Create an empty file named layout-myown.scss inside <i>assets/layout/css</i> folder.</li>
+                    <li>Define the variables listed below and import the <i>../sass/layout/_layout.scss</i> file.</li>
                     <li>Build the scss to generate css</li>
-                    <li>Apply layout-topbar-mytopbar class to the main container element in the App template.</li>
+                    <li>Serve the css by importing it using a link tag or a bundler.</li>
                 </ul>
 
-<pre>
-&lt;div class="layout-container layout-topbar-mytopbar"&gt;
-</pre>
-
-                <p>Here are the variables required to create a gradient based topbar.</p>
-
-<pre>
-.layout-topbar-mytopbar &#123;
-    $topbarLeftBgColor:#F1719A;
-    $topbarRightBgColor:#FE9473;
-    $topbarSearchInputColor:#FDD5CF;
-    $topbarSearchFocusedInputColor:#ffffff;
-    $topbarUserIconHoverBorderColor:#ffffff;
-    $topbarSeparatorColor:#ffffff;
-
-    //vertical menubutton
-    $menuButtonBgColor:#fafafa;
-    $menuButtonIconColor:#F1719A;
-    $menuButtonHoverBgColor:#e0e0e0;
-    $menuButtonHoverIconColor:#F1719A;
-    $menuButtonActiveBgColor:rgba(169,53,89,.6);
-    $menuButtonActiveIconColor:#ffffff;
-
-    //horizontal menu
-    $horizontalMenuitemTextColor:#ffffff;
-    $horizontalMenuitemIconColor:#ffffff;
-    $horizontalMenuitemActiveBorderColor:#ffffff;
-    $horizontalMenuitemHoverBorderColor:#FDD5CF;
-
-    //breadcrumb
-    $breadcrumbIconColor:#ffffff;
-    $breadcrumbTextColor:#ffffff;
-    $breadcrumbLinkColor:#80CBC4;
-    
-    @import '../_topbar_theme';
-&#125;
-</pre>
-
-                <p>If you prefer an image for the background, use the template below.</p>
-
-<pre>
-.layout-topbar-mytopbar &#123;
-    $topbarBgImage:'reflection-topbar.jpg';
-    $topbarSearchInputColor:#BFDEE2;
-    $topbarSearchFocusedInputColor:#ffffff;
-    $topbarUserIconHoverBorderColor:#ffffff;
-    $topbarSeparatorColor:#ffffff;
-
-    //vertical menubutton
-    $menuButtonBgColor:#fafafa;
-    $menuButtonIconColor:#1C1F20;
-    $menuButtonHoverBgColor:#e0e0e0;
-    $menuButtonHoverIconColor:#1C1F20;
-    $menuButtonActiveBgColor:rgba(0,172,193,.6);
-    $menuButtonActiveIconColor:#ffffff;
-
-    //horizontal menu
-    $horizontalMenuitemTextColor:#ffffff;
-    $horizontalMenuitemIconColor:#ffffff;
-    $horizontalMenuitemActiveBorderColor:#ffffff;
-    $horizontalMenuitemHoverBorderColor:#BFDEE2;
-
-    //breadcrumb
-    $breadcrumbIconColor:#ffffff;
-    $breadcrumbTextColor:#ffffff;
-    $breadcrumbLinkColor:#4DD0E1;
-
-    @import '../_topbar_theme';
-&#125;
-</pre>
-
-                <h1>Menu Themes</h1>
-                <p>Menu themes apply to the vertical menu, submenus of horizontal menu and the profile menu. Menu style used across the template is defined at the main container element, template below uses the default light menus.</p>
-<pre>
-&lt;div class="layout-container layout-menu-light"&gt;
-</pre>
-
-                <p>Full list of menu themes are the following, note that <i>layout-menu-</i> prefix needs to be added to apply the style such as <b>layout-menu-dark</b>.</p>
-
-                <ul>
-                    <li>aerial</li>
-                    <li>apricot</li>
-                    <li>aquarelle</li>
-                    <li>architecture</li>
-                    <li>ash</li>
-                    <li>balloon</li>
-                    <li>beach</li>
-                    <li>beyoglu</li>
-                    <li>bloom</li>
-                    <li>blue</li>
-                    <li>canvas</li>
-                    <li>circuit</li>
-                    <li>city</li>
-                    <li>classic</li>
-                    <li>coffee</li>
-                    <li>condo</li>
-                    <li>connectionsone</li>
-                    <li>connectionstwo</li>
-                    <li>crystal</li>
-                    <li>dark</li>
-                    <li>dawn</li>
-                    <li>desert</li>
-                    <li>destination</li>
-                    <li>disco</li>
-                    <li>dock</li>
-                    <li>downtown</li>
-                    <li>emptiness</li>
-                    <li>exposure</li>
-                    <li>faraway</li>
-                    <li>flamingo</li>
-                    <li>flight</li>
-                    <li>fluid</li>
-                    <li>forest</li>
-                    <li>fruity</li>
-                    <li>grape</li>
-                    <li>hallway</li>
-                    <li>harvey</li>
-                    <li>hazy</li>
-                    <li>highline</li>
-                    <li>island</li>
-                    <li>jet</li>
-                    <li>kashmir</li>
-                    <li>light</li>
-                    <li>lights</li>
-                    <li>lille</li>
-                    <li>louisville</li>
-                    <li>marley</li>
-                    <li>materialone</li>
-                    <li>materialtwo</li>
-                    <li>midnight</li>
-                    <li>mountain</li>
-                    <li>mural</li>
-                    <li>night</li>
-                    <li>norge</li>
-                    <li>northern</li>
-                    <li>olympic</li>
-                    <li>orange</li>
-                    <li>palm</li>
-                    <li>perfection</li>
-                    <li>pine</li>
-                    <li>polygons</li>
-                    <li>reflection</li>
-                    <li>revolt</li>
-                    <li>river</li>
-                    <li>road</li>
-                    <li>rose</li>
-                    <li>royal</li>
-                    <li>sandiego</li>
-                    <li>seagull</li>
-                    <li>sky</li>
-                    <li>skyline</li>
-                    <li>skyscaper</li>
-                    <li>snow</li>
-                    <li>splash</li>
-                    <li>spray</li>
-                    <li>station</li>
-                    <li>sunset</li>
-                    <li>symmetry</li>
-                    <li>timelapse</li>
-                    <li>tinfoil</li>
-                    <li>tractor</li>
-                    <li>tropical</li>
-                    <li>urban</li>
-                    <li>vanusa</li>
-                    <li>volcano</li>
-                    <li>wall</li>
-                    <li>waterfall</li>
-                    <li>waves</li>
-                    <li>wing</li>
-                </ul>
-
-                <p>Creating your own menu theme requires a couple of steps.</p>
-                <ul>
-                    <li>Choose a menu name such as mymenu.</li>
-                    <li>Create an empty file named _menu_mymenu.scss inside <i>public/assets/sass/layout/menu/themes</i> folder.</li>
-                    <li>Add your file to the import section of the _menu.scss in the same folder.</li>
-                    <li>Define the variables listed below and import the <i>../_menu_theme</i> file.</li>
-                    <li>Build the scss to generate css</li>
-                    <li>Add layout-menu-mymenu to the main wrapper element of in the main App template.</li>
-                </ul>
-
-<pre>
-&lt;div class="layout-container layout-menu-mymenu"&gt;
-</pre>
-
-                <p>Here are the variables required to create a gradient based menu.</p>
-
-<pre>
-.layout-menu-mymenu &#123;
-    $menuTopBgColor:#457fca;
-    $menuBottomBgColor:#5691c8;
-    $menuitemTextColor:#ffffff;
-    $menuitemIconColor:#ffffff;
-    $menuitemHoverBgColor:#578bcf;
-    $menuitemHoverTextColor:#ffffff;
-    $menuitemHoverIconColor:#ffffff;
-    $menuitemActiveTextColor:#ffc107;
-    $menuitemActiveIconColor:#ffc107;
-    $verticalActiveRootMenuitemBgColor:#ffffff; 
-    $verticalActiveRootMenuitemTextColor:#457fca;   
-    $verticalActiveRootMenuitemIconColor:#457fca;
-    $verticalSubmenuBgColor:#6a98d4;
-
-    @import '../_menu_theme';
-&#125;
-</pre>
-
-                <p>If you prefer an image for the background, use the template below.</p>
-
-<pre>
-.layout-menu-mymenu &#123;
-    $menuBgImage:'architecture-menu.jpg';
-    $menuitemTextColor:#ffffff;
-    $menuitemIconColor:#ffffff;
-    $menuitemHoverBgColor:rgba(255,255,255,0.32);
-    $menuitemHoverTextColor:#ffffff;
-    $menuitemHoverIconColor:#ffffff;
-    $menuitemActiveTextColor:#B39DDB;
-    $menuitemActiveIconColor:#B39DDB;
-    $verticalActiveRootMenuitemBgColor:#673AB7; 
-    $verticalActiveRootMenuitemTextColor:#ffffff;   
-    $verticalActiveRootMenuitemIconColor:#ffffff;
-    $verticalSubmenuBgColor:rgba(0,0,0,0.2);
-
-    @import '../_menu_theme';
-&#125;
-</pre>
-
-                <h1>Menu Highlight Color</h1>
-                <p>When light and dark menus are used, a highlight color needs to be defined to show the selected menuitem whereas in other menu themes, the highlight color is defined by the menu theme itself. 
-                    This color scheme is specified by the layout file such as layout-blue.scss which is still a mandatory file to be included regardless of the menu type as it defines the structure for the layout itself.</p>
-
-                <p>Full list of menu highlight themes are the following.</p>
-                <ul>
-                    <li>amber</li>
-                    <li>blue</li>
-                    <li>bluegray</li>
-                    <li>brown</li>
-                    <li>cyan</li>
-                    <li>deeporange</li>
-                    <li>deeppurple</li>
-                    <li>gray</li>
-                    <li>green</li>
-                    <li>indigo</li>
-                    <li>lightblue</li>
-                    <li>lightgreen</li>
-                    <li>lime</li>
-                    <li>orange</li>
-                    <li>pink</li>
-                    <li>purple</li>
-                    <li>teal</li>
-                    <li>yellow</li>
-                </ul>
-
-                <p>Creating your own menu highlight theme requires a couple of steps.</p>
-                <ul>
-                    <li>Choose a layout name such as myown.</li>
-                    <li>Create an empty file named layout-myown.scss inside <i>public/assets/sass/layout/css</i> folder.</li>
-                    <li>Define the variables listed below and import the <i>../../sass/layout/_layout</i> file.</li>
-                    <li>Build the scss to generate css</li>
-                    <li>Import the layout css file in your application.</li>
-                </ul>
-
-<pre>
-$primaryColor:#607D8B;
-$primaryTextColor:#ffffff;
-$accentColor:#FFC107;
-$accentTextColor:#212121;
+                <p>Here are the variables required to create a layout, you may need to change the last line according to the
+                    relative path of the sass folder in your application.</p>
+<CodeHighlight lang="css">
+$primaryColor: #3F51B5;
+$primaryDarkColor: #283593;
+$primaryLightColor: #9fa8da;
+$accentColor: #E91E63;
+$accentDarkColor: #ad1457;
+$accentLightColor: #f48fb1;
+$accentTextColor: #ffffff;
+$darkMenuBgColor: #424242;
+$darkMenuHoverColor: #676767;
+$darkMenuRouterLinkActiveColor: #9fa8da;
+$lightMenuRouterLinkActiveColor: #3F51B5;
+$horizontalLightMenuRouterLinkActiveColor: #9fa8da;
 
 @import '../../sass/layout/_layout';
-</pre>
+</CodeHighlight>
 
-                <h1>Common SASS Variables</h1>
-                <p>In case you'd like to customize the shared variables, use the variables files under sass/variables folder.</p>
+                <p>In case you would like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
-                <h3>sass/_common.scss</h3>
-<pre>
+                <h3>sass/_variables.scss</h3>
+<CodeHighlight lang="css">
+/* Common */
 //general
 $fontSize:14px;
 $fontFamily:"Roboto","Helvetica Neue",sans-serif;
@@ -679,6 +319,7 @@ $textSecondaryColor:#616161;
 $borderRadius:2px;
 $letterSpacing:.25px;
 $transitionDuration:.2s;
+$iconPrefix: 'pi-md';
 
 //icons
 $iconWidth:20px;
@@ -691,27 +332,36 @@ $hoverTextColor:#000000;
 
 $dividerColor:#dbdbdb;
 $dividerLightColor:#f8f8f8;
-</pre>
+</CodeHighlight>
 
-                <h3>sass/variables/_layout.scss</h3>
-<pre>
-@import './common';
+                <h3>sass/layout/_variables.scss</h3>
+<CodeHighlight lang="css">
+@import '../_variables';
 
-$bodyBgColor:#f4f4f7;
-$bodySidePadding:100px;
-$mobileBreakpoint:1024px;
-$footerBgColor:#212121;
-$footerTextColor:#9f9f9f;
-$menuitemBorderRadius:6px;
-$maskBgColor:#252529;
+$bodyBgColor:#f7f7f7;
+$maskBgColor:#424242;
+$topbarButtonColor:#ffffff;
+$topbarButtonHoverColor:#e8e8e8;
+$topbarSearchBorderColor:#ffffff;
+$topbarSearchColor:#ffffff;
+$layoutMenuBgColor:#ffffff;
+$layoutMenuScrollbarBgColor:#aaaaaa;
+$layoutMenuItemIconColor:#757575;
+$layoutMenuItemActiveColor:#e8e8e8;
+$rightPanelBgColor:#ffffff;
+$topbarSubmenuBgColor:#ffffff;
+$profileMenuBorderBottomColor:#d6d5d5;
+$profileMenuDarkBorderBottomColor:#545454;
+$darkMenuColor:#ffffff;
+$slimMenuTooltipColor:#ffffff;
+$activeMenuItemBadgeColor:#ffffff;
+$activeMenuItemBadgeTextColor:#212121;
+$lineHeight:18px;
+</CodeHighlight>
 
-//horizontal menu
-$horizontalOverlaySubmenuShadow:0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-</pre>
-
-                <h3>sass/variables/_theme.scss</h3>
-<pre>
-@import './common';
+                <h3>sass/theme/_variables.scss</h3>
+<CodeHighlight lang="css">
+@import '../variables';
 
 $headerPadding:.714em 1em;
 $headerTextColor:#ffffff;
@@ -723,7 +373,7 @@ $contentBgColor:#ffffff;
 
 $inputBorderColor:#bdbdbd;
 $inputInvalidBorderColor:#e62a10;
-$inputBgColor:#ffffff;
+$inputBgColor:transparent;
 $inputErrorTextColor:#e62a10;
 $inputHeaderPadding:.714em 1em;
 $inputBorderErrorColor:#e62a10;
@@ -739,8 +389,8 @@ $inputListPadding: .5em 0;
 //groups
 $inputGroupBorderColor:#bdbdbd;
 $inputGroupBgColor:transparent;
-$inputGroupTextColor:#757575;
-$inputGroupIconColor:#bdbdbd;
+$inputGroupTextColor:$textSecondaryColor;
+$inputGroupIconColor:$textSecondaryColor;
 $inputGroupAddonMinWidth:2*$fontSize;
 $checkboxWidth:18px;
 $checkboxHeight:18px;
@@ -748,18 +398,12 @@ $inputGroupPadding:2px 2px 1px 2px;
 $inputGroupIconFontSize: 1.5em;
 
 //panels
-$accordionHeaderBgColor:#eeeeee;
-$accordionHeaderTextColor:$textColor;
-$accordionHeaderHoverBgColor:#d9d9d9;
-$accordionHeaderHoverTextColor:$textColor;
+$accordionHeaderBgColor:$primaryColor;
+$accordionHeaderTextColor:$primaryTextColor;
+$accordionHeaderHoverBgColor:$primaryDarkColor;
+$accordionHeaderHoverTextColor:$primaryTextColor;
 
 $panelContentLineHeight:1.5;
-$panelLightHeaderBgColor:#eeeeee;
-$panelLightHeaderTextColor:$textColor;
-$panelLightHeaderIconHoverBgColor:#d9d9d9;
-$panelDarkHeaderBgColor:#212121;
-$panelDarkHeaderTextColor:#ffffff;
-$panelDarkHeaderIconHoverBgColor:#424242;
 
 $buttonTextColor:#ffffff;
 
@@ -779,23 +423,91 @@ $paginatorPadding:.714em 1em;
 
 //menus
 $menuitemPadding:.571em .857em;
-$menuListPadding: .5em 0;    
+$menuListPadding: .5em 0;
+
+//messages
+$infoMessageBgColor:#2196F3;
+$infoMessageTextColor:#ffffff;
+$warnMessageBgColor:#ffc107;
+$warnMessageTextColor:#212121;
+$errorMessageBgColor:#e62a10;
+$errorMessageTextColor:#ffffff;
+$successMessageBgColor:#8BC34A;
+$successMessageTextColor:#ffffff;
+
+//carousel
+$carouselNavButtonsBgColor: #ffffff;
+$carouselNavButtonsBorder: none;
+$carouselNavButtonsBorderRadius: 50%;
+$carouselNavButtonsMargin: .2em;
+$carouselNavButtonsColor: $textColor;
+$carouselNavButtonsHoverBgColor: $hoverBgColor;
+$carouselNavButtonsHoverColor: $hoverTextColor;
+$carouselNavButtonsHoverBorderColor: none;
+$carouselNavButtonsTransition: color $transitionDuration;
+$carouselDotIconWidth: 20px;
+$carouselDotIconHeight: 6px;
+$carouselDotIconBgColor: #b2c1cd;
+$carouselDotIconMargin: 0 .2em;
+$carouselActiveDotIconBgColor: $primaryColor;
+</CodeHighlight>
+
+                <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on
+                    the fly by changing the path however if this is not a requirement, you may also import them in App.js so that webpack adds them to the bundle.</p>
+
+                <h1>Menu Item Badges</h1>
+                <p>Badges are numerical indicators associated with a link.
+                    The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
+                <pre>
+label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
 </pre>
-
-                <h1>Menu Modes</h1>
-                <p>Menu has 2 modes; horizontal and overlay. Layout container element in App.vue is used to define which mode to use by adding specific classes. List
-                below indicates the style classes for each mode.</p>
-
+                <p>Default badge uses the accent color of ultima layout and there are three more alternative colors.</p>
                 <ul>
-                    <li>Horizontal: "layout-container layout-menu-horizontal"</li>
-                    <li>Overlay: "layout-container"</li>
+                    <li>red-badge</li>
+                    <li>purple-badge</li>
+                    <li>teal-badge</li>
                 </ul>
 
+                <h1>Menu Modes</h1>
+                <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.js is used to define which mode to use by adding specific classes. List
+                    below indicates the style classes for each mode.</p>
+
+                <ul>
+                    <li>Static: "layout-wrapper menu-layout-static"</li>
+                    <li>Overlay: "layout-wrapper menu-layout-overlay"</li>
+                    <li>Slim: "layout-wrapper menu-layout-static menu-layout-slim"</li>
+                    <li>Horizontal: "layout-wrapper menu-layout-static menu-layout-horizontal"</li>
+                </ul>
+
+                <p>For example to create a horizontal menu, the div element should be in following form;</p>
+                <pre>
+&lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
+</pre>
+
                 <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
-                application has an example implementation of such use case. Refer to App.vue for an example.</p>
+                    application has an example implementation of such use case. Refer to App.js for an example.</p>
+
+                <h1>Dark Menu</h1>
+                <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
+
+                <pre>
+&lt;div className="layout-menu layout-menu-dark"&gt;
+</pre>
+
+                <h1>Profile Modes</h1>
+                <p>There are two possible locations for the user profile menu, first option is inline located inside the main menu and second option is the topbar menu. For inline mode,
+                    profile content should be placed above the menu and for inline mode content goes in topbar-items list. The sample demo application provides examples for
+                    both cases.</p>
+
+                <h1>Utilites</h1>
+                <p>Ultima provides various helper features such as material iconset compatible with PrimeNG components and helper classes. Visit utils page for details.</p>
+
+                <h1>PrimeFlex Grid System</h1>
+                <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeReact. PrimeFlex is
+                    available at npm and defined at package.json of Ultima so that it gets installed by default.</p>
 
                 <h1>Customizing Styles</h1>
-                <p>It is suggested to add your customizations in the following sass files under the overrides folder instead of adding them to the
+                <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the
                     scss files under sass folder to avoid maintenance issues after an update.</p>
 
                 <ul>
@@ -810,37 +522,35 @@ $menuListPadding: .5em 0;
 </template>
 
 <script>
-export default {
-    
-}
+    import CodeHighlight from './CodeHighlight';
+
+    export default {
+        components: {
+            'CodeHighlight': CodeHighlight
+        }
+    }
 </script>
 
-<style scoped>
-h1 {
-    font-weight: 400;
-    font-size: 24px;
-}
+<style scoped lang="scss">
+    .docs pre {
+        font-family: monospace;
+        background-color: #323e4b;
+        color: #ffffff;
+        padding: 1em;
+        font-size: 14px;
+        border-radius: 3px;
+    }
 
-pre {
-    font-family: monospace;
-    background-color: #424242;
-    color: #ffffff;
-    padding: 1em;
-    font-size: 14px;
-    border-radius: 3px;
-    overflow: auto;
-}
+    .docs i {
+        background-color: #fcf2a7;
+        font-family: monaco,Consolas,Lucida Console,monospace;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 14px;
+        padding: 2px;
+    }
 
-i {
-    background-color: #fcf2a7;
-    font-family: monaco,Consolas,Lucida Console,monospace;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 14px;
-    padding: 2px;
-}
-
-li {
-    line-height: 1.5;
-}
+    .docs li {
+        line-height: 1.5;
+    }
 </style>

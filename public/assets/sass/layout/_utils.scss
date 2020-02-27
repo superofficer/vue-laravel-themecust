@@ -192,6 +192,20 @@
 	}
 }
 
+/* Code Highlight */
+.docs {
+	pre[class*="language-"] {
+		padding: 0 !important;
+		background: transparent;
+
+		> code {
+			border-left: 10px solid lighten($primaryColor, 15%);
+			box-shadow: none;
+			font-size: 14px;
+		}
+	}
+}
+
 /* Ripple */
 /* Ripple Effect Style like Google Material Buttons Effect*/
 .ripplelink {
