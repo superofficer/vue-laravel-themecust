@@ -10,7 +10,7 @@
     border-top-right-radius: $val;
     -moz-border-radius-bottomright: $val;
     -webkit-border-bottom-right-radius: $val;
-    border-bottom-right-radius: $val; 
+    border-bottom-right-radius: $val;
 }
 
 @mixin border-radius-left($val) {
@@ -110,9 +110,9 @@
 }
 
 @mixin opacity($opacity) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie);
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie);
 }
 
 @mixin border-box-sizing() {
@@ -158,7 +158,7 @@
     @include material-icon($icon);
 }
 
-@mixin rotate($deg) {    
+@mixin rotate($deg) {
     -webkit-transform: rotate($deg);
     -moz-transform: rotate($deg);
     -o-transform: rotate($deg);
@@ -166,7 +166,7 @@
     transform: rotate($deg);
 }
 
-@mixin scale($deg) {    
+@mixin scale($deg) {
     -webkit-transform: scale($deg);
     -moz-transform: scale($deg);
     -o-transform: scale($deg);
@@ -175,7 +175,7 @@
 }
 
 @mixin rippleitem() {
-    position: relative; 
+    position: relative;
     overflow: hidden;
 }
 
@@ -221,6 +221,69 @@
         clear: both;
     }
 }
+@mixin dir-col() {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+@mixin dir-row() {
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+@mixin justify-between() {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+@mixin justify-center() {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+@mixin justify-around() {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+@mixin flex-basis($val) {
+    -ms-flex-preferred-size: $val;
+    -webkit-flex-basis: $val;
+    flex-basis: $val;
+}
+
+@mixin flex-grow($val) {
+    -ms-flex-positive: $val;
+    -webkit-flex-grow: $val;
+    flex-grow: $val;
+}
+
+@mixin flex-shrink($val) {
+    -ms-flex-negative: $val;
+    -webkit-flex-shrink: $val;
+    flex-shrink: $val;
+}
+
+@mixin align-self-start() {
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+@mixin align-center() {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+@mixin align-self-end() {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
 
 @mixin raised-btn() {
     -moz-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);

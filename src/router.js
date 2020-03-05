@@ -86,6 +86,11 @@ export default new Router({
 			name: 'documentation',
 			component: () => import('./components/Documentation.vue')
 		},
+		{
+			path: '/help',
+			name: 'help',
+			component: () => import('./pages/Help.vue')
+		},
 	],
 	scrollBehavior() {
 		return {x: 0, y: 0};
