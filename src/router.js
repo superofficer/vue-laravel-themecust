@@ -91,6 +91,11 @@ export default new Router({
 			name: 'help',
 			component: () => import('./pages/Help.vue')
 		},
+		{
+			path: '/invoice',
+			name: 'invoice',
+			component: () => import('./pages/Invoice.vue')
+		},
 	],
 	scrollBehavior() {
 		return {x: 0, y: 0};
