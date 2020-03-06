@@ -141,6 +141,7 @@ import Access from './pages/Access';
 import Error from './pages/Error';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import Wizard from './pages/Wizard';
 
 new Vue({
 	el: '#app',
@@ -155,6 +156,8 @@ new Vue({
 					return Access;
 				case '/notfound':
 					return NotFound;
+				case '/wizard':
+					return Wizard;
 				default:
 					return App;
 			}

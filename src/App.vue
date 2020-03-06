@@ -125,6 +125,7 @@ export default {
 						{label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
 						{label: 'Help', icon: 'help', to: '/help'},
 						{label: 'Invoice', icon: 'content_paste', to: '/invoice'},
+						{label: 'Wizard', icon: 'star', to: '/wizard'},
 						{label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
 						{label: 'Login Page', icon: 'verified_user', to: '/login'},
 						{label: 'Error Page', icon: 'error', to: '/error'},
