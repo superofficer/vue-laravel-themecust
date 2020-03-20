@@ -306,6 +306,7 @@ export default {
 			this.profileMode = profileMode;
 		},
 		changeTheme(theme) {
+			this.theme = theme;
 			this.changeStyleSheetUrl('layout-css', theme, 'layout');
 			this.changeStyleSheetUrl('theme-css', theme, 'theme');
 		},

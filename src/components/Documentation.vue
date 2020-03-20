@@ -3,7 +3,7 @@
         <div class="p-col-12">
             <div class="card docs">
                 <h1>Current Version</h1>
-                <p>Vue 2.6.0 and PrimeVue 1.0.x</p>
+                <p>Vue 2.6.0 and PrimeVue 1.1.x</p>
 
                 <h1>Getting Started</h1>
                 <p>Ultima is an application template for Vue based on the <a href="https://cli.vuejs.org/">Vue CLI</a> that provides out-of-the-box standard
@@ -91,7 +91,7 @@ npm run serve
 </CodeHighlight>
 
                 <h1>Menu</h1>
-                <p>Menu is a separate component defined in <i>AppMenu.vue</i> file based on PrimeNG MenuModel API. In order to define the menuitems,
+                <p>Menu is a separate component defined in <i>AppMenu.vue</i> file. In order to define the menuitems,
                     navigate to data section of <i>App.vue</i> file and define your own model as a nested structure using the menu property.
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
 
@@ -453,7 +453,7 @@ $carouselActiveDotIconBgColor: $primaryColor;
 </CodeHighlight>
 
                 <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on
-                    the fly by changing the path however if this is not a requirement, you may also import them in App.js so that webpack adds them to the bundle.</p>
+                    the fly by changing the path however if this is not a requirement, you may also import them in App.vue so that webpack adds them to the bundle.</p>
 
                 <h1>Menu Item Badges</h1>
                 <p>Badges are numerical indicators associated with a link.
@@ -469,14 +469,14 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 </ul>
 
                 <h1>Menu Modes</h1>
-                <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.js is used to define which mode to use by adding specific classes. List
+                <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.vue is used to define which mode to use by adding specific classes. List
                     below indicates the style classes for each mode.</p>
 
                 <ul>
                     <li>Static: "layout-wrapper menu-layout-static"</li>
                     <li>Overlay: "layout-wrapper menu-layout-overlay"</li>
-                    <li>Slim: "layout-wrapper menu-layout-static menu-layout-slim"</li>
-                    <li>Horizontal: "layout-wrapper menu-layout-static menu-layout-horizontal"</li>
+                    <li>Slim: "layout-wrapper menu-layout-slim"</li>
+                    <li>Horizontal: "layout-wrapper menu-layout-horizontal"</li>
                 </ul>
 
                 <p>For example to create a horizontal menu, the div element should be in following form;</p>
@@ -485,7 +485,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
 </pre>
 
                 <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
-                    application has an example implementation of such use case. Refer to App.js for an example.</p>
+                    application has an example implementation of such use case. Refer to App.vue for an example.</p>
 
                 <h1>Dark Menu</h1>
                 <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
@@ -503,7 +503,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 <p>Ultima provides various helper features such as material iconset compatible with PrimeNG components and helper classes. Visit utils page for details.</p>
 
                 <h1>PrimeFlex Grid System</h1>
-                <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeReact. PrimeFlex is
+                <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeVue. PrimeFlex is
                     available at npm and defined at package.json of Ultima so that it gets installed by default.</p>
 
                 <h1>Customizing Styles</h1>
