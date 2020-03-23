@@ -4,10 +4,10 @@
 			<div class="card">
 				<h1 class="first">Toast</h1>
                 <Toast />
-				<Button @click="showInfo()" label="Info" class="p-button-info" style="width: 10em; margin-right: .25em" />
-				<Button @click="showSuccess()" label="Success" class="p-button-success" style="width: 10em; margin-right: .25em" />
-				<Button @click="showWarn()" label="Warn" class="p-button-warning" style="width: 10em; margin-right: .25em" />
-				<Button @click="showError()" label="Error" class="p-button-danger" style="width: 10em; margin-right: .25em" />
+				<Button @click="showInfo()" label="Info" class="p-button-info" style="width: 10em; margin-right: .5em" />
+				<Button @click="showSuccess()" label="Success" class="p-button-success" style="width: 10em; margin-right: .5em" />
+				<Button @click="showWarn()" label="Warn" class="p-button-warning" style="width: 10em; margin-right: .5em" />
+				<Button @click="showError()" label="Error" class="p-button-danger" style="width: 10em; margin-right: .5em" />
 
 				<h1>Messages</h1>
 				<div class="p-grid">
@@ -28,11 +28,11 @@
                 <h1>Validation Message</h1>
                 <div class="p-grid validation-grid">
                     <div class="p-col-12">
-                        <InputText placeholder="Username" class="p-error" style="margin-right: .25em" />
+                        <InputText placeholder="Username" class="p-error" style="margin-right: .5em" />
 						<ValidationMessage>Field is required</ValidationMessage>
                     </div>
                     <div class="p-col-12">
-                        <InputText placeholder="Email" class="p-error" style="margin-right: .25em" />
+                        <InputText placeholder="Email" class="p-error" style="margin-right: .5em" />
 						<ValidationMessage />
                     </div>
                 </div>

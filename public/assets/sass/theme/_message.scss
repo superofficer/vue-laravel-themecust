@@ -22,6 +22,10 @@ body {
             border-color: $infoMessageBgColor;
             color: $infoMessageTextColor;
 
+            .p-messages-icon {
+                color: $infoMessageTextColor;
+            }
+
             .p-messages-close {
                 color: $infoMessageTextColor;
 
@@ -35,6 +39,10 @@ body {
             background-color: $warnMessageBgColor;
             border-color: $warnMessageBgColor;
             color: $warnMessageTextColor;
+
+            .p-messages-icon {
+                color: $warnMessageTextColor;
+            }
 
             .p-messages-close {
                 color: $warnMessageTextColor;
@@ -50,6 +58,10 @@ body {
             border-color: $errorMessageBgColor;
             color: $errorMessageTextColor;
 
+            .p-messages-icon {
+                color: $errorMessageTextColor;
+            }
+
             .p-messages-close {
                 color: $errorMessageTextColor;
 
@@ -64,6 +76,10 @@ body {
             border-color: $successMessageBgColor;
             color: $successMessageTextColor;
 
+            .p-messages-icon {
+                color: $successMessageTextColor;
+            }
+
             .p-messages-close {
                 color: $successMessageTextColor;
 
@@ -76,7 +92,6 @@ body {
 
     .p-messages .p-messages-icon {
         background: none;
-        color: #fff;
 
         &.pi-info-circle {
             @include material-icon("info");

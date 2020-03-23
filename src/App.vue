@@ -56,7 +56,7 @@ export default {
 			topbarMenuActive: false,
 			activeTopbarItem: null,
 			darkMenu: false,
-			theme: 'indigo',
+			theme: 'dark-green',
 			themeColors: [
 				{ name: 'Indigo Pink', file: 'indigo', image: 'indigo-pink.svg' },
 				{ name: 'Brown Green', file: 'brown', image: 'brown-green.svg' },

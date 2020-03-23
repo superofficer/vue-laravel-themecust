@@ -64,14 +64,14 @@
 				<h1>Toolbar</h1>
 				<Toolbar>
 					<template slot="left">
-						<Button label="New" icon="pi-md-plus" style="margin-right: .25em" />
-						<Button label="Upload" icon="pi-md-file-upload" class="p-button-success" />
+						<Button label="New" icon="pi-md-plus" style="margin-right: .5em" />
+						<Button label="Upload" icon="pi-md-file-upload" class="p-button-success" style="margin-right: .5em" />
 						<i class="p-toolbar-separator material-icons" style="vertical-align:middle; margin-right: .25em" >dehaze</i>
 						<Button label="Save" icon="pi-md-check" class="p-button-warning" />
 					</template>
 					<template slot="right">
-						<Button icon="pi-md-search" style="margin-right: .25em" />
-						<Button icon="pi-md-date-range" class="p-button-success" style="margin-right: .25em" />
+						<Button icon="pi-md-search" style="margin-right: .5em" />
+						<Button icon="pi-md-date-range" class="p-button-success" style="margin-right: .5em" />
 						<Button icon="pi-md-close" class="p-button-danger" />
 					</template>
 				</Toolbar>

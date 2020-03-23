@@ -79,6 +79,7 @@ body {
                 top: 3px;
                 background-color: $accentColor;
                 cursor: pointer;
+                outline: 0 none;
 
                 @include border-radius(50%);
                 @include transition(all $transitionDuration);
@@ -100,7 +101,7 @@ body {
                 color: $topbarButtonColor;
                 vertical-align: middle;
                 height: 36px;
-                margin-top: 4px;
+                margin-top: 7px;
                 float: right;
                 cursor: pointer;
 
@@ -108,12 +109,13 @@ body {
 
                 i {
                     @include transition(color .5s);
-                    font-size: 36px;
+                    font-size: 28px;
                 }
             }
 
             #rightpanel-menu-button {
                 display: block;
+                margin-left: 7px;
 
                 &:hover {
                     color: $topbarButtonHoverColor;
@@ -161,7 +163,7 @@ body {
 
                     label {
                         color: $topbarSearchColor;
-                        top: 8px;
+                        top: 5px;
                     }
                 }
             }
@@ -373,16 +375,16 @@ body {
         .menuitem-badge {
             position: absolute;
             right: 2.5em;
-            top: .75em;
+            top: 10px;
             display: inline-block;
-            width: 1em;
-            height: 1em;
+            width: 18px;
+            height: 18px;
             text-align: center;
             background-color: $accentColor;
             color: $accentTextColor;
             font-size: $fontSize ;
             font-weight: 700;
-            line-height: 1em;
+            line-height: 18px;
             @include border-radius(50%);
         }
 
@@ -795,13 +797,13 @@ body {
         .topbar-items {
             float: right;
             margin: 0;
-            padding: 5px 0 0 0;
+            padding: 10px 0 0 0;
             list-style-type: none;
 
             > li {
                 float: right;
                 position: relative;
-                margin-left: 8px;
+                margin-left: 1em;
 
                 > button {
                     position: relative;
@@ -826,7 +828,7 @@ body {
                 }
 
                 .topbar-icon {
-                    font-size: 36px;
+                    font-size: 28px;
                     color: #ffffff;
                     @include transition(color $transitionDuration);
 
