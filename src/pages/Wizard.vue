@@ -44,31 +44,31 @@
 								<h1>ESSENTIAL INFORMATION</h1>
 								<div class="forms">
 									<div class="p-inputgroup">
-												<span class="p-inputgroup-addon">
-													<i class="material-icons">account_circle</i>
-												</span>
+										<span class="p-inputgroup-addon">
+											<i class="material-icons">account_circle</i>
+										</span>
 										<span class="md-inputfield">
-													<InputText id="name"/>
-													<label htmlFor="name">Username</label>
-												</span>
+											<InputText id="name" v-model="name"/>
+											<label htmlFor="name">Username</label>
+										</span>
 									</div>
 									<div class="p-inputgroup">
-												<span class="p-inputgroup-addon">
-													<i class="material-icons">account_circle</i>
-												</span>
+										<span class="p-inputgroup-addon">
+											<i class="material-icons">account_circle</i>
+										</span>
 										<span class="md-inputfield">
-													<InputText id="email"/>
-													<label htmlFor="email">Email</label>
-												</span>
+											<InputText id="email" v-model="email"/>
+											<label htmlFor="email">Email</label>
+										</span>
 									</div>
 									<div class="p-inputgroup">
-												<span class="p-inputgroup-addon">
-													<i class="material-icons">fingerprint</i>
-												</span>
+										<span class="p-inputgroup-addon">
+											<i class="material-icons">fingerprint</i>
+										</span>
 										<span class="md-inputfield">
-													<InputText id="password"/>
-													<label htmlFor="password">Password</label>
-												</span>
+											<InputText id="password" v-model="password" type="password"/>
+											<label htmlFor="password">Password</label>
+										</span>
 									</div>
 								</div>
 							</div>
@@ -255,7 +255,7 @@
 								<div class="p-grid p-col">
 									<div class="p-col-12">
 											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text"/>
+												<InputText type="text" v-model="cardHolder"/>
 												<label>Card Holder Name </label>
 											</span>
 									</div>
@@ -263,19 +263,19 @@
 								<div class="p-grid p-col">
 									<div class="p-col-6">
 											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text"/>
+												<InputText type="text" v-model="cardNo"/>
 												<label>Card No</label>
 											</span>
 									</div>
 									<div class="p-col-3">
 											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text"/>
+												<InputText type="text" v-model="cardDate"/>
 												<label>Date</label>
 											</span>
 									</div>
 									<div class="p-col-3">
 											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text"/>
+												<InputText type="text" v-model="cardCCV"/>
 												<label>CCV</label>
 											</span>
 									</div>
@@ -422,7 +422,14 @@
 				dropdownHear: null,
 				activeCard: '',
 				checked: false,
-				group1: null
+				group1: null,
+				name: '',
+				email: '',
+				password: '',
+				cardHolder: '',
+				cardNo: '',
+				cardDate: '',
+				cardCCV: ''
 			}
 		}
 	}

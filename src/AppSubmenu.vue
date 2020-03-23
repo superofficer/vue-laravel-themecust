@@ -14,6 +14,10 @@
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
                 <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
             </a>
+            <div v-if="root" class="layout-menu-tooltip">
+                <div class="layout-menu-tooltip-arrow"></div>
+                <div class="layout-menu-tooltip-text">{{item.label}}</div>
+            </div>
             <transition name="layout-submenu-container">
                 <AppSubmenu v-show="activeIndex === i" :items="item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
                             :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></AppSubmenu>

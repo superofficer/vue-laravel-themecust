@@ -127,18 +127,6 @@ body {
             }
         }
 
-        &:focus {
-            @include hover-element();
-
-            .p-menuitem-text {
-                color: $hoverTextColor;
-            }
-
-            .p-menuitem-icon {
-                color: $hoverTextColor;
-            }
-        }
-
         .p-submenu-icon {
             right: .857em;
             margin-right: -.5em;
