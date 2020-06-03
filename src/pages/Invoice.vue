@@ -11,9 +11,7 @@
 							</div>
 							<div class="p-col-6 logo-adress">
 								<img src="assets/layout/images/extensions/prime-logo.svg" alt="ultima-layout"/>
-								<p>Bilkent Cyberpark, Cyberplaza, 1605 St,
-									<br/>
-									Vakıf Building, Ankara, Turkey</p>
+								<p>9137 3rd Lane California City, CA 93504.</p>
 							</div>
 						</div>
 						<div class="card invoice-table billto-table">
@@ -121,19 +119,19 @@
 												<h2>ACCOUNT BENEFICIARY</h2>
 											</div>
 											<div class="p-col-8">
-												<p>PrimeTek Cagatay Civici </p>
+												<p>Edward Williams</p>
 											</div>
 											<div class="p-col-4 row-title">
 												<h2>SWIFT</h2>
 											</div>
 											<div class="p-col-8">
-												<p>BESTTRISSXXX </p>
+												<p>PJNWBXND</p>
 											</div>
 											<div class="p-col-2 row-title">
 												<h2>IBAN</h2>
 											</div>
 											<div class="p-col-10">
-												<p>TR164406309006053060207535 </p>
+												<p>GB04420235692263866724650931</p>
 											</div>
 										</div>
 
