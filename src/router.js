@@ -17,6 +17,16 @@ export default new Router({
 			component: () => import('./components/ButtonDemo.vue')
 		},
 		{
+			path: '/file',
+			name: 'file',
+			component: () => import('./components/FileDemo.vue')
+		},
+		{
+			path: '/formlayout',
+			name: 'form Layout',
+			component: () => import('./components/FormLayoutDemo.vue')
+		},
+		{
 			path: '/forms',
 			name: 'forms',
 			component: () => import('./components/FormsDemo.vue')

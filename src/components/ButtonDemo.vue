@@ -83,18 +83,18 @@
 				items: [
 					{
 						label: 'Update',
-						icon: 'pi pi-refresh'
+						icon: 'pi-md-refresh'
 					},
 					{
 						label: 'Delete',
-						icon: 'pi pi-times'
+						icon: 'pi-md-delete'
 					},
 					{
 						separator:true
 					},
 					{
 						label: 'Home',
-						icon: 'pi pi-home'
+						icon: 'pi-md-home'
 					},
 				]
 			}
