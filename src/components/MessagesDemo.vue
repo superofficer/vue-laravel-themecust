@@ -29,11 +29,11 @@
                 <div class="p-grid validation-grid">
                     <div class="p-col-12">
                         <InputText placeholder="Username" class="p-error" style="margin-right: .5em" />
-						<ValidationMessage>Field is required</ValidationMessage>
+						<InlineMessage>Field is required</InlineMessage>
                     </div>
                     <div class="p-col-12">
                         <InputText placeholder="Email" class="p-error" style="margin-right: .5em" />
-						<ValidationMessage />
+						<InlineMessage />
                     </div>
                 </div>
 			</div>

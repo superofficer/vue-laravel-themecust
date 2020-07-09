@@ -2,12 +2,12 @@
 	<div class="p-fluid">
 		<div class="p-grid">
 			<div class="p-col-12">
-				<div class="p-messages p-component p-messages-success" style="margin: 0 0 1em 0">
-					<div class="p-messages-wrapper">
+				<div class="p-message p-component p-messages-success" style="margin: 0 0 1em 0">
+					<div class="p-message-wrapper">
 						<ul>
 							<li>
-								<span class="p-messages-icon pi pi-fw pi-check"></span>
-								<span class="p-messages-summary" style="font-size: 16px">Ultima provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
+								<span class="p-message-icon pi pi-fw pi-check"></span>
+								<span class="p-message-summary" style="font-size: 16px">Ultima provides a theme for all 50+ PrimeVue Components. This page contains samples of the commonly used components for demo purposes.</span>
 							</li>
 						</ul>
 					</div>
@@ -59,10 +59,10 @@
 							<InputMask id="mask" v-model="maskValue" mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Date" />
 						</div>
 						<div class="p-col-12 p-md-2">
-							<label for="spinner">Spinner</label>
+							<label for="stacked">InputNumber</label>
 						</div>
 						<div class="p-col-12 p-md-4">
-							<Spinner v-model="spinnerValue" />
+							<InputNumber id="stacked" v-model="inputNumberValue" showButtons mode="currency" currency="USD" />
 						</div>
 						<div class="p-col-12 p-md-2">
 							Checkbox
@@ -411,7 +411,7 @@
 				dropdownCity: null,
 				passwordValue: '',
 				maskValue: null,
-				spinnerValue: null,
+				inputNumberValue: 20,
 				sliderValue: [20,80],
 				listboxCities: [
 					{name: 'New York', code: 'NY'},

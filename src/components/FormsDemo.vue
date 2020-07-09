@@ -196,8 +196,8 @@
 			</div>
 
 			<div class="card">
-				<h1>Spinner</h1>
-				<Spinner v-model="spinnerValue" />
+				<h1>InputNumber</h1>
+				<InputNumber id="stacked" v-model="inputNumberValue" showButtons mode="currency" currency="USD" />
 			</div>
 
 			<div class="card">
@@ -420,7 +420,7 @@ export default {
 			],
 			dropdownCity: null,
 			passwordValue: '',
-			spinnerValue: null,
+			inputNumberValue: 20,
 			sliderValue: [20,80],
 			listboxCities: [
 				{name: 'New York', code: 'NY'},
