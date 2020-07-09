@@ -12,9 +12,9 @@ export default new Router({
 			component: () => import('./components/Dashboard.vue')
 		},
 		{
-			path: '/sample',
-			name: 'sample',
-			component: () => import('./components/SampleDemo.vue')
+			path: '/button',
+			name: 'button',
+			component: () => import('./components/ButtonDemo.vue')
 		},
 		{
 			path: '/forms',

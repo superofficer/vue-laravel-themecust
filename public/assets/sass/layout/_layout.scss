@@ -1,5 +1,5 @@
 @import './_variables';
-@import '../overrides/layout_variables';
+@import '../overrides/_layout_variables';
 @import '../_mixins';
 @import '../_fonts';
 @import './_utils.scss';
@@ -13,4 +13,5 @@
 @import './_wizard.scss';
 @import './_config.scss';
 @import './_main.scss';
-@import '../overrides/layout_styles';
+@import './_typography.scss';
+@import '../overrides/_layout_styles';

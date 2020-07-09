@@ -106,17 +106,21 @@ export default {
 					]
 				},
 				{
-					label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
+					label: 'UI KIT', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
 					items: [
-						{label: 'Sample Page', icon: 'desktop_mac', to: '/sample'},
-						{label: 'Forms', icon: 'input', to: '/forms'},
-						{label: 'Data', icon: 'grid_on', to: '/data'},
-						{label: 'Panels', icon: 'content_paste', to: '/panels'},
-						{label: 'Overlays', icon: 'content_copy', to: '/overlays'},
-						{label: 'Menus', icon: 'menu', to: '/menus'},
-						{label: 'Messages', icon: 'message',to: '/messages'},
-						{label: 'Charts', icon: 'insert_chart', to: '/charts'},
-						{label: 'Misc', icon: 'toys', to: '/misc'}
+						{label: 'Form Layout', icon: 'library_books', to: '/formlayout'},
+						{label: 'Input', icon: 'input', to: '/input'},
+						{label: 'Button', icon: 'stay_current_landscape', to: '/button'},
+						{label: 'Table', icon: 'grid_on', to: '/table'},
+						{label: 'List', icon: 'format_list_bulleted', to: '/list'},
+						{label: 'Tree', icon: 'share', to: '/tree'},
+						{label: 'Panel', icon: 'tablet_mac', to: '/panel'},
+						{label: 'Overlay', icon: 'content_copy', to: '/overlay'},
+						{label: 'Menu', icon: 'menu', to: '/menu'},
+						{label: 'Message', icon: 'message', to: '/messages'},
+						{label: 'File', icon: 'insert_drive_file', to: '/file'},
+						{label: 'Chart', icon: 'insert_chart', to: '/chart'},
+						{label: 'Misc', icon: 'panorama_fish_eye', to: '/misc'},
 					]
 				},
 				{
