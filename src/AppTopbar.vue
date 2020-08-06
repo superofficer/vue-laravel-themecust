@@ -171,10 +171,9 @@
 
 				<li :class="['search-item', {'active-top-menu': activeTopbarItem === 'search'}]"
 					@click="onTopbarItemClick($event,'search')">
-					<span class="md-inputfield">
-						<InputText type="text" v-model="searchText"/>
-						<label>Search</label>
+					<span class="p-float-label p-input-icon-left">
 						<i class="topbar-icon material-icons">search</i>
+						<InputText id="search" type="text" v-model="searchText" placeholder="Search"/>
 					</span>
 				</li>
 			</ul>

@@ -42,6 +42,7 @@
 	&.pi-sort-up {@include icon-override("keyboard_arrow_up");}
 	&.pi-sort-down {@include icon-override("keyboard_arrow_down");}
 	&.pi-star {@include icon-override("star");}
+	&.pi-star-o {@include icon-override("star_border");}
 	&.pi-video {@include icon-override("videocam");}
 	&.pi-th-large {@include icon-override("grid_on");}
 	&.pi-bars {@include icon-override("list");}
@@ -1024,7 +1025,7 @@
 .#{$iconPrefix}-zoom-out { @include icon-override("zoom_out"); }
 .#{$iconPrefix}-zoom-out-map { @include icon-override("zoom_out_map"); }
 
-.material-icons, .fa {
+.material-icons {
 	font-family: 'Material Icons';
 	font-weight: normal;
 	font-style: normal;

@@ -19,21 +19,21 @@
 				<div class="p-grid p-formgrid">
 					<div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
 						<span class="p-input-icon-left">
-							<i class="pi pi-user" />
+							<i class="pi-md-person" />
 							<InputText type="text" placeholder="Username" />
 						</span>
 					</div>
 					<div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
 						<span class="p-input-icon-right">
 							<InputText type="text" placeholder="Search" />
-							<i class="pi pi-search" />
+							<i class="pi-md-search" />
 						</span>
 					</div>
 					<div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
 						<span class="p-input-icon-left p-input-icon-right">
-							<i class="pi pi-user" />
+							<i class="pi-md-person" />
 							<InputText type="text" placeholder="Search" />
-							<i class="pi pi-search" />
+							<i class="pi-md-search" />
 						</span>
 					</div>
 				</div>
@@ -169,7 +169,7 @@
 					<div class="p-col-12 p-md-6">
 						<div class="p-inputgroup">
 							<span class="p-inputgroup-addon">
-								<i class="pi pi-user"></i>
+								<i class="pi-md-person"></i>
 							</span>
 							<InputText placeholder="Username"/>
 						</div>
@@ -177,8 +177,8 @@
 
 					<div class="p-col-12 p-md-6">
 						<div class="p-inputgroup">
-							<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
-							<span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+							<span class="p-inputgroup-addon"><i class="pi-md-credit-card"></i></span>
+							<span class="p-inputgroup-addon"><i class="pi-md-card-travel"></i></span>
 							<InputText placeholder="Price"/>
 							<span class="p-inputgroup-addon">$</span>
 							<span class="p-inputgroup-addon">.00</span>

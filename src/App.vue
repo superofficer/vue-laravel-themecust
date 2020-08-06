@@ -124,24 +124,24 @@ export default {
 					]
 				},
 				{
-					label: "Utilities", icon:'pi pi-fw pi-globe',
+					label: "Utilities", icon:'public',
 					items: [
-						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
-						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
-						{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
-						{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
-						{label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
-						{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
-						{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
-						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
-						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
+						{label: 'Display', icon:'tv', to:'/display'},
+						{label: 'Elevation', icon:'launch', to:'/elevation'},
+						{label: 'Flexbox', icon:'subdirectory_arrow_right', to:'/flexbox'},
+						{label: 'Icons', icon:'search', to:'/icons'},
+						{label: 'Widgets', icon:'star_border', to:'/widgets'},
+						{label: 'Grid System', icon:'grid_on', to:'/grid'},
+						{label: 'Spacing', icon:'arrow_forward', to:'/spacing'},
+						{label: 'Typography', icon:'format_align_center', to:'/typography'},
+						{label: 'Text', icon:'create', to:'/text'},
 					]
 				},
 				{
 					label: 'Template Pages', icon: 'get_app',
 					items: [
-						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
-						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
+						{label: 'Crud', icon: 'edit', to: '/crud'},
+						{label: 'Calendar', icon: 'event_available', to: '/calendar'},
 						{label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
 						{label: 'Help', icon: 'help', to: '/help'},
 						{label: 'Invoice', icon: 'content_paste', to: '/invoice'},
@@ -154,7 +154,7 @@ export default {
 					]
 				},
 				{
-					label: 'Menu Hierarchy', icon: 'menu',
+					label: 'Menu Hierarchy', icon: 'low_priority',
 					items: [
 						{
 							label: 'Submenu 1', icon: 'subject',
@@ -211,12 +211,6 @@ export default {
             this.$toast.removeAllGroups();
         }
     },
-	mounted() {
-		this.bindRipple();
-	},
-	beforeDestroy() {
-		this.unbindRipple();
-	},
     methods: {
 		onDocumentClick() {
 			if(!this.topbarItemClick) {
@@ -351,103 +345,6 @@ export default {
 				linkElement.remove();
 				cloneLinkElement.setAttribute('id', id);
 			});
-		},
-		bindRipple() {
-			this.rippleListener = this.rippleMousedown.bind(this);
-			document.addEventListener('mousedown', this.rippleListener, false);
-		},
-		rippleMousedown(e) {
-			const parentNode = 'parentNode';
-			for (let target = e.target; target && target !== this; target = target[parentNode]) {
-				if (!this.isVisible(target)) {
-					continue;
-				}
-
-				// Element.matches() -> https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-				if (this.selectorMatches(target, '.ripplelink, .p-button, .p-listbox-item, .p-multiselect-item, .p-fieldset-toggler')) {
-					const element = target;
-					this.rippleEffect(element, e);
-					break;
-				}
-			}
-		},
-		selectorMatches(el, selector) {
-			const matches = 'matches';
-			const webkitMatchesSelector = 'webkitMatchesSelector';
-			const mozMatchesSelector = 'mozMatchesSelector';
-			const msMatchesSelector = 'msMatchesSelector';
-			const p = Element.prototype;
-			const f = p[matches] || p[webkitMatchesSelector] || p[mozMatchesSelector] || p[msMatchesSelector] || function(s) {
-				return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
-			};
-			return f.call(el, selector);
-		},
-		isVisible(el) {
-			return !!(el.offsetWidth || el.offsetHeight);
-		},
-		rippleEffect(element, e) {
-			if (element.querySelector('.ink') === null) {
-				const inkEl = document.createElement('span');
-				this.addClass(inkEl, 'ink');
-
-				if (this.hasClass(element, 'ripplelink') && element.querySelector('span')) {
-					element.querySelector('span').insertAdjacentHTML('afterend', '<span class=\'ink\'></span>');
-				} else {
-					element.appendChild(inkEl);
-				}
-			}
-
-			const ink = element.querySelector('.ink');
-			this.removeClass(ink, 'ripple-animate');
-
-			if (!ink.offsetHeight && !ink.offsetWidth) {
-				const d = Math.max(element.offsetWidth, element.offsetHeight);
-				ink.style.height = d + 'px';
-				ink.style.width = d + 'px';
-			}
-
-			const x = e.pageX - this.getOffset(element).left - (ink.offsetWidth / 2);
-			const y = e.pageY - this.getOffset(element).top - (ink.offsetHeight / 2);
-
-			ink.style.top = y + 'px';
-			ink.style.left = x + 'px';
-			ink.style.pointerEvents = 'none';
-			this.addClass(ink, 'ripple-animate');
-		},
-		hasClass(element, className) {
-			if (element.classList) {
-				return element.classList.contains(className);
-			} else {
-				return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
-			}
-		},
-		addClass(element, className) {
-			if (element.classList) {
-				element.classList.add(className);
-			} else {
-				element.className += ' ' + className;
-			}
-		},
-		removeClass(element, className) {
-			if (element.classList) {
-				element.classList.remove(className);
-			} else {
-				element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-			}
-		},
-		getOffset(el) {
-			const rect = el.getBoundingClientRect();
-
-			return {
-				top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
-				left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
-			};
-		},
-		unbindRipple() {
-			if (this.rippleListener) {
-				document.removeEventListener('mousedown', this.rippleListener);
-				this.rippleListener = null;
-			}
 		}
     },
     computed: {
