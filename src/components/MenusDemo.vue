@@ -1,69 +1,87 @@
 <template>
 	<div class="p-grid p-fluid">
 		<div class="p-col-12">
-			<div class="card">
-				<h1>Menubar</h1>
-				<Menubar :model="nestedMenuitems" />
-
-				<h1>Breadcrumb</h1>
-				<Breadcrumb :home="breadcrumbHome" :model="breadcrumbItems" />
+			<div class="card card-w-title">
+				<h5>Menubar</h5>
+				<Menubar :model="nestedMenuitems">
+					<template #end>
+						<span class="p-input-icon-left">
+							<i class="pi pi-search" />
+							<InputText type="text" placeholder="Search" />
+						</span>
+					</template>
+				</Menubar>
 			</div>
 		</div>
 
 		<div class="p-col-12">
-			<div class="card">
-				<h1>Steps</h1>
+			<div class="card card-w-title">
+				<h5>Breadcrumb</h5>
+				<Breadcrumb :home="breadcrumbHome" :model="breadcrumbItems" />
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<div class="card card-w-title">
+				<h5>Steps</h5>
 				<p>Steps and TabMenu are integrated with the same child routes.</p>
 				<Steps :model="nestedRouteItems" :readonly="false" />
 				<router-view/>
+			</div>
+		</div>
 
-				<h1>TabMenu</h1>
+		<div class="p-col-12 p-md-6">
+			<div class="card card-w-title">
+				<h5>TabMenu</h5>
+				<p>Steps and TabMenu are integrated with the same child routes.</p>
 				<TabMenu :model="nestedRouteItems" />
 				<router-view/>
 			</div>
 		</div>
 
-		<div class="p-col-12 p-xl-8">
+
+		<div class="p-col-12 p-md-4">
 			<div class="card">
-				<h1>MegaMenu</h1>
+				<h5>Tiered Menu</h5>
+				<TieredMenu :model="tieredMenuItems" />
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-4">
+			<div class="card">
+				<h5>Plain Menu</h5>
+				<Menu :model="menuitems" />
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-4">
+			<div class="card">
+				<h5>Overlay Menu</h5>
+
+				<Menu ref="menu" :model="overlayMenuItems" :popup="true" />
+				<Button type="button" label="Options" icon="pi pi-angle-down" @click="toggleMenu" style="width: auto"/>
+			</div>
+
+			<div class="card" @contextmenu="onContextRightClick">
+				<h5>ContextMenu</h5>
+				Right click to display.
+				<ContextMenu ref="contextMenu" :model="contextMenuItems" />
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-6">
+			<div class="card">
+				<h5>MegaMenu - Horizontal</h5>
 				<MegaMenu :model="megamenuItems" />
 
-				<h1 style="margin-top: 1.55em">Vertical</h1>
+				<h5 style="margin-top: 1.55em">MegaMenu - Vertical</h5>
 				<MegaMenu :model="megamenuItems" orientation="vertical" />
 			</div>
 		</div>
 
-		<div class="p-col-12 p-xl-4">
+		<div class="p-col-12 p-md-6">
 			<div class="card">
-				<h1>Menu</h1>
-				<Menu :model="menuitems" />
-
-				<Menu ref="menu" :model="menuitems" :popup="true" />
-				<Button type="button" label="Overlay" @click="toggleMenu" style="margin-top: 2em; width: auto"/>
-			</div>
-		</div>
-
-		<div class="p-col-12 p-md-4">
-			<div class="card">
-				<h1>TieredMenu</h1>
-				<TieredMenu :model="nestedMenuitems" />
-
-				<TieredMenu ref="tieredMenu" :model="nestedMenuitems" :popup="true" />
-				<Button type="button" label="Overlay" @click="toggleTieredMenu" style="margin-top: 2em; width: auto"/>
-			</div>
-		</div>
-
-		<div class="p-col-12 p-md-4">
-			<div class="card">
-				<h1>ContextMenu</h1>
-				<img alt="image" src="assets/demo/images/nature/nature3.jpg" @contextmenu="onImageRightClick" class="contextmenu-image">
-				<ContextMenu ref="contextMenu" :model="nestedMenuitems" />
-			</div>
-		</div>
-
-		<div class="p-col-12 p-md-4">
-			<div class="card">
-				<h1>PanelMenu</h1>
+				<h5>PanelMenu</h5>
 				<PanelMenu :model="panelMenuitems" />
 			</div>
 		</div>
@@ -75,413 +93,454 @@
 	export default {
 		data() {
 			return {
-				menuitems: [
-					{
-						label: 'Options',
-						items: [{label: 'New', icon: 'pi-md-plus'},
-							{label: 'Delete', icon: 'pi-md-delete'}]
-					},
-					{
-						label: 'Account',
-						items: [{label: 'Option', icon: 'pi-md-settings'},
-							{label: 'Sign Out', icon: 'pi-md-power-settings-new'} ]
-					}
-				],
 				nestedMenuitems: [
 					{
-						label:'File',
-						icon:'pi-md-insert-drive-file',
+						label:'Customers',
+						icon:'pi pi-fw pi-table',
 						items:[
 							{
 								label:'New',
-								icon:'pi-md-plus',
+								icon:'pi pi-fw pi-user-plus',
 								items:[
 									{
-										label:'Bookmark',
-										icon:'pi-md-bookmark'
+										label:'Customer',
+										icon:'pi pi-fw pi-plus'
 									},
 									{
-										label:'Video',
-										icon:'pi-md-videocam'
+										label:'Duplicate',
+										icon:'pi pi-fw pi-copy'
 									},
 
 								]
 							},
 							{
-								label:'Delete',
-								icon:'pi-md-delete'
-							},
-							{
-								separator:true
-							},
-							{
-								label:'Export',
-								icon:'pi-md-open-in-new'
+								label:'Edit',
+								icon:'pi pi-fw pi-user-edit'
 							}
 						]
 					},
 					{
-						label:'Edit',
-						icon:'pi-md-edit',
+						label:'Orders',
+						icon:'pi pi-fw pi-shopping-cart',
 						items:[
 							{
-								label:'Left',
-								icon:'pi-md-format-align-left'
-							},
-							{
-								label:'Right',
-								icon:'pi-md-format-align-right'
-							},
-							{
-								label:'Center',
-								icon:'pi-md-format-align-center'
-							},
-							{
-								label:'Justify',
-								icon:'pi-md-format-align-justify'
-							},
-
-						]
-					},
-					{
-						label:'Users',
-						icon:'pi-md-person',
-						items:[
-							{
-								label:'New',
-								icon:'pi-md-person-add',
-
-							},
-							{
-								label:'Delete',
-								icon:'pi-md-person-outline',
-
+								label:'View',
+								icon:'pi pi-fw pi-list'
 							},
 							{
 								label:'Search',
-								icon:'pi-md-people',
-								items:[
-									{
-										label:'Filter',
-										icon:'pi-md-filter-list',
-										items:[
-											{
-												label:'Print',
-												icon:'pi-md-print'
-											}
-										]
-									},
-									{
-										icon:'pi-md-menu',
-										label:'List'
-									}
-								]
+								icon:'pi pi-fw pi-search'
+							},
+
+						]
+					},
+					{
+						label:'Shipments',
+						icon:'pi pi-fw pi-envelope',
+						items:[
+							{
+								label:'Tracker',
+								icon:'pi pi-fw pi-compass'
+
+							},
+							{
+								label:'Map',
+								icon:'pi pi-fw pi-map-marker'
+
+							},
+							{
+								label:'Manage',
+								icon:'pi pi-fw pi-pencil'
 							}
 						]
 					},
 					{
-						label:'Events',
-						icon:'pi-md-date-range',
+						label:'Profile',
+						icon:'pi pi-fw pi-user',
 						items:[
 							{
-								label:'Edit',
-								icon:'pi-md-edit',
-								items:[
-									{
-										label:'Save',
-										icon:'pi-md-event-available'
-									},
-									{
-										label:'Delete',
-										icon:'pi-md-event-note'
-									},
-
-								]
+								label:'Settings',
+								icon:'pi pi-fw pi-cog'
 							},
 							{
-								label:'Archieve',
-								icon:'pi-md-event-busy',
-								items:[
-									{
-										label:'Remove',
-										icon:'pi-md-event-note'
-									}
-								]
+								label:'Billing',
+								icon:'pi pi-fw pi-file'
 							}
 						]
 					},
 					{
 						label:'Quit',
-						icon:'pi-md-power-settings-new'
+						icon:'pi pi-fw pi-sign-out'
+					}
+				],
+				breadcrumbHome: {icon: 'pi pi-home', to: '/'},
+				breadcrumbItems: [
+					{label:'Computer'},
+					{label:'Notebook'},
+					{label:'Accessories'},
+					{label:'Backpacks'},
+					{label:'Item'}
+				],
+				nestedRouteItems: [
+					{
+						label: 'Personal',
+						to: '/menu'
+					},
+					{
+						label: 'Seat',
+						to: '/menu/seat'
+					},
+					{
+						label: 'Payment',
+						to: '/menu/payment'
+					},
+					{
+						label: 'Confirmation',
+						to: '/menu/confirmation'
+					}
+				],
+				tieredMenuItems: [
+					{
+						label:'Customers',
+						icon:'pi pi-fw pi-table',
+						items:[
+							{
+								label:'New',
+								icon:'pi pi-fw pi-user-plus',
+								items:[
+									{
+										label:'Customer',
+										icon:'pi pi-fw pi-plus'
+									},
+									{
+										label:'Duplicate',
+										icon:'pi pi-fw pi-copy'
+									},
+
+								]
+							},
+							{
+								label:'Edit',
+								icon:'pi pi-fw pi-user-edit'
+							}
+						]
+					},
+					{
+						label:'Orders',
+						icon:'pi pi-fw pi-shopping-cart',
+						items:[
+							{
+								label:'View',
+								icon:'pi pi-fw pi-list'
+							},
+							{
+								label:'Search',
+								icon:'pi pi-fw pi-search'
+							},
+
+						]
+					},
+					{
+						label:'Shipments',
+						icon:'pi pi-fw pi-envelope',
+						items:[
+							{
+								label:'Tracker',
+								icon:'pi pi-fw pi-compass'
+
+							},
+							{
+								label:'Map',
+								icon:'pi pi-fw pi-map-marker'
+
+							},
+							{
+								label:'Manage',
+								icon:'pi pi-fw pi-pencil'
+							}
+						]
+					},
+					{
+						label:'Profile',
+						icon:'pi pi-fw pi-user',
+						items:[
+							{
+								label:'Settings',
+								icon:'pi pi-fw pi-cog'
+							},
+							{
+								label:'Billing',
+								icon:'pi pi-fw pi-file'
+							}
+						]
+					},
+					{
+						separator:true
+					},
+					{
+						label:'Quit',
+						icon:'pi pi-fw pi-sign-out'
+					}
+				],
+				overlayMenuItems: [
+					{
+						label: 'Save',
+						icon: 'pi pi-save'
+					},
+					{
+						label: 'Update',
+						icon: 'pi pi-refresh'
+					},
+					{
+						label: 'Delete',
+						icon: 'pi pi-trash'
+					},
+					{
+						separator: true
+					},
+					{
+						label: 'Home',
+						icon: 'pi pi-home'
+					},
+				],
+				menuitems: [
+					{
+						label:'Customers',
+						items:[
+							{
+								label:'New',
+								icon:'pi pi-fw pi-plus',
+							},
+							{
+								label:'Edit',
+								icon:'pi pi-fw pi-user-edit'
+							}
+						]
+					},
+					{
+						label:'Orders',
+						items:[
+							{
+								label:'View',
+								icon:'pi pi-fw pi-list'
+							},
+							{
+								label:'Search',
+								icon:'pi pi-fw pi-search'
+							},
+
+						]
+					}
+				],
+				contextMenuItems: [
+					{
+						label: 'Save',
+						icon: 'pi pi-save'
+					},
+					{
+						label: 'Update',
+						icon: 'pi pi-refresh'
+					},
+					{
+						label: 'Delete',
+						icon: 'pi pi-trash'
+					},
+					{
+						separator: true
+					},
+					{
+						label: 'Options',
+						icon: 'pi pi-cog'
+					},
+				],
+				megamenuItems: [
+					{
+						label: 'Fashion', icon: 'pi pi-fw pi-tag',
+						items: [
+							[
+								{
+									label: 'Woman',
+									items: [{label: 'Woman Item'}, {label: 'Woman Item'}, {label: 'Woman Item'}]
+								},
+								{
+									label: 'Men',
+									items: [{label: 'Men Item'}, {label: 'Men Item'}, {label: 'Men Item'}]
+								}
+							],
+							[
+								{
+									label: 'Kids',
+									items: [{label: 'Kids Item'}, {label: 'Kids Item'} ]
+								},
+								{
+									label: 'Luggage',
+									items: [{label: 'Luggage Item'}, {label: 'Luggage Item'}, {label: 'Luggage Item'} ]
+								}
+							]
+						]
+					},
+					{
+						label: 'Electronics', icon: 'pi pi-fw pi-desktop',
+						items: [
+							[
+								{
+									label: 'Computer',
+									items: [{label: 'Computer Item'}, {label: 'Computer Item'}]
+								},
+								{
+									label: 'Camcorder',
+									items: [{label: 'Camcorder Item'}, {label: 'Camcorder Item'}, {label: 'Camcorder Item'}, ]
+								},
+							],
+							[
+								{
+									label: 'TV',
+									items: [{label: 'TV Item'}, {label: 'TV Item'}]
+								},
+								{
+									label: 'Audio',
+									items: [{label: 'Audio Item'}, {label: 'Audio Item'}, {label: 'Audio Item'} ]
+								}
+							],
+							[
+								{
+									label: 'Sports.7',
+									items: [{label: 'Sports.7.1'}, {label: 'Sports.7.2'}]
+								}
+							]
+						]
+					},
+					{
+						label: 'Furniture', icon: 'pi pi-fw pi-image',
+						items: [
+							[
+								{
+									label: 'Living Room',
+									items: [{label: 'Living Room Item'}, {label: 'Living Room Item'}, ]
+								},
+								{
+									label: 'Kitchen',
+									items: [{label: 'Kitchen Item'}, {label: 'Kitchen Item'}, {label: 'Kitchen Item'} ]
+								}
+							],
+							[
+								{
+									label: 'Bedroom',
+									items: [{label: 'Bedroom Item'}, {label: 'Bedroom Item'}]
+								},
+								{
+									label: 'Outdoor',
+									items: [{label: 'Outdoor Item'}, {label: 'Outdoor Item'}, {label: 'Outdoor Item'} ]
+								}
+							]
+						]
+					},
+					{
+						label: 'Sports', icon: 'pi pi-fw pi-star-o',
+						items: [
+							[
+								{
+									label: 'Basketball',
+									items: [{label: 'Basketball Item'}, {label: 'Basketball Item'}]
+								},
+								{
+									label: 'Football',
+									items: [{label: 'Football Item'}, {label: 'Football Item'}, {label: 'Football Item'}]
+								}
+							],
+							[
+								{
+									label: 'Tennis',
+									items: [{label: 'Tennis Item'}, {label: 'Tennis Item'}]
+								}
+							]
+						]
 					}
 				],
 				panelMenuitems: [
 					{
-						label: 'File',
-						icon:'pi-md-insert-drive-file',
-						items: [
+						label:'Customers',
+						icon:'pi pi-fw pi-table',
+						items:[
 							{
-								label: 'New',
-								icon:'pi-md-plus',
-								items: [
+								label:'New',
+								icon:'pi pi-fw pi-user-plus',
+								items:[
 									{
-										label: 'Bookmark',
-										icon:'pi-md-bookmark'
+										label:'Customer',
+										icon:'pi pi-fw pi-plus'
 									},
 									{
-										label: 'Video',
-										icon:'pi-md-videocam'
-									}
+										label:'Duplicate',
+										icon:'pi pi-fw pi-copy'
+									},
+
 								]
 							},
 							{
-								label: 'Delete',
-								icon:'pi-md-delete'
-							},
-							{
-								label: 'Export',
-								icon:'pi-md-open-in-new'
+								label:'Edit',
+								icon:'pi pi-fw pi-user-edit'
 							}
 						]
 					},
 					{
-						label: 'Edit',
-						icon:'pi-md-edit',
-						items: [
+						label:'Orders',
+						icon:'pi pi-fw pi-shopping-cart',
+						items:[
 							{
-								label: 'Left',
-								icon:'pi-md-format-align-left'
+								label:'View',
+								icon:'pi pi-fw pi-list'
 							},
 							{
-								label: 'Right',
-								icon:'pi-md-format-align-right'
+								label:'Search',
+								icon:'pi pi-fw pi-search'
 							},
-							{
-								label: 'Center',
-								icon:'pi-md-format-align-center'
-							},
-							{
-								label: 'Justify',
-								icon:'pi-md-format-align-justify'
-							}
+
 						]
 					},
 					{
-						label: 'Users',
-						icon:'pi-md-person',
-						items: [
+						label:'Shipments',
+						icon:'pi pi-fw pi-envelope',
+						items:[
 							{
-								label: 'New',
-								icon:'pi-md-person-add',
+								label:'Tracker',
+								icon:'pi pi-fw pi-compass'
 
 							},
 							{
-								label: 'Delete',
-								icon:'pi-md-person-outline',
+								label:'Map',
+								icon:'pi pi-fw pi-map-marker'
+
 							},
 							{
-								label: 'Search',
-								icon:'pi-md-people',
-								items: [
-									{
-										label: 'Filter',
-										icon:'pi-md-filter-list',
-										items: [
-											{
-												label: 'Print',
-												icon:'pi-md-print'
-											}
-										]
-									},
-									{
-										icon:'pi-md-menu',
-										label: 'List'
-									}
-								]
+								label:'Manage',
+								icon:'pi pi-fw pi-pencil'
 							}
 						]
 					},
 					{
-						label: 'Events',
-						icon:'pi-md-date-range',
-						items: [
+						label:'Profile',
+						icon:'pi pi-fw pi-user',
+						items:[
 							{
-								label: 'Edit',
-								icon:'pi-md-edit',
-								items: [
-									{
-										label: 'Save',
-										icon:'pi-md-event-available'
-									},
-									{
-										label: 'Delete',
-										icon:'pi-md-event-note'
-									}
-								]
+								label:'Settings',
+								icon:'pi pi-fw pi-cog'
 							},
 							{
-								label: 'Archieve',
-								icon:'pi-md-event-busy',
-								items: [
-									{
-										label: 'Remove',
-										icon:'pi-md-event-note'
-									}
-								]
+								label:'Billing',
+								icon:'pi pi-fw pi-file'
 							}
 						]
 					}
 				],
-				breadcrumbHome: {icon: 'pi-md-home', to: '/'},
-				breadcrumbItems: [
-					{label:'Categories'},
-					{label:'Sports'},
-					{label:'Football'},
-					{label:'Countries'},
-					{label:'Spain'},
-					{label:'F.C. Barcelona'},
-					{label:'Squad'},
-					{label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'}
-				],
-				megamenuItems: [
-					{
-						label: 'Videos', icon: 'pi-md-videocam',
-						items: [
-							[
-								{
-									label: 'Video 1',
-									items: [{label: 'Video 1.1'}, {label: 'Video 1.2'}]
-								},
-								{
-									label: 'Video 2',
-									items: [{label: 'Video 2.1'}, {label: 'Video 2.2'}]
-								}
-							],
-							[
-								{
-									label: 'Video 3',
-									items: [{label: 'Video 3.1'}, {label: 'Video 3.2'}]
-								},
-								{
-									label: 'Video 4',
-									items: [{label: 'Video 4.1'}, {label: 'Video 4.2'}]
-								}
-							]
-						]
-					},
-					{
-						label: 'Users', icon: 'pi-md-people',
-						items: [
-							[
-								{
-									label: 'User 1',
-									items: [{label: 'User 1.1'}, {label: 'User 1.2'}]
-								},
-								{
-									label: 'User 2',
-									items: [{label: 'User 2.1'}, {label: 'User 2.2'}]
-								},
-							],
-							[
-								{
-									label: 'User 3',
-									items: [{label: 'User 3.1'}, {label: 'User 3.2'}]
-								},
-								{
-									label: 'User 4',
-									items: [{label: 'User 4.1'}, {label: 'User 4.2'}]
-								}
-							],
-							[
-								{
-									label: 'User 5',
-									items: [{label: 'User 5.1'}, {label: 'User 5.2'}]
-								},
-								{
-									label: 'User 6',
-									items: [{label: 'User 6.1'}, {label: 'User 6.2'}]
-								}
-							]
-						]
-					},
-					{
-						label: 'Events', icon: 'pi-md-date-range',
-						items: [
-							[
-								{
-									label: 'Event 1',
-									items: [{label: 'Event 1.1'}, {label: 'Event 1.2'}]
-								},
-								{
-									label: 'Event 2',
-									items: [{label: 'Event 2.1'}, {label: 'Event 2.2'}]
-								}
-							],
-							[
-								{
-									label: 'Event 3',
-									items: [{label: 'Event 3.1'}, {label: 'Event 3.2'}]
-								},
-								{
-									label: 'Event 4',
-									items: [{label: 'Event 4.1'}, {label: 'Event 4.2'}]
-								}
-							]
-						]
-					},
-					{
-						label: 'Settings', icon: 'pi-md-settings',
-						items: [
-							[
-								{
-									label: 'Setting 1',
-									items: [{label: 'Setting 1.1'}, {label: 'Setting 1.2'}]
-								},
-								{
-									label: 'Setting 2',
-									items: [{label: 'Setting 2.1'}, {label: 'Setting 2.2'}]
-								},
-								{
-									label: 'Setting 3',
-									items: [{label: 'Setting 3.1'}, {label: 'Setting 3.2'}]
-								}
-							],
-							[
-								{
-									label: 'Setting 4',
-									items: [{label: 'Setting 4.1'}, {label: 'Setting 4.2'}]
-								}
-							]
-						]
-					}
-				],
-				nestedRouteItems: [{
-					label: 'Personal',
-					to: '/menus'
-				},
-					{
-						label: 'Seat',
-						to: '/menus/seat'
-					},
-					{
-						label: 'Payment',
-						to: '/menus/payment'
-					},
-					{
-						label: 'Confirmation',
-						to: '/menus/confirmation'
-					}]
 			}
 		},
 		methods: {
 			toggleMenu(event) {
 				this.$refs.menu.toggle(event);
 			},
-			onImageRightClick(event) {
+			onContextRightClick(event) {
 				this.$refs.contextMenu.show(event);
-			},
-			toggleTieredMenu(event) {
-				this.$refs.tieredMenu.toggle(event);
 			}
 		}
 	}
@@ -501,7 +560,8 @@
 
 		i {
 			vertical-align: middle;
-			margin-right: 0.25em;
+			font-size: 1.5em;
+			margin: 0;
 		}
 	}
 

@@ -69,7 +69,7 @@
 				<Rating v-model="ratingValue"/>
 
 				<h5>ColorPicker</h5>
-				<ColorPicker v-model="colorValue" />
+				<ColorPicker style="width: 2rem" v-model="colorValue" />
 			</div>
 		</div>
 
@@ -79,47 +79,47 @@
 				<div class="p-grid">
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-radiobutton">
-							<RadioButton id="option1" name="option" value="Option 1" v-model="radioValue" />
-							<label for="option1">Option 1</label>
+							<RadioButton id="option1" name="option" value="Chicago" v-model="radioValue" />
+							<label for="option1">Chicago</label>
 						</div>
 					</div>
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-radiobutton">
-							<RadioButton id="option2" name="option" value="Option 2" v-model="radioValue" />
-							<label for="option2">Option 2</label>
+							<RadioButton id="option2" name="option" value="Los Angeles" v-model="radioValue" />
+							<label for="option2">Los Angeles</label>
 						</div>
 					</div>
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-radiobutton">
-							<RadioButton id="option3" name="option" value="Option 3" v-model="radioValue" />
-							<label for="option3">Option 3</label>
+							<RadioButton id="option3" name="option" value="New York" v-model="radioValue" />
+							<label for="option3">New York</label>
 						</div>
 					</div>
 				</div>
 
-				<h5>Checkbox</h5>
+				<h5 style="margin-top: 0">Checkbox</h5>
 				<div class="p-grid">
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-checkbox">
-							<Checkbox id="checkOption1" name="option" value="Option 1" v-model="checkboxValue" />
-							<label for="checkOption1">Option 1</label>
+							<Checkbox id="checkOption1" name="option" value="Chicago" v-model="checkboxValue" />
+							<label for="checkOption1">Chicago</label>
 						</div>
 					</div>
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-checkbox">
-							<Checkbox id="checkOption2" name="option" value="Option 2" v-model="checkboxValue" />
-							<label for="checkOption2">Option 2</label>
+							<Checkbox id="checkOption2" name="option" value="Los Angeles" v-model="checkboxValue" />
+							<label for="checkOption2">Los Angeles</label>
 						</div>
 					</div>
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-checkbox">
-							<Checkbox id="checkOption3" name="option" value="Option 3" v-model="checkboxValue" />
-							<label for="checkOption3">Option 3</label>
+							<Checkbox id="checkOption3" name="option" value="New York" v-model="checkboxValue" />
+							<label for="checkOption3">New York</label>
 						</div>
 					</div>
 				</div>
 
-				<h5>Input Switch</h5>
+				<h5 style="margin-top: 0">Input Switch</h5>
 				<InputSwitch v-model="switchValue" />
 			</div>
 
@@ -169,7 +169,7 @@
 					<div class="p-col-12 p-md-6">
 						<div class="p-inputgroup">
 							<span class="p-inputgroup-addon">
-								<i class="material-icons">account_circle</i>
+								<i class="pi pi-user"></i>
 							</span>
 							<InputText placeholder="Username"/>
 						</div>
@@ -177,8 +177,8 @@
 
 					<div class="p-col-12 p-md-6">
 						<div class="p-inputgroup">
-							<span class="p-inputgroup-addon"><i class="material-icons">credit_card</i></span>
-							<span class="p-inputgroup-addon"><i class="material-icons">card_travel</i></span>
+							<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart"></i></span>
+							<span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
 							<InputText placeholder="Price"/>
 							<span class="p-inputgroup-addon">$</span>
 							<span class="p-inputgroup-addon">.00</span>
@@ -206,90 +206,90 @@
 	</div>
 </template>
 <script>
-import CountryService from '../service/CountryService';
-export default {
-	data() {
-		return {
-			floatValue: null,
-			autoValue: null,
-			selectedAutoValue: null,
-			autoFilteredValue: [],
-			calendarValue: null,
-			inputNumberValue: null,
-			chipsValue: null,
-			sliderValue: null,
-			ratingValue: null,
-			colorValue: '1976D2',
-			radioValue: null,
-			checkboxValue: [],
-			switchValue: false,
-			listboxValues: [
-				{name: 'New York', code: 'NY'},
-				{name: 'Rome', code: 'RM'},
-				{name: 'London', code: 'LDN'},
-				{name: 'Istanbul', code: 'IST'},
-				{name: 'Paris', code: 'PRS'}
-			],
-			listboxValue: null,
-			dropdownValues: [
-				{name: 'New York', code: 'NY'},
-				{name: 'Rome', code: 'RM'},
-				{name: 'London', code: 'LDN'},
-				{name: 'Istanbul', code: 'IST'},
-				{name: 'Paris', code: 'PRS'}
-			],
-			dropdownValue: null,
-			multiselectValue: null,
-			multiselectValues: [
-				{name: 'Australia', code: 'AU'},
-				{name: 'Brazil', code: 'BR'},
-				{name: 'China', code: 'CN'},
-				{name: 'Egypt', code: 'EG'},
-				{name: 'France', code: 'FR'},
-				{name: 'Germany', code: 'DE'},
-				{name: 'India', code: 'IN'},
-				{name: 'Japan', code: 'JP'},
-				{name: 'Spain', code: 'ES'},
-				{name: 'United States', code: 'US'}
-			],
-			toggleValue: false,
-			selectButtonValues1: [
-				{name: 'Option 1', code: 'O1'},
-				{name: 'Option 2', code: 'O2'},
-				{name: 'Option 3', code: 'O3'},
-			],
-			selectButtonValue1: null,
-			selectButtonValues2: [
-				{name: 'Option 1', code: 'O1'},
-				{name: 'Option 2', code: 'O2'},
-				{name: 'Option 3', code: 'O3'},
-			],
-			selectButtonValue2: null,
-			inputGroupValue: false
-		}
-	},
-	countryService: null,
-	created() {
-		this.countryService = new CountryService();
-	},
-	mounted() {
-		this.countryService.getCountries().then(data => this.autoValue = data);
-	},
-	methods: {
-		searchCountry(event) {
-			setTimeout(() => {
-				if (!event.query.trim().length) {
-					this.autoFilteredValue = [...this.autoValue];
-				}
-				else {
-					this.autoFilteredValue = this.autoValue.filter((country) => {
-						return country.name.toLowerCase().startsWith(event.query.toLowerCase());
-					});
-				}
-			}, 250);
+	import CountryService from '../service/CountryService';
+	export default {
+		data() {
+			return {
+				floatValue: null,
+				autoValue: null,
+				selectedAutoValue: null,
+				autoFilteredValue: [],
+				calendarValue: null,
+				inputNumberValue: null,
+				chipsValue: null,
+				sliderValue: null,
+				ratingValue: null,
+				colorValue: '1976D2',
+				radioValue: null,
+				checkboxValue: [],
+				switchValue: false,
+				listboxValues: [
+					{name: 'New York', code: 'NY'},
+					{name: 'Rome', code: 'RM'},
+					{name: 'London', code: 'LDN'},
+					{name: 'Istanbul', code: 'IST'},
+					{name: 'Paris', code: 'PRS'}
+				],
+				listboxValue: null,
+				dropdownValues: [
+					{name: 'New York', code: 'NY'},
+					{name: 'Rome', code: 'RM'},
+					{name: 'London', code: 'LDN'},
+					{name: 'Istanbul', code: 'IST'},
+					{name: 'Paris', code: 'PRS'}
+				],
+				dropdownValue: null,
+				multiselectValue: null,
+				multiselectValues: [
+					{name: 'Australia', code: 'AU'},
+					{name: 'Brazil', code: 'BR'},
+					{name: 'China', code: 'CN'},
+					{name: 'Egypt', code: 'EG'},
+					{name: 'France', code: 'FR'},
+					{name: 'Germany', code: 'DE'},
+					{name: 'India', code: 'IN'},
+					{name: 'Japan', code: 'JP'},
+					{name: 'Spain', code: 'ES'},
+					{name: 'United States', code: 'US'}
+				],
+				toggleValue: false,
+				selectButtonValues1: [
+					{name: 'Option 1', code: 'O1'},
+					{name: 'Option 2', code: 'O2'},
+					{name: 'Option 3', code: 'O3'},
+				],
+				selectButtonValue1: null,
+				selectButtonValues2: [
+					{name: 'Option 1', code: 'O1'},
+					{name: 'Option 2', code: 'O2'},
+					{name: 'Option 3', code: 'O3'},
+				],
+				selectButtonValue2: null,
+				inputGroupValue: false
+			}
+		},
+		countryService: null,
+		created() {
+			this.countryService = new CountryService();
+		},
+		mounted() {
+			this.countryService.getCountries().then(data => this.autoValue = data);
+		},
+		methods: {
+			searchCountry(event) {
+				setTimeout(() => {
+					if (!event.query.trim().length) {
+						this.autoFilteredValue = [...this.autoValue];
+					}
+					else {
+						this.autoFilteredValue = this.autoValue.filter((country) => {
+							return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+						});
+					}
+				}, 250);
+			}
 		}
 	}
-}
 </script>
 
 <style scoped lang="scss">

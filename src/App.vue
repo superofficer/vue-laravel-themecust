@@ -124,8 +124,24 @@ export default {
 					]
 				},
 				{
+					label: "Utilities", icon:'pi pi-fw pi-globe',
+					items: [
+						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
+						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
+						{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
+						{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
+						{label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
+						{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
+						{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
+						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
+						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
+					]
+				},
+				{
 					label: 'Template Pages', icon: 'get_app',
 					items: [
+						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
+						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
 						{label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
 						{label: 'Help', icon: 'help', to: '/help'},
 						{label: 'Invoice', icon: 'content_paste', to: '/invoice'},
@@ -443,7 +459,9 @@ export default {
 				'menu-layout-slim': this.layoutMode === 'slim',
 				'menu-layout-horizontal': this.layoutMode === 'horizontal',
 				'layout-menu-static-inactive': this.staticMenuDesktopInactive,
-				'layout-menu-static-active': this.staticMenuMobileActive
+				'layout-menu-static-active': this.staticMenuMobileActive,
+				'p-input-filled': this.$appState.inputStyle === 'filled',
+				'p-ripple-disabled': this.$primevue.ripple === false
 			}];
         },
 		menuClass(){

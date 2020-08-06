@@ -253,14 +253,31 @@
 
 		<div class="p-col-12 p-md-8">
 			<div class="card">
-				<DataTable :value="cars" class="p-datatable-responsive" :selection.sync="selectedCar" selectionMode="single" dataKey="vin" style="margin-bottom: 20px">
-					<template #header>
-						Recent Sales
-					</template>
-					<Column field="vin" header="Vin" :sortable="true"></Column>
-					<Column field="year" header="Year" :sortable="true"></Column>
-					<Column field="brand" header="Brand" :sortable="true"></Column>
-					<Column field="color" header="Color" :sortable="true"></Column>
+				<DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px" :paginator="true">
+					<Column>
+						<template #header>
+							Logo
+						</template>
+						<template #body="slotProps">
+							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50px" />
+						</template>
+					</Column>
+					<Column field="name" header="Name" sortable></Column>
+					<Column field="category" header="Category" sortable></Column>
+					<Column field="price" header="Price" sortable>
+						<template #body="slotProps">
+							{{formatCurrency(slotProps.data.price)}}
+						</template>
+					</Column>
+					<Column>
+						<template #header>
+							View
+						</template>
+						<template #body>
+							<Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
+							<Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
+						</template>
+					</Column>
 				</DataTable>
 
 				<Panel header="Sales Graph">
@@ -351,7 +368,7 @@
 </template>
 
 <script>
-import CarService from '../service/CarService';
+import ProductService from '../service/ProductService';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -371,8 +388,7 @@ export default {
 			name: '',
 			age: '',
 			message: '',
-			cars: null,
-			selectedCar: null,
+			products: null,
 			chartData: {
 				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 				datasets: [
@@ -469,16 +485,57 @@ export default {
 			}
 		}
 	},
-	carService: null,
+	productService: null,
 	created() {
-		this.carService = new CarService();
+		this.productService = new ProductService();
 	},
 	mounted() {
-		this.carService.getCarsSmall().then(data => this.cars = data);
+		this.productService.getProductsSmall().then(data => this.products = data);
 	},
+	methods: {
+		formatCurrency(value) {
+			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+		}
+	}
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+	@media screen and (max-width: 960px) {
+		/deep/ .p-datatable {
+			&.p-datatable-customers {
+				.p-datatable-thead > tr > th,
+				.p-datatable-tfoot > tr > td {
+					display: none !important;
+				}
 
+				.p-datatable-tbody > tr {
+					border-bottom: 1px solid #dee2e6;
+					> td {
+						text-align: left;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border: 0 none !important;
+						width: 100% !important;
+						float: left;
+						clear: left;
+						border: 0 none;
+
+						.p-column-title {
+							padding: .4rem;
+							min-width: 30%;
+							display: inline-block;
+							margin: -.4rem 1rem -.4rem -.4rem;
+							font-weight: bold;
+						}
+
+						.p-progressbar {
+							margin-top: .5rem;
+						}
+					}
+				}
+			}
+		}
+	}
 </style>

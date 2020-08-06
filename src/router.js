@@ -12,16 +12,6 @@ export default new Router({
 			component: () => import('./components/Dashboard.vue')
 		},
 		{
-			path: '/button',
-			name: 'button',
-			component: () => import('./components/ButtonDemo.vue')
-		},
-		{
-			path: '/file',
-			name: 'file',
-			component: () => import('./components/FileDemo.vue')
-		},
-		{
 			path: '/formlayout',
 			name: 'formlayout',
 			component: () => import('./components/FormLayoutDemo.vue')
@@ -32,23 +22,33 @@ export default new Router({
 			component: () => import('./components/InputDemo.vue')
 		},
 		{
-			path: '/forms',
-			name: 'forms',
-			component: () => import('./components/FormsDemo.vue')
+			path: '/button',
+			name: 'button',
+			component: () => import('./components/ButtonDemo.vue')
 		},
 		{
-			path: '/data',
-			name: 'data',
-			component: () => import('./components/DataDemo.vue')
+			path: '/table',
+			name: 'table',
+			component: () => import('./components/TableDemo.vue')
 		},
 		{
-			path: '/panels',
-			name: 'panels',
+			path: '/list',
+			name: 'list',
+			component: () => import('./components/ListDemo.vue')
+		},
+		{
+			path: '/tree',
+			name: 'tree',
+			component: () => import('./components/TreeDemo.vue')
+		},
+		{
+			path: '/panel',
+			name: 'panel',
 			component: () => import('./components/PanelsDemo.vue')
 		},
 		{
-			path: '/overlays',
-			name: 'overlays',
+			path: '/overlay',
+			name: 'overlay',
 			component: () => import('./components/OverlaysDemo.vue')
 		},
 		{
@@ -77,8 +77,13 @@ export default new Router({
 			component: () => import('./components/MessagesDemo.vue')
 		},
 		{
-			path: '/charts',
-			name: 'charts',
+			path: '/file',
+			name: 'file',
+			component: () => import('./components/FileDemo.vue')
+		},
+		{
+			path: '/chart',
+			name: 'chart',
 			component: () => import('./components/ChartsDemo.vue')
 		},
 		{
@@ -87,19 +92,69 @@ export default new Router({
 			component: () => import('./components/MiscDemo.vue')
 		},
 		{
+			path: '/icons',
+			name: 'icons',
+			component: () => import('./utilities/Icons.vue')
+		},
+		{
+			path: '/widgets',
+			name: 'widgets',
+			component: () => import('./utilities/Widgets.vue')
+		},
+		{
+			path: '/grid',
+			name: 'grid',
+			component: () => import('./utilities/GridDemo.vue')
+		},
+		{
+			path: '/spacing',
+			name: 'spacing',
+			component: () => import('./utilities/SpacingDemo.vue')
+		},
+		{
+			path: '/elevation',
+			name: 'elevation',
+			component: () => import('./utilities/ElevationDemo.vue')
+		},
+		{
+			path: '/typography',
+			name: 'typography',
+			component: () => import('./utilities/Typography.vue')
+		},
+		{
+			path: '/display',
+			name: 'display',
+			component: () => import('./utilities/DisplayDemo.vue')
+		},
+		{
+			path: '/flexbox',
+			name: 'flexbox',
+			component: () => import('./utilities/FlexBoxDemo.vue')
+		},
+		{
+			path: '/text',
+			name: 'text',
+			component: () => import('./utilities/TextDemo.vue')
+		},
+		{
 			path: '/empty',
 			name: 'empty',
 			component: () => import('./components/EmptyPage.vue')
 		},
 		{
-			path: '/utils',
-			name: 'utils',
-			component: () => import('./components/Utils.vue')
+			path: '/crud',
+			name: 'crud',
+			component: () => import('./pages/CrudDemo.vue')
 		},
 		{
-			path: '/documentation',
-			name: 'documentation',
-			component: () => import('./components/Documentation.vue')
+			path: '/calendar',
+			name: 'calendar',
+			component: () => import('./pages/CalendarDemo.vue')
+		},
+		{
+			path: '/invoice',
+			name: 'invoice',
+			component: () => import('./pages/Invoice.vue')
 		},
 		{
 			path: '/help',
@@ -107,9 +162,9 @@ export default new Router({
 			component: () => import('./pages/Help.vue')
 		},
 		{
-			path: '/invoice',
-			name: 'invoice',
-			component: () => import('./pages/Invoice.vue')
+			path: '/documentation',
+			name: 'documentation',
+			component: () => import('./components/Documentation.vue')
 		},
 	],
 	scrollBehavior() {

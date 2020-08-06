@@ -1,89 +1,186 @@
 <template>
-	<div class="p-grid">
+	<div class="p-grid panel-demo">
 		<div class="p-col-12">
-			<div class="card card-w-title">
-				<h1>AccordionPanel</h1>
+			<div class="card">
+				<h5>Toolbar</h5>
+				<Toolbar>
+					<template slot="left">
+						<Button label="New" icon="pi pi-plus" style="margin-right: .5em"/>
+						<Button label="Open" icon="pi pi-folder-open" class="p-button-secondary"/>
+
+						<i class="pi pi-bars p-toolbar-separator" style="margin-right: .5em"></i>
+
+						<Button icon="pi pi-check" class="p-button-success" style="margin-right: .5em"/>
+						<Button icon="pi pi-trash" class="p-button-warning" style="margin-right: .5em"/>
+						<Button icon="pi pi-print" class="p-button-danger"/>
+					</template>
+					<template slot="right">
+						<SplitButton label="Options" :model="toolbarItems"></SplitButton>
+					</template>
+				</Toolbar>
+			</div>
+		</div>
+		<div class="p-col-12 p-md-6">
+			<div class="card">
+				<h5>AccordionPanel</h5>
 				<Accordion>
-					<AccordionTab header="Godfather I">
-						The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
+					<AccordionTab header="Header I" :active="true">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+							pariatur.
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+							anim id est laborum.</p>
 					</AccordionTab>
-					<AccordionTab header="Godfather II">
-						Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy.
+					<AccordionTab header="Header II">
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+							laudantium, totam rem aperiam, eaque
+							ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+							Nemo enim ipsam voluptatem quia
+							voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+							ratione voluptatem sequi nesciunt.
+							Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
 					</AccordionTab>
-					<AccordionTab header="Godfather III">
-						The Godfather Part III is set in 1979 and 1980. Michael has moved back to New York and taken great strides to remove the family from crime. He turns over his New York criminal interests to longtime enforcer Joey Zasa. He uses his wealth in an attempt to rehabilitate his reputation through numerous philanthropic acts, administered by a foundation named after his father. A decade earlier, he gave custody of his two children to Kay, who has since remarried.
+					<AccordionTab header="Header III">
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+							voluptatum deleniti atque corrupti quos dolores
+							et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+							qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+							Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+							nobis est eligendi optio cumque nihil impedit
+							quo minus.</p>
 					</AccordionTab>
 				</Accordion>
 			</div>
+			<div class="card">
+				<h5>TabView</h5>
+				<TabView>
+					<TabPanel header="Header I">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+							pariatur.
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+							anim id est laborum.</p></TabPanel>
+					<TabPanel header="Header II">
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+							laudantium, totam rem aperiam, eaque
+							ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+							Nemo enim ipsam voluptatem quia
+							voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+							ratione voluptatem sequi nesciunt.
+							Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
+					</TabPanel>
+					<TabPanel header="Header III">
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+							voluptatum deleniti atque corrupti quos dolores
+							et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+							qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+							Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+							nobis est eligendi optio cumque nihil impedit
+							quo minus.</p>
+					</TabPanel>
+				</TabView>
+			</div>
 		</div>
-
-		<div class="p-col-12">
-			<div class="card card-w-title">
-				<h1>Panel</h1>
-				<Panel header="Default" :toggleable="true">
-					<p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-						His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-						Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
-						kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.</p>
+		<div class="p-col-12 p-md-6">
+			<div class="card">
+				<h5>Panel</h5>
+				<Panel header="Header" :toggleable="true">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+						pariatur.
+						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+						id est laborum.</p>
 				</Panel>
 			</div>
-		</div>
-
-		<div class="p-col-12">
-			<div class="card card-w-title">
-				<h1>TabView</h1>
-				<TabView>
-                    <TabPanel header="Godfather I">
-                        The story begins as Don Vito Corleone, the head of a New York Mafia family, overseeshis daughter's wedding. His beloved son ichael has just come home from the war, but does not intend to become part of his father's business. Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever anything stands against the good of the family.
-                    </TabPanel>
-                    <TabPanel header="Godfather II">
-                        Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy.
-                    </TabPanel>
-                    <TabPanel header="Godfather III">
-                        The Godfather Part III is set in 1979 and 1980. Michael has moved back to New York and taken great strides to remove the family from crime. He turns over his New York criminal interests to longtime enforcer Joey Zasa. He uses his wealth in an attempt to rehabilitate his reputation through numerous philanthropic acts, administered by a foundation named after his father. A decade earlier, he gave custody of his two children to Kay, who has since remarried.
-                    </TabPanel>
-                </TabView>
-			</div>
-		</div>
-
-		<div class="p-col-12">
-			<div class="card card-w-title">
-				<h1>Fieldset</h1>
-				<Fieldset legend="Toggleable" :toggleable="true">
-					The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-					His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-					Through life of Michael the nature of the family business becomes clear. The business of the family is just like the head of the family,
-					kind and benevolent to those who give respect,
-					but given to ruthless violence whenever anything stands against the good of the family.
+			<div class="card">
+				<h5>Fieldset</h5>
+				<Fieldset legend="Legend" :toggleable="true">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+						pariatur.
+						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+						id est laborum.</p>
 				</Fieldset>
 			</div>
-		</div>
+			<div class="card">
+				<Card>
+					<template slot="title">
+						<h5>Card</h5>
+						<Button icon="pi pi-plus" class="p-button-text"/>
+					</template>
 
-		<div class="p-col-12">
-			<div class="card card-w-title">
-				<h1>Toolbar</h1>
-				<Toolbar>
-					<template slot="left">
-						<Button label="New" icon="pi-md-plus" style="margin-right: .5em" />
-						<Button label="Upload" icon="pi-md-file-upload" class="p-button-success" style="margin-right: .5em" />
-						<i class="p-toolbar-separator material-icons" style="vertical-align:middle; margin-right: .25em" >dehaze</i>
-						<Button label="Save" icon="pi-md-check" class="p-button-warning" />
+					<template slot="subtitle">
+						Subtitle
 					</template>
-					<template slot="right">
-						<Button icon="pi-md-search" style="margin-right: .5em" />
-						<Button icon="pi-md-date-range" class="p-button-success" style="margin-right: .5em" />
-						<Button icon="pi-md-close" class="p-button-danger" />
+
+					<template slot="content">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua.
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+							commodo consequat.
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+							pariatur.
+							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+							anim id est laborum.</p>
 					</template>
-				</Toolbar>
+				</Card>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {}
+	export default {
+		data() {
+			return {
+				toolbarItems: [
+					{
+						label: 'Save',
+						icon: 'pi pi-check'
+					},
+					{
+						label: 'Update',
+						icon: 'pi pi-upload'
+					},
+					{
+						label: 'Delete',
+						icon: 'pi pi-trash'
+					},
+					{
+						label: 'Home Page',
+						icon: 'pi pi-home'
+					},
+				]
+			}
+		}
+	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+	p {
+		line-height: 1.5;
+		margin: 0;
+	}
 
+	/deep/ .p-card .p-card-title {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		margin-bottom: 0;
+	}
 </style>
