@@ -7,7 +7,7 @@
 						<img src="assets/layout/images/extensions/help-header@2x.jpg" alt="ultima" style="width: 100%"/>
 						<h1>Frequently Asked Questions</h1>
 						<div class="search">
-							<i class="material-icons">search</i>
+							<i class="pi pi-search"></i>
 							<AutoComplete id="acSimple" placeholder="Search for Answers" v-model="text" :suggestions="filteredText" @complete="filterText($event)"></AutoComplete>
 						</div>
 					</div>
@@ -18,7 +18,7 @@
 								<AccordionTab :active="true">
 									<template slot="header">
 										<div class="accordion-title">
-											<i class="material-icons">book</i>
+											<i class="pi pi-bookmark"></i>
 											<h1>The Basics</h1>
 											<p>4 articles in this collection</p>
 										</div>
@@ -48,7 +48,7 @@
 								<AccordionTab>
 									<template slot="header">
 										<div class="accordion-title">
-											<i class="material-icons">book</i>
+											<i class="pi pi-bookmark"></i>
 											<h1>Questions About Licenses</h1>
 											<p>3 articles in this collection</p>
 										</div>
@@ -75,7 +75,7 @@
 								<AccordionTab>
 									<template slot="header">
 										<div class="accordion-title">
-											<i class="material-icons">book</i>
+											<i class="pi pi-bookmark"></i>
 											<h1>Questions About Frameworks</h1>
 											<p>6 articles in this collection</p>
 										</div>

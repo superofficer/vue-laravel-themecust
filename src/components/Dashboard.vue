@@ -40,7 +40,7 @@
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="p-grid card colorbox colorbox-1">
 				<div class="p-col-4">
-					<i class="material-icons">check_circle</i>
+					<i class="pi pi-check-circle"></i>
 				</div>
 				<div class="p-col-8">
 					<span class="colorbox-name">Tasks</span>
@@ -51,7 +51,7 @@
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="p-grid card colorbox colorbox-2">
 				<div class="p-col-4">
-					<i class="material-icons">shopping_card</i>
+					<i class="pi pi-shopping-cart"></i>
 				</div>
 				<div class="p-col-8">
 					<span class="colorbox-name">Purchases</span>
@@ -62,7 +62,7 @@
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="p-grid card colorbox colorbox-3">
 				<div class="p-col-4">
-					<i class="material-icons">report</i>
+					<i class="pi pi-exclamation-circle"></i>
 				</div>
 				<div class="p-col-8">
 					<span class="colorbox-name">Issues</span>
@@ -73,7 +73,7 @@
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="p-grid card colorbox colorbox-4">
 				<div class="p-col-4">
-					<i class="material-icons">email</i>
+					<i class="pi pi-envelope"></i>
 				</div>
 				<div class="p-col-8">
 					<span class="colorbox-name">Messages</span>
@@ -88,32 +88,32 @@
 					<li>
 						<Checkbox name="task" value="reports" v-model="tasksCheckbox"/>
 						<span class="task-name">Sales Reports</span>
-						<i class="material-icons">&#xE8C9;</i>
+						<i class="pi pi-briefcase"></i>
 					</li>
 					<li>
-						<Checkbox name="task" value="invoices" v-model="tasksCheckbox"/>
+						<Checkbox name="task" value="pay" v-model="tasksCheckbox"/>
 						<span class="task-name">Pay Invoices</span>
-						<i class="material-icons">&#xE8A1;</i>
+						<i class="pi pi-file"></i>
 					</li>
 					<li>
 						<Checkbox name="task" value="dinner" v-model="tasksCheckbox"/>
 						<span class="task-name">Dinner with Tony</span>
-						<i class="material-icons">&#xE561;</i>
+						<i class="pi pi-comments"></i>
 					</li>
 					<li>
 						<Checkbox name="task" value="meeting" v-model="tasksCheckbox"/>
 						<span class="task-name">Client Meeting</span>
-						<i class="material-icons">&#xE7FB;</i>
+						<i class="pi pi-users"></i>
 					</li>
 					<li>
 						<Checkbox name="task" value="theme" v-model="tasksCheckbox"/>
 						<span class="task-name">New Theme</span>
-						<i class="material-icons">&#xE3AE;</i>
+						<i class="pi pi-palette"></i>
 					</li>
 					<li>
 						<Checkbox name="task" value="ticket" v-model="tasksCheckbox"/>
 						<span class="task-name">Flight Ticket</span>
-						<i class="material-icons">&#xE01B;</i>
+						<i class="pi pi-ticket"></i>
 					</li>
 				</ul>
 			</Panel>
@@ -143,7 +143,7 @@
 						</span>
 					</div>
 				</div>
-				<Button type="button" label="Send" icon="pi-md-send"></Button>
+				<Button type="button" label="Send" icon="pi pi-check"></Button>
 			</Panel>
 		</div>
 		<div class="p-col-12 p-lg-4 contacts">
@@ -186,7 +186,7 @@
 				<div class="p-grid">
 					<div class="p-col-3">
 						<span class="event-time">just now</span>
-						<i class="material-icons" style="color:#009688">&#xE1BC;</i>
+						<i class="pi pi-map-marker" style="color:#009688"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner" style="color:#009688">Katherine May</span>
@@ -198,7 +198,7 @@
 
 					<div class="p-col-3">
 						<span class="event-time">12h ago</span>
-						<i class="material-icons" style="color:#E91E63">&#xE885;</i>
+						<i class="pi pi-star-o" style="color:#E91E63"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner" style="color:#E91E63">Brandon Santos</span>
@@ -207,7 +207,7 @@
 
 					<div class="p-col-3">
 						<span class="event-time">15h ago</span>
-						<i class="material-icons" style="color:#9c27b0">&#xE0C9;</i>
+						<i class="pi pi-comment" style="color:#9c27b0"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner" style="color:#9c27b0">Stephan Ward</span>
@@ -216,7 +216,7 @@
 
 					<div class="p-col-3">
 						<span class="event-time">2d ago</span>
-						<i class="material-icons" style="color:#ff9800">&#xE0C8;</i>
+						<i class="pi pi-globe" style="color:#ff9800"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner" style="color:#ff9800">Jason Smith</span>
@@ -228,7 +228,7 @@
 
 					<div class="p-col-3">
 						<span class="event-time">1w ago</span>
-						<i class="material-icons" style="color:#607d8b">&#xE91B;</i>
+						<i class="pi pi-heart" style="color:#607d8b"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner">Kevin Cox</span>
@@ -237,7 +237,7 @@
 
 					<div class="p-col-3">
 						<span class="event-time">2w ago</span>
-						<i class="material-icons" style="color:#FFC107">&#xE23A;</i>
+						<i class="pi pi-compass" style="color:#FFC107"></i>
 					</div>
 					<div class="p-col-9">
 						<span class="event-owner" style="color:#FFC107">Walter White</span>
@@ -245,7 +245,7 @@
 					</div>
 
 					<div class="p-col-12">
-						<Button type="button" label="Refresh" icon="pi-md-refresh"></Button>
+						<Button type="button" label="Refresh" icon="pi pi-refresh"></Button>
 					</div>
 				</div>
 			</div>
@@ -300,7 +300,7 @@
 						<p>Updated 1 minute ago</p>
 					</div>
 					<div class="p-col-6" style="text-align:right">
-						<Button label="Update" icon="pi-md-update"></Button>
+						<Button label="Update" icon="pi pi-refresh"></Button>
 					</div>
 				</div>
 			</div>

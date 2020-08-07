@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="card exception-panel">
-			<i class="material-icons">&#xE001;</i>
+			<i class="pi pi-exclamation-circle"></i>
 			<h1>Page Not Found</h1>
 			<div class="exception-detail">The resource you are looking for does not exist.</div>
 			<Button label="Homepage" @click="goDashboard"/>

@@ -1,6 +1,6 @@
 <template>
     <div class="stepsdemo-content">
-        <i class="pi-md-confirmation-number" />
+        <i class="pi pi-fw pi-ticket" />
         <p>Seat Component Content via Child Route</p>
     </div>
 </template>

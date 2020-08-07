@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="card exception-panel">
-			<i class="material-icons">&#xE32A;</i>
+			<i class="pi pi-lock"></i>
 			<h1>Access Denied</h1>
 			<div class="exception-detail">You are not authorized to access this resource.</div>
 			<Button label="Homepage"  @click="goDashboard" />

@@ -18,19 +18,19 @@
 						<div class="p-grid p-col">
 							<div :class="['p-col-4 tab register-tab', {'selected-tab': activeTab === 'register'}]" @click="activeTab = 'register'">
 								<div class="icon">
-									<i class="material-icons">fingerprint</i>
+									<i class="pi pi-sign-in"></i>
 								</div>
 								<div class="title">REGISTER</div>
 							</div>
 							<div :class="['p-col-4 tab tier-tab', {'selected-tab': activeTab === 'tier'}]" @click="activeTab = 'tier'">
 								<div class="icon">
-									<i class="material-icons">layers</i>
+									<i class="pi pi-clone"></i>
 								</div>
 								<div class="title">CHOOSE TIER</div>
 							</div>
 							<div :class="['p-col-4 tab payment-tab', {'selected-tab': activeTab === 'payment'}]" @click="activeTab = 'payment'">
 								<div class="icon">
-									<i class="material-icons">shopping_cart</i>
+									<i class="pi pi-shopping-cart"></i>
 								</div>
 								<div class="title">PAYMENT</div>
 							</div>
@@ -45,7 +45,7 @@
 								<div class="forms">
 									<div class="p-inputgroup">
 										<span class="p-inputgroup-addon">
-											<i class="material-icons">account_circle</i>
+											<i class="pi pi-user"></i>
 										</span>
 										<span class="md-inputfield">
 											<InputText id="name" v-model="name"/>
@@ -54,7 +54,7 @@
 									</div>
 									<div class="p-inputgroup">
 										<span class="p-inputgroup-addon">
-											<i class="material-icons">account_circle</i>
+											<i class="pi pi-user"></i>
 										</span>
 										<span class="md-inputfield">
 											<InputText id="email" v-model="email"/>
@@ -63,7 +63,7 @@
 									</div>
 									<div class="p-inputgroup">
 										<span class="p-inputgroup-addon">
-											<i class="material-icons">fingerprint</i>
+											<i class="pi pi-sign-in"></i>
 										</span>
 										<span class="md-inputfield">
 											<InputText id="password" v-model="password" type="password"/>
@@ -109,13 +109,13 @@
 									<div class="card-content">
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Responsive</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Push Messages</div>
 										</div>
@@ -141,25 +141,25 @@
 									<div class="card-content">
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Responsive</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Push Messages</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">7/24 Support</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Free Shipping</div>
 										</div>
@@ -185,37 +185,37 @@
 									<div class="card-content">
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Responsive</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Push Messages</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">7/24 Support</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Free Shipping</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Unlimited BW</div>
 										</div>
 										<div class="card-row p-grid">
 											<div class="p-col-3">
-												<i class="material-icons">check</i>
+												<i class="pi pi-fw pi-check"></i>
 											</div>
 											<div class="p-col-9">Special Gift Cards</div>
 										</div>

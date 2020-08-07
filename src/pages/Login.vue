@@ -19,8 +19,8 @@
 						</span>
 					</div>
 					<div class="p-col-12">
-						<Button label="Sign In" icon="pi-md-person" @click="goDashboard" />
-						<Button label="Forgot Password" icon="pi-md-help" class="pink-btn"/>
+						<Button label="Sign In" icon="pi pi-user" @click="goDashboard" />
+						<Button label="Forgot Password" icon="pi pi-question-circle" class="pink-btn"/>
 					</div>
 				</div>
 			</div>

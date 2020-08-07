@@ -9,11 +9,11 @@
 			</button>
 
 			<button class="p-link" id="rightpanel-menu-button" @click="onRightPanelButtonClick">
-				<i class="material-icons">more_vert</i>
+				<i class="pi pi-ellipsis-v"></i>
 			</button>
 
 			<button class="p-link" id="topbar-menu-button" @click="onTopbarMenuButtonClick">
-				<i class="material-icons">menu</i>
+				<i class="pi pi-bars"></i>
 			</button>
 			<ul :class="topbarItemsClass">
 				<li v-if="profileMode === 'top' || horizontal"
@@ -27,25 +27,25 @@
 						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'profile'">
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">person</i>
+									<i class="pi pi-user"></i>
 									<span>Profile</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">security</i>
+									<i class="pi pi-lock"></i>
 									<span>Privacy</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">settings_applications</i>
+									<i class="pi pi-cog"></i>
 									<span>Settings</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">power_settings_new</i>
+									<i class="pi pi-power-off"></i>
 									<span>Logout</span>
 								</button>
 							</li>
@@ -55,7 +55,7 @@
 
 				<li :class="[{'active-top-menu': activeTopbarItem === 'settings'}]">
 					<button class="p-link" @click="onTopbarItemClick($event,'settings')">
-						<i class="topbar-icon material-icons">settings</i>
+						<i class="topbar-icon pi pi-cog"></i>
 						<span class="topbar-item-name">Settings</span>
 					</button>
 
@@ -63,25 +63,25 @@
 						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'settings'">
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">palette</i>
+									<i class="pi pi-palette"></i>
 									<span>Change Theme</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">favorite_border</i>
+									<i class="pi pi-heart"></i>
 									<span>Favorites</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">lock</i>
+									<i class="pi pi-lock"></i>
 									<span>Lock Screen</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">wallpaper</i>
+									<i class="pi pi-image"></i>
 									<span>Wallpaper</span>
 								</button>
 							</li>
@@ -91,7 +91,7 @@
 
 				<li :class="[{'active-top-menu': activeTopbarItem === 'messages'}]">
 					<button class="p-link" @click="onTopbarItemClick($event,'messages')">
-						<i class="topbar-icon material-icons animated swing">message</i>
+						<i class="topbar-icon pi pi-envelope animated swing"></i>
 						<span class="topbar-badge animated rubberBand">5</span>
 						<span class="topbar-item-name">Messages</span>
 					</button>
@@ -134,7 +134,7 @@
 
 				<li :class="[{'active-top-menu': activeTopbarItem === 'notifications'}]">
 					<button class="p-link" @click="onTopbarItemClick($event,'notifications')">
-						<i class="topbar-icon material-icons">timer</i>
+						<i class="topbar-icon pi pi-bell"></i>
 						<span class="topbar-badge animated rubberBand">4</span>
 						<span class="topbar-item-name">Notifications</span>
 					</button>
@@ -143,25 +143,25 @@
 						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'notifications'">
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">bug_report</i>
+									<i class="pi pi-sliders-h"></i>
 									<span>Pending tasks</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">event</i>
+									<i class="pi pi-calendar"></i>
 									<span>Meeting today at 3pm</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">file_download</i>
+									<i class="pi pi-download"></i>
 									<span>Download documents</span>
 								</button>
 							</li>
 							<li role="menuitem">
 								<button class="p-link">
-									<i class="material-icons">flight</i>
+									<i class="pi pi-ticket"></i>
 									<span>Book flight</span>
 								</button>
 							</li>
@@ -172,7 +172,7 @@
 				<li :class="['search-item', {'active-top-menu': activeTopbarItem === 'search'}]"
 					@click="onTopbarItemClick($event,'search')">
 					<span class="p-float-label p-input-icon-left">
-						<i class="topbar-icon material-icons">search</i>
+						<i class="topbar-icon pi pi-search"></i>
 						<InputText id="search" type="text" v-model="searchText" placeholder="Search"/>
 					</span>
 				</li>

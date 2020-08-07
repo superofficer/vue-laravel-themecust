@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Button label="Print" icon="pi-md-print" @click="printClick" style="display: block; margin-bottom: 20px; margin-left: 6px" :key="1"></Button>
+		<Button label="Print" icon="pi pi-print" @click="printClick" style="display: block; margin-bottom: 20px; margin-left: 6px" :key="1"></Button>
 		<div class="p-grid" :key="2">
 			<div class="p-col-12">
 				<div id="invoice-content">

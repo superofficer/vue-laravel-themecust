@@ -1,18 +1,18 @@
 <template>
 	<ul v-if="items" role="menu">
 		<li v-for="(item,i) of items" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to}]" role="none">
-            <router-link v-if="item.to" :to="item.to" class="ripplelink" @click.native="onMenuItemClick($event,item,i)" :target="item.target" exact
+            <router-link v-if="item.to" :to="item.to" @click.native="onMenuItemClick($event,item,i)" :target="item.target" exact
                          @mouseenter.native="onMenuItemMouseEnter(i)" role="menuitem">
-                <i class="material-icons">{{item.icon}}</i>
+                <i :class="item.icon"></i>
                 <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
-                <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
+                <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>
             </router-link>
-            <a v-if="!item.to" class="ripplelink" :href="item.url||'#'" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)" role="menuitem">
-                <i class="material-icons">{{item.icon}}</i>
+            <a v-if="!item.to" :href="item.url||'#'" @click="onMenuItemClick($event,item,i)" target="item.target" @mouseenter="onMenuItemMouseEnter(i)" role="menuitem">
+                <i :class="item.icon"></i>
                 <span>{{item.label}}</span>
                 <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
-                <i v-if="item.items" class="material-icons submenu-icon">keyboard_arrow_down</i>
+                <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>
             </a>
             <div v-if="root" class="layout-menu-tooltip">
                 <div class="layout-menu-tooltip-arrow"></div>

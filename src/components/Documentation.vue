@@ -319,7 +319,6 @@ $textSecondaryColor:#616161;
 $borderRadius:2px;
 $letterSpacing:.25px;
 $transitionDuration:.2s;
-$iconPrefix: 'pi-md';
 
 //icons
 $iconWidth:20px;

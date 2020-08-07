@@ -1,6 +1,6 @@
 <template>
     <div class="stepsdemo-content">
-        <i class="pi-md-person" />
+        <i class="pi pi-fw pi-user" />
         <p>Personal Component Content via Child Route</p>
     </div>
 </template>

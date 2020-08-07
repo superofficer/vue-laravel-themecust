@@ -1,6 +1,6 @@
 <template>
     <div class="stepsdemo-content">
-        <i class="pi-md-check" />
+        <i class="pi pi-fw pi-check" />
         <p>Confirmation Component Content via Child Route</p>
     </div>
 </template>

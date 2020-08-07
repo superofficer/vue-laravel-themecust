@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="card exception-panel">
-			<i class="material-icons">&#xE000;</i>
+			<i class="pi pi-times-circle"></i>
 			<h1>Exception Occured</h1>
 			<div class="exception-detail">Please contact system administrator</div>
 			<Button label="Homepage" @click="goDashboard" />

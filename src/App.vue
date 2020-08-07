@@ -74,133 +74,102 @@ export default {
 			rightPanelActive: false,
 			menuActive: false,
             menu : [
-				{label: 'Dashboard', icon: 'dashboard', to: '/'},
+				{label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
 				{
-					label: 'Themes', icon: 'palette', badge: '6',
+					label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
 					items: [
-						{label: 'Indigo - Pink', icon: 'brush', command: () => {this.changeTheme('indigo')}},
-						{label: 'Brown - Green', icon: 'brush', command: () => {this.changeTheme('brown')}},
-						{label: 'Blue - Amber', icon: 'brush', command: () => {this.changeTheme('blue')}},
-						{label: 'Blue Grey - Green', icon: 'brush', command: () => {this.changeTheme('blue-grey')}},
-						{label: 'Dark - Blue', icon: 'brush', command: () => {this.changeTheme('dark-blue')}},
-						{label: 'Dark - Green', icon: 'brush', command: () => {this.changeTheme('dark-green')}},
-						{label: 'Green - Yellow', icon: 'brush', command: () => {this.changeTheme('green')}},
-						{label: 'Purple - Cyan', icon: 'brush', command: () => {this.changeTheme('purple-cyan')}},
-						{label: 'Purple - Amber', icon: 'brush', command: () => {this.changeTheme('purple-amber')}},
-						{label: 'Teal - Lime', icon: 'brush', command: () => {this.changeTheme('teal')}},
-						{label: 'Cyan - Amber', icon: 'brush', command: () => {this.changeTheme('cyan')}},
-						{label: 'Grey - Deep Orange', icon: 'brush', command: () => {this.changeTheme('grey')}}
+						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
+						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+						{label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
+						{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
+						{label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
+						{label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
+						{label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
+						{label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
+						{label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menu'},
+						{label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
+						{label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
+						{label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
+						{label: 'Misc', icon: 'pi pi-fw pi-circle-off', to: '/misc'},
 					]
 				},
 				{
-					label: 'Customization', icon: 'settings_application',
+					label: "Utilities", icon:'pi pi-fw pi-globe',
 					items: [
-						{label: 'Static Menu', icon: 'menu',  command: () => this.layoutMode = 'static'},
-						{label: 'Overlay Menu', icon: 'exit_to_app',  command: () => this.layoutMode = 'overlay'},
-						{label: 'Slim Menu', icon: 'more_vert',  command: () => this.layoutMode = 'slim'},
-						{label: 'Horizontal Menu', icon: 'border_horizontal',  command: () => this.layoutMode = 'horizontal'},
-						{label: 'Light Menu', icon: 'label_outline',  command: () => this.darkMenu = false},
-						{label: 'Dark Menu', icon: 'label',  command: () => this.darkMenu = true},
-						{label: 'Inline Profile', icon: 'contacts',  command: () => this.profileMode = 'inline'},
-						{label: 'Top Profile', icon: 'person_pin',  command: () => this.profileMode = 'top'},
+						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
+						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
+						{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
+						{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
+						{label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
+						{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
+						{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
+						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
+						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
 					]
 				},
 				{
-					label: 'UI KIT', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
+					label: 'Pages', icon: 'pi pi-fw pi-clone',
 					items: [
-						{label: 'Form Layout', icon: 'library_books', to: '/formlayout'},
-						{label: 'Input', icon: 'input', to: '/input'},
-						{label: 'Button', icon: 'stay_current_landscape', to: '/button'},
-						{label: 'Table', icon: 'grid_on', to: '/table'},
-						{label: 'List', icon: 'format_list_bulleted', to: '/list'},
-						{label: 'Tree', icon: 'share', to: '/tree'},
-						{label: 'Panel', icon: 'tablet_mac', to: '/panel'},
-						{label: 'Overlay', icon: 'content_copy', to: '/overlay'},
-						{label: 'Menu', icon: 'menu', to: '/menu'},
-						{label: 'Message', icon: 'message', to: '/messages'},
-						{label: 'File', icon: 'insert_drive_file', to: '/file'},
-						{label: 'Chart', icon: 'insert_chart', to: '/chart'},
-						{label: 'Misc', icon: 'panorama_fish_eye', to: '/misc'},
+						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
+						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
+						{label: 'Landing', icon: 'pi pi-fw pi-user-plus', url: 'assets/pages/landing.html', target: '_blank'},
+						{label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
+						{label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
+						{label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
+						{label: 'Wizard', icon: 'pi pi-fw pi-star', to: '/wizard'},
+						{label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
+						{label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
+						{label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
+						{label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
 					]
 				},
 				{
-					label: "Utilities", icon:'public',
-					items: [
-						{label: 'Display', icon:'tv', to:'/display'},
-						{label: 'Elevation', icon:'launch', to:'/elevation'},
-						{label: 'Flexbox', icon:'subdirectory_arrow_right', to:'/flexbox'},
-						{label: 'Icons', icon:'search', to:'/icons'},
-						{label: 'Widgets', icon:'star_border', to:'/widgets'},
-						{label: 'Grid System', icon:'grid_on', to:'/grid'},
-						{label: 'Spacing', icon:'arrow_forward', to:'/spacing'},
-						{label: 'Typography', icon:'format_align_center', to:'/typography'},
-						{label: 'Text', icon:'create', to:'/text'},
-					]
-				},
-				{
-					label: 'Template Pages', icon: 'get_app',
-					items: [
-						{label: 'Crud', icon: 'edit', to: '/crud'},
-						{label: 'Calendar', icon: 'event_available', to: '/calendar'},
-						{label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
-						{label: 'Help', icon: 'help', to: '/help'},
-						{label: 'Invoice', icon: 'content_paste', to: '/invoice'},
-						{label: 'Wizard', icon: 'star', to: '/wizard'},
-						{label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
-						{label: 'Login Page', icon: 'verified_user', to: '/login'},
-						{label: 'Error Page', icon: 'error', to: '/error'},
-						{label: '404 Page', icon: 'error_outline', to: '/notfound'},
-						{label: 'Access Denied Page', icon: 'security', to: '/access'}
-					]
-				},
-				{
-					label: 'Menu Hierarchy', icon: 'low_priority',
+					label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',
 					items: [
 						{
-							label: 'Submenu 1', icon: 'subject',
+							label: 'Submenu 1', icon: 'pi pi-fw pi-circle-off',
 							items: [
 								{
-									label: 'Submenu 1.1', icon: 'subject',
+									label: 'Submenu 1.1', icon: 'pi pi-fw pi-circle-off',
 									items: [
-										{label: 'Submenu 1.1.1', icon: 'subject'},
-										{label: 'Submenu 1.1.2', icon: 'subject'},
-										{label: 'Submenu 1.1.3', icon: 'subject'},
+										{label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-circle-off'},
 									]
 								},
 								{
-									label: 'Submenu 1.2', icon: 'subject',
+									label: 'Submenu 1.2', icon: 'pi pi-fw pi-circle-off',
 									items: [
-										{label: 'Submenu 1.2.1', icon: 'subject'},
-										{label: 'Submenu 1.2.2', icon: 'subject'}
+										{label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-circle-off'}
 									]
 								},
 							]
 						},
 						{
-							label: 'Submenu 2', icon: 'subject',
+							label: 'Submenu 2', icon: 'pi pi-fw pi-circle-off',
 							items: [
 								{
-									label: 'Submenu 2.1', icon: 'subject',
+									label: 'Submenu 2.1', icon: 'pi pi-fw pi-circle-off',
 									items: [
-										{label: 'Submenu 2.1.1', icon: 'subject'},
-										{label: 'Submenu 2.1.2', icon: 'subject'},
-										{label: 'Submenu 2.1.3', icon: 'subject'},
+										{label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-circle-off'},
 									]
 								},
 								{
-									label: 'Submenu 2.2', icon: 'subject',
+									label: 'Submenu 2.2', icon: 'pi pi-fw pi-circle-off',
 									items: [
-										{label: 'Submenu 2.2.1', icon: 'subject'},
-										{label: 'Submenu 2.2.2', icon: 'subject'}
+										{label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-circle-off'}
 									]
 								},
 							]
 						}
 					]
 				},
-				{label: 'Utils', icon: 'build',  command:()=>{ window.location = "#/utils"}},
-				{label: 'Documentation', icon: 'find_in_page',  command:()=>{ window.location = "#/documentation"}},
-				{label: 'Buy Now', icon: 'credit_card', command: () => { window.location = "https://www.primefaces.org/store"}},
+				{label: 'Documentation', icon: 'pi pi-fw pi-question', to: '/documentation'},
+				{label: 'Buy Now', icon: 'pi pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
             ]
         }
     },
