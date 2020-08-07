@@ -286,73 +286,61 @@
 		</div>
 		<div class="p-col-12 p-md-4">
 			<Panel header="Activity" style="height:100%">
-			<div class="activity-header">
-				<div class="p-grid">
-					<div class="p-col-6">
-						<span style="font-weight:bold">Last Activity</span>
-						<p>Updated 1 minute ago</p>
-					</div>
-					<div class="p-col-6" style="text-align:right">
-						<Button label="Update" icon="pi pi-refresh"></Button>
+				<div class="activity-header">
+					<div class="p-grid">
+						<div class="p-col-6">
+							<span style="font-weight:bold">Last Activity</span>
+							<p>Updated 1 minute ago</p>
+						</div>
+						<div class="p-col-6" style="text-align:right">
+							<Button label="Update" icon="pi pi-refresh"></Button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<ul class="activity-list">
-				<li>
-					<div class="p-grid">
-						<div class="count">$900</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Income</div>
-						<div class="p-col-6">95%</div>
-					</div>
-				</li>
-				<li>
-					<div class="p-grid">
-						<div class="count" style="background-color:#ffc107">$250</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Tax</div>
-						<div class="p-col-6">24%</div>
-					</div>
-				</li>
-				<li>
-					<div class="p-grid">
-						<div class="count" style="background-color:#673AB7">$125</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Invoices</div>
-						<div class="p-col-6">55%</div>
-					</div>
-				</li>
-				<li>
-					<div class="p-grid">
-						<div class="count" style="background-color:#00bcd4">$250</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Expenses</div>
-						<div class="p-col-6">15%</div>
-					</div>
-				</li>
-				<li>
-					<div class="p-grid">
-						<div class="count" style="background-color:#607D8B">$350</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Bonus</div>
-						<div class="p-col-6">5%</div>
-					</div>
-				</li>
-				<li>
-					<div class="p-grid">
-						<div class="count" style="background-color:#FF5722">$500</div>
-					</div>
-					<div class="p-grid" style="margin-top:0">
-						<div class="p-col-6">Revenue</div>
-						<div class="p-col-6">25%</div>
-					</div>
-				</li>
-			</ul>
+				<ul class="activity-list">
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Income</h5>
+							<div class="count">$900</div>
+						</div>
+						<ProgressBar :value="95" :showValue="false" />
+					</li>
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Tax</h5>
+							<div class="count" style="background-color:#f9c851">$250</div>
+						</div>
+						<ProgressBar :value="24" :showValue="false" />
+					</li>
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Invoices</h5>
+							<div class="count" style="background-color:#20d077">$125</div>
+						</div>
+						<ProgressBar :value="55" :showValue="false" />
+					</li>
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Expenses</h5>
+							<div class="count" style="background-color:#f9c851">$250</div>
+						</div>
+						<ProgressBar :value="15" :showValue="false" />
+					</li>
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Bonus</h5>
+							<div class="count" style="background-color:#007be5">$350</div>
+						</div>
+						<ProgressBar :value="5" :showValue="false" />
+					</li>
+					<li>
+						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
+							<h5 class="activity p-m-0">Revenue</h5>
+							<div class="count" style="background-color:#ef6262">$500</div>
+						</div>
+						<ProgressBar :value="25" :showValue="false" />
+					</li>
+				</ul>
 			</Panel>
 		</div>
 	</div>

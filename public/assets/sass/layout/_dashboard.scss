@@ -208,35 +208,17 @@
         margin: 0;
 
         li {
-            border-bottom: 1px solid #bdbdbd;
-            padding: 15px 0 9px 9px;
+            border-bottom: 1px solid $dividerColor;
+            padding: 16px 8px;
 
             .count {
-                font-size: 24px;
+                font-size: 20px;
                 color: #ffffff;
-                background-color: #03A9F4;
-                font-weight: bold;
+                background-color: #007be5;
+                font-weight: 700;
+                padding: .25em .5em;
                 display: inline-block;
-                padding: 5px;
-                @include border-radius(2px);
-            }
-
-            &:first-child {
-                border-top: 1px solid #bdbdbd;
-            }
-
-            &:last-child {
-                border: 0;
-            }
-
-            .p-col-6:first-child {
-                font-size: 18px;
-                padding-left: 0;
-            }
-
-            .p-col-6:last-child {
-                text-align: right;
-                color: $textSecondaryColor;
+                border-radius: $borderRadius;
             }
         }
     }
