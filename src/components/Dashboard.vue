@@ -115,6 +115,11 @@
 						<span class="task-name">Flight Ticket</span>
 						<i class="pi pi-ticket"></i>
 					</li>
+					<li>
+						<Checkbox name="task" value="charts" v-model="tasksCheckbox"/>
+						<span class="task-name">Generate Charts</span>
+						<i class="pi pi-chart-bar"></i>
+					</li>
 				</ul>
 			</Panel>
 		</div>

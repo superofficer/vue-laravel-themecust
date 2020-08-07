@@ -263,6 +263,7 @@
 
     > div {
         > .p-panel {
+            border-radius: 4px;
             @include content-shadow();
         }
     }
