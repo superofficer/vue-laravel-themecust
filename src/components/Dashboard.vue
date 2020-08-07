@@ -125,25 +125,18 @@
 						<Dropdown v-model="dropdownCity" :options="dropdownCities" optionLabel="name" placeholder="Select a City"/>
 					</div>
 					<div class="p-col-12">
-						<span class="md-inputfield">
-							<InputText id="name" type="text" v-model="name"/>
-							<label htmlFor="name">Name</label>
-						</span>
+						<InputText type="text" placeholder="Name"/>
 					</div>
 					<div class="p-col-12">
-						<span class="md-inputfield">
-							<InputText id="age" type="text" v-model="age"/>
-							<label htmlFor="age">Age</label>
-						</span>
+						<InputText type="text" placeholder="Age"/>
 					</div>
 					<div class="p-col-12">
-						<span class="md-inputfield">
-							<InputText id="messages" type="text" v-model="message"/>
-							<label htmlFor="message">Message</label>
-						</span>
+						<InputText type="text" placeholder="Email"/>
+					</div>
+					<div class="p-col-12">
+						<Button type="button" label="Send" icon="pi pi-check"/>
 					</div>
 				</div>
-				<Button type="button" label="Send" icon="pi pi-check"></Button>
 			</Panel>
 		</div>
 		<div class="p-col-12 p-lg-4 contacts">
