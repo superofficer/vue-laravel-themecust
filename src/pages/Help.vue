@@ -19,7 +19,7 @@
 									<template slot="header">
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
-											<h1>The Basics</h1>
+											<h4>The Basics</h4>
 											<p>4 articles in this collection</p>
 										</div>
 									</template>
@@ -49,7 +49,7 @@
 									<template slot="header">
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
-											<h1>Questions About Licenses</h1>
+											<h4>Questions About Licenses</h4>
 											<p>3 articles in this collection</p>
 										</div>
 									</template>
@@ -76,7 +76,7 @@
 									<template slot="header">
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
-											<h1>Questions About Frameworks</h1>
+											<h4>Questions About Frameworks</h4>
 											<p>6 articles in this collection</p>
 										</div>
 									</template>

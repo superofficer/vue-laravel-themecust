@@ -113,7 +113,7 @@
 						<InputText type="text" placeholder="Username" v-tooltip="'Your username'" />
 					</div>
 
-					<Button type="button" label="Save" icon="pi pi-check" v-tooltip="'Click to proceed'" />
+					<Button type="button" class="p-mt-2" label="Save" icon="pi pi-check" v-tooltip="'Click to proceed'" />
 				</div>
 			</div>
 		</div>

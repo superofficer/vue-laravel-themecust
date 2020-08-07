@@ -42,7 +42,7 @@
         margin: 0px !important;
 
         i {
-            font-size: 48px;
+            font-size: 40px;
             margin-top: 10px;
             color: #ffffff;
         }
@@ -130,6 +130,7 @@
             i {
                 color: $textSecondaryColor;
                 float: right;
+                font-size: 1.25em;
             }
         }
     }
@@ -252,18 +253,15 @@
 
                 i {
                     background-color: #ffffff;
-                    font-size: 36px;
+                    font-size: 28px;
                     position: absolute;
-                    top: 0px;
-                    right: -18px;
+                    top: 0;
+                    right: -15px;
                 }
             }
 
             .p-col-9 {
                 padding-left: 1.5em;
-                .event-owner {
-
-                }
 
                 .event-text {
                     color: $textSecondaryColor;
