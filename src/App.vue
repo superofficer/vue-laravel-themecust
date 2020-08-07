@@ -19,9 +19,9 @@
 
 				<div class="layout-content">
 					<router-view />
-
-					<AppFooter />
 				</div>
+
+				<AppFooter />
 			</div>
 
 			<AppConfig :layoutMode.sync="layoutMode" @menu-mode-change="onMenuModeChange" :darkMenu.sync="darkMenu" @menu-color-change="onMenuColorChange"

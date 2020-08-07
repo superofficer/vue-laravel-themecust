@@ -453,10 +453,15 @@ body {
 
     .layout-main {
         padding: 75px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh;
         @include transition(margin-left $transitionDuration);
 
         .layout-content {
             padding: 23px;
+            flex: 1 1 0;
         }
     }
 
@@ -716,6 +721,9 @@ body {
     }
 
     .footer {
+        .card {
+            margin-bottom: 0;
+        }
 
         .footer-text-left {
             float: left;
