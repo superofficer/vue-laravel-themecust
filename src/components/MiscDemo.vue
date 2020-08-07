@@ -5,7 +5,7 @@
 				<h5>ProgressBar</h5>
 				<div class="p-grid">
 					<div class="p-col">
-						<ProgressBar :value="value" />
+						<ProgressBar :value="value"/>
 					</div>
 					<div class="p-col">
 						<ProgressBar :value="50" :showValue="false"/>
