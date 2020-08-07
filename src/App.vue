@@ -76,7 +76,7 @@ export default {
             menu : [
 				{label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
 				{
-					label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
+					label: 'UI Kit', icon: 'pi pi-fw pi-sitemap', badge: 6,
 					items: [
 						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
 						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
@@ -108,7 +108,7 @@ export default {
 					]
 				},
 				{
-					label: 'Pages', icon: 'pi pi-fw pi-clone',
+					label: 'Pages', icon: 'pi pi-fw pi-clone', badge: 8, badgeStyleClass: 'teal-badge',
 					items: [
 						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
 						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
