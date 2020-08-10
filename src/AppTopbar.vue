@@ -5,7 +5,7 @@
 		</div>
 		<div class="topbar-right">
 			<button class="p-link" id="menu-button" @click="onMenuButtonClick">
-				<i></i>
+				<i class="pi pi-angle-left"></i>
 			</button>
 
 			<button class="p-link" id="rightpanel-menu-button" @click="onRightPanelButtonClick">

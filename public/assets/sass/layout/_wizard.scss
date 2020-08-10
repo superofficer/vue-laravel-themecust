@@ -6,8 +6,8 @@
     background-attachment: fixed;
 
     .wizard-wrapper {
-        @include flex();
-        @include dir-col();
+        display: flex;
+        flex-direction: column;
         height: 100%;
 
         .wizard-topbar {
@@ -18,12 +18,12 @@
             box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
             height: 75px;
             padding: 0 10%;
-            @include flex();
-            @include justify-between();
-            @include align-center();
-            @include flex-basis(75px);
-            @include flex-grow(0);
-            @include flex-shrink(0);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-basis: 75px;
+            flex-grow: 0;
+            flex-shrink: 0;
 
             .logo {
                 display: inline-block;
@@ -34,10 +34,10 @@
             }
 
             .profile {
-                @include flex();
-                @include justify-center();
-                @include align-center();
-                @include dir-row();
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
 
                 .profile-text {
                     margin-right: 15px;
@@ -68,9 +68,9 @@
         .wizard-content {
             height: calc(100% - 75px);
             min-height: 600px;
-            @include flex();
-            @include align-center();
-            @include justify-center();
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             .wizard-card {
                 background-color: #fafafa;
@@ -79,10 +79,10 @@
                 0 1px 1px 0 rgba(0, 0, 0, 0.14);
                 height: 550px;
                 width: 54.33%;
-                @include flex();
-                @include dir-col();
-                @include flex-grow(0);
-                @include flex-shrink(0);
+                display: flex;
+                flex-direction: column;
+                flex-grow: 0;
+                flex-shrink: 0;
 
                 .wizard-card-header{
                     width:100%;
@@ -172,8 +172,8 @@
                     }
 
                     &.active-content{
-                        @include flex();
-                        @include flex-grow(1);
+                        display: flex;
+                        flex-grow: 1;
                     }
 
                     &.register{
@@ -418,18 +418,18 @@
     .wizard-body {
         .wizard-wrapper {
             .wizard-topbar {
-                @include dir-col();
                 height: 150px;
                 padding: 0 5%;
-                @include justify-around();
-                @include flex-basis(150px);
+                flex-direction: column;
+                justify-content: space-around;
+                flex-basis: 150px;
 
                 .logo {
-                    @include align-self-start();
+                    align-self: flex-start;
                 }
 
                 .profile {
-                    @include align-self-end();
+                    align-self: flex-end;
                 }
             }
 

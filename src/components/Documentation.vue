@@ -2,51 +2,51 @@
     <div class="p-grid">
         <div class="p-col-12">
             <div class="card docs">
-                <h1>Current Version</h1>
-                <p>Vue 2.6.0 and PrimeVue 1.1.x</p>
+                <h4>Current Version</h4>
+                <p>Vue 2.6.0 and PrimeVue 2.0.x</p>
 
-                <h1>Getting Started</h1>
+                <h4>Getting Started</h4>
                 <p>Ultima is an application template for Vue based on the <a href="https://cli.vuejs.org/">Vue CLI</a> that provides out-of-the-box standard
                 tooling for Vue projects. If you don't have CLI installed already run the following command.</p>
-<pre>
+<CodeHighlight>
 npm install -g @vue/cli
 
 # OR
 
 yarn global add @vue/cli
-</pre>
+</CodeHighlight>
 
                 <p>Once CLI is ready in your system, extract the contents of the Ultima zip file distribution, cd to the directory and install the libraries from npm.</p>
 
-<pre>
+<CodeHighlight>
 npm install
 
 # OR
 
 yarn
-</pre>
+</CodeHighlight>
 
                 <p>Final step is running the application using the serve script and navigate to <b>http://localhost:8080/</b> to view the application.
                     That is it, you may now start with the development of your application using the Ultima template.</p>
 
-<pre>
+<CodeHighlight>
 npm run serve
-</pre>
+</CodeHighlight>
 
-                <h1>Vue CLI Scripts</h1>
+                <h4>Vue CLI Scripts</h4>
                 <p>Following commands are derived from create-app-app.</p>
-<pre>
+<CodeHighlight>
 "npm run serve": Starts the development server
 "npm run build": Builds the application for deployment.
 "npm run lint": Executes the lint checks.
 "npm run test:unit": Runs the tests.
-</pre>
+</CodeHighlight>
 
-                <h1>Structure</h1>
+                <h4>Structure</h4>
                 <p>Ultima consists of 2 main parts; the application layout and the resources. <i>App.vue</i> inside src folder is the main component containing the template for the base layout
                     whereas required resources such as SASS structure for the layout are placed inside the <b>src/assets/layout</b> folder.</p>
 
-                <h1>Template</h1>
+                <h4>Template</h4>
                 <p>Main layout is the template of the <i>App.vue</i>, it is divided into a couple of child components such as topbar, content, menu and footer. Here is template of the
                     <i>App.vue</i> component that implements the logic such as menu state, layout modes and other configurable options.
                 </p>
@@ -90,7 +90,7 @@ npm run serve
 </template>
 </CodeHighlight>
 
-                <h1>Menu</h1>
+                <h4>Menu</h4>
                 <p>Menu is a separate component defined in <i>AppMenu.vue</i> file. In order to define the menuitems,
                     navigate to data section of <i>App.vue</i> file and define your own model as a nested structure using the menu property.
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
@@ -100,110 +100,102 @@ npm run serve
 data() &#123;
     return &#123;
         menu : [
-            {label: 'Dashboard', icon: 'dashboard', to: '/'},
+            {label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
             {
-                label: 'Themes', icon: 'palette', badge: '6',
+                label: 'UI Kit', icon: 'pi pi-fw pi-sitemap', badge: 6,
                 items: [
-                    {label: 'Indigo - Pink', icon: 'brush', command: () => {this.changeTheme('indigo')}},
-                    {label: 'Brown - Green', icon: 'brush', command: () => {this.changeTheme('brown')}},
-                    {label: 'Blue - Amber', icon: 'brush', command: () => {this.changeTheme('blue')}},
-                    {label: 'Blue Grey - Green', icon: 'brush', command: () => {this.changeTheme('blue-grey')}},
-                    {label: 'Dark - Blue', icon: 'brush', command: () => {this.changeTheme('dark-blue')}},
-                    {label: 'Dark - Green', icon: 'brush', command: () => {this.changeTheme('dark-green')}},
-                    {label: 'Green - Yellow', icon: 'brush', command: () => {this.changeTheme('green')}},
-                    {label: 'Purple - Cyan', icon: 'brush', command: () => {this.changeTheme('purple-cyan')}},
-                    {label: 'Purple - Amber', icon: 'brush', command: () => {this.changeTheme('purple-amber')}},
-                    {label: 'Teal - Lime', icon: 'brush', command: () => {this.changeTheme('teal')}},
-                    {label: 'Cyan - Amber', icon: 'brush', command: () => {this.changeTheme('cyan')}},
-                    {label: 'Grey - Deep Orange', icon: 'brush', command: () => {this.changeTheme('grey')}}
+                    {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
+                    {label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+                    {label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
+                    {label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
+                    {label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
+                    {label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
+                    {label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
+                    {label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
+                    {label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menus'},
+                    {label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
+                    {label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
+                    {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
+                    {label: 'Misc', icon: 'pi pi-fw pi-circle-off', to: '/misc'},
                 ]
             },
             {
-                label: 'Customization', icon: 'settings_application',
+                label: "Utilities", icon:'pi pi-fw pi-globe',
                 items: [
-                    {label: 'Static Menu', icon: 'menu',  command: () => this.layoutMode = 'static'},
-                    {label: 'Overlay Menu', icon: 'exit_to_app',  command: () => this.layoutMode = 'overlay'},
-                    {label: 'Slim Menu', icon: 'more_vert',  command: () => this.layoutMode = 'slim'},
-                    {label: 'Horizontal Menu', icon: 'border_horizontal',  command: () => this.layoutMode = 'horizontal'},
-                    {label: 'Light Menu', icon: 'label_outline',  command: () => this.darkMenu = false},
-                    {label: 'Dark Menu', icon: 'label',  command: () => this.darkMenu = true},
-                    {label: 'Inline Profile', icon: 'contacts',  command: () => this.profileMode = 'inline'},
-                    {label: 'Top Profile', icon: 'person_pin',  command: () => this.profileMode = 'top'},
+                    {label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
+                    {label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
+                    {label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
+                    {label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
+                    {label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
+                    {label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
+                    {label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
+                    {label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
+                    {label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
                 ]
             },
             {
-                label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'teal-badge',
+                label: 'Pages', icon: 'pi pi-fw pi-clone', badge: 8, badgeStyleClass: 'teal-badge',
                 items: [
-                    {label: 'Sample Page', icon: 'desktop_mac', to: '/sample'},
-                    {label: 'Forms', icon: 'input', to: '/forms'},
-                    {label: 'Data', icon: 'grid_on', to: '/data'},
-                    {label: 'Panels', icon: 'content_paste', to: '/panels'},
-                    {label: 'Overlays', icon: 'content_copy', to: '/overlays'},
-                    {label: 'Menus', icon: 'menu', to: '/menus'},
-                    {label: 'Messages', icon: 'message',to: '/messages'},
-                    {label: 'Charts', icon: 'insert_chart', to: '/charts'},
-                    {label: 'Misc', icon: 'toys', to: '/misc'}
+                    {label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
+                    {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
+                    {label: 'Landing', icon: 'pi pi-fw pi-user-plus', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
+                    {label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
+                    {label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
+                    {label: 'Wizard', icon: 'pi pi-fw pi-star', to: '/wizard'},
+                    {label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
+                    {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
+                    {label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
+                    {label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
                 ]
             },
             {
-                label: 'Template Pages', icon: 'get_app',
-                items: [
-                    {label: 'Empty Page', icon: 'hourglass_empty', to: '/empty'},
-                    {label: 'Landing Page', icon: 'flight_land', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login Page', icon: 'verified_user', to: '/login'},
-                    {label: 'Error Page', icon: 'error', to: '/error'},
-                    {label: '404 Page', icon: 'error_outline', to: '/notfound'},
-                    {label: 'Access Denied Page', icon: 'security', to: '/access'}
-                ]
-            },
-            {
-                label: 'Menu Hierarchy', icon: 'menu',
+                label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',
                 items: [
                     {
-                    label: 'Submenu 1', icon: 'subject',
-                    items: [
-                        {
-                            label: 'Submenu 1.1', icon: 'subject',
-                            items: [
-                                    {label: 'Submenu 1.1.1', icon: 'subject'},
-                                    {label: 'Submenu 1.1.2', icon: 'subject'},
-                                    {label: 'Submenu 1.1.3', icon: 'subject'},
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-circle-off',
+                        items: [
+                            {
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-circle-off',
+                                items: [
+                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-circle-off'},
                                 ]
                             },
                             {
-                                label: 'Submenu 1.2', icon: 'subject',
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-circle-off',
                                 items: [
-                                    {label: 'Submenu 1.2.1', icon: 'subject'},
-                                    {label: 'Submenu 1.2.2', icon: 'subject'}
+                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-circle-off'}
                                 ]
                             },
                         ]
                     },
                     {
-                        label: 'Submenu 2', icon: 'subject',
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-circle-off',
                         items: [
                             {
-                                label: 'Submenu 2.1', icon: 'subject',
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-circle-off',
                                 items: [
-                                    {label: 'Submenu 2.1.1', icon: 'subject'},
-                                    {label: 'Submenu 2.1.2', icon: 'subject'},
-                                    {label: 'Submenu 2.1.3', icon: 'subject'},
+                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-circle-off'},
                                 ]
                             },
                             {
-                                label: 'Submenu 2.2', icon: 'subject',
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-circle-off',
                                 items: [
-                                    {label: 'Submenu 2.2.1', icon: 'subject'},
-                                    {label: 'Submenu 2.2.2', icon: 'subject'}
+                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-circle-off'}
                                 ]
                             },
                         ]
                     }
                 ]
             },
-            {label: 'Utils', icon: 'build',  command:()=>{ window.location = "#/utils"}},
-            {label: 'Documentation', icon: 'find_in_page',  command:()=>{ window.location = "#/documentation"}},
-            {label: 'Buy Now', icon: 'credit_card', command: () => { window.location = "https://www.primefaces.org/store"}},
+            {label: 'Documentation', icon: 'pi pi-fw pi-question', to: '/documentation'},
+            {label: 'Buy Now', icon: 'pi pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
         ]
     &#125;
 &#125;
@@ -214,15 +206,15 @@ data() &#123;
                 <p>Dependencies of Ultima are listed below and needs to be added to package.json. Ultima has no direct dependency, even PrimeVue components
                     are an optional dependency.</p>
 
-                <pre>
+                <CodeHighlight>
 {
-    "primevue": "^1.0.0",         //optional: PrimeVue components
-    "primeicons": "2.0.0",             //optional: Icons
+    "primevue": "^2.0.0",         //optional: PrimeVue components
+    "primeicons": "4.0.0",             //optional: Icons
     "primeflex": "1.0.0",              //optional: Grid system
 }
-</pre>
+</CodeHighlight>
 
-                <h1>Theme</h1>
+                <h4>Theme</h4>
                 <p>Ultima provides 12 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
                 <p>In the demo application, theme css file is added to the index page to enable themeswitcher functionality however since VueCLI supports
                     SASS compilation via webpack, you may also import the sass of the theme to App.vue as well.</p>
@@ -253,29 +245,25 @@ data() &#123;
                 <p>Here are the variables required to create a theme which are the primary and accent colors along with their shades.</p>
 
 <CodeHighlight lang="css">
-$primaryColor: #3F51B5;
-$primaryDarkColor: #283593;
-$primaryLightColor: #9fa8da;
-$primaryTextColor: #ffffff;
-$accentColor: #E91E63;
-$accentDarkColor: #ad1457;
-$accentLightColor: #f48fb1;
-$accentTextColor: #ffffff;
+$primaryColor:#3F51B5;
+$primaryTextColor:#ffffff;
+$accentColor:#ff4081;
+$accentTextColor:#ffffff;
 
 @import '../sass/theme/_theme';
 </CodeHighlight>
 
                 <p>If you prefer to compile manually, an example sass command to compile the css would be;</p>
 
-<pre>
+<CodeHighlight>
 sass public/assets/theme-myown/theme.scss:public/assets/theme-myown/theme.css
-</pre>
+</CodeHighlight>
 
                 <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
                 so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
-<pre>
+<CodeHighlight>
 sass --watch public/assets:public/assets
-</pre>
+</CodeHighlight>
 
 
                 <p>Same can also be applied to layout itself;</p>
@@ -293,6 +281,7 @@ sass --watch public/assets:public/assets
 $primaryColor: #3F51B5;
 $primaryDarkColor: #283593;
 $primaryLightColor: #9fa8da;
+$primaryTextColor:#ffffff;
 $accentColor: #E91E63;
 $accentDarkColor: #ad1457;
 $accentLightColor: #f48fb1;
@@ -308,15 +297,15 @@ $horizontalLightMenuRouterLinkActiveColor: #9fa8da;
 
                 <p>In case you would like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
-                <h3>sass/_variables.scss</h3>
+                <h5>sass/layout/_variables.scss</h5>
 <CodeHighlight lang="css">
 /* Common */
 //general
 $fontSize:14px;
-$fontFamily:"Roboto","Helvetica Neue",sans-serif;
+$fontFamily:Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
 $textColor:#212121;
 $textSecondaryColor:#616161;
-$borderRadius:2px;
+$borderRadius:4px;
 $letterSpacing:.25px;
 $transitionDuration:.2s;
 
@@ -331,11 +320,6 @@ $hoverTextColor:#000000;
 
 $dividerColor:#dbdbdb;
 $dividerLightColor:#f8f8f8;
-</CodeHighlight>
-
-                <h3>sass/layout/_variables.scss</h3>
-<CodeHighlight lang="css">
-@import '../_variables';
 
 $bodyBgColor:#f7f7f7;
 $maskBgColor:#424242;
@@ -358,108 +342,748 @@ $activeMenuItemBadgeTextColor:#212121;
 $lineHeight:18px;
 </CodeHighlight>
 
-                <h3>sass/theme/_variables.scss</h3>
+                <h5>sass/theme/_variables.scss</h5>
+<div style="overflow: auto; height: 400px; margin-bottom: 10px">
 <CodeHighlight lang="css">
-@import '../variables';
+$emphasis-high:rgba(0,0,0.87);
+$emphasis-medium:rgba(0,0,0,.60);
+$emphasis-low:rgba(0,0,0,.38);
+$emphasis-lower:rgba(0,0,0,.12);
+$overlayColor:#000000;
 
-$headerPadding:.714em 1em;
-$headerTextColor:#ffffff;
-$headerFontWeight:500;
+//global
+$fontFamily:Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+$fontSize:1rem;
+$fontWeight:normal;
+$textColor:$emphasis-high;
+$textSecondaryColor:$emphasis-medium;
+$borderRadius:4px;
+$transitionDuration:.2s;
+$formElementTransition:background-color $transitionDuration, border-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+$actionIconTransition:background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration;
+$listItemTransition:none;
+$primeIconFontSize:1rem;
+$divider:1px solid rgba(0,0,0,.12);
+$inlineSpacing:.5rem;
+$disabledOpacity:.38;
+$maskBg:rgba(0, 0, 0, 0.32);
+$loadingIconFontSize:2rem;
+$errorColor:#B00020;
 
-$contentPadding:.857em 1em;
-$contentBorderColor:#d8d8d8;
-$contentBgColor:#ffffff;
+//selected state
+$highlightBg:rgba($primaryColor, .12);
+$highlightTextColor:$primaryColor;
 
-$inputBorderColor:#bdbdbd;
-$inputInvalidBorderColor:#e62a10;
-$inputBgColor:transparent;
-$inputErrorTextColor:#e62a10;
-$inputHeaderPadding:.714em 1em;
-$inputBorderErrorColor:#e62a10;
-$inputFieldLabelTextColor:#999999;
-$inputFieldBoxBgColor:#f7f7f7;
-$inputFieldFillBgColor:#f7f7f7;
-$inputAutoFillBorderColor:#bdbdbd;
-$textboxBgColor:#f7f7f7;
+//scale
+$scaleSM:0.875;
+$scaleLG:1.25;
 
-//inputs with lists
-$inputListPadding: .5em 0;
+//focus
+$focusOutlineColor:transparent;
+$focusOutline:0 none;
+$focusOutlineOffset:0;
+$focusShadow:none;
 
-//groups
-$inputGroupBorderColor:#bdbdbd;
-$inputGroupBgColor:transparent;
-$inputGroupTextColor:$textSecondaryColor;
-$inputGroupIconColor:$textSecondaryColor;
-$inputGroupAddonMinWidth:2*$fontSize;
+//action icons
+$actionIconWidth:2.5rem;
+$actionIconHeight:2.5rem;
+$actionIconBg:transparent;
+$actionIconBorder:0 none;
+$actionIconColor:$textSecondaryColor;
+$actionIconHoverBg:rgba(0,0,0,.04);
+$actionIconHoverBorderColor:transparent;
+$actionIconHoverColor:$textSecondaryColor;
+$actionIconBorderRadius:50%;
+
+//input field (e.g. inputtext, spinner, inputmask)
+$inputPadding:1rem 1rem;
+$inputTextFontSize:1rem;
+$inputBg:#ffffff;
+$inputTextColor:$emphasis-high;
+$inputIconColor:$emphasis-medium;
+$inputBorder:1px solid $emphasis-low;
+$inputHoverBorderColor:$emphasis-high;
+$inputFocusBorderColor:$primaryColor;
+$inputErrorBorderColor:$errorColor;
+$inputPlaceholderTextColor:$emphasis-medium;
+$inputFilledBg:#f5f5f5;
+$inputFilledHoverBg:#ececec;
+$inputFilledFocusBg:#dcdcdc;
+
+//input groups
+$inputGroupBg:$inputBg;
+$inputGroupTextColor:$emphasis-medium;
+$inputGroupAddOnMinWidth:2.357rem;
+
+//input lists (e.g. dropdown, autocomplete, multiselect, orderlist)
+$inputListBg:#ffffff;
+$inputListTextColor:$textColor;
+$inputListBorder:1px solid #e5e5e5;
+$inputListPadding:0;
+$inputListItemPadding:1rem 1rem;
+$inputListItemBg:transparent;
+$inputListItemTextColor:$textColor;
+$inputListItemHoverBg:rgba(0,0,0,.04);
+$inputListItemTextHoverColor:$textColor;
+$inputListItemBorder:0 none;
+$inputListItemBorderRadius:0;
+$inputListItemMargin:0;
+$inputListItemFocusShadow:none;
+$inputListHeaderPadding:1rem;
+$inputListHeaderMargin:0;
+$inputListHeaderBg:#ffffff;
+$inputListHeaderTextColor:$textColor;
+$inputListHeaderBorder:1px solid rgba(0,0,0,.12);
+
+//inputs with overlays (e.g. autocomplete, dropdown, multiselect)
+$inputOverlayBg:$inputListBg;
+$inputOverlayHeaderBg:$inputListHeaderBg;
+$inputOverlayBorder:0 none;
+$inputOverlayShadow:0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+
+//button
+$buttonPadding:0.714rem 1rem;
+$buttonIconOnlyWidth:3rem;
+$buttonIconOnlyPadding:0.714rem;
+$buttonBg:$primaryColor;
+$buttonTextColor:$primaryTextColor;
+$buttonBorder:0 none;
+$buttonHoverBg:rgba($primaryColor, .92);
+$buttonTextHoverColor:$primaryTextColor;
+$buttonHoverBorderColor:transparent;
+$buttonActiveBg:rgba($primaryColor, .68);
+$buttonTextActiveColor:$primaryTextColor;
+$buttonActiveBorderColor:transparent;
+$raisedButtonShadow:0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+$roundedButtonBorderRadius:2rem;
+
+$textButtonHoverBgOpacity:.04;
+$textButtonActiveBgOpacity:.16;
+$outlinedButtonBorder:1px solid;
+$plainButtonTextColor:$textSecondaryColor;
+$plainButtonHoverBgColor:rgba(0,0,0,.04);
+$plainButtonActiveBgColor:rgba(0,0,0,.16);
+
+$secondaryButtonBg:$accentColor;
+$secondaryButtonTextColor:$accentTextColor;
+$secondaryButtonBorder:0 none;
+$secondaryButtonHoverBg:rgba($accentColor, .92);
+$secondaryButtonTextHoverColor:$accentTextColor;
+$secondaryButtonHoverBorderColor:transparent;
+$secondaryButtonActiveBg:rgba($accentColor, .68);
+$secondaryButtonTextActiveColor:$accentTextColor;
+$secondaryButtonActiveBorderColor:transparent;
+$secondaryButtonFocusShadow:none;
+
+$infoButtonBg:#2196F3;
+$infoButtonTextColor:#ffffff;
+$infoButtonBorder:0 none;
+$infoButtonHoverBg:rgba(#2196F3, .92);
+$infoButtonTextHoverColor:#ffffff;
+$infoButtonHoverBorderColor:transparent;
+$infoButtonActiveBg:rgba(#2196F3, .68);
+$infoButtonTextActiveColor:#ffffff;
+$infoButtonActiveBorderColor:transparent;
+$infoButtonFocusShadow:none;
+
+$successButtonBg:#689F38;
+$successButtonTextColor:#ffffff;
+$successButtonBorder:0 none;
+$successButtonHoverBg:rgba(#689F38, .92);
+$successButtonTextHoverColor:#ffffff;
+$successButtonHoverBorderColor:transparent;
+$successButtonActiveBg:rgba(#689F38, .68);
+$successButtonTextActiveColor:#ffffff;
+$successButtonActiveBorderColor:transparent;
+$successButtonFocusShadow:none;
+
+$warningButtonBg:#FBC02D;
+$warningButtonTextColor:#212529;
+$warningButtonBorder:0 none;
+$warningButtonHoverBg:rgba(#FBC02D, .92);
+$warningButtonTextHoverColor:#212529;
+$warningButtonHoverBorderColor:transparent;
+$warningButtonActiveBg:rgba(#FBC02D, .68);
+$warningButtonTextActiveColor:#212529;
+$warningButtonActiveBorderColor:transparent;
+$warningButtonFocusShadow:none;
+
+$helpButtonBg:#9C27B0;
+$helpButtonTextColor:#ffffff;
+$helpButtonBorder:0 none;
+$helpButtonHoverBg:rgba(#9C27B0, .92);
+$helpButtonTextHoverColor:#ffffff;
+$helpButtonHoverBorderColor:transparent;
+$helpButtonActiveBg:rgba(#9C27B0, .68);
+$helpButtonTextActiveColor:#ffffff;
+$helpButtonActiveBorderColor:transparent;
+$helpButtonFocusShadow:none;
+
+$dangerButtonBg:#D32F2F;
+$dangerButtonTextColor:#ffffff;
+$dangerButtonBorder:0 none;
+$dangerButtonHoverBg:rgba(#D32F2F, .92);
+$dangerButtonTextHoverColor:#ffffff;
+$dangerButtonHoverBorderColor:transparent;
+$dangerButtonActiveBg:rgba(#D32F2F, .68);
+$dangerButtonTextActiveColor:#ffffff;
+$dangerButtonActiveBorderColor:transparent;
+$dangerButtonFocusShadow:none;
+
+$linkButtonColor:transparent;
+$linkButtonHoverColor:transparent;
+$linkButtonTextHoverDecoration:underline;
+$linkButtonFocusShadow:none;
+
+//checkbox
 $checkboxWidth:18px;
 $checkboxHeight:18px;
-$inputGroupPadding:2px 2px 1px 2px;
-$inputGroupIconFontSize: 1.5em;
+$checkboxBorder:2px solid #757575;
+$checkboxIconFontSize:14px;
+$checkboxActiveBorderColor:$primaryColor;
+$checkboxActiveBg:$primaryColor;
+$checkboxIconActiveColor:$primaryTextColor;
+$checkboxActiveHoverBg:$primaryColor;
+$checkboxIconActiveHoverColor:$primaryTextColor;
+$checkboxActiveHoverBorderColor:$primaryColor;
 
-//panels
-$accordionHeaderBgColor:$primaryColor;
-$accordionHeaderTextColor:$primaryTextColor;
-$accordionHeaderHoverBgColor:$primaryDarkColor;
-$accordionHeaderHoverTextColor:$primaryTextColor;
+//radiobutton
+$radiobuttonWidth:20px;
+$radiobuttonHeight:20px;
+$radiobuttonBorder:2px solid #757575;
+$radiobuttonIconSize:10px;
+$radiobuttonActiveBorderColor:$primaryColor;
+$radiobuttonActiveBg:$primaryTextColor;
+$radiobuttonIconActiveColor:$primaryColor;
+$radiobuttonActiveHoverBg:$primaryTextColor;
+$radiobuttonIconActiveHoverColor:$primaryColor;
+$radiobuttonActiveHoverBorderColor:$primaryColor;
 
-$panelContentLineHeight:1.5;
+//colorpicker
+$colorPickerPreviewWidth:2rem;
+$colorPickerPreviewHeight:2rem;
+$colorPickerBg:#323232;
+$colorPickerBorderColor:#191919;
+$colorPickerHandleColor:#ffffff;
 
-$buttonTextColor:#ffffff;
+//togglebutton
+$toggleButtonBg:#ffffff;
+$toggleButtonBorder:1px solid rgba(0,0,0,.12);
+$toggleButtonTextColor:$textColor;
+$toggleButtonIconColor:$textSecondaryColor;
+$toggleButtonHoverBg:#f6f6f6;
+$toggleButtonHoverBorderColor:rgba(0,0,0,.12);
+$toggleButtonTextHoverColor:$textColor;
+$toggleButtonIconHoverColor:$textSecondaryColor;
+$toggleButtonActiveBg:#e0e0e1;
+$toggleButtonActiveBorderColor:#e0e0e1;
+$toggleButtonTextActiveColor:$textColor;
+$toggleButtonIconActiveColor:$textSecondaryColor;
+$toggleButtonActiveHoverBg:#d9d8d9;
+$toggleButtonActiveHoverBorderColor:#d9d8d9;
+$toggleButtonTextActiveHoverColor:$textColor;
+$toggleButtonIconActiveHoverColor:$textSecondaryColor;;
 
-$listItemPadding:.571em .857em;
+//inplace
+$inplacePadding:$inputPadding;
+$inplaceHoverBg:rgba(0,0,0,.04);
+$inplaceTextHoverColor:$textColor;
 
-$radioButtonBorderColor:#757575;
-$checkboxBorderColor:#757575;
+//rating
+$ratingIconFontSize:1.143rem;
+$ratingCancelIconColor:#B00020;
+$ratingCancelIconHoverColor:#B00020;
+$ratingStarIconOffColor:$primaryColor;
+$ratingStarIconOnColor:$primaryColor;
+$ratingStarIconHoverColor:$primaryColor;
 
-$errorMessageFontSize:11px;
-$errorMessageIconFontSize:13px;
+//slider
+$sliderBg:#c1c1c1;
+$sliderBorder:0 none;
+$sliderHorizontalHeight:2px;
+$sliderVerticalWidth:2px;
+$sliderHandleWidth:20px;
+$sliderHandleHeight:20px;
+$sliderHandleBg:$primaryColor;
+$sliderHandleBorder:0 none;
+$sliderHandleBorderRadius:50%;
+$sliderHandleHoverBorderColor:0 none;
+$sliderHandleHoverBg:$primaryColor;
+$sliderRangeBg:$primaryColor;
 
-//data
-$dataTableHeaderPadding:.857em;
-$dataTableCellPadding:.714em .857em;
-$dataTableRowBgColorEven:#f4f4f4;
-$paginatorPadding:.714em 1em;
+//calendar
+$calendarTableMargin:.5rem 0;
+$calendarPadding:.5rem;
+$calendarBg:#ffffff;
+$calendarInlineBg:$calendarBg;
+$calendarTextColor:$textColor;
+$calendarBorder:$inputListBorder;
+$calendarOverlayBorder:$inputOverlayBorder;
 
-//menus
-$menuitemPadding:.571em .857em;
-$menuListPadding: .5em 0;
+$calendarHeaderPadding:.5rem;
+$calendarHeaderBg:#ffffff;
+$calendarInlineHeaderBg:$calendarBg;
+$calendarHeaderBorder:$divider;
+$calendarHeaderTextColor:$textColor;
+$calendarHeaderFontWeight:500;
+$calendarHeaderCellPadding:.5rem;
 
-//messages
-$infoMessageBgColor:#2196F3;
-$infoMessageTextColor:#ffffff;
-$warnMessageBgColor:#ffc107;
-$warnMessageTextColor:#212121;
-$errorMessageBgColor:#e62a10;
-$errorMessageTextColor:#ffffff;
-$successMessageBgColor:#8BC34A;
-$successMessageTextColor:#ffffff;
+$calendarCellDatePadding:.5rem;
+$calendarCellDateWidth:2.5rem;
+$calendarCellDateHeight:2.5rem;
+$calendarCellDateBorderRadius:50%;
+$calendarCellDateBorder:1px solid transparent;
+$calendarCellDateHoverBg:rgba(0,0,0,.04);
+$calendarCellDateTodayBg:#ffffff;
+$calendarCellDateTodayBorderColor: rgba(0,0,0,12);
+$calendarCellDateTodayTextColor:$textColor;
+
+$calendarButtonBarPadding:1rem 0;
+$calendarTimePickerPadding:.5rem;
+$calendarTimePickerElementPadding:0 .5rem;
+$calendarTimePickerTimeFontSize:1.25rem;
+
+$calendarBreakpoint:769px;
+$calendarCellDatePaddingSM:0;
+
+//input switch
+$inputSwitchWidth:2.75rem;
+$inputSwitchHeight:1rem;
+$inputSwitchBorderRadius:.5rem;
+$inputSwitchHandleWidth:1.50rem;
+$inputSwitchHandleHeight:1.50rem;
+$inputSwitchHandleBorderRadius:50%;
+$inputSwitchSliderPadding:-1px;
+$inputSwitchSliderOffBg:rgba(0,0,0,.38);
+$inputSwitchHandleOffBg:#ffffff;
+$inputSwitchSliderOffHoverBg:rgba(0,0,0,.38);
+$inputSwitchSliderOnBg:rgba($primaryColor, .5);
+$inputSwitchSliderOnHoverBg:rgba($primaryColor, .5);
+$inputSwitchHandleOnBg:$primaryColor;
+
+//panel
+$panelHeaderBorder:1px solid #e0e0e0;
+$panelHeaderBg:#ffffff;
+$panelHeaderTextColor:$textColor;
+$panelHeaderFontWeight:500;
+$panelHeaderPadding:1rem;
+$panelToggleableHeaderPadding:.5rem 1rem;
+
+$panelHeaderHoverBg:rgba(0,0,0,.04);
+$panelHeaderHoverBorderColor:#e0e0e0;
+$panelHeaderTextHoverColor:$textColor;
+
+$panelContentBorder:1px solid #e0e0e0;
+$panelContentBg:#ffffff;
+$panelContentTextColor:$textColor;
+$panelContentPadding:1rem;
+
+$panelFooterBorder:1px solid #e0e0e0;
+$panelFooterBg:#ffffff;
+$panelFooterTextColor:$textColor;
+$panelFooterPadding:1rem 1rem;
+
+//accordion
+$accordionSpacing:0;
+$accordionHeaderBorder:0 none;
+$accordionHeaderBg:#ffffff;
+$accordionHeaderTextColor:$textColor;
+$accordionHeaderFontWeight:400;
+$accordionHeaderPadding:1.5rem;
+
+$accordionHeaderHoverBg:#f6f6f6;
+$accordionHeaderHoverBorderColor:transparent;
+$accordionHeaderTextHoverColor:$textColor;
+
+$accordionHeaderActiveBg:#ffffff;
+$accordionHeaderActiveBorderColor:transparent;
+$accordionHeaderTextActiveColor:$textColor;
+
+$accordionHeaderActiveHoverBg:#ffffff;
+$accordionHeaderActiveHoverBorderColor:transparent;
+$accordionHeaderTextActiveHoverColor:$textColor;
+
+$accordionContentBorder:0 none;
+$accordionContentBg:#ffffff;
+$accordionContentTextColor:$textColor;
+$accordionContentPadding:1rem 1.5rem;
+
+//tabview
+$tabviewNavBorder:solid rgba(0,0,0,.12);
+$tabviewNavBorderWidth:0 0 1px 0;
+$tabviewNavBg:#ffffff;
+
+$tabviewHeaderSpacing:0;
+$tabviewHeaderBorder:none;
+$tabviewHeaderBorderWidth:0 0 0 0;
+$tabviewHeaderBorderColor:transparent transparent transparent transparent;
+$tabviewHeaderBg:#ffffff;
+$tabviewHeaderTextColor:$textSecondaryColor;
+$tabviewHeaderFontWeight:500;
+$tabviewHeaderPadding:1rem 1.5rem;
+$tabviewHeaderMargin:0 0 0 0;
+
+$tabviewHeaderHoverBg:rgba($primaryColor,.04);
+$tabviewHeaderHoverBorderColor:transparent;
+$tabviewHeaderTextHoverColor:$textSecondaryColor;
+
+$tabviewHeaderActiveBg:#ffffff;
+$tabviewHeaderActiveBorderColor:transparent;
+$tabviewHeaderTextActiveColor:$primaryColor;
+
+$tabviewContentBorder:0 none;
+$tabviewContentBg:#ffffff;
+$tabviewContentTextColor:$textColor;
+$tabviewContentPadding:$panelContentPadding;
+
+//upload
+$fileUploadProgressBarHeight:4px;
+$fileUploadContentPadding:2rem 1rem;
+
+//scrollpanel
+$scrollPanelTrackBorder:0 none;
+$scrollPanelTrackBg:rgba(0,0,0,.12);
+
+//card
+$cardBodyPadding:1rem;
+$cardTitleFontSize:1.5rem;
+$cardTitleFontWeight:700;
+$cardSubTitleFontWeight:400;
+$cardSubTitleColor:$textSecondaryColor;
+$cardContentPadding:1rem 0;
+$cardFooterPadding:1rem 0 0 0;
+$cardShadow:0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+
+//editor
+$editorToolbarBg:$panelHeaderBg;
+$editorToolbarBorder:$panelHeaderBorder;
+$editorToolbarPadding:$panelHeaderPadding;
+$editorToolbarIconColor:$textSecondaryColor;
+$editorToolbarIconHoverColor:$textColor;
+$editorIconActiveColor:$primaryColor;
+$editorContentBorder:$panelContentBorder;
+$editorContentBg:$panelContentBg;
+
+//paginator
+$paginatorBg:#ffffff;
+$paginatorTextColor:$textColor;
+$paginatorBorder:solid #e4e4e4;
+$paginatorBorderWidth:0;
+$paginatorPadding:.5rem 1rem;
+$paginatorElementWidth:$buttonIconOnlyWidth;
+$paginatorElementHeight:$buttonIconOnlyWidth;
+$paginatorElementBg:transparent;
+$paginatorElementBorder:0 none;
+$paginatorElementIconColor:$textSecondaryColor;
+$paginatorElementHoverBg:rgba(0,0,0,.04);
+$paginatorElementHoverBorderColor:transparent;
+$paginatorElementIconHoverColor:$textSecondaryColor;
+$paginatorElementBorderRadius:50%;
+$paginatorElementMargin:.143rem;
+$paginatorElementPadding:0;
+
+//table
+$tableHeaderBorder:1px solid #e4e4e4;
+$tableHeaderBorderWidth:0 0 1px 0;
+$tableHeaderBg:#ffffff;
+$tableHeaderTextColor:$textColor;
+$tableHeaderFontWeight:500;
+$tableHeaderPadding:1rem 1rem;
+
+$tableHeaderCellPadding:1rem 1rem;
+$tableHeaderCellBg:#ffffff;
+$tableHeaderCellTextColor:$textColor;
+$tableHeaderCellFontWeight:500;
+$tableHeaderCellBorder:1px solid #e4e4e4;
+$tableHeaderCellBorderWidth:0 0 1px 0;
+$tableHeaderCellHoverBg:rgba(0,0,0,.04);
+$tableHeaderCellTextHoverColor:$textColor;
+$tableHeaderCellIconColor:$textSecondaryColor;
+$tableHeaderCellIconHoverColor:$textSecondaryColor;
+$tableHeaderCellHighlightBg:#ffffff;
+$tableHeaderCellHighlightTextColor:$textColor;
+$tableHeaderCellHighlightHoverBg:rgba(0,0,0,.04);
+$tableHeaderCellHighlightTextHoverColor:$textColor;
+$tableSortableColumnBadgeSize:1.143rem;
+
+$tableBodyRowBg:#ffffff;
+$tableBodyRowTextColor:$textColor;
+$tableBodyRowEvenBg:rgba(0,0,0,.02);
+$tableBodyRowHoverBg:rgba(0,0,0,.04);
+$tableBodyRowTextHoverColor:$textColor;
+$tableBodyCellBorder:1px solid #e4e4e4;
+$tableBodyCellBorderWidth:0 0 1px 0;
+$tableBodyCellPadding:1rem 1rem;
+
+$tableFooterCellPadding:1rem 1rem;
+$tableFooterCellBg:#ffffff;
+$tableFooterCellTextColor:$textColor;
+$tableFooterCellFontWeight:500;
+$tableFooterCellBorder:1px solid #e4e4e4;
+$tableFooterCellBorderWidth:0 0 1px 0;
+$tableResizerHelperBg:$primaryColor;
+
+$tableFooterBorder:1px solid #e4e4e4;
+$tableFooterBorderWidth:0 0 1px 0;
+$tableFooterBg:#ffffff;
+$tableFooterTextColor:$textColor;
+$tableFooterFontWeight:500;
+$tableFooterPadding:1rem 1rem;
+
+$tableCellContentAlignment:left;
+$tableTopPaginatorBorderWidth:0 0 1px 0;
+$tableBottomPaginatorBorderWidth:0 0 1px 0;
+
+$tableScaleSM:0.5;
+$tableScaleLG:1.25;
+
+//dataview
+$dataViewContentPadding:1rem 0;
+$dataViewContentBorder:0 none;
+$dataViewListItemBorder:solid rgba(0,0,0,.12);
+$dataViewListItemBorderWidth:0 0 1px 0;
+
+//orderlist, picklist
+$orderListBreakpoint:769px;
+$pickListBreakpoint:769px;
+
+//schedule
+$fullCalendarEventBg:$highlightBg;
+$fullCalendarEventBorder:1px solid $highlightBg;
+$fullCalendarEventTextColor:$highlightTextColor;
+
+//tree
+$treeNodePadding:.25rem;
+$treeNodeContentPadding:.75rem;
+$treeNodeChildrenPadding:0 0 0 1rem;
+$treeNodeIconColor:$textSecondaryColor;
+
+//org chart
+$organizationChartConnectorColor:rgba(0,0,0,.12);
+
+//message
+$messageMargin:1rem 0;
+$messagePadding: 1.25rem 1.5rem;
+$messageBorderWidth:0 0 0 0;
+$messageIconFontSize:1.5rem;
+$messageTextFontSize:1rem;
+$messageTextFontWeight:500;
+
+//inline message
+$inlineMessagePadding:$inputPadding;
+$inlineMessageMargin:0;
+$inlineMessageIconFontSize:1rem;
+$inlineMessageTextFontSize:1rem;
+$inlineMessageBorderWidth:1px;
+
+//toast
+$toastIconFontSize:2rem;
+$toastMessageTextMargin:0 0 0 1rem;
+$toastMargin:0 0 1rem 0;
+$toastPadding:1.5rem;
+$toastBorderWidth:0 0 0 0;
+$toastShadow:0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+$toastOpacity:.9;
+$toastTitleFontWeight:700;
+$toastDetailMargin:$inlineSpacing 0 0 0;
+
+//severities
+$infoMessageBg:#B3E5FC;
+$infoMessageBorder:solid transparent;
+$infoMessageTextColor:#01579B;
+$infoMessageIconColor:#01579B;
+$successMessageBg:#C8E6C9;
+$successMessageBorder:solid transparent;
+$successMessageTextColor:#1B5E20;
+$successMessageIconColor:#1B5E20;
+$warningMessageBg:#FFECB3;
+$warningMessageBorder:solid transparent;
+$warningMessageTextColor:#7f6003;
+$warningMessageIconColor:#7f6003;
+$errorMessageBg:#FFCDD2;
+$errorMessageBorder:solid transparent;
+$errorMessageTextColor:#B71C1C;
+$errorMessageIconColor:#B71C1C;
+
+//overlays
+$overlayContentBorder:0 none;
+$overlayContentBg:$panelContentBg;
+$overlayContainerShadow:0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+
+//dialog
+$dialogHeaderBg:#ffffff;
+$dialogHeaderBorder:0 none;
+$dialogHeaderTextColor:$textColor;
+$dialogHeaderFontWeight:500;
+$dialogHeaderFontSize:1.25rem;
+$dialogHeaderPadding:1.5rem;
+$dialogContentPadding: 0 1.5rem 1.5rem 1.5rem;
+$dialogFooterBorder:0 none;
+$dialogFooterPadding:1rem 1.5rem;
+
+//tooltip
+$tooltipBg:rgba(97,97,97,.9);
+$tooltipTextColor:#ffffff;
+$tooltipPadding:.5rem;
+
+//steps
+$stepsItemBg:transparent;
+$stepsItemBorder:1px solid transparent;
+$stepsItemTextColor:$textColor;
+$stepsItemNumberWidth:2rem;
+$stepsItemNumberHeight:2rem;
+$stepsItemNumberFontSize:1.143rem;
+$stepsItemNumberColor:$textColor;
+$stepsItemNumberBorderRadius:50%;
+$stepsItemActiveFontWeight:500;
+
+//progressbar
+$progressBarHeight:4px;
+$progressBarBorder:0 none;
+$progressBarBg:rgba($primaryColor, .32);
+$progressBarValueBg:$primaryColor;
+
+//menu (e.g. menu, menubar, tieredmenu)
+$menuWidth:12.5rem;
+$menuBg:#ffffff;
+$menuBorder:1px solid #e5e5e5;
+$menuTextColor:$textColor;
+$menuitemPadding:1rem 1rem;
+$menuitemBorderRadius:0;
+$menuitemTextColor:$textColor;
+$menuitemIconColor:$textSecondaryColor;
+$menuitemTextHoverColor:$textColor;
+$menuitemIconHoverColor:$textSecondaryColor;
+$menuitemHoverBg:rgba(0,0,0,.04);
+$menuitemTextActiveColor:$textColor;
+$menuitemIconActiveColor:$textSecondaryColor;
+$menuitemActiveBg:rgba(0,0,0,.04);
+$menuitemSubmenuIconFontSize:.875rem;
+$submenuHeaderMargin:0;
+$submenuHeaderPadding:1rem;
+$submenuHeaderBg:#ffffff;
+$submenuHeaderTextColor:$textSecondaryColor;
+$submenuHeaderBorderRadius:0;
+$submenuHeaderFontWeight:400;
+$overlayMenuBg:$menuBg;
+$overlayMenuBorder:0 none;
+$overlayMenuShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+$verticalMenuPadding:.5rem 0;
+$menuSeparatorMargin:.5rem 0;
+
+$breadcrumbPadding:1rem;
+$breadcrumbBg:#ffffff;
+$breadcrumbBorder:1px solid #e5e5e5;
+$breadcrumbItemTextColor:$textColor;
+$breadcrumbItemIconColor:$textSecondaryColor;
+$breadcrumbLastItemTextColor:$textColor;
+$breadcrumbLastItemIconColor:$textSecondaryColor;
+$breadcrumbSeparatorColor:$textSecondaryColor;
+
+$horizontalMenuPadding:1rem;
+$horizontalMenuBg:transparent;
+$horizontalMenuBorder:1px solid #e5e5e5;
+$horizontalMenuTextColor:$textColor;
+$horizontalMenuRootMenuitemPadding:1rem;
+$horizontalMenuRootMenuitemBorderRadius:$borderRadius;
+$horizontalMenuRootMenuitemTextColor:$textColor;
+$horizontalMenuRootMenuitemIconColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemTextHoverColor:$textColor;
+$horizontalMenuRootMenuitemIconHoverColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemHoverBg:rgba(0,0,0,.04);
+$horizontalMenuRootMenuitemTextActiveColor:$textColor;
+$horizontalMenuRootMenuitemIconActiveColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemActiveBg:rgba(0,0,0,.04);
+
+//badge and tag
+$badgeBg:$primaryColor;
+$badgeTextColor:$primaryTextColor;
+$badgeMinWidth:1.5rem;
+$badgeHeight:1.5rem;
+$badgeFontWeight:700;
+$badgeFontSize:.75rem;
+
+$tagPadding:.25rem .4rem;
 
 //carousel
-$carouselNavButtonsBgColor: #ffffff;
-$carouselNavButtonsBorder: none;
-$carouselNavButtonsBorderRadius: 50%;
-$carouselNavButtonsMargin: .2em;
-$carouselNavButtonsColor: $textColor;
-$carouselNavButtonsHoverBgColor: $hoverBgColor;
-$carouselNavButtonsHoverColor: $hoverTextColor;
-$carouselNavButtonsHoverBorderColor: none;
-$carouselNavButtonsTransition: color $transitionDuration;
-$carouselDotIconWidth: 20px;
-$carouselDotIconHeight: 6px;
-$carouselDotIconBgColor: #b2c1cd;
-$carouselDotIconMargin: 0 .2em;
-$carouselActiveDotIconBgColor: $primaryColor;
+$carouselIndicatorsPadding:1rem;
+$carouselIndicatorBg:#dcdcdc;
+$carouselIndicatorHoverBg:#ececec;
+$carouselIndicatorBorderRadius:0;
+$carouselIndicatorWidth:2rem;
+$carouselIndicatorHeight:.5rem;
+
+//galleria
+$galleriaMaskBg:rgba(0,0,0,0.9);
+$galleriaCloseIconMargin:.5rem;
+$galleriaCloseIconFontSize:2rem;
+$galleriaCloseIconBg:transparent;
+$galleriaCloseIconColor:rgba(255,255,255,.87);
+$galleriaCloseIconHoverBg:rgba(255,255,255,0.1);
+$galleriaCloseIconHoverColor:rgba(255,255,255,.87);
+$galleriaCloseIconWidth:4rem;
+$galleriaCloseIconHeight:4rem;
+$galleriaCloseIconBorderRadius:50%;
+
+$galleriaItemNavigatorBg:transparent;
+$galleriaItemNavigatorColor:#f6f6f6;
+$galleriaItemNavigatorMargin:0 .5rem;
+$galleriaItemNavigatorFontSize:2rem;
+$galleriaItemNavigatorHoverBg:rgba(255,255,255,0.1);
+$galleriaItemNavigatorHoverColor:rgba(255,255,255,.87);
+$galleriaItemNavigatorWidth:4rem;
+$galleriaItemNavigatorHeight:4rem;
+$galleriaItemNavigatorBorderRadius:50%;
+
+$galleriaCaptionBg:rgba(0,0,0,.5);
+$galleriaCaptionTextColor:rgba(255,255,255,.87);
+$galleriaCaptionPadding:1rem;
+
+$galleriaIndicatorsPadding:1rem;
+$galleriaIndicatorBg:#dcdcdc;
+$galleriaIndicatorHoverBg:#ececec;
+$galleriaIndicatorBorderRadius:50%;
+$galleriaIndicatorWidth:1.25rem;
+$galleriaIndicatorHeight:1.25rem;
+$galleriaIndicatorsBgOnItem:rgba(0,0,0,.5);
+$galleriaIndicatorBgOnItem:rgba(255,255,255,.4);
+$galleriaIndicatorHoverBgOnItem:rgba(255,255,255,.6);
+
+$galleriaThumbnailContainerBg:rgba(0,0,0,.9);
+$galleriaThumbnailContainerPadding:1rem .25rem;
+$galleriaThumbnailNavigatorBg:transparent;
+$galleriaThumbnailNavigatorColor:rgba(255,255,255,.87);
+$galleriaThumbnailNavigatorHoverBg:rgba(255,255,255,0.1);
+$galleriaThumbnailNavigatorHoverColor:rgba(255,255,255,.87);
+$galleriaThumbnailNavigatorBorderRadius:50%;
+$galleriaThumbnailNavigatorWidth:2rem;
+$galleriaThumbnailNavigatorHeight:2rem;
+
+:root {
+--surface-a:#ffffff;
+--surface-b:#fafafa;
+--surface-c:rgba(0,0,0,.04);
+--surface-d:rgba(0,0,0,.12);
+--surface-e:#ffffff;
+--surface-f:#ffffff;
+--text-color:#{$textColor};
+--text-color-secondary:#{textSecondaryColor};
+--primary-color:#{$primaryColor};
+--primary-color-text:#{$primaryTextColor};
+--font-family:#{$fontFamily};
+}
 </CodeHighlight>
+</div>
 
                 <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on
                     the fly by changing the path however if this is not a requirement, you may also import them in App.vue so that webpack adds them to the bundle.</p>
 
-                <h1>Menu Item Badges</h1>
+                <h4>Menu Item Badges</h4>
                 <p>Badges are numerical indicators associated with a link.
                     The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
-                <pre>
+<CodeHighlight>
 label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
-</pre>
+</CodeHighlight>
                 <p>Default badge uses the accent color of ultima layout and there are three more alternative colors.</p>
                 <ul>
                     <li>red-badge</li>
@@ -467,7 +1091,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                     <li>teal-badge</li>
                 </ul>
 
-                <h1>Menu Modes</h1>
+                <h4>Menu Modes</h4>
                 <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.vue is used to define which mode to use by adding specific classes. List
                     below indicates the style classes for each mode.</p>
 
@@ -479,33 +1103,33 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 </ul>
 
                 <p>For example to create a horizontal menu, the div element should be in following form;</p>
-                <pre>
+<CodeHighlight>
 &lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
-</pre>
+</CodeHighlight>
 
                 <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
                     application has an example implementation of such use case. Refer to App.vue for an example.</p>
 
-                <h1>Dark Menu</h1>
+                <h4>Dark Menu</h4>
                 <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
 
-                <pre>
+<CodeHighlight>
 &lt;div className="layout-menu layout-menu-dark"&gt;
-</pre>
+</CodeHighlight>
 
-                <h1>Profile Modes</h1>
+                <h4>Profile Modes</h4>
                 <p>There are two possible locations for the user profile menu, first option is inline located inside the main menu and second option is the topbar menu. For inline mode,
                     profile content should be placed above the menu and for inline mode content goes in topbar-items list. The sample demo application provides examples for
                     both cases.</p>
 
-                <h1>Utilites</h1>
+                <h4>Utilites</h4>
                 <p>Ultima provides various helper features such as material iconset compatible with PrimeNG components and helper classes. Visit utils page for details.</p>
 
-                <h1>PrimeFlex Grid System</h1>
+                <h4>PrimeFlex Grid System</h4>
                 <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeVue. PrimeFlex is
                     available at npm and defined at package.json of Ultima so that it gets installed by default.</p>
 
-                <h1>Customizing Styles</h1>
+                <h4>Customizing Styles</h4>
                 <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the
                     scss files under sass folder to avoid maintenance issues after an update.</p>
 
@@ -531,13 +1155,44 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
 </script>
 
 <style scoped lang="scss">
-    .docs pre {
-        font-family: monospace;
-        background-color: #323e4b;
-        color: #ffffff;
-        padding: 1em;
-        font-size: 14px;
-        border-radius: 3px;
+    /deep/ pre[class*="language-"] {
+        &:before, &:after {
+            display: none !important;
+        }
+
+        code {
+            border-left: 10px solid var(--surface-d) !important;
+            box-shadow: none !important;
+            background: var(--surface-b) !important;
+            margin: 1em 0;
+            color: var(--text-color);
+            font-size: 14px;
+
+            .token {
+                &.tag,
+                &.keyword {
+                    color: #2196F3 !important;
+                }
+
+                &.attr-name,
+                &.attr-string {
+                    color: #2196F3 !important;
+                }
+
+                &.attr-value {
+                    color: #4CAF50 !important;
+                }
+
+                &.punctuation {
+                    color: var(--text-color);
+                }
+
+                &.operator,
+                &.string {
+                    background: transparent;
+                }
+            }
+        }
     }
 
     .docs i {

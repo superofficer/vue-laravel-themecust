@@ -44,7 +44,7 @@ body {
         width: 100%;
         height: 75px;
         background-color: $primaryColor;
-        @include shadow(0 2px 5px 0 rgba(0,0,0,0.26));
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 
         .logo {
             display: inline-block;
@@ -62,7 +62,7 @@ body {
             width: 250px;
             background-color: $primaryDarkColor;
             float: left;
-            @include shadow(3px 0 6px rgba(0,0,0,0.3));
+            box-shadow: 3px 0 6px rgba(0,0,0,0.3);
         }
 
         .topbar-right {
@@ -74,6 +74,7 @@ body {
                 display: inline-block;
                 vertical-align: middle;
                 height: 36px;
+                width: 36px;
                 margin-right: 10px;
                 position: relative;
                 left: -16px;
@@ -81,19 +82,18 @@ body {
                 background-color: $accentColor;
                 cursor: pointer;
                 outline: 0 none;
-
-                @include border-radius(50%);
-                @include transition(all $transitionDuration);
-                @include double-shadow(0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16));
+                border-radius: 50%;
+                transition: all $transitionDuration;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
 
                 &:hover {
-                    @include scale(1.2);
+                    transform: scale(1.2);
                 }
 
                 i {
-                    @include material-icon("chevron_left");
-                    @include transition(all $transitionDuration);
+                    transition: all $transitionDuration;
                     font-size: 36px;
+                    margin-left: -2px;
                 }
             }
 
@@ -105,11 +105,10 @@ body {
                 margin-top: 7px;
                 float: right;
                 cursor: pointer;
-
-                @include transition(all $transitionDuration);
+                transition: all $transitionDuration;
 
                 i {
-                    @include transition(color .5s);
+                    transition: color .5s;
                     font-size: 24px;
                 }
             }
@@ -162,8 +161,8 @@ body {
         top: 75px;
         height: 100%;
         background-color: $layoutMenuBgColor;
-        @include shadow(3px 0 6px rgba(0,0,0,0.3));
-        @include transition(transform $transitionDuration);
+        box-shadow: 3px 0 6px rgba(0,0,0,0.3);
+        transition: transform $transitionDuration;
 
         &.layout-menu-container-enter,
         &.layout-menu-container-leave-to {
@@ -178,7 +177,7 @@ body {
             text-align: center;
             background: url("../../layout/images/profile-bg.png") top left no-repeat;
             background-size: 250px 145px;
-            @include shadow(0 2px 5px 0 rgba(0,0,0,0.16));
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
 
             button {
                 cursor: pointer;
@@ -206,12 +205,12 @@ body {
             i {
                 color: $textColor;
                 vertical-align: middle;
-                @include transition(transform $transitionDuration);
+                transition: transform $transitionDuration;
             }
 
             &.profile-expanded {
                 i {
-                    @include rotate(-180deg);
+                    transform: rotate(-180deg);
                 }
 
                 + .profile-menu {
@@ -242,7 +241,7 @@ body {
                     color: $textColor;
                     width: 100%;
                     box-sizing: border-box;
-                    @include transition(background-color $transitionDuration);
+                    transition: background-color $transitionDuration;
                     overflow: hidden;
                     cursor: pointer;
 
@@ -361,7 +360,7 @@ body {
             font-size: $fontSize ;
             font-weight: 700;
             line-height: 18px;
-            @include border-radius(50%);
+            border-radius: 50%;
         }
 
         .layout-menu-tooltip {
@@ -381,8 +380,8 @@ body {
                min-width: 75px;
                white-space: nowrap;
                text-align: center;
-               @include border-radius($borderRadius);
-               @include shadow(0 6px 12px rgba(0,0,0,.175));
+                border-radius: $borderRadius;
+                box-shadow: 0 6px 12px rgba(0,0,0,.175);
             }
 
             .layout-menu-tooltip-arrow {
@@ -403,7 +402,7 @@ body {
     &.menu-layout-overlay {
         .layout-menu {
             transform: translateX(-100%);
-            @include transition(transform $transitionDuration);
+            transition: transform $transitionDuration;
 
             &.layout-menu-container-enter,
             &.layout-menu-container-leave-to {
@@ -429,7 +428,7 @@ body {
                 .topbar-right {
                     #menu-button {
                         i {
-                            @include rotate(0deg);
+                            transform: rotate(0deg);
                         }
                     }
                 }
@@ -443,7 +442,7 @@ body {
                 #menu-button {
                     i {
                         font-size: 36px !important;
-                        @include rotate(180deg);
+                        transform: rotate(180deg);
                     }
                 }
             }
@@ -457,7 +456,7 @@ body {
         flex-direction: column;
         justify-content: space-between;
         min-height: 100vh;
-        @include transition(margin-left $transitionDuration);
+        transition: margin-left $transitionDuration;
 
         .layout-content {
             padding: 23px;
@@ -467,7 +466,7 @@ body {
 
     .layout-breadcrumb {
         background-color: #ffffff;
-        @include shadow(inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14));
+        box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
         min-height: 42px;
 
         ul {
@@ -517,7 +516,7 @@ body {
                 cursor: pointer;
                 font-size: 1em;
                 border-radius: 0;
-                @include transition(background-color $transitionDuration);
+                transition: background-color $transitionDuration;
 
                 &:hover {
                     background-color: $hoverBgColor;
@@ -553,7 +552,7 @@ body {
                 color: $textColor;
                 width: 100%;
                 box-sizing: border-box;
-                @include transition(background-color $transitionDuration);
+                transition: background-color $transitionDuration;
                 overflow: hidden;
                 cursor: pointer;
 
@@ -572,7 +571,7 @@ body {
                     float: right;
                     font-size: $fontSize + 4;
                     margin-right: -.15em;
-                    @include transition(transform $transitionDuration);
+                    transition: transform $transitionDuration;
                 }
 
                 &:hover {
@@ -610,7 +609,7 @@ body {
                     }
 
                     i.submenu-icon {
-                        @include rotate(-180deg);
+                        transform: rotate(-180deg);
                     }
                 }
 
@@ -748,9 +747,9 @@ body {
         width: 240px;
         overflow: auto;
         background-color: $rightPanelBgColor;
-        @include box-sizing(border-box);
-        @include transition(right $transitionDuration);
-        @include shadow(0 2px 10px 0 rgba(0, 0, 0, 0.3));
+        box-sizing: border-box;
+        transition: right $transitionDuration;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
 
         &.layout-rightpanel-active {
             right: 0;
@@ -802,7 +801,7 @@ body {
                         top: -5px;
                         background-color: $accentColor;
                         color: $accentTextColor;
-                        @include border-radius(50%);
+                        border-radius: 50%;
                         padding: 2px 4px;
                         display: block;
                         font-size: 12px;
@@ -813,7 +812,7 @@ body {
                 .topbar-icon {
                     font-size: 24px;
                     color: #ffffff;
-                    @include transition(color $transitionDuration);
+                    transition: color $transitionDuration;
 
                     &:hover {
                         color: #e8e8e8;
@@ -834,7 +833,7 @@ body {
                     display: none;
                     width: 250px;
                     background-color: $topbarSubmenuBgColor;
-                    @include double-shadow(0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2));
+                    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
                     -webkit-animation-duration: .5s;
                     -moz-animation-duration: .5s;
                     animation-duration: .5s;
@@ -893,7 +892,7 @@ body {
                     .topbar-right {
                         #menu-button {
                             i {
-                                @include rotate(180deg);
+                                transform: rotate(180deg);
                             }
                         }
                     }
@@ -915,11 +914,11 @@ body {
 
         &.menu-layout-horizontal {
             .topbar {
-                @include no-shadow();
+                box-shadow: none;
 
                 .topbar-left {
                     background-color: $primaryColor;
-                    @include no-shadow();
+                    box-shadow: none;
                 }
 
                 .topbar-right {
@@ -936,7 +935,7 @@ body {
                 top: 75px;
                 height: auto;
                 background-color: $primaryDarkColor;
-                @include shadow(0 2px 5px 0 rgba(0,0,0,0.26));
+                box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 
                 ul.ultima-menu {
 
@@ -990,8 +989,8 @@ body {
                             width: 250px;
                             background-color: #ffffff;
                             height: 0;
-                            @include transition(none);
-                            @include double-shadow(0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2));
+                            transition: none;
+                            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
 
                             li {
                                 a, button {
@@ -1149,7 +1148,7 @@ body {
 
                 .topbar-left {
                     background: transparent;
-                    @include no-shadow();
+                    box-shadow: none;
                 }
 
                 .topbar-right {
@@ -1216,8 +1215,8 @@ body {
                             left: 75px;
                             min-width: 200px;
                             height: 0;
-                            @include transition(none);
-                            @include shadow(0 2px 5px 0 rgba(0,0,0,0.26));
+                            transition: none;
+                            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 
                             li {
                                 a, button {
@@ -1310,14 +1309,14 @@ body {
                 .topbar-right {
                     #menu-button {
                         i {
-                            @include rotate(180deg);
+                            transform: rotate(180deg);
                         }
                     }
                 }
             }
             .layout-menu {
                 transform: translateX(-100%);
-                @include transition(transform $transitionDuration);
+                transition: transform $transitionDuration;
 
                 &.layout-menu-container-enter,
                 &.layout-menu-container-leave-to {
@@ -1341,7 +1340,7 @@ body {
                     .topbar-right {
                         #menu-button {
                             i {
-                                @include rotate(0);
+                                transform: rotate(0deg);
                             }
                         }
                     }
@@ -1373,7 +1372,7 @@ body {
                     animation-duration: .5s;
                     display: none;
                     background-color: #ffffff;
-                    @include double-shadow(0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2));
+                    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
                     list-style-type: none;
                     margin: 0;
                     padding: 0;
@@ -1410,7 +1409,7 @@ body {
                                 top: 10px;
                                 background-color: $accentColor;
                                 color: $accentTextColor;
-                                @include border-radius(50%);
+                                border-radius: 50%;
                                 padding: 2px 4px;
                                 display: block;
                                 font-size: 12px;

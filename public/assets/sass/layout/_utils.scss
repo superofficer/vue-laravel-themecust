@@ -10,8 +10,8 @@
 }
 
 .card {
-	@include content-shadow();
-	@include border-radius(2px);
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+	border-radius: 2px;
 	background: #ffffff;
 	padding: 1em;
 	margin-bottom: 1em;
@@ -138,20 +138,6 @@
 	&.form-group-m {
 		> div {
 			padding: 1em;
-		}
-	}
-}
-
-/* Code Highlight */
-.docs {
-	pre[class*="language-"] {
-		padding: 0 !important;
-		background: transparent;
-
-		> code {
-			border-left: 10px solid lighten($primaryColor, 15%);
-			box-shadow: none;
-			font-size: 14px;
 		}
 	}
 }
