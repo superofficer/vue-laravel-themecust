@@ -1139,6 +1139,9 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                     <li><b>_theme_variables</b>: Variables of the theme.</li>
                     <li><b>_theme_styles</b>: Styles for the theme.</li>
                 </ul>
+
+                <h4>Migration Guide</h4>
+                <p>Every change is included in <b>CHANGELOG.md</b> file at the root folder of the distribution along with the instructions to update.</p>
             </div>
         </div>
     </div>
