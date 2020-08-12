@@ -184,19 +184,19 @@
 				nestedRouteItems: [
 					{
 						label: 'Personal',
-						to: '/menu'
+						to: '/menus'
 					},
 					{
 						label: 'Seat',
-						to: '/menu/seat'
+						to: '/menus/seat'
 					},
 					{
 						label: 'Payment',
-						to: '/menu/payment'
+						to: '/menus/payment'
 					},
 					{
 						label: 'Confirmation',
-						to: '/menu/confirmation'
+						to: '/menus/confirmation'
 					}
 				],
 				tieredMenuItems: [
