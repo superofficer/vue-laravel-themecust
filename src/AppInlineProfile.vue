@@ -10,25 +10,25 @@
 
 		<ul class="ultima-menu profile-menu">
 			<li role="menuitem">
-				<button class="p-link ripplelink" :tabIndex="expanded ? null : '-1'">
+				<button class="p-link" :tabIndex="expanded ? null : '-1'">
 					<i class="pi pi-user"></i>
 					<span>Profile</span>
 				</button>
 			</li>
 			<li role="menuitem">
-				<button class="p-link ripplelink" :tabIndex="expanded ? null : '-1'">
+				<button class="p-link" :tabIndex="expanded ? null : '-1'">
 					<i class="pi pi-lock"></i>
 					<span>Privacy</span>
 				</button>
 			</li>
 			<li role="menuitem">
-				<button class="p-link ripplelink" :tabIndex="expanded ? null : '-1'">
+				<button class="p-link" :tabIndex="expanded ? null : '-1'">
 					<i class="pi pi-cog"></i>
 					<span>Settings</span>
 				</button>
 			</li>
 			<li role="menuitem">
-				<button class="p-link ripplelink" :tabIndex="expanded ? null : '-1'">
+				<button class="p-link" :tabIndex="expanded ? null : '-1'">
 					<i class="pi pi-power-off"></i>
 					<span>Logout</span>
 				</button>

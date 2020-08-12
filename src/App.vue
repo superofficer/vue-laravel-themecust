@@ -173,7 +173,6 @@ export default {
             ]
         }
     },
-	rippleListener: null,
     watch: {
         $route() {
             this.menuActive = false;
