@@ -152,8 +152,6 @@
         .p-lg-4 {
             margin: -50px 0 -50px 0;
             .card {
-                -webkit-box-shadow: 0 0 27px 4.5px rgba(13, 36, 62, 0.1);
-                -moz-box-shadow: 0 0 27px 4.5px rgba(13, 36, 62, 0.1);
             	box-shadow: 0 0 27px 4.5px rgba(13, 36, 62, 0.1);
                 margin-bottom: 20px;
 
@@ -340,8 +338,6 @@
                 padding: 30px;
                 width: 100%;
                 box-sizing: border-box;
-                -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
-                -moz-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
                 box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 
                 #menu-button {
@@ -360,11 +356,7 @@
                     width: 225px;
                     list-style: none;
                     background-color: #ffffff;
-                    -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-                    -moz-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
                     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-                    -webkit-animation-duration: .5s;
-                    -moz-animation-duration: .5s;
                     animation-duration: .5s;
 
                     li {

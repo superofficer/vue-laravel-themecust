@@ -1,6 +1,4 @@
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -754,7 +752,6 @@ body {
 
         &.layout-rightpanel-active {
             right: 0;
-            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
             transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
             z-index: 100;
         }
@@ -835,8 +832,6 @@ body {
                     width: 250px;
                     background-color: $topbarSubmenuBgColor;
                     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-                    -webkit-animation-duration: .5s;
-                    -moz-animation-duration: .5s;
                     animation-duration: .5s;
 
                     &.layout-submenu-container-enter,
@@ -1368,8 +1363,6 @@ body {
                     top: 75px;
                     right: 15px;
                     width: 275px;
-                    -webkit-animation-duration: .5s;
-                    -moz-animation-duration: .5s;
                     animation-duration: .5s;
                     display: none;
                     background-color: #ffffff;
