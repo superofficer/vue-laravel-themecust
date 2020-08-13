@@ -47,28 +47,19 @@
 										<span class="p-inputgroup-addon">
 											<i class="pi pi-user"></i>
 										</span>
-										<span class="md-inputfield">
-											<InputText id="name" v-model="name"/>
-											<label htmlFor="name">Username</label>
-										</span>
+										<InputText placeholder="Username" v-model="name"/>
 									</div>
 									<div class="p-inputgroup">
 										<span class="p-inputgroup-addon">
 											<i class="pi pi-user"></i>
 										</span>
-										<span class="md-inputfield">
-											<InputText id="email" v-model="email"/>
-											<label htmlFor="email">Email</label>
-										</span>
+										<InputText placeholder="Email" v-model="email"/>
 									</div>
 									<div class="p-inputgroup">
 										<span class="p-inputgroup-addon">
 											<i class="pi pi-sign-in"></i>
 										</span>
-										<span class="md-inputfield">
-											<InputText id="password" v-model="password" type="password"/>
-											<label htmlFor="password">Password</label>
-										</span>
+										<InputText placeholder="Password" v-model="password"/>
 									</div>
 								</div>
 							</div>
@@ -254,30 +245,30 @@
 
 								<div class="p-grid p-col">
 									<div class="p-col-12">
-											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text" v-model="cardHolder"/>
-												<label>Card Holder Name </label>
-											</span>
+										<span class="p-float-label">
+											<InputText id="cardHolder" type="text" v-model="cardHolder"/>
+											<label for="cardHolder">Card Holder Name</label>
+										</span>
 									</div>
 								</div>
 								<div class="p-grid p-col">
 									<div class="p-col-6">
-											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text" v-model="cardNo"/>
-												<label>Card No</label>
-											</span>
+										<span class="p-float-label">
+											<InputText id="cardNo" type="text" v-model="cardNo"/>
+											<label for="cardNo">Card No</label>
+										</span>
 									</div>
 									<div class="p-col-3">
-											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text" v-model="cardDate"/>
-												<label>Date</label>
-											</span>
+										<span class="p-float-label">
+											<InputText id="cardDate" type="text" v-model="cardDate"/>
+											<label for="cardDate">Date</label>
+										</span>
 									</div>
 									<div class="p-col-3">
-											<span class="md-inputfield md-inputfield-box">
-												<InputText type="text" v-model="cardCCV"/>
-												<label>CCV</label>
-											</span>
+										<span class="p-float-label">
+											<InputText id="cardCCV" type="text" v-model="cardCCV"/>
+											<label for="cardCCV">CCV</label>
+										</span>
 									</div>
 								</div>
 

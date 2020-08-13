@@ -178,32 +178,17 @@
 
                         .forms{
                             .p-inputgroup{
-                                background-color: #f4f4f4;
                                 margin-top: 25px;
-                                padding-top: 20px;
 
                                 input{
                                     width: 100%;
-                                    padding-bottom: 15px;
-                                }
-
-                                i{
-                                    margin-bottom: 15px;
-                                    margin-left: 4px;
+                                    padding: 15px;
                                 }
                             }
 
                             .p-dropdown{
-                                background-color: #f4f4f4;
                                 margin-top: 25px;
-                                padding-top: 23px;
                                 width: 100%;
-
-                                .p-dropdown-label{
-                                    padding-bottom:16px;
-                                    padding-left: 10px;
-                                    font-size: 16px;
-                                }
 
                                 .p-dropdown-trigger{
                                     right: 10px;
@@ -216,18 +201,10 @@
                                 .p-calendar{
                                     width: 100%;
                                     position: relative;
+                                    padding: 1px;
 
                                     input{
-                                        padding-top: 29px;
-                                        padding-bottom: 12px;
-                                        padding-left: 15px;
                                         width: 100%;
-                                        font-size: 16px;
-                                        background-color: #f4f4f4;
-                                    }
-
-                                    button{
-                                        top: 20px;
                                     }
                                 }
                             }
@@ -333,9 +310,7 @@
                         .payment-info{
                             padding: 70px 35px;
 
-                            .md-inputfield-box{
-                                background-color: #f4f4f4;
-
+                            .p-float-label{
                                 input{
                                     width: 100%;
                                     padding-bottom: 15px;
@@ -343,7 +318,8 @@
                                 }
                             }
 
-                            .p-chkbox-label {
+                            .p-checkbox-label {
+                                margin-left: .5em;
                                 font-size: 14px;
                             }
 
