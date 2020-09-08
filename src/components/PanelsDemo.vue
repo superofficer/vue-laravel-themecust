@@ -114,29 +114,28 @@
 						id est laborum.</p>
 				</Fieldset>
 			</div>
-			<div class="card">
-				<Card>
-					<template slot="title">
-						<h5>Card</h5>
-						<Button icon="pi pi-plus" class="p-button-text"/>
-					</template>
 
-					<template slot="subtitle">
-						Subtitle
-					</template>
+			<Card>
+				<template slot="title">
+					<h5>Card</h5>
+					<Button icon="pi pi-plus" class="p-button-text"/>
+				</template>
 
-					<template slot="content">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-							labore et dolore magna aliqua.
-							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-							commodo consequat.
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-							pariatur.
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-							anim id est laborum.</p>
-					</template>
-				</Card>
-			</div>
+				<template slot="subtitle">
+					Subtitle
+				</template>
+
+				<template slot="content">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+						labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+						commodo consequat.
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+						pariatur.
+						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+						anim id est laborum.</p>
+				</template>
+			</Card>
 		</div>
 	</div>
 </template>
