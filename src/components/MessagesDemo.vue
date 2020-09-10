@@ -2,7 +2,7 @@
 	<div class="p-grid messages-demo">
 		<div class="p-col-12 p-lg-6">
 			<div class="card">
-				<h5>Growl</h5>
+				<h5>Toast</h5>
 
 				<Toast />
 				<Button @click="showSuccess()" label="Success" class="p-button-success p-mr-2" />

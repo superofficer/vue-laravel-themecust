@@ -11,5 +11,5 @@ package-lock.json
 
 /public/assets/layout/css/layout-*.css
 /public/assets/theme/theme-*.css
-/public/assets/sass/designer
-/public/assets/sass/extensions
+/public/assets/sass/theme/designer
+/public/assets/sass/theme/extensions
