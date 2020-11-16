@@ -3,44 +3,44 @@
         <div class="p-col-12">
             <div class="card docs">
                 <h4>Current Version</h4>
-                <p>Vue 2.6.0 and PrimeVue 2.0.x</p>
+                <p>Vue 3.0.2 and PrimeVue 3.x</p>
 
                 <h4>Getting Started</h4>
-                <p>Ultima is an application template for Vue based on the <a href="https://cli.vuejs.org/">Vue CLI</a> that provides out-of-the-box standard
-                tooling for Vue projects. If you don't have CLI installed already run the following command.</p>
-<CodeHighlight>
+                <p>Ultima is an application template for Vue based on the <a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
+					article.
+                </p>
+<pre v-code>
+<code>
 npm install -g @vue/cli
 
 # OR
 
 yarn global add @vue/cli
-</CodeHighlight>
+
+</code></pre>
 
                 <p>Once CLI is ready in your system, extract the contents of the Ultima zip file distribution, cd to the directory and install the libraries from npm.</p>
 
-<CodeHighlight>
+<pre v-code>
+<code>
+cd ultima-vue
 npm install
-
-# OR
-
-yarn
-</CodeHighlight>
-
-                <p>Final step is running the application using the serve script and navigate to <b>http://localhost:8080/</b> to view the application.
-                    That is it, you may now start with the development of your application using the Ultima template.</p>
-
-<CodeHighlight>
 npm run serve
-</CodeHighlight>
 
-                <h4>Vue CLI Scripts</h4>
+</code></pre>
+
+                <p>The application should run at http://localhost:8080/, you may now start with the development of your application.</p>
+
+                <h4>Important CLI Commands</h4>
                 <p>Following commands are derived from create-app-app.</p>
-<CodeHighlight>
+<pre v-code>
+<code>
 "npm run serve": Starts the development server
 "npm run build": Builds the application for deployment.
 "npm run lint": Executes the lint checks.
 "npm run test:unit": Runs the tests.
-</CodeHighlight>
+
+</code></pre>
 
                 <h4>Structure</h4>
                 <p>Ultima consists of 2 main parts; the application layout and the resources. <i>App.vue</i> inside src folder is the main component containing the template for the base layout
@@ -50,8 +50,8 @@ npm run serve
                 <p>Main layout is the template of the <i>App.vue</i>, it is divided into a couple of child components such as topbar, content, menu and footer. Here is template of the
                     <i>App.vue</i> component that implements the logic such as menu state, layout modes and other configurable options.
                 </p>
-<CodeHighlight>
-<template v-pre>
+<pre v-code>
+<code>
 &lt;template&gt;
     &lt;div class="layout-wrapper" @click="onDocumentClick"&gt;
         &lt;div :class="layoutContainerClass"&gt;
@@ -87,8 +87,8 @@ npm run serve
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/template&gt;
-</template>
-</CodeHighlight>
+
+</code></pre>
 
                 <h4>Menu</h4>
                 <p>Menu is a separate component defined in <i>AppMenu.vue</i> file. In order to define the menuitems,
@@ -96,7 +96,8 @@ npm run serve
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
 
 <div style="overflow: auto; height: 400px; margin-bottom: 10px">
-<CodeHighlight lang="js">
+<pre v-code.script>
+<code>
 data() &#123;
     return &#123;
         menu : [
@@ -106,12 +107,14 @@ data() &#123;
                 items: [
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
                     {label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+					{label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
                     {label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
                     {label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
                     {label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
                     {label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
                     {label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
                     {label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
+                    {label: "Media", icon: "pi pi-fw pi-image", to: "/media"},
                     {label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menus'},
                     {label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
                     {label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
@@ -142,77 +145,98 @@ data() &#123;
                     {label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
                     {label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
                     {label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
-                    {label: 'Wizard', icon: 'pi pi-fw pi-star', to: '/wizard'},
                     {label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
                     {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
                     {label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
-                    {label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
+                    {label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
                 ]
             },
             {
-                label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',
+                label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
                 items: [
                     {
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-circle-off',
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
                         items: [
                             {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-circle-off',
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
                                 items: [
-                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'},
                                 ]
                             },
                             {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-circle-off',
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
                                 items: [
-                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-circle-off'}
+                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-align-left'}
                                 ]
                             },
                         ]
                     },
                     {
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-circle-off',
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
                         items: [
                             {
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-circle-off',
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
                                 items: [
-                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-circle-off'},
+                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-align-left'},
                                 ]
                             },
                             {
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-circle-off',
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
                                 items: [
-                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-circle-off'},
-                                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-circle-off'}
+                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'},
+                                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-align-left'}
                                 ]
                             },
                         ]
                     }
                 ]
             },
-            {label: 'Documentation', icon: 'pi pi-fw pi-question', to: '/documentation'},
             {label: 'Buy Now', icon: 'pi pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
+            {label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'},
         ]
     &#125;
 &#125;
-</CodeHighlight>
+
+</code></pre>
 </div>
 
+                <h4>Integration with an Existing CLI Project</h4>
+				<p>
+					To setup Ultima in an existing project, follow the steps
+					below;
+				</p>
 
-                <p>Dependencies of Ultima are listed below and needs to be added to package.json. Ultima has no direct dependency, even PrimeVue components
-                    are an optional dependency.</p>
+				<ul>
+					<li>Copy the <i>public/assets</i> folder to your projects folder with the same name</li>
+					<li>Copy all <i>src/App*.vue</i> files to the src folder of your application.</li>
+				</ul>
 
-                <CodeHighlight>
-{
-    "primevue": "^2.0.0",         //optional: PrimeVue components
-    "primeicons": "4.0.0",             //optional: Icons
-    "primeflex": "1.0.0",              //optional: Grid system
-}
-</CodeHighlight>
+				<p>Install PrimeVue</p>
+
+<pre v-code>
+<code>
+npm install primevue@3.0.1 --save
+npm install	primeicons@latest --save
+
+</code></pre>
+
+                <p>Add PrimeVue CSS at styles section in main.js.</p>
+
+<pre v-code>
+<code>
+import 'primevue/resources/primevue.min.css';   	//required: PrimeVue components
+import 'primeicons/primeicons.css';	 				//required: PrimeIcons
+import './App.scss'; 	                            //your styles and overrides
+
+</code></pre>
+
+                <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on the fly by changing the path however
+                    if this is not a requirement, you may also add them to the styles configuration above so they go inside the bundle.</p>
 
                 <h4>Theme</h4>
                 <p>Ultima provides 12 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
@@ -244,26 +268,32 @@ data() &#123;
 
                 <p>Here are the variables required to create a theme which are the primary and accent colors along with their shades.</p>
 
-<CodeHighlight lang="css">
+<pre v-code.css>
+<code>
 $primaryColor:#3F51B5;
 $primaryTextColor:#ffffff;
 $accentColor:#ff4081;
 $accentTextColor:#ffffff;
 
 @import '../sass/theme/_theme';
-</CodeHighlight>
+
+</code></pre>
 
                 <p>If you prefer to compile manually, an example sass command to compile the css would be;</p>
 
-<CodeHighlight>
+<pre v-code>
+<code>
 sass public/assets/theme-myown/theme.scss:public/assets/theme-myown/theme.css
-</CodeHighlight>
+
+</code></pre>
 
                 <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
                 so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
-<CodeHighlight>
+<pre v-code>
+<code>
 sass --watch public/assets:public/assets
-</CodeHighlight>
+
+</code></pre>
 
 
                 <p>Same can also be applied to layout itself;</p>
@@ -277,7 +307,8 @@ sass --watch public/assets:public/assets
 
                 <p>Here are the variables required to create a layout, you may need to change the last line according to the
                     relative path of the sass folder in your application.</p>
-<CodeHighlight lang="css">
+<pre v-code.css>
+<code>
 $primaryColor: #3F51B5;
 $primaryDarkColor: #283593;
 $primaryLightColor: #9fa8da;
@@ -293,12 +324,14 @@ $lightMenuRouterLinkActiveColor: #3F51B5;
 $horizontalLightMenuRouterLinkActiveColor: #9fa8da;
 
 @import '../../sass/layout/_layout';
-</CodeHighlight>
+
+</code></pre>
 
                 <p>In case you would like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
                 <h5>sass/layout/_variables.scss</h5>
-<CodeHighlight lang="css">
+<pre v-code.css>
+<code>
 /* Common */
 //general
 $fontSize:14px;
@@ -340,11 +373,13 @@ $slimMenuTooltipColor:#ffffff;
 $activeMenuItemBadgeColor:#ffffff;
 $activeMenuItemBadgeTextColor:#212121;
 $lineHeight:18px;
-</CodeHighlight>
+
+</code></pre>
 
                 <h5>sass/theme/_variables.scss</h5>
 <div style="overflow: auto; height: 400px; margin-bottom: 10px">
-<CodeHighlight lang="css">
+<pre v-code.css>
+<code>
 $emphasis-high:rgba(0,0,0.87);
 $emphasis-medium:rgba(0,0,0,.60);
 $emphasis-low:rgba(0,0,0,.38);
@@ -1072,7 +1107,8 @@ $galleriaThumbnailNavigatorHeight:2rem;
 --primary-color-text:#{$primaryTextColor};
 --font-family:#{$fontFamily};
 }
-</CodeHighlight>
+
+</code></pre>
 </div>
 
                 <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on
@@ -1081,9 +1117,11 @@ $galleriaThumbnailNavigatorHeight:2rem;
                 <h4>Menu Item Badges</h4>
                 <p>Badges are numerical indicators associated with a link.
                     The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
-<CodeHighlight>
+<pre v-code>
+<code>
 label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
-</CodeHighlight>
+
+</code></pre>
                 <p>Default badge uses the accent color of ultima layout and there are three more alternative colors.</p>
                 <ul>
                     <li>red-badge</li>
@@ -1103,9 +1141,11 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 </ul>
 
                 <p>For example to create a horizontal menu, the div element should be in following form;</p>
-<CodeHighlight>
+<pre v-code>
+<code>
 &lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
-</CodeHighlight>
+
+</code></pre>
 
                 <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
                     application has an example implementation of such use case. Refer to App.vue for an example.</p>
@@ -1113,9 +1153,11 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 <h4>Dark Menu</h4>
                 <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
 
-<CodeHighlight>
+<pre v-code>
+<code>
 &lt;div className="layout-menu layout-menu-dark"&gt;
-</CodeHighlight>
+
+</code></pre>
 
                 <h4>Profile Modes</h4>
                 <p>There are two possible locations for the user profile menu, first option is inline located inside the main menu and second option is the topbar menu. For inline mode,
@@ -1148,17 +1190,10 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
 </template>
 
 <script>
-    import CodeHighlight from './CodeHighlight';
-
-    export default {
-        components: {
-            'CodeHighlight': CodeHighlight
-        }
-    }
 </script>
 
 <style scoped lang="scss">
-    /deep/ pre[class*="language-"] {
+    ::v-deep(pre[class*="language-"]) {
         &:before, &:after {
             display: none !important;
         }

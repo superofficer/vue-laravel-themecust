@@ -5,11 +5,9 @@
                 <h4>Shadow</h4>
                 <p>Elevation is used to specify the separation between surfaces and elements along the z-axis. There are 24 style classes (<mark>.p-shadow-{level}</mark>) to define the elevation layers.</p>
 
-                <div class="shadow-container">
-                    <div class="p-col" v-for="index in 24" :key="index">
-                        <div :class="['box', 'p-shadow-' + index]">
-                            p-shadow-{{index}}
-                        </div>
+                <div class="p-grid">
+                    <div :class="['box', 'p-shadow-' + index]" v-for="index in 24" :key="index">
+                        p-shadow-{{index}}
                     </div>
                 </div>
             </div>
@@ -18,7 +16,6 @@
 </template>
 
 <script>
-
 export default {
 }
 </script>
@@ -30,14 +27,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-weight: 600;
     margin: 2rem;
     border-radius: 4px;
-}
-
-.shadow-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
 }
 </style>

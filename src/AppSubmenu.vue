@@ -3,7 +3,7 @@
         <template v-for="(item,i) of items">
             <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to && !item.disabled}]" role="none">
                 <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" exact
-                             @mouseenter.native="onMenuItemMouseEnter(i)" @click.native="onMenuItemClick($event,item,i)" role="menuitem" v-ripple>
+                             @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" role="menuitem" v-ripple>
                     <i :class="item.icon"></i>
                     <span>{{item.label}}</span>
                     <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
@@ -56,7 +56,7 @@ export default {
 		}
 	},
 	mounted() {
-		EventBus.$on('reset_active_index', () => {
+		EventBus.on('reset-active-index', () => {
 			if(this.isHorizontalOrSlim() && !this.isMobile()) {
 				this.activeIndex = null;
 			}

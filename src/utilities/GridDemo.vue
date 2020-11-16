@@ -421,11 +421,8 @@
 			transition: all .5s;
 		}
 
-		.dynamic-box-enter, .dynamic-box-leave-to {
+		.dynamic-box-enter-from, .dynamic-box-leave-to {
 			opacity: 0;
-		}
-
-		.dynamic-box-enter, .dynamic-box-leave-to {
 			transform: translateX(30px);
 		}
 

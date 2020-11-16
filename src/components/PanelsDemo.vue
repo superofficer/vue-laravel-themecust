@@ -4,7 +4,7 @@
 			<div class="card">
 				<h5>Toolbar</h5>
 				<Toolbar>
-					<template slot="left">
+					<template v-slot:left>
 						<Button label="New" icon="pi pi-plus" style="margin-right: .5em"/>
 						<Button label="Open" icon="pi pi-folder-open" class="p-button-secondary"/>
 
@@ -14,7 +14,7 @@
 						<Button icon="pi pi-trash" class="p-button-warning" style="margin-right: .5em"/>
 						<Button icon="pi pi-print" class="p-button-danger"/>
 					</template>
-					<template slot="right">
+					<template v-slot:right>
 						<SplitButton label="Options" :model="toolbarItems"></SplitButton>
 					</template>
 				</Toolbar>
@@ -23,8 +23,8 @@
 		<div class="p-col-12 p-md-6">
 			<div class="card">
 				<h5>AccordionPanel</h5>
-				<Accordion>
-					<AccordionTab header="Header I" :active="true">
+				<Accordion :activeIndex="0">
+					<AccordionTab header="Header I">
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 							labore et dolore magna aliqua.
 							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -116,16 +116,17 @@
 			</div>
 
 			<Card>
-				<template slot="title">
+				<template v-slot:title>
 					<h5>Card</h5>
-					<Button icon="pi pi-plus" class="p-button-text"/>
+					<Button icon="pi pi-plus" class="p-button-text" @click="toggle"/>
+					<Menu id="config_menu" ref="menu" :model="cardMenu" :popup="true" />
 				</template>
 
-				<template slot="subtitle">
+				<template v-slot:subtitle>
 					Subtitle
 				</template>
 
-				<template slot="content">
+				<template v-slot:content>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 						labore et dolore magna aliqua.
 						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -161,7 +162,17 @@
 						label: 'Home Page',
 						icon: 'pi pi-home'
 					},
+				],
+				cardMenu:  [
+					{ label: 'Save', icon: 'pi pi-fw pi-check' },
+					{ label: 'Update', icon: 'pi pi-fw pi-refresh' },
+					{ label: 'Delete', icon: 'pi pi-fw pi-trash' },
 				]
+			}
+		},
+		methods: {
+			toggle() {
+				this.$refs.menu.toggle(event);
 			}
 		}
 	}
@@ -173,7 +184,7 @@
 		margin: 0;
 	}
 
-	/deep/ .p-card .p-card-title {
+	::v-deep(.p-card .p-card-title) {
 		display: -ms-flexbox;
 		display: flex;
 		-ms-flex-align: center;

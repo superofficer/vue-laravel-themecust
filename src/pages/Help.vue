@@ -14,9 +14,9 @@
 
 					<div class="help-content">
 						<div class="card">
-							<Accordion class="main-accordion">
-								<AccordionTab :active="true">
-									<template slot="header">
+							<Accordion class="main-accordion" :activeIndex="0">
+								<AccordionTab>
+									<template v-slot:header>
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
 											<h4>The Basics</h4>
@@ -46,7 +46,7 @@
 						<div class="card">
 							<Accordion class="main-accordion">
 								<AccordionTab>
-									<template slot="header">
+									<template v-slot:header>
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
 											<h4>Questions About Licenses</h4>
@@ -73,7 +73,7 @@
 						<div class="card">
 							<Accordion class="main-accordion">
 								<AccordionTab>
-									<template slot="header">
+									<template v-slot:header>
 										<div class="accordion-title">
 											<i class="pi pi-bookmark"></i>
 											<h4>Questions About Frameworks</h4>

@@ -163,7 +163,7 @@ body {
         box-shadow: 3px 0 6px rgba(0,0,0,0.3);
         transition: transform $transitionDuration;
 
-        &.layout-menu-container-enter,
+        &.layout-menu-container-enter-from,
         &.layout-menu-container-leave-to {
             transform: translateX(-100%);
         }
@@ -403,7 +403,7 @@ body {
             transform: translateX(-100%);
             transition: transform $transitionDuration;
 
-            &.layout-menu-container-enter,
+            &.layout-menu-container-enter-from,
             &.layout-menu-container-leave-to {
                 transform: translateX(-100%);
             }
@@ -623,13 +623,13 @@ body {
                 list-style: none;
                 overflow: hidden;
 
-                &.layout-submenu-container-enter,
+                &.layout-submenu-container-enter-from,
                 &.layout-submenu-container-leave-to {
                     max-height: 0;
                 }
 
                 &.layout-submenu-container-enter-to,
-                &.layout-submenu-container-leave {
+                &.layout-submenu-container-leave-from {
                     max-height: 1000px;
                 }
 
@@ -834,13 +834,13 @@ body {
                     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
                     animation-duration: .5s;
 
-                    &.layout-submenu-container-enter,
+                    &.layout-submenu-container-enter-from,
                     &.layout-submenu-container-leave-to {
                         max-height: 0;
                     }
 
                     &.layout-submenu-container-enter-to,
-                    &.layout-submenu-container-leave {
+                    &.layout-submenu-container-leave-from {
                         max-height: 1000px;
                     }
 
@@ -874,7 +874,7 @@ body {
                 transform: translateX(0);
                 transition: transform $transitionDuration;
 
-                &.layout-menu-container-enter {
+                &.layout-menu-container-enter-from {
                     transform: translateX(0) !important;
                 }
             }
@@ -1314,7 +1314,7 @@ body {
                 transform: translateX(-100%);
                 transition: transform $transitionDuration;
 
-                &.layout-menu-container-enter,
+                &.layout-menu-container-enter-from,
                 &.layout-menu-container-leave-to {
                     transform: translateX(-100%);
                 }

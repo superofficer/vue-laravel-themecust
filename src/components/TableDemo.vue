@@ -4,7 +4,7 @@
 			<div class="card">
 				<h4>Default</h4>
 				<p>Pagination, sorting, filtering and checkbox selection.</p>
-				<DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers1"
+				<DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers1"
 							:filters="filters1" :loading="loading1">
 					<template #header>
 						<div class="table-header">
@@ -67,7 +67,7 @@
 				<h4>Customized</h4>
 				<p>Scrollable table with gridlines (<mark>.p-datatable-gridlines</mark>), striped rows (<mark>.p-datatable-striped</mark>) and smaller paddings (<mark>p-datatable-sm</mark>).</p>
 				<DataTable :value="customer2" :paginator="true" class="p-datatable-striped p-datatable-sm p-datatable-gridlines p-datatable-customers"
-							:rows="10" dataKey="id" :rowHover="true" :selection.sync="selectedCustomers2" :filters="filters2" :loading="loading2">
+							:rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers2" :filters="filters2" :loading="loading2">
 					<template #header>
 						<div class="table-header">
 							Customers
@@ -127,7 +127,7 @@
 				<h4>Row Expand</h4>
 
 				<Toast />
-				<DataTable :value="products" class="p-datatable-customers" :expandedRows.sync="expandedRows" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
+				<DataTable :value="products" class="p-datatable-customers" v-model:expandedRows="expandedRows" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
 					<template #header>
 						<div class="table-header-container">
 							<Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="p-mr-2" />
@@ -135,24 +135,24 @@
 						</div>
 					</template>
 					<Column :expander="true" headerStyle="width: 3rem" />
-					<Column field="name" header="Name" sortable></Column>
+					<Column field="name" header="Name" :sortable="true">></Column>
 					<Column header="Image">
 						<template #body="slotProps">
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" class="product-image" />
 						</template>
 					</Column>
-					<Column field="price" header="Price" sortable>
+					<Column field="price" header="Price" :sortable="true">>
 						<template #body="slotProps">
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
-					<Column field="category" header="Category" sortable></Column>
-					<Column field="rating" header="Reviews" sortable>
+					<Column field="category" header="Category" :sortable="true">></Column>
+					<Column field="rating" header="Reviews" :sortable="true">>
 						<template #body="slotProps">
-							<Rating :value="slotProps.data.rating" :readonly="true" :cancel="false" />
+							<Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
 						</template>
 					</Column>
-					<Column field="inventoryStatus" header="Status" sortable>
+					<Column field="inventoryStatus" header="Status" :sortable="true">>
 						<template #body="slotProps">
 							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
 						</template>
@@ -161,15 +161,15 @@
 						<div class="orders-subtable">
 							<h5>Orders for {{slotProps.data.name}}</h5>
 							<DataTable :value="slotProps.data.orders">
-								<Column field="id" header="Id" sortable></Column>
-								<Column field="customer" header="Customer" sortable></Column>
-								<Column field="date" header="Date" sortable></Column>
-								<Column field="amount" header="Amount" sortable>
-									<template #body="slotProps" sortable>
+								<Column field="id" header="Id" :sortable="true">></Column>
+								<Column field="customer" header="Customer" :sortable="true">></Column>
+								<Column field="date" header="Date" :sortable="true">></Column>
+								<Column field="amount" header="Amount" :sortable="true">>
+									<template #body="slotProps" :sortable="true">>
 										{{formatCurrency(slotProps.data.amount)}}
 									</template>
 								</Column>
-								<Column field="status" header="Status" sortable>
+								<Column field="status" header="Status" :sortable="true">>
 									<template #body="slotProps">
 										<span :class="'order-badge order-' + slotProps.data.status.toLowerCase()">{{slotProps.data.status}}</span>
 									</template>
@@ -191,20 +191,20 @@
 				<h4>Row Group</h4>
 				<DataTable :value="customer3" class="p-datatable-customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1">
 					<Column field="representative.name" header="Representative"></Column>
-					<Column field="name" header="Name"></Column>
+					<Column field="name" header="Name" :sortable="true">></Column>
 					<Column field="country" header="Country">
 						<template #body="slotProps">
 							<img src="assets/demo/flags/flag_placeholder.png" :class="'flag flag-' + slotProps.data.country.code" width="30" />
 							<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
 						</template>
 					</Column>
-					<Column field="company" header="Company"></Column>
-					<Column field="status" header="Status">
+					<Column field="company" header="Company" :sortable="true">></Column>
+					<Column field="status" header="Status" :sortable="true">>
 						<template #body="slotProps">
 							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
-					<Column field="date" header="Date"></Column>
+					<Column field="date" header="Date" :sortable="true">></Column>
 					<template #groupheader="slotProps">
 						<img :alt="slotProps.data.representative.name" :src="'assets/demo/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
 						<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
@@ -289,7 +289,7 @@
 </script>
 
 <style scoped lang="scss">
-	/deep/ .p-progressbar {
+	::v-deep(.p-progressbar) {
 		height: .5rem;
 		background-color: #D8DADC;
 
@@ -307,7 +307,7 @@
 		justify-content: space-between;
 	}
 
-	/deep/ .p-datatable.p-datatable-customers {
+	::v-deep(.p-datatable.p-datatable-customers) {
 		.p-datatable-header {
 			padding: 1rem;
 			text-align: left;
@@ -448,7 +448,7 @@
 	}
 
 	@media screen and (max-width: 960px) {
-		/deep/ .p-datatable {
+		::v-deep(.p-datatable) {
 			&.p-datatable-customers {
 				.p-datatable-thead > tr > th,
 				.p-datatable-tfoot > tr > td {

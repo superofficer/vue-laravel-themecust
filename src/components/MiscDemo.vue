@@ -5,7 +5,7 @@
 				<h5>ProgressBar</h5>
 				<div class="p-grid">
 					<div class="p-col">
-						<ProgressBar :value="value"/>
+						<ProgressBar :value="value" :showValue="false"/>
 					</div>
 					<div class="p-col">
 						<ProgressBar :value="50" :showValue="false"/>
@@ -98,7 +98,7 @@
 		mounted() {
 			this.startProgress();
 		},
-		beforeDestroy() {
+		beforeMount() {
 			this.endProgress();
 		}
 	}

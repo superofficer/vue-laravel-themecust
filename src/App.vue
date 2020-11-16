@@ -24,8 +24,8 @@
 				<AppFooter />
 			</div>
 
-			<AppConfig :layoutMode.sync="layoutMode" @menu-mode-change="onMenuModeChange" :darkMenu.sync="darkMenu" @menu-color-change="onMenuColorChange"
-						:profileMode.sync="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
+			<AppConfig v-model:layoutMode="layoutMode" @menu-mode-change="onMenuModeChange" v-model:darkMenu="darkMenu" @menu-color-change="onMenuColorChange"
+						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
 
 			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
 
@@ -80,12 +80,14 @@ export default {
 					items: [
 						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
 						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+						{label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
 						{label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
 						{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
 						{label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
 						{label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
 						{label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
 						{label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
+						{label: "Media", icon: "pi pi-fw pi-image", to: "/media"},
 						{label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menus'},
 						{label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
 						{label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
@@ -120,56 +122,56 @@ export default {
 						{label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
 						{label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
 						{label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
-						{label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
+						{label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
 					]
 				},
 				{
-					label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',
+					label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
 					items: [
 						{
-							label: 'Submenu 1', icon: 'pi pi-fw pi-circle-off',
+							label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
 							items: [
 								{
-									label: 'Submenu 1.1', icon: 'pi pi-fw pi-circle-off',
+									label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
 									items: [
-										{label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'},
 									]
 								},
 								{
-									label: 'Submenu 1.2', icon: 'pi pi-fw pi-circle-off',
+									label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
 									items: [
-										{label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-circle-off'}
+										{label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-align-left'}
 									]
 								},
 							]
 						},
 						{
-							label: 'Submenu 2', icon: 'pi pi-fw pi-circle-off',
+							label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
 							items: [
 								{
-									label: 'Submenu 2.1', icon: 'pi pi-fw pi-circle-off',
+									label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
 									items: [
-										{label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-circle-off'},
+										{label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-align-left'},
 									]
 								},
 								{
-									label: 'Submenu 2.2', icon: 'pi pi-fw pi-circle-off',
+									label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
 									items: [
-										{label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-circle-off'},
-										{label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-circle-off'}
+										{label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'},
+										{label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-align-left'}
 									]
 								},
 							]
 						}
 					]
 				},
-				{label: 'Documentation', icon: 'pi pi-fw pi-question', to: '/documentation'},
-				{label: 'Buy Now', icon: 'pi pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
+				{label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
+				{label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'},
             ]
         }
     },
@@ -189,7 +191,7 @@ export default {
 			if(!this.menuClick) {
 				if(this.isHorizontal() || this.isSlim()) {
 					this.menuActive = false;
-					EventBus.$emit('reset_active_index');
+					EventBus.emit('reset-active-index');
 				}
 
 				this.hideOverlayMenu();
@@ -268,7 +270,7 @@ export default {
 		onMenuItemClick(event) {
 			if(!event.item.items) {
 				this.hideOverlayMenu();
-				EventBus.$emit('reset_active_index');
+				EventBus.emit('reset-active-index');
 			}
 
 			if(!event.item.items && (this.isHorizontal() || this.isSlim())) {

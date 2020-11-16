@@ -1,54 +1,66 @@
 <template>
 	<div class="card icons-demo">
 		<h3>Icons</h3>
-		<p>Apollo uses PrimeIcons v4.0, PrimeTek's new modern icon library.</p>
+		<p>Ultima uses PrimeIcons v4.0, PrimeTek's new modern icon library.</p>
 
 		<h5>Getting Started</h5>
-		<p>PrimeIcons use the pi pi-{icon} syntax such as pi pi-check. A standalone icon can be displayed using an element like i or span.</p>
-<CodeHighlight>
+		<p>PrimeIcons use the <strong>pi pi-{icon}</strong> syntax such as <strong>pi pi-check</strong>. A standalone icon can be displayed using an element like <i>i</i> or <i>span</i>.</p>
+<pre v-code>
+<code>
 &lt;i class="pi pi-check"&gt;&lt;/i&gt;
 &lt;i class="pi pi-times"&gt;&lt;/i&gt;
-</CodeHighlight>
+
+</code></pre>
 
 		<i class="pi pi-check" style="margin-right: .5rem"></i>
 		<i class="pi pi-times"></i>
 
 		<h5>Component Icons</h5>
-		<p>Components that have icon properties accept PrimeIcons with the pi pi-{icon} syntax.</p>
-<CodeHighlight>
+		<p>Components that have icon properties accept PrimeIcons with the <strong>pi pi-{icon}</strong> syntax.</p>
+<pre v-code>
+<code>
 &lt;Button label="Confirm" icon="pi pi-check"&gt;&lt;/Button&gt;
-</CodeHighlight>
+
+</code></pre>
 
 		<Button label="Confirm" icon="pi pi-check"></Button>
 
 		<h5>Size</h5>
 		<p>Size of the icons can easily be changed using font-size property.</p>
 
-<CodeHighlight>
+<pre v-code>
+<code>
 &lt;i class="pi pi-check"&gt;&lt;/i&gt;
-</CodeHighlight>
+
+</code></pre>
 
 		<i class="pi pi-check"></i>
 
-<CodeHighlight>
+<pre v-code>
+<code>
 &lt;i class="pi pi-check" style="fontSize: 2rem"&gt;&lt;/i&gt;
-</CodeHighlight>
+
+</code></pre>
 
 		<i class="pi pi-check" style="fontSize: 2rem"></i>
 
 		<h5>Spinning Animation</h5>
 		<p>Special pi-spin class applies continuous rotation to an icon.</p>
-<CodeHighlight>
+<pre v-code>
+<code>
 &lt;i class="pi pi-spin pi-spinner" style="fontSize: 2rem"&gt;&lt;/i&gt;
-</CodeHighlight>
+
+</code></pre>
 
 		<i class="pi pi-spin pi-spinner" style="fontSize: 2rem"></i>
 
 		<h5>List of Icons</h5>
 		<p>Here is the current list of PrimeIcons, more icons are added periodically. You may also <a href="https://github.com/primefaces/primeicons/issues">request new icons</a> at the issue tracker.</p>
-
+		<div>
+			<InputText type="text" class="icon-filter" @input="onFilter($event)" placeholder="Search an icon" />
+		</div>
 		<div class="p-grid icons-list">
-			<div class="p-col-12 p-md-2" v-for="icon of icons" :key="icon.properties.name">
+			<div class="p-col-12 p-md-2" v-for="icon of filteredIcons" :key="icon.properties.name">
 				<i :class="'pi pi-' + icon.properties.name"></i>
 				<div>pi-{{icon.properties.name}}</div>
 			</div>
@@ -58,13 +70,13 @@
 </template>
 
 <script>
-import CodeHighlight from "../components/CodeHighlight";
 import axios from 'axios';
 
 export default {
 	data() {
 		return {
-			icons: null
+			icons: null,
+			filteredIcons: null
 		}
 	},
 	mounted() {
@@ -79,15 +91,30 @@ export default {
 					return 0;
 			});
 			this.icons = icons;
+			this.filteredIcons = icons;
 		});
 	},
-	components: {
-		'CodeHighlight': CodeHighlight
+	methods: {
+		onFilter(event) {
+			if(!event.target.value) {
+				this.filteredIcons = this.icons;
+			}
+			else {
+				this.filteredIcons = this.icons.filter( it => {
+					return it.icon.tags[0].includes(event.target.value);
+				});
+			}
+		}
 	}
 }
 </script>
 
 <style scoped lang="scss">
+.icon-filter {
+	width: 100%;
+	padding: 1rem;
+	margin: 1rem 0 1.5rem 0;
+}
 .icons-list {
 	text-align: center;
 	color: #6c757d;
@@ -102,7 +129,7 @@ export default {
 	margin-bottom: .5rem;
 }
 
-/deep/ pre[class*="language-"] {
+::v-deep(pre[class*="language-"]) {
 	&:before, &:after {
 		display: none !important;
 	}
