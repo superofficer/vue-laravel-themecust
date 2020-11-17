@@ -78,8 +78,8 @@ npm run serve
                 &lt;/div&gt;
             &lt;/div&gt;
 
-            &lt;AppConfig :layoutMode.sync="layoutMode" @menu-mode-change="onMenuModeChange" :darkMenu.sync="darkMenu" @menu-color-change="onMenuColorChange"
-                       :profileMode.sync="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"&gt;&lt;/AppConfig&gt;
+            &lt;AppConfig v-model:layoutMode="layoutMode" @menu-mode-change="onMenuModeChange" v-model:darkMenu="darkMenu" @menu-color-change="onMenuColorChange"
+						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"&gt;&lt;/AppConfig&gt;
 
             &lt;AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"&gt;&lt;/AppRightPanel&gt;
 
