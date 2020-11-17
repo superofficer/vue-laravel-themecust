@@ -100,9 +100,13 @@
 	.p-field > label {
 		width: 125px;
 	}
-
-
 	.p-inputtext {
 		margin-right: .5rem;
+	}
+	::v-deep(.p-button) {
+        min-width: 8em;
+    }
+	::v-deep(.p-message) {
+		margin-left: .25em;
 	}
 </style>

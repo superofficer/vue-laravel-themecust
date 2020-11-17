@@ -25,7 +25,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="login-footer">PrimeVue Ultima</div>
 	</div>
 </template>
 
