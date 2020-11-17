@@ -54,6 +54,7 @@
 
 <script>
 	export default {
+		emits: ['content-click'],
 		props: {
 			expanded: Boolean
 		},

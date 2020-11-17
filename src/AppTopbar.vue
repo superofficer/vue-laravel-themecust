@@ -183,6 +183,7 @@
 
 <script>
 	export default {
+		emits: ['menubutton-click', 'topbar-menubutton-click', 'topbaritem-click', 'rightpanel-button-click'],
 		data() {
 			return {
 				searchText: ''

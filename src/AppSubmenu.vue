@@ -34,6 +34,7 @@ import EventBus from './event-bus';
 
 export default {
 	name: 'AppSubmenu',
+	emits: ['menuitem-click', 'root-menuitem-click'],
 	props: {
 		items: Array,
 		root: {

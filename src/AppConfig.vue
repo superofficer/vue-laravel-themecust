@@ -78,6 +78,7 @@
 
 <script>
 export default {
+    emits: ['menu-mode-change', 'menu-color-change', 'profile-mode-change', 'theme-change'],
     props: {
         layoutMode: {
             type: String,
