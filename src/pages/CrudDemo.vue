@@ -19,7 +19,7 @@
 							paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
 							currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" class="p-datatable-customers">
 					<template #header>
-						<div class="table-header">
+						<div class="table-header p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
 							<h5 class="p-m-0">Manage Products</h5>
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
@@ -29,26 +29,45 @@
 					</template>
 
 					<Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-					<Column field="code" header="Code" sortable></Column>
-					<Column field="name" header="Name" sortable></Column>
+					<Column field="code" header="Code" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Code</span>
+							{{slotProps.data.code}}
+						</template>
+					</Column>
+					<Column field="name" header="Name" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Name</span>
+							{{slotProps.data.name}}
+						</template>
+					</Column>
 					<Column header="Image">
 						<template #body="slotProps">
+							<span class="p-column-title">Image</span>
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" class="product-image" />
 						</template>
 					</Column>
-					<Column field="price" header="Price" sortable>
+					<Column field="price" header="Price" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Price</span>
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
-					<Column field="category" header="Category" sortable></Column>
-					<Column field="rating" header="Reviews" sortable>
+					<Column field="category" header="Category" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Category</span>
+							{{formatCurrency(slotProps.data.category)}}
+						</template>
+					</Column>
+					<Column field="rating" header="Reviews" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Rating</span>
 							<Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
 						</template>
 					</Column>
-					<Column field="inventoryStatus" header="Status" sortable>
+					<Column field="inventoryStatus" header="Status" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Status</span>
 							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
 						</template>
 					</Column>
@@ -246,7 +265,6 @@ export default {
 <style scoped lang="scss">
 .table-header {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 }
 
@@ -291,6 +309,11 @@ export default {
 	}
 }
 
+/* Responsive */
+.p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+	display: none;
+}
+
 @media screen and (max-width: 960px) {
 	::v-deep(.p-datatable) {
 		&.p-datatable-customers {
@@ -311,6 +334,10 @@ export default {
 					clear: left;
 					border: 0 none;
 
+					&:last-child{
+						text-align: center;
+					}
+
 					.p-column-title {
 						padding: .4rem;
 						min-width: 30%;
@@ -321,6 +348,10 @@ export default {
 
 					.p-progressbar {
 						margin-top: .5rem;
+					}
+
+					.p-rating {
+						display: inline-block;
 					}
 				}
 			}

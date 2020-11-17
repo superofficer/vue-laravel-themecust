@@ -8,7 +8,7 @@
 			<i class="pi pi-lock"></i>
 			<h1>Access Denied</h1>
 			<div class="exception-detail">You are not authorized to access this resource.</div>
-			<Button label="Homepage"  @click="goDashboard" />
+			<Button label="Homepage" @click="goDashboard" />
 		</div>
 	</div>
 </template>

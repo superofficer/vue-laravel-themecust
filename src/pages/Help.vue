@@ -25,8 +25,8 @@
 									</template>
 
 									<div class="questions">
-										<Accordion class="sub-accordion">
-											<AccordionTab header="Which do I need to develop a SaaS application?" :active="true">
+										<Accordion class="sub-accordion" :activeIndex="0">
+											<AccordionTab header="Which do I need to develop a SaaS application?">
 												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque ligula dolor, pretium tincidunt libero sodales in. Integer at eros posuere, elementum felis a, laoreet libero. In sed nunc accumsan, dapibus nibh sit amet, aliquet ipsum.
 											</AccordionTab>
 											<AccordionTab header="I’m a freelancer/agency. Can I use the item for an end product I’m doing for a client?">

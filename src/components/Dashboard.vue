@@ -260,10 +260,21 @@
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50" />
 						</template>
 					</Column>
-					<Column field="name" header="Name" :sortable="true"></Column>
-					<Column field="category" header="Category" :sortable="true"></Column>
+					<Column field="name" header="Name" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Name</span>
+							{{slotProps.data.name}}
+						</template>
+					</Column>
+					<Column field="category" header="Category" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Category</span>
+							{{slotProps.data.category}}
+						</template>
+					</Column>
 					<Column field="price" header="Price" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Price</span>
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
@@ -272,8 +283,8 @@
 							View
 						</template>
 						<template #body>
-							<Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
-							<Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
+							<Button icon="pi pi-search" class="p-button-success p-mr-2 p-mb-1"></Button>
+							<Button icon="pi pi-times" class="p-button-danger p-mb-1"></Button>
 						</template>
 					</Column>
 				</DataTable>

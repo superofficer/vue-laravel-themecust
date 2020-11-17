@@ -1,7 +1,7 @@
 <template>
 	<div class="p-grid panel-demo">
 		<div class="p-col-12">
-			<div class="card">
+			<div class="card toolbar-demo">
 				<h5>Toolbar</h5>
 				<Toolbar>
 					<template v-slot:left>
@@ -193,4 +193,20 @@
 		justify-content: space-between;
 		margin-bottom: 0;
 	}
+
+	::v-deep(button) {
+		margin-right: .25em;
+		margin-left: .25em;
+	}
+	::v-deep(.p-splitbutton button) {
+		margin-right: 0;
+		margin-left: 0;
+	}
+    @media screen and (max-width: 960px) {
+        .panel-demo {
+			.toolbar-demo.card {
+				overflow: auto;
+			}
+        }
+    }
 </style>

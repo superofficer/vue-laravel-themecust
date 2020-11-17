@@ -7,7 +7,7 @@
 				<DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers1"
 							:filters="filters1" :loading="loading1">
 					<template #header>
-						<div class="table-header">
+						<div class="table-header p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
 							List of Customers
 							<span class="p-input-icon-left">
                                 <i class="pi pi-search" />
@@ -24,33 +24,39 @@
 					<Column selectionMode="multiple" headerStyle="width: 3em"></Column>
 					<Column field="name" header="Name" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Name</span>
 							{{slotProps.data.name}}
 						</template>
 					</Column>
 					<Column header="Country" :sortable="true" sortField="country.name" filterField="country.name">
 						<template #body="slotProps">
+							<span class="p-column-title">Country</span>
 							<img src="assets/demo/flags/flag_placeholder.png" :alt="slotProps.data.country.name" :class="'flag flag-' + slotProps.data.country.code" width="30" />
 							<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
 						</template>
 					</Column>
 					<Column header="Representative" :sortable="true" sortField="representative.name" filterField="representative.name">
 						<template #body="slotProps">
+							<span class="p-column-title">Representative</span>
 							<img :alt="slotProps.data.representative.name" :src="'assets/demo/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
 							<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
 						</template>
 					</Column>
 					<Column field="date" header="Date" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Date</span>
 							<span>{{slotProps.data.date}}</span>
 						</template>
 					</Column>
 					<Column field="status" header="Status" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Status</span>
 							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
 					<Column field="activity" header="Activity" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Activity</span>
 							<ProgressBar :value="slotProps.data.activity" :showValue="false" />
 						</template>
 					</Column>
@@ -69,7 +75,7 @@
 				<DataTable :value="customer2" :paginator="true" class="p-datatable-striped p-datatable-sm p-datatable-gridlines p-datatable-customers"
 							:rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers2" :filters="filters2" :loading="loading2">
 					<template #header>
-						<div class="table-header">
+						<div class="table-header p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
 							Customers
 							<span class="p-input-icon-left">
 							<i class="pi pi-search"/>
@@ -105,7 +111,12 @@
 							<span style="vertical-align: middle; margin-left: .5em">{{slotProps.data.representative.name}}</span>
 						</template>
 					</Column>
-					<Column field="date" header="Join Date" :sortable="true"></Column>
+					<Column field="date" header="Join Date" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Date</span>
+							{{slotProps.data.date}}
+						</template>
+					</Column>
 					<Column field="status" header="Status" :sortable="true">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
@@ -135,25 +146,38 @@
 						</div>
 					</template>
 					<Column :expander="true" headerStyle="width: 3rem" />
-					<Column field="name" header="Name" :sortable="true">></Column>
+					<Column field="name" header="Name" :sortable="true">
+						<template #body="slotProps">
+							<span class="p-column-title">Name</span>
+							{{slotProps.data.name}}
+						</template>
+					</Column>
 					<Column header="Image">
 						<template #body="slotProps">
+							<span class="p-column-title">Image</span>
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" class="product-image" />
 						</template>
 					</Column>
-					<Column field="price" header="Price" :sortable="true">>
+					<Column field="price" header="Price" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Price</span>
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
-					<Column field="category" header="Category" :sortable="true">></Column>
-					<Column field="rating" header="Reviews" :sortable="true">>
+					<Column field="category" header="Category" :sortable="true">
+					<template #body="slotProps">
+							<span class="p-column-title">Category</span>
+							{{formatCurrency(slotProps.data.category)}}
+						</template></Column>
+					<Column field="rating" header="Reviews" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Reviews</span>
 							<Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
 						</template>
 					</Column>
-					<Column field="inventoryStatus" header="Status" :sortable="true">>
+					<Column field="inventoryStatus" header="Status" :sortable="true">
 						<template #body="slotProps">
+							<span class="p-column-title">Status</span>
 							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
 						</template>
 					</Column>
@@ -161,16 +185,33 @@
 						<div class="orders-subtable">
 							<h5>Orders for {{slotProps.data.name}}</h5>
 							<DataTable :value="slotProps.data.orders">
-								<Column field="id" header="Id" :sortable="true">></Column>
-								<Column field="customer" header="Customer" :sortable="true">></Column>
-								<Column field="date" header="Date" :sortable="true">></Column>
-								<Column field="amount" header="Amount" :sortable="true">>
-									<template #body="slotProps" :sortable="true">>
+								<Column field="id" header="Id" :sortable="true">
+									<template #body="slotProps">
+										<span class="p-column-title">Id</span>
+										{{slotProps.data.id}}
+									</template>
+								</Column>
+								<Column field="customer" header="Customer" :sortable="true">
+									<template #body="slotProps">
+										<span class="p-column-title">Customer</span>
+										{{slotProps.data.customer}}
+									</template>
+								</Column>
+								<Column field="date" header="Date" :sortable="true">
+									<template #body="slotProps">
+										<span class="p-column-title">Date</span>
+										{{slotProps.data.date}}
+									</template>
+								</Column>
+								<Column field="amount" header="Amount" :sortable="true">
+									<template #body="slotProps" :sortable="true">
+										<span class="p-column-title">Amount</span>
 										{{formatCurrency(slotProps.data.amount)}}
 									</template>
 								</Column>
-								<Column field="status" header="Status" :sortable="true">>
+								<Column field="status" header="Status" :sortable="true">
 									<template #body="slotProps">
+										<span class="p-column-title">Status</span>
 										<span :class="'order-badge order-' + slotProps.data.status.toLowerCase()">{{slotProps.data.status}}</span>
 									</template>
 								</Column>
@@ -190,21 +231,43 @@
 			<div class="card">
 				<h4>Row Group</h4>
 				<DataTable :value="customer3" class="p-datatable-customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1">
-					<Column field="representative.name" header="Representative"></Column>
-					<Column field="name" header="Name" :sortable="true">></Column>
+					<Column field="representative.name" header="Representative">
+						<template #body="slotProps">
+							<span class="p-column-title">Representative</span>
+							{{slotProps.data.representative}}
+						</template>
+					</Column>
+					<Column field="name" header="Name">
+						<template #body="slotProps">
+							<span class="p-column-title">Name</span>
+							{{slotProps.data.name}}
+						</template>
+					</Column>
 					<Column field="country" header="Country">
 						<template #body="slotProps">
+							<span class="p-column-title">Country</span>
 							<img src="assets/demo/flags/flag_placeholder.png" :class="'flag flag-' + slotProps.data.country.code" width="30" />
 							<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.country.name}}</span>
 						</template>
 					</Column>
-					<Column field="company" header="Company" :sortable="true">></Column>
-					<Column field="status" header="Status" :sortable="true">>
+					<Column field="company" header="Company">
 						<template #body="slotProps">
+							<span class="p-column-title">Company</span>
+							{{slotProps.data.company}}
+						</template>
+					</Column>
+					<Column field="status" header="Status">
+						<template #body="slotProps">
+							<span class="p-column-title">Status</span>
 							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
-					<Column field="date" header="Date" :sortable="true">></Column>
+					<Column field="date" header="Date">
+						<template #body="slotProps">
+							<span class="p-column-title">Date</span>
+							{{slotProps.data.date}}
+						</template>
+					</Column>
 					<template #groupheader="slotProps">
 						<img :alt="slotProps.data.representative.name" :src="'assets/demo/images/avatar/' + slotProps.data.representative.image" width="32" style="vertical-align: middle" />
 						<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{slotProps.data.representative.name}}</span>
@@ -222,7 +285,6 @@
 <script>
 	import CustomerService from "../service/CustomerService";
 	import ProductService from '../service/ProductService';
-
 	export default {
 		data() {
 			return {
@@ -273,7 +335,6 @@
 			},
 			calculateCustomerTotal(name) {
 				let total = 0;
-
 				if (this.customer3) {
 					for (let customer of this.customer3) {
 						if (customer.representative.name === name) {
@@ -456,7 +517,7 @@
 				}
 
 				.p-datatable-tbody > tr {
-					border-bottom: 1px solid var(--layer-2);
+					border-bottom: 1px solid var(--surface-d);
 
 					> td {
 						text-align: left;
@@ -477,8 +538,18 @@
 
 						.p-progressbar {
 							margin-top: .5rem;
+							display: inline-block;
+							width: 60%;
+						}
+
+						.p-rating {
+							display: inline-block;
 						}
 					}
+				}
+
+				.p-datatable-tbody > tr.p-rowgroup-footer{
+					display: flex;
 				}
 			}
 		}

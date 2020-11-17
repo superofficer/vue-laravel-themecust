@@ -17,9 +17,9 @@
                                     <h6 class="p-mt-0 p-mb-3">${{ product.data.price }}</h6>
                                     <span :class="'product-badge status-' + product.data.inventoryStatus.toLowerCase()">{{ product.data.inventoryStatus }}</span>
                                     <div class="car-buttons p-mt-5">
-                                        <Button type="button" class="p-button p-button-rounded p-mr-2" icon="pi pi-search"></Button>
-                                        <Button type="button" class="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></Button>
-                                        <Button type="button" class="p-button-help p-button-rounded" icon="pi pi-cog"></Button>
+                                        <Button class="p-button p-button-rounded p-mr-2" icon="pi pi-search"></Button>
+                                        <Button class="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></Button>
+                                        <Button class="p-button-help p-button-rounded" icon="pi pi-cog"></Button>
                                     </div>
                                 </div>
                             </div>

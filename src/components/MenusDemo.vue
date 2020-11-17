@@ -59,7 +59,7 @@
 				<h5>Overlay Menu</h5>
 
 				<Menu ref="menu" :model="overlayMenuItems" :popup="true" />
-				<Button type="button" label="Options" icon="pi pi-angle-down" @click="toggleMenu" style="width: auto"/>
+				<Button label="Options" icon="pi pi-angle-down" @click="toggleMenu" style="width: auto"/>
 			</div>
 
 			<div class="card" @contextmenu="onContextRightClick">

@@ -161,7 +161,7 @@
 					</div>
 
 					<div class="p-col-12">
-						<Button class="p-ripple" label="Refresh" icon="pi pi-refresh"></Button>
+						<Button label="Refresh" icon="pi pi-refresh"></Button>
 					</div>
 				</div>
 			</div>
@@ -193,7 +193,7 @@
 								</div>
 							</div>
 
-							<Button class="p-ripple" label="Assign" style="width: 100%"></Button>
+							<Button label="Assign" style="width: 100%"></Button>
 						</div>
 					</div>
 				</div>
@@ -217,7 +217,7 @@
 							<label for="message">Message</label>
 							<Textarea id="message" ></Textarea>
 						</div>
-						<button type="button" label="Send" pButton pRipple></button>
+						<Button label="Send"></Button>
 					</div>
 				</div>
 
@@ -288,7 +288,7 @@
 						<span>Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.</span>
 					</li>
 					<li class="clearfix message-own">
-						<img src="assets/layout/images/profile-image.png" alt="ultima-layout"/>
+						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
 						<span>Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.</span>
 					</li>
 					<li class="clearfix message-from">
@@ -296,7 +296,7 @@
 						<span>Chillwave craft beer tote bag stumptown quinoa hashtag.</span>
 					</li>
 					<li class="clearfix message-own">
-						<img src="assets/layout/images/profile-image.png" alt="ultima-layout"/>
+						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
 						<span>Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.</span>
 					</li>
 					<li class="clearfix message-own">
@@ -307,7 +307,7 @@
 						<span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</span>
 					</li>
 					<li class="clearfix message-own">
-						<img src="assets/layout/images/profile-image.png" alt="ultima-layout"/>
+						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
 						<span>At vero eos et accusamus.</span>
 					</li>
 				</ul>
@@ -332,7 +332,7 @@
 							<p>Updated 1 minute ago</p>
 						</div>
 						<div class="p-col-6" style="text-align:right">
-							<Button class="p-ripple" label="Update" icon="pi pi-refresh"></Button>
+							<Button label="Update" icon="pi pi-refresh"></Button>
 						</div>
 					</div>
 				</div>
