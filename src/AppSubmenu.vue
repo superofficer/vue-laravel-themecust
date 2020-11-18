@@ -4,14 +4,14 @@
             <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to && !item.disabled}]" role="none">
                 <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" exact
                              @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" role="menuitem" v-ripple>
-                    <i :class="item.icon"></i>
+                    <i :class="['layout-menuitem-icon', item.icon]"></i>
                     <span>{{item.label}}</span>
                     <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
                     <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>
                 </router-link>
                 <a v-if="!item.to" :href="item.url||'#'" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target"
                    @click="onMenuItemClick($event,item,i)" @mouseenter="onMenuItemMouseEnter(i)" role="menuitem" v-ripple>
-                    <i :class="item.icon"></i>
+                    <i :class="['layout-menuitem-icon', item.icon]"></i>
                     <span>{{item.label}}</span>
                     <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
                     <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>

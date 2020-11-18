@@ -396,6 +396,16 @@ body {
                 border-right-color: darken($darkMenuBgColor, 5%);
             }
         }
+
+        li {
+            a {
+                &.rotated-icon {
+                    .layout-menuitem-icon {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
     }
 
     &.menu-layout-overlay {
