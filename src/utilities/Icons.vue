@@ -1,6 +1,6 @@
 <template>
 	<div class="card icons-demo">
-		<h3>Icons</h3>
+		<h4>Icons</h4>
 		<p>Ultima uses PrimeIcons v4.0, PrimeTek's new modern icon library.</p>
 
 		<h5>Getting Started</h5>

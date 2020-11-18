@@ -141,8 +141,8 @@
 				<DataTable :value="products" class="p-datatable-customers" v-model:expandedRows="expandedRows" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
 					<template #header>
 						<div class="table-header-container">
-							<Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="p-mr-2" />
-							<Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
+							<Button icon="pi pi-plus" label="Expand All" @click="expandAll" class="p-mr-2 p-mb-2" />
+							<Button icon="pi pi-minus" label="Collapse All" @click="collapseAll" class="p-mb-2" />
 						</div>
 					</template>
 					<Column :expander="true" headerStyle="width: 3rem" />

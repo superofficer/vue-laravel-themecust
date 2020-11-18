@@ -3,7 +3,7 @@
     <div class="p-grid spacing-demo">
         <div class="p-col-12">
             <div class="card">
-                <h3>Spacing</h3>
+                <h4>Spacing</h4>
                 <p><router-link to="grid">PrimeFlex</router-link> provides various spacing utilities to modify
                     an element's layout.</p>
 
