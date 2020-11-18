@@ -5,6 +5,14 @@
                 <h4>Current Version</h4>
                 <p>Vue 3.0.2 and PrimeVue 3.x</p>
 
+                <h4>Dependencies</h4>
+				<p>
+					Apollo has no direct dependency other than PrimeVue. More
+					information about dependencies is available at
+					<a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
+					article.
+				</p>
+
                 <h4>Getting Started</h4>
                 <p>Ultima is an application template for Vue based on the <a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
 					article.
@@ -23,7 +31,7 @@ yarn global add @vue/cli
 
 <pre v-code>
 <code>
-cd ultima-vue
+cd ultima
 npm install
 npm run serve
 
@@ -237,6 +245,12 @@ import './App.scss'; 	                            //your styles and overrides
 
                 <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on the fly by changing the path however
                     if this is not a requirement, you may also add them to the styles configuration above so they go inside the bundle.</p>
+
+                <h4>Integration with an Existing Non-CLI Project</h4>
+                <p>For an existing project that do not use CLI, setup steps are more or less similar. Start with installing the dependencies listed above in package.json</p>
+                <p>Copy the <i>src/assets</i> folder to your application and include the resources listed above with a module bundler like webpack or using link-script tags.</p>
+                <p>Finally copy the contents of App.vue to your application's main component template such as <i>app/index.html</i> along
+                    with the sub components which are AppMenu.vue, AppTopbar.vue and AppFooter.vue.</p>
 
                 <h4>Theme</h4>
                 <p>Ultima provides 12 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
