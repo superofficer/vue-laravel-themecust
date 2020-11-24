@@ -31,7 +31,6 @@ body {
     background-color: $maskBgColor;
     top: 0;
     left: 0;
-    z-index: 999999997;
     @include opacity(.7);
 }
 
@@ -425,7 +424,6 @@ body {
 
         &.layout-menu-overlay-active {
             .layout-menu {
-                z-index: 999999999;
                 transform: translateX(0);
             }
 
@@ -445,8 +443,6 @@ body {
         }
 
         .topbar {
-            z-index: 999999998;
-
             .topbar-right {
                 #menu-button {
                     i {
@@ -1340,12 +1336,9 @@ body {
             &.layout-menu-static-active {
                 .layout-menu {
                     transform: translateX(0);
-                    z-index: 999999999;
                 }
 
                 .topbar {
-                    z-index: 999999998;
-
                     .topbar-right {
                         #menu-button {
                             i {
