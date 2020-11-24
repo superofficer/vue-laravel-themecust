@@ -793,7 +793,10 @@ body {
                 float: right;
                 position: relative;
                 margin-left: 1em;
-                margin-top: 4px;
+
+                &:not(.profile-item){
+                    margin-top: 4px;
+                }
 
                 > button {
                     position: relative;
