@@ -51,7 +51,7 @@
 					<Column field="status" header="Status" :sortable="true">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
-							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+							<span :class="'customer-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
 					<Column field="activity" header="Activity" :sortable="true">
@@ -120,7 +120,7 @@
 					<Column field="status" header="Status" :sortable="true">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
-							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+							<span :class="'customer-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
 					<Column field="activity" header="Activity" :sortable="true">
@@ -178,7 +178,7 @@
 					<Column field="inventoryStatus" header="Status" :sortable="true">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
-							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
+							<span :class="'product-badge status-' + (slotProps.data.inventoryStatus ? slotProps.data.inventoryStatus.toLowerCase() : '')">{{slotProps.data.inventoryStatus}}</span>
 						</template>
 					</Column>
 					<template #expansion="slotProps">
@@ -212,7 +212,7 @@
 								<Column field="status" header="Status" :sortable="true">
 									<template #body="slotProps">
 										<span class="p-column-title">Status</span>
-										<span :class="'order-badge order-' + slotProps.data.status.toLowerCase()">{{slotProps.data.status}}</span>
+										<span :class="'order-badge order-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
 									</template>
 								</Column>
 								<Column headerStyle="width:4rem">
@@ -259,7 +259,7 @@
 					<Column field="status" header="Status">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
-							<span :class="'customer-badge status-' + slotProps.data.status">{{slotProps.data.status}}</span>
+							<span :class="'customer-badge status-' + (slotProps.data.status ? slotProps.data.status.toLowerCase() : '')">{{slotProps.data.status}}</span>
 						</template>
 					</Column>
 					<Column field="date" header="Date">

@@ -68,7 +68,7 @@
 					<Column field="inventoryStatus" header="Status" :sortable="true">
 						<template #body="slotProps">
 							<span class="p-column-title">Status</span>
-							<span :class="'product-badge status-' + slotProps.data.inventoryStatus.toLowerCase()">{{slotProps.data.inventoryStatus}}</span>
+							<span :class="'product-badge status-' + (slotProps.data.inventoryStatus ? slotProps.data.inventoryStatus.toLowerCase() : '')">{{slotProps.data.inventoryStatus}}</span>
 						</template>
 					</Column>
 					<Column>
@@ -89,6 +89,23 @@
 					<div class="p-field">
 						<label for="description">Description</label>
 						<Textarea id="description" v-model="product.description" required="true" rows="3" cols="20" />
+					</div>
+
+					<div class="p-field">
+						<label for="inventoryStatus" class="p-mb-3">Inventory Status</label>
+						<Dropdown id="inventoryStatus" v-model="product.inventoryStatus" :options="statuses" optionLabel="label" placeholder="Select a Status">
+							<template #value="slotProps">
+								<div v-if="slotProps.value && slotProps.value.value">
+									<span :class="'product-badge status-' +slotProps.value.value">{{slotProps.value.label}}</span>
+								</div>
+								<div v-else-if="slotProps.value && !slotProps.value.value">
+									<span :class="'product-badge status-' +slotProps.value.toLowerCase()">{{slotProps.value}}</span>
+								</div>
+								<span v-else>
+									{{slotProps.placeholder}}
+								</span>
+							</template>
+						</Dropdown>
 					</div>
 
 					<div class="p-field">
@@ -169,7 +186,12 @@ export default {
 			product: {},
 			selectedProducts: null,
 			filters: {},
-			submitted: false
+			submitted: false,
+			statuses: [
+				{label: 'INSTOCK', value: 'instock'},
+				{label: 'LOWSTOCK', value: 'lowstock'},
+				{label: 'OUTOFSTOCK', value: 'outofstock'}
+			]
 		}
 	},
 	productService: null,
@@ -197,6 +219,7 @@ export default {
 
 			if (this.product.name.trim()) {
 				if (this.product.id) {
+					this.product.inventoryStatus = this.product.inventoryStatus.value;
 					this.products[this.findIndexById(this.product.id)] = this.product;
 					this.$toast.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
 				}
