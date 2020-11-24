@@ -63,6 +63,17 @@
                 <label for="top">Overlay</label>
             </div>
 
+            <h5>Theme Modes</h5>
+            <div class="p-field-radiobutton">
+                <RadioButton id="compactMode1" name="compactMode" :value="true" v-model="d_compactMode" @change="changeThemeStyle($event, true)" />
+                <label for="compactMode1">Compact</label>
+            </div>
+
+            <div class="p-field-radiobutton">
+                <RadioButton id="compactMode2" name="compactMode" :value="false" v-model="d_compactMode" @change="changeThemeStyle($event, false)" />
+                <label for="compactMode2">Standart</label>
+            </div>
+
             <h5>Themes</h5>
             <div class="layout-themes">
                 <div v-for="t of themes" :key="t.name">
@@ -78,7 +89,7 @@
 
 <script>
 export default {
-    emits: ['menu-mode-change', 'menu-color-change', 'profile-mode-change', 'theme-change'],
+    emits: ['menu-mode-change', 'menu-color-change', 'profile-mode-change', 'theme-change', 'change-theme-style'],
     props: {
         layoutMode: {
             type: String,
@@ -99,6 +110,10 @@ export default {
         themes: {
             type: Array,
             default: null
+        },
+        compactMode: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -106,7 +121,8 @@ export default {
             active: false,
             d_layoutMode: this.layoutMode,
             d_darkMenu: this.darkMenu,
-            d_profileMode: this.profileMode
+            d_profileMode: this.profileMode,
+            d_compactMode: this.compactMode
         }
     },
     watch: {
@@ -124,6 +140,9 @@ export default {
         },
         profileMode(newValue) {
             this.d_profileMode = newValue;
+        },
+        compactMode(newValue) {
+            this.d_compactMode = newValue;
         }
     },
     outsideClickListener: null,
@@ -182,6 +201,10 @@ export default {
         },
         isOutsideClicked(event) {
             return !(this.$el.isSameNode(event.target) || this.$el.contains(event.target));
+        },
+        changeThemeStyle(event, compactMode) {
+            this.$emit('change-theme-style', compactMode);
+            event.preventDefault();
         }
     },
     computed: {

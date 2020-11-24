@@ -25,7 +25,7 @@
 			</div>
 
 			<AppConfig v-model:layoutMode="layoutMode" @menu-mode-change="onMenuModeChange" v-model:darkMenu="darkMenu" @menu-color-change="onMenuColorChange"
-						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
+						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" v-model:compactMode="compactMode" @change-theme-style="changeThemeStyle" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
 
 			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
 
@@ -56,6 +56,7 @@ export default {
 			topbarMenuActive: false,
 			activeTopbarItem: null,
 			darkMenu: false,
+			compactMode: false,
 			theme: 'indigo',
 			themeColors: [
 				{ name: 'Indigo Pink', file: 'indigo', image: 'indigo-pink.svg' },
@@ -291,15 +292,18 @@ export default {
 		},
 		changeTheme(theme) {
 			this.theme = theme;
-			this.changeStyleSheetUrl('layout-css', theme, 'layout');
-			this.changeStyleSheetUrl('theme-css', theme, 'theme');
+			if (this.compactMode) {
+				this.changeStyleSheetUrl('theme-css', 'theme-' + theme + '-compact.css');
+			} else {
+				this.changeStyleSheetUrl('theme-css', 'theme-' + theme + '.css');
+			}
+			this.changeStyleSheetUrl('layout-css', 'layout-' + theme + '.css');
 		},
-		changeStyleSheetUrl(id, value, prefix) {
-			let element = document.getElementById(id);
-			let urlTokens = element.getAttribute('href').split('/');
-			urlTokens[urlTokens.length - 1] = prefix + '-' + value + '.css';
-			let newURL = urlTokens.join('/');
-
+		changeStyleSheetUrl(id, value) {
+			const element = document.getElementById(id);
+			const urlTokens = element.getAttribute('href').split('/');
+			urlTokens[urlTokens.length - 1] = value;		
+			const newURL = urlTokens.join('/');		
 			this.replaceLink(element, newURL);
 		},
 		replaceLink(linkElement, href) {
@@ -315,6 +319,15 @@ export default {
 				linkElement.remove();
 				cloneLinkElement.setAttribute('id', id);
 			});
+		},
+		changeThemeStyle(mode) {
+			this.compactMode = mode;
+			if (mode) {
+				this.changeStyleSheetUrl('theme-css', 'theme-' + this.theme + '-compact.css');
+			}
+			else {
+				this.changeStyleSheetUrl('theme-css', 'theme-' + this.theme + '.css');
+			}
 		}
     },
     computed: {
