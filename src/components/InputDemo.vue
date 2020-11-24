@@ -132,18 +132,9 @@
 
 				<h5>MultiSelect</h5>
 				<MultiSelect v-model="multiselectValue" :options="multiselectValues" optionLabel="name" placeholder="Select Countries" :filter="true" class="multiselect-custom">
-					<template #value="slotProps">
-						<div class="country-item country-item-value" v-for="option of slotProps.value" :key="option.code">
-							<span :class="'flag flag-' + option.code.toLowerCase()" />
-							<div>{{option.name}}</div>
-						</div>
-						<template v-if="!slotProps.value || slotProps.value.length === 0">
-							Select Countries
-						</template>
-					</template>
 					<template #option="slotProps">
 						<div class="country-item">
-							<span :class="'flag flag-' + slotProps.option.code.toLowerCase()" />
+							<img src="assets/demo/flags/flag_placeholder.png" :class="'flag flag-' + slotProps.option.code.toLowerCase()" />
 							<div>{{slotProps.option.name}}</div>
 						</div>
 					</template>
@@ -293,35 +284,15 @@
 </script>
 
 <style scoped lang="scss">
-	.p-multiselect {
+	::v-deep(.p-multiselect) {
 		min-width: 15rem;
 	}
-
-	.multiselect-custom {
-
-		.p-multiselect-label:not(.p-placeholder) {
-			padding-top: .25rem;
-			padding-bottom: .25rem;
-		}
-
-		.country-item {
-			display: flex;
-			align-items: center;
-
-			span.flag {
-				width: 18px;
-				height: 12px;
-				margin-right: .5rem;
-				margin-left: .5rem;
-			}
-		}
-
-		.country-item-value {
-			border-radius: 3px;
-			display: inline-flex;
-			margin-right: .5rem;
-			background-color: var(--primary-color);
-			color: var(--primary-color-text);
-		}
+	::v-deep(.multiselect-custom .country-item) {
+		display: flex;
+		align-items: center;
+	}
+	::v-deep(.multiselect-custom .country-item img.flag) {
+		width: 18px;
+		margin-right: .5rem;
 	}
 </style>
