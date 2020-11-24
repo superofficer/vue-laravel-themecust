@@ -217,7 +217,7 @@
 				calendarValue: null,
 				inputNumberValue: null,
 				chipsValue: null,
-				sliderValue: null,
+				sliderValue: 50,
 				ratingValue: null,
 				colorValue: '1976D2',
 				radioValue: null,
