@@ -77,7 +77,7 @@ export default {
             menu : [
 				{label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
 				{
-					label: 'UI Kit', icon: 'pi pi-fw pi-sitemap', badge: 6,
+					label: 'UI Kit', icon: 'pi pi-fw pi-star-o', badge: 6,
 					items: [
 						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
 						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
@@ -97,7 +97,7 @@ export default {
 					]
 				},
 				{
-					label: "Utilities", icon:'pi pi-fw pi-globe',
+					label: "Utilities", icon:'pi pi-fw pi-compass',
 					items: [
 						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
 						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
@@ -111,11 +111,11 @@ export default {
 					]
 				},
 				{
-					label: 'Pages', icon: 'pi pi-fw pi-clone', badge: 8, badgeStyleClass: 'teal-badge',
+					label: 'Pages', icon: 'pi pi-fw pi-briefcase', badge: 8, badgeStyleClass: 'teal-badge',
 					items: [
 						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
 						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
-						{label: 'Landing', icon: 'pi pi-fw pi-user-plus', url: 'assets/pages/landing.html', target: '_blank'},
+						{label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
 						{label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
 						{label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
 						{label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
