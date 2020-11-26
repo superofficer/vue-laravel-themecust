@@ -90,6 +90,12 @@ export default {
             if (item.items) {
                 this.activeIndex = index === this.activeIndex ? null : index;
             }
+			else {
+				const ink = this.getInk(event.currentTarget);
+				if (ink) {
+					this.removeClass(ink, 'p-ink-active');
+				}
+			}
 
 			this.$emit('menuitem-click', {
 				originalEvent: event,
@@ -109,7 +115,21 @@ export default {
 		},
         visible(item) {
             return (typeof item.visible === 'function' ? item.visible() : item.visible !== false);
-        }
+        },
+		getInk(el) {
+			for (let i = 0; i < el.children.length; i++) {
+				if (typeof el.children[i].className === 'string' && el.children[i].className.indexOf('p-ink') !== -1) {
+					return el.children[i];
+				}
+			}
+			return null;
+		},
+		removeClass(element, className) {
+			if (element.classList)
+				element.classList.remove(className);
+			else
+				element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+		}
 	},
 	components: {
 		"AppSubmenu": this
