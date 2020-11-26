@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.0 
+## 3.0.0 (2020-11-26)
 
 **Migration Guide**
 
