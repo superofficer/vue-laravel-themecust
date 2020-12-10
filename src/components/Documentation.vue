@@ -17,8 +17,7 @@
                 <p>Ultima is an application template for Vue based on the <a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
 					article.
                 </p>
-<pre v-code>
-<code>
+<pre v-code><code>
 npm install -g @vue/cli
 
 # OR
@@ -29,8 +28,7 @@ yarn global add @vue/cli
 
                 <p>Once CLI is ready in your system, extract the contents of the Ultima zip file distribution, cd to the directory and install the libraries from npm.</p>
 
-<pre v-code>
-<code>
+<pre v-code><code>
 cd ultima
 npm install
 npm run serve
@@ -41,8 +39,7 @@ npm run serve
 
                 <h4>Important CLI Commands</h4>
                 <p>Following commands are derived from create-app-app.</p>
-<pre v-code>
-<code>
+<pre v-code><code>
 "npm run serve": Starts the development server
 "npm run build": Builds the application for deployment.
 "npm run lint": Executes the lint checks.
@@ -58,8 +55,7 @@ npm run serve
                 <p>Main layout is the template of the <i>App.vue</i>, it is divided into a couple of child components such as topbar, content, menu and footer. Here is template of the
                     <i>App.vue</i> component that implements the logic such as menu state, layout modes and other configurable options.
                 </p>
-<pre v-code>
-<code>
+<pre v-code><code>
 &lt;template&gt;
     &lt;div class="layout-wrapper" @click="onDocumentClick"&gt;
         &lt;div :class="layoutContainerClass"&gt;
@@ -104,8 +100,7 @@ npm run serve
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
 
 <div style="overflow: auto; height: 400px; margin-bottom: 10px">
-<pre v-code.script>
-<code>
+<pre v-code.script><code>
 data() &#123;
     return &#123;
         menu : [
@@ -226,8 +221,7 @@ data() &#123;
 
 				<p>Install PrimeVue</p>
 
-<pre v-code>
-<code>
+<pre v-code><code>
 npm install primevue@3.0.1 --save
 npm install	primeicons@latest --save
 
@@ -235,8 +229,7 @@ npm install	primeicons@latest --save
 
                 <p>Add PrimeVue CSS at styles section in main.js.</p>
 
-<pre v-code>
-<code>
+<pre v-code><code>
 import 'primevue/resources/primevue.min.css';   	//required: PrimeVue components
 import 'primeicons/primeicons.css';	 				//required: PrimeIcons
 import './App.scss'; 	                            //your styles and overrides
@@ -282,8 +275,7 @@ import './App.scss'; 	                            //your styles and overrides
 
                 <p>Here are the variables required to create a theme which are the primary and accent colors along with their shades.</p>
 
-<pre v-code.css>
-<code>
+<pre v-code.css><code>
 $primaryColor:#3F51B5;
 $primaryTextColor:#ffffff;
 $accentColor:#ff4081;
@@ -295,16 +287,14 @@ $accentTextColor:#ffffff;
 
                 <p>If you prefer to compile manually, an example sass command to compile the css would be;</p>
 
-<pre v-code>
-<code>
+<pre v-code><code>
 sass public/assets/theme-myown/theme.scss:public/assets/theme-myown/theme.css
 
 </code></pre>
 
                 <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
                 so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
-<pre v-code>
-<code>
+<pre v-code><code>
 sass --watch public/assets:public/assets
 
 </code></pre>
@@ -321,8 +311,7 @@ sass --watch public/assets:public/assets
 
                 <p>Here are the variables required to create a layout, you may need to change the last line according to the
                     relative path of the sass folder in your application.</p>
-<pre v-code.css>
-<code>
+<pre v-code.css><code>
 $primaryColor: #3F51B5;
 $primaryDarkColor: #283593;
 $primaryLightColor: #9fa8da;
@@ -344,8 +333,7 @@ $horizontalLightMenuRouterLinkActiveColor: #9fa8da;
                 <p>In case you would like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
                 <h5>sass/layout/_variables.scss</h5>
-<pre v-code.css>
-<code>
+<pre v-code.css><code>
 /* Common */
 //general
 $fontSize:14px;
@@ -392,8 +380,7 @@ $lineHeight:18px;
 
                 <h5>sass/theme/_variables.scss</h5>
 <div style="overflow: auto; height: 400px; margin-bottom: 10px">
-<pre v-code.css>
-<code>
+<pre v-code.css><code>
 $emphasis-high:rgba(0,0,0.87);
 $emphasis-medium:rgba(0,0,0,.60);
 $emphasis-low:rgba(0,0,0,.38);
@@ -1131,8 +1118,7 @@ $galleriaThumbnailNavigatorHeight:2rem;
                 <h4>Menu Item Badges</h4>
                 <p>Badges are numerical indicators associated with a link.
                     The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
-<pre v-code>
-<code>
+<pre v-code><code>
 label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
 
 </code></pre>
@@ -1155,8 +1141,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 </ul>
 
                 <p>For example to create a horizontal menu, the div element should be in following form;</p>
-<pre v-code>
-<code>
+<pre v-code><code>
 &lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
 
 </code></pre>
@@ -1167,8 +1152,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                 <h4>Dark Menu</h4>
                 <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
 
-<pre v-code>
-<code>
+<pre v-code><code>
 &lt;div className="layout-menu layout-menu-dark"&gt;
 
 </code></pre>
