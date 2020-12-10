@@ -21,8 +21,8 @@
                     <div class="layout-menu-tooltip-text">{{item.label}}</div>
                 </div>
                 <transition name="layout-submenu-container">
-                    <AppSubmenu v-show="activeIndex === i" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
-                                :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></AppSubmenu>
+                    <appsubmenu v-show="activeIndex === i" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
+                                :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></appsubmenu>
                 </transition>
             </li>
             <li class="p-menu-separator" :style="item.style" v-if="visible(item) && item.separator" :key="'separator' + i" role="separator"></li>
@@ -33,7 +33,7 @@
 import EventBus from './event-bus';
 
 export default {
-	name: 'AppSubmenu',
+	name: 'appsubmenu',
 	emits: ['menuitem-click', 'root-menuitem-click'],
 	props: {
 		items: Array,
@@ -130,9 +130,6 @@ export default {
 			else
 				element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
 		}
-	},
-	components: {
-		"AppSubmenu": this
 	}
 }
 </script>
