@@ -1,5 +1,5 @@
 <template>
-	<div class="flexgrid-demo">
+	<div class="card flexgrid-demo">
 		<h4>PrimeFlex grid system is a lightweight flex based responsive layout utility optimized for mobile phones, tablets and desktops.</h4>
 
 		<h5>Basic</h5>
