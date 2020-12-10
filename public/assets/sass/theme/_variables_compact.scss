@@ -51,6 +51,7 @@ $messagePadding: 1rem 1.25rem;
 $messageIconFontSize:1.5rem;
 $messageCloseIconWidth:2.25rem;
 $messageCloseIconHeight:2.25rem;
+$inlineMessagePadding:.75rem .75rem;
 
 $toastPadding:1.25rem;
 
@@ -58,11 +59,14 @@ $toastCloseIconWidth:1.5rem;
 $toastCloseIconHeight:1.5rem;
 
 $dialogHeaderPadding:1.25rem;
-$dialogContentPadding: 0 1.25rem 1.25rem 1.25rem;
+$dialogContentPadding:0 1.25rem 1.25rem 1.25rem;
 $dialogFooterPadding:.75rem 1.25rem;
 
 $dialogHeaderActionIconWidth:2.25rem;
 $dialogHeaderActionIconHeight:2.25rem;
+
+$confirmPopupContentPadding:1.25rem;
+$confirmPopupFooterPadding:0 1.25rem .75rem 1.25rem;
 
 $sidebarCloseIconWidth:2.25rem;
 $sidebarCloseIconHeight:2.25rem;
@@ -84,3 +88,12 @@ $menubarButtonHeight:2.25rem;
 
 $carouselNavIconWidth:2.25rem;
 $carouselNavIconHeight:2.25rem;
+
+$dividerHorizontalMargin:1rem 0;
+$dividerHorizontalPadding:0 1rem;
+$dividerVerticalMargin:0 1rem;
+$dividerVerticalPadding:1rem 0;
+
+$scrollTopWidth:2.75rem;
+$scrollTopHeight:2.75rem;
+$scrollTopFontSize:1.15rem;
