@@ -97,7 +97,7 @@
 					</div>
 				</div>
 
-				<h5 style="margin-top: 0">Checkbox</h5>
+				<h5>Checkbox</h5>
 				<div class="p-grid">
 					<div class="p-col-12 p-md-4">
 						<div class="p-field-checkbox">
@@ -119,7 +119,7 @@
 					</div>
 				</div>
 
-				<h5 style="margin-top: 0">Input Switch</h5>
+				<h5>Input Switch</h5>
 				<InputSwitch v-model="switchValue" />
 			</div>
 
@@ -143,7 +143,7 @@
 
 			<div class="card">
 				<h5>ToggleButton</h5>
-				<ToggleButton v-model="toggleValue" onLabel="Yes" offLabel="No"/>
+				<ToggleButton v-model="toggleValue" onLabel="Yes" offLabel="No" :style="{width: '10em'}"/>
 
 				<h5>SelectButton</h5>
 				<SelectButton v-model="selectButtonValue1" :options="selectButtonValues1" optionLabel="name" />
