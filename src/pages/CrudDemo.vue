@@ -203,7 +203,9 @@ export default {
 	},
 	methods: {
 		formatCurrency(value) {
-			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+			if(value)
+				return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+			return;
 		},
 		openNew() {
 			this.product = {};
@@ -219,7 +221,7 @@ export default {
 
 			if (this.product.name.trim()) {
 				if (this.product.id) {
-					this.product.inventoryStatus = this.product.inventoryStatus.value;
+					this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
 					this.products[this.findIndexById(this.product.id)] = this.product;
 					this.$toast.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
 				}
@@ -227,7 +229,7 @@ export default {
 					this.product.id = this.createId();
 					this.product.code = this.createId();
 					this.product.image = 'product-placeholder.svg';
-					this.product.inventoryStatus = 'INSTOCK';
+					this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
 					this.products.push(this.product);
 					this.$toast.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
 				}
