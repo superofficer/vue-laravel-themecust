@@ -5,6 +5,8 @@ import router from './router';
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
+import Badge from 'primevue/badge';
+import BadgeDirective from "primevue/badgedirective";
 import Button from 'primevue/button';
 import Breadcrumb from 'primevue/breadcrumb';
 import Calendar from 'primevue/calendar';
@@ -117,12 +119,14 @@ app.use(ToastService);
 app.use(router);
 
 app.directive('tooltip', Tooltip);
+app.directive('badge', BadgeDirective);
 app.directive('ripple', Ripple);
 app.directive('code', CodeHighlight);
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
 app.component('AutoComplete', AutoComplete);
+app.component('Badge', Badge);
 app.component('Breadcrumb', Breadcrumb);
 app.component('Button', Button);
 app.component('Calendar', Calendar);

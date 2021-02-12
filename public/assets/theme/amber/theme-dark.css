@@ -1,0 +1,20 @@
+/* Error: Undefined variable.
+ *    ,
+ * 17 |         background: $passwordMeterBg;
+ *    |                     ^^^^^^^^^^^^^^^^
+ *    '
+ *   public/assets/sass/theme/designer/components/input/_password.scss 17:21  @import
+ *   public/assets/sass/theme/designer/_components.scss 19:9                  @import
+ *   public/assets/sass/theme/_theme_dark.scss 4:9                            @import
+ *   public/assets/theme/amber/theme-dark.scss 7:9                            root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 17 \2502          background: $passwordMeterBg;\a    \2502                      ^^^^^^^^^^^^^^^^\a    \2575 \a   public/assets/sass/theme/designer/components/input/_password.scss 17:21  @import\a   public/assets/sass/theme/designer/_components.scss 19:9                  @import\a   public/assets/sass/theme/_theme_dark.scss 4:9                            @import\a   public/assets/theme/amber/theme-dark.scss 7:9                            root stylesheet";
+}
