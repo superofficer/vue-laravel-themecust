@@ -2,6 +2,7 @@ import { createApp, h } from 'vue';
 import { reactive } from 'vue';
 import App from './App.vue';
 import router from './router';
+import PrimeVue from 'primevue/config';
 import AutoComplete from 'primevue/autocomplete';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
@@ -112,11 +113,12 @@ const app = createApp({
     render () { return h(this.ViewComponent) }
 });
 
-app.config.globalProperties.$appState = reactive({ inputStyle: 'outlined' });
-app.config.globalProperties.$primevue = reactive({ ripple: true });
-
+app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router);
+
+app.config.globalProperties.$appState = reactive({ inputStyle: 'outlined' });
+// app.config.globalProperties.$primevue = reactive({ ripple: true });
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);

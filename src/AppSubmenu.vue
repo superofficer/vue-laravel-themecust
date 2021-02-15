@@ -1,28 +1,31 @@
 <template>
 	<ul v-if="items" role="menu">
         <template v-for="(item,i) of items">
-            <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[item.badgeStyleClass,{'active-menuitem': activeIndex === i && !item.to && !item.disabled}]" role="none">
+            <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="['layout-root-menuitem', {'active-menuitem': activeIndex === i && !item.to && !item.disabled}]" role="menuitem">
+				<div v-if="root">
+					<span class="layout-menuitem-text">{{item.label}}</span>
+				</div>
                 <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" exact
-                             @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" role="menuitem" v-ripple>
+                   @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" v-ripple>
                     <i :class="['layout-menuitem-icon', item.icon]"></i>
-                    <span>{{item.label}}</span>
-                    <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
-                    <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>
+                    <span class="layout-menuitem-text">{{item.label}}</span>
+					<span class="p-badge p-component p-badge-no-gutter" :class="item.badgeStyleClass" v-if="item.badge && !root">{{item.badge}}</span>
+                    <i v-if="item.items" class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                 </router-link>
                 <a v-if="!item.to" :href="item.url||'#'" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target"
-                   @click="onMenuItemClick($event,item,i)" @mouseenter="onMenuItemMouseEnter(i)" role="menuitem" v-ripple>
+                   @click="onMenuItemClick($event,item,i)" @mouseenter="onMenuItemMouseEnter(i)" v-ripple>
                     <i :class="['layout-menuitem-icon', item.icon]"></i>
-                    <span>{{item.label}}</span>
-                    <span v-if="item.badge" class="menuitem-badge">{{item.badge}}</span>
-                    <i v-if="item.items" class="pi pi-fw pi-angle-down submenu-icon"></i>
+                    <span class="layout-menuitem-text">{{item.label}}</span>
+					<span class="p-badge p-component p-badge-no-gutter" :class="item.badgeStyleClass" v-if="item.badge && !root">{{item.badge}}</span>
+                    <i v-if="item.items" class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                 </a>
-                <div v-if="root" class="layout-menu-tooltip">
-                    <div class="layout-menu-tooltip-arrow"></div>
-                    <div class="layout-menu-tooltip-text">{{item.label}}</div>
-                </div>
-                <transition name="layout-submenu-container">
-                    <appsubmenu v-show="activeIndex === i" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :layoutMode="layoutMode"
-                                :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></appsubmenu>
+				<span class="layout-menuitem-tooltip p-tooltip">
+					<span class="layout-menuitem-tooltip-arrow p-tooltip-arrow"></span>
+					<span class="layout-menuitem-tooltip-text p-tooltip-text">{{item.label}}</span>
+				</span>
+                <transition name="layout-menu">
+                    <appsubmenu v-show="item.items && (root && (!isSlim() || (isSlim() && (mobileMenuActive || activeIndex !== null))) ? true : activeIndex === i)" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :menuMode="menuMode"
+                            :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></appsubmenu>
                 </transition>
             </li>
             <li class="p-menu-separator" :style="item.style" v-if="visible(item) && item.separator" :key="'separator' + i" role="separator"></li>
@@ -49,7 +52,7 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		layoutMode: String,
+		menuMode: String,
 	},
 	data() {
 		return {
@@ -108,7 +111,7 @@ export default {
 			}
         },
 		isHorizontalOrSlim() {
-			return (this.layoutMode === 'horizontal' || this.layoutMode === 'slim');
+			return (this.menuMode === 'horizontal' || this.menuMode === 'slim');
 		},
 		isMobile() {
 			return window.innerWidth <= 640;
@@ -129,7 +132,10 @@ export default {
 				element.classList.remove(className);
 			else
 				element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-		}
+		},
+		isSlim() {
+			return this.menuMode === 'slim';
+		},
 	}
 }
 </script>

@@ -31,6 +31,6 @@ yarn-error.log*
 
 /public/assets/layout/css/layout-*.css
 /public/assets/layout/css/layout-*.css.map
-/public/assets/theme/theme-*.css
-/public/assets/theme/theme-*.css.map
+/public/assets/theme/**/theme-*.css
+/public/assets/theme/**/theme-*.css.map
 /public/assets/sass/theme/designer

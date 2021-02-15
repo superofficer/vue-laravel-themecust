@@ -1,29 +1,30 @@
 <template>
-	<div class="layout-breadcrumb">
-		<ul>
-			<li><button class="p-link" @click="home"><i class="pi pi-home"></i></button></li>
-			<li>{{$route.path}}</li>
-		</ul>
+	<div class="layout-breadcrumb-container p-d-flex p-jc-between p-ai-center p-shadow-1">
+		<Breadcrumb :home="home" :model="items" class="layout-breadcrumb p-pl-4 p-py-2"></Breadcrumb>
 
-		<div class="layout-breadcrumb-options">
-			<button class="p-link" title="Backup">
-				<i class="pi pi-cloud-upload"></i>
-			</button>
-			<button class="p-link" title="Bookmark">
-				<i class="pi pi-bookmark"></i>
-			</button>
-			<button class="p-link" title="Logout">
-				<i class="pi pi-power-off"></i>
-			</button>
+		<div class="layout-breadcrumb-buttons p-d-flex p-ai-center p-pr-3">
+			<Button icon="pi pi-cloud-upload" class="p-button-rounded p-button-text p-button-plain p-mr-1"></Button>
+			<Button icon="pi pi-bookmark" class="p-button-rounded p-button-text p-button-plain p-mr-1"></Button>
+			<Button icon="pi pi-power-off" class="p-button-rounded p-button-text p-button-plain p-mr-1"></Button>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
-		methods: {
-			home() {
-				window.location = "/#/"
+		data() {
+			return {
+				home: {icon: 'pi pi-home', to: '/'},
+				items: []
+			}
+		},
+		watch: {
+			$route() {
+				this.items = [];
+				const x = this.$router.currentRoute._value.meta.breadcrumb[0];
+				for(let pro in x) {
+					this.items.push({label: x[pro]})
+				}
 			}
 		}
 	}

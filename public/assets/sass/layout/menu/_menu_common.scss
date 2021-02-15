@@ -127,6 +127,10 @@
                         @include nested-submenu-indents(.875rem, 2, 5);
                     }
                 }
+
+                .layout-menuitem-tooltip {
+                    display: none;
+                }
             }
         }
     }

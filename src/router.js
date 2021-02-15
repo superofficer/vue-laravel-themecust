@@ -7,13 +7,30 @@ const routes = [
         exact: true,
         component: () => import('./components/Dashboard.vue'),
         meta: {
-            breadcrumb: [{ parent: 'Dashboard', label: 'Dashboard' }],
+            breadcrumb: [{ label: 'Dashboard' }],
+        },
+    },
+    {
+        path: '/favorites/dashboardanalytics',
+        name: 'dashboardanalytics',
+        exact: true,
+        component: () => import('./components/DashboardAnalytics.vue'),
+        meta: {
+            breadcrumb: [{ label: 'Dashboard Analytics' }],
         },
     },
     {
         path: '/formlayout',
         name: 'formlayout',
         component: () => import('./components/FormLayoutDemo.vue'),
+        meta: {
+            breadcrumb: [{ parent: 'UI Kit', label: 'Form Layout' }],
+        },
+    },
+    {
+        path: '/invalidstate',
+        name: 'invalidstate',
+        component: () => import('./components/InvalidStateDemo.vue'),
         meta: {
             breadcrumb: [{ parent: 'UI Kit', label: 'Form Layout' }],
         },
@@ -56,6 +73,14 @@ const routes = [
         component: () => import('./components/ListDemo.vue'),
         meta: {
             breadcrumb: [{ parent: 'UI Kit', label: 'List' }],
+        },
+    },
+    {
+        path: '/timeline',
+        name: 'timeline',
+        component: () => import('./pages/TimelineDemo.vue'),
+        meta: {
+            breadcrumb: [{ parent: 'Pages', label: 'Timeline' }],
         },
     },
     {
@@ -261,6 +286,14 @@ const routes = [
         },
     },
     {
+        path: '/contactus',
+        name: 'contactus',
+        component: () => import('./pages/ContactUsDemo.vue'),
+        meta: {
+            breadcrumb: [{ parent: 'Pages', label: 'Contact Us' }],
+        },
+    },
+    {
         path: '/empty',
         name: 'empty',
         component: () => import('./components/EmptyPage.vue'),
@@ -300,6 +333,11 @@ const routes = [
         path: '/wizard',
         name: 'wizard',
         component: () => import('./pages/Wizard.vue')
+    },
+    {
+        path: '/landing',
+        name: 'landing',
+        component: () => import('./pages/Landing.vue')
     }
 ];
 

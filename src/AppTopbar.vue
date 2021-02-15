@@ -1,196 +1,294 @@
 <template>
-	<div class="topbar clearfix">
-		<div class="topbar-left">
-			<div class="logo"></div>
+	<div class="layout-topbar p-shadow-4">
+		<div class="layout-topbar-left">
+			<a class="layout-topbar-logo" href="/">
+				<img id="logo" src="assets/layout/images/logo-light.svg" alt="ultima-layout" style="height: 2.25rem">
+			</a>
+
+			<a class="layout-menu-button p-shadow-6" @click="onMenuButtonClick($event)" v-ripple>
+				<i class="pi pi-chevron-right"></i>
+			</a>
+
+			<a class="layout-topbar-mobile-button" @click="onTopbarMobileButtonClick($event)" v-ripple>
+				<i class="pi pi-ellipsis-v fs-large"></i>
+			</a>
 		</div>
-		<div class="topbar-right">
-			<button class="p-link" id="menu-button" @click="onMenuButtonClick">
-				<i class="pi pi-angle-left"></i>
-			</button>
 
-			<button class="p-link" id="rightpanel-menu-button" @click="onRightPanelButtonClick">
-				<i class="pi pi-ellipsis-v"></i>
-			</button>
+		<div class="layout-topbar-right" :class="{'layout-topbar-mobile-active': mobileTopbarActive}">
+			<div class="layout-topbar-actions-left">
+				<MegaMenu :model="items" class="layout-megamenu"></MegaMenu>
+			</div>
 
-			<button class="p-link" id="topbar-menu-button" @click="onTopbarMenuButtonClick">
-				<i class="pi pi-bars"></i>
-			</button>
-			<ul :class="topbarItemsClass">
-				<li v-if="profileMode === 'top' || horizontal"
-					:class="['profile-item', {'active-top-menu': activeTopbarItem === 'profile'}]">
-					<button class="p-link" @click="onTopbarItemClick($event,'profile')">
-						<img class="profile-image" src="assets/layout/images/avatar.png" alt="Profile"/>
-						<span class="topbar-item-name">Jane Williams</span>
-					</button>
+			<div class="layout-topbar-actions-right">
+				<ul class="layout-topbar-items">
+					<li class="layout-topbar-item layout-search-item">
+						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'search')" v-ripple>
+							<i class="pi pi-search fs-large"></i>
+						</a>
 
-					<transition name="layout-submenu-container">
-						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'profile'">
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-user"></i>
-									<span>Profile</span>
-								</button>
+						<div class="layout-search-panel p-inputgroup" v-show="search">
+							<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+							<InputText type="text" placeholder="Search" @click="search = true;" @keydown="onSearchKeydown($event)" />
+							<span class="p-inputgroup-addon">
+								<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="search = false;"></Button>
+							</span>
+						</div>
+					</li>
+
+					<li class="layout-topbar-item notifications">
+						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'notifications')" v-ripple>
+							<span class="p-overlay-badge" v-badge.warning>
+								<i class="pi pi-bell fs-large"></i>
+							</span>
+						</a>
+
+						<transition name="layout-submenu-container">
+						<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'notifications'">
+							<li class="p-mb-3">
+								<span class="p-px-3 fs-small">You have <b>4</b> new notifications</span>
 							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-lock"></i>
-									<span>Privacy</span>
-								</button>
+							<li class="layout-topbar-action-item">
+								<div class="p-d-flex p-flex-row p-ai-center">
+									<img src="assets/demo/images/avatar/amyelsner.png"/>
+									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+											<span class="fs-small p-text-bold">Jerome Bell</span>
+											<small>42 mins ago</small>
+										</div>
+										<span class="fs-small">How to write content about your photographs?</span>
+									</div>
+								</div>
 							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-cog"></i>
+							<li class="layout-topbar-action-item">
+								<div class="p-d-flex p-flex-row p-ai-center">
+									<img src="assets/demo/images/avatar/annafali.png"/>
+									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+											<span class="fs-small p-text-bold">Cameron Williamson</span>
+											<small>48 mins ago</small>
+										</div>
+										<span class="fs-small">Start a blog to reach your creative peak.</span>
+									</div>
+								</div>
+							</li>
+							<li class="layout-topbar-action-item">
+								<div class="p-d-flex p-flex-row p-ai-center">
+									<img src="assets/demo/images/avatar/bernardodominic.png"/>
+									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+											<span class="fs-small p-text-bold">Anna Miles</span>
+											<small>1 day ago</small>
+										</div>
+										<span class="fs-small">Caring is the new marketing</span>
+									</div>
+								</div>
+							</li>
+							<li class="layout-topbar-action-item">
+								<div class="p-d-flex p-flex-row p-ai-center">
+									<img src="assets/demo/images/avatar/stephenshaw.png"/>
+									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+											<span class="fs-small p-text-bold">Arlene Mccoy</span>
+											<small>4 day ago</small>
+										</div>
+										<span class="fs-small">Starting your traveling blog with Vasco.</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						</transition>
+					</li>
+
+					<li class="layout-topbar-item app">
+						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'apps')" v-ripple>
+							<i class="pi pi-table fs-large"></i>
+						</a>
+
+						<div class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
+							<div class="p-grid p-nogutter">
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-image action indigo-bgcolor white-color"></i>
+										<span>Products</span>
+									</a>
+								</div>
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-file-pdf action orange-bgcolor white-color"></i>
+										<span>Reports</span>
+									</a>
+								</div>
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-dollar action teal-bgcolor white-color"></i>
+										<span>Balance</span>
+									</a>
+								</div>
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-cog action pink-bgcolor white-color"></i>
+										<span>Settings</span>
+									</a>
+								</div>
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-key action bluegrey-bgcolor white-color"></i>
+										<span>Credentials</span>
+									</a>
+								</div>
+								<div class="layout-topbar-action-item p-col-4">
+									<a class="p-d-flex p-ai-center p-jc-center p-flex-column text-color" v-ripple>
+										<i class="pi pi-sitemap action cyan-bgcolor white-color"></i>
+										<span>Sitemap</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+
+					<li class="layout-topbar-item">
+						<a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" @click="onTopbarItemClick($event, 'profile')" v-ripple>
+							<img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
+						</a>
+
+						<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'profile'">
+							<li class="layout-topbar-action-item">
+								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+									<i class="pi pi-cog" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Settings</span>
-								</button>
+								</a>
 							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-power-off"></i>
+							<li class="layout-topbar-action-item">
+								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+									<i class="pi pi-file-o" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+									<span>Terms of Usage</span>
+								</a>
+							</li>
+							<li class="layout-topbar-action-item">
+								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+									<i class="pi pi-compass" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+									<span>Support</span>
+								</a>
+							</li>
+							<li class="layout-topbar-action-item">
+								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+									<i class="pi pi-power-off" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Logout</span>
-								</button>
+								</a>
 							</li>
 						</ul>
-					</transition>
-				</li>
+					</li>
 
-				<li :class="[{'active-top-menu': activeTopbarItem === 'settings'}]">
-					<button class="p-link" @click="onTopbarItemClick($event,'settings')">
-						<i class="topbar-icon pi pi-cog"></i>
-						<span class="topbar-item-name">Settings</span>
-					</button>
-
-					<transition name="layout-submenu-container">
-						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'settings'">
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-palette"></i>
-									<span>Change Theme</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-heart"></i>
-									<span>Favorites</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-lock"></i>
-									<span>Lock Screen</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-image"></i>
-									<span>Wallpaper</span>
-								</button>
-							</li>
-						</ul>
-					</transition>
-				</li>
-
-				<li :class="[{'active-top-menu': activeTopbarItem === 'messages'}]">
-					<button class="p-link" @click="onTopbarItemClick($event,'messages')">
-						<i class="topbar-icon pi pi-envelope animated swing"></i>
-						<span class="topbar-badge animated rubberBand">5</span>
-						<span class="topbar-item-name">Messages</span>
-					</button>
-
-					<transition name="layout-submenu-container">
-						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'messages'">
-							<li role="menuitem">
-								<button class="p-link topbar-message">
-									<img src="assets/layout/images/avatar1.png" width="35" alt="avatar1"/>
-									<span>Give me a call</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link topbar-message">
-									<img src="assets/layout/images/avatar2.png" width="35" alt="avatar2"/>
-									<span>Sales reports attached</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link topbar-message">
-									<img src="assets/layout/images/avatar3.png" width="35" alt="avatar3"/>
-									<span>About your invoice</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link topbar-message">
-									<img src="assets/layout/images/avatar2.png" width="35" alt="avatar2"/>
-									<span>Meeting today at 10pm</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link topbar-message">
-									<img src="assets/layout/images/avatar4.png" width="35" alt="avatar4"/>
-									<span>Out of office</span>
-								</button>
-							</li>
-						</ul>
-					</transition>
-				</li>
-
-				<li :class="[{'active-top-menu': activeTopbarItem === 'notifications'}]">
-					<button class="p-link" @click="onTopbarItemClick($event,'notifications')">
-						<i class="topbar-icon pi pi-bell"></i>
-						<span class="topbar-badge animated rubberBand">4</span>
-						<span class="topbar-item-name">Notifications</span>
-					</button>
-
-					<transition name="layout-submenu-container">
-						<ul class="ultima-menu animated fadeInDown" v-show="activeTopbarItem === 'notifications'">
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-sliders-h"></i>
-									<span>Pending tasks</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-calendar"></i>
-									<span>Meeting today at 3pm</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-download"></i>
-									<span>Download documents</span>
-								</button>
-							</li>
-							<li role="menuitem">
-								<button class="p-link">
-									<i class="pi pi-ticket"></i>
-									<span>Book flight</span>
-								</button>
-							</li>
-						</ul>
-					</transition>
-				</li>
-
-				<li :class="['search-item', {'active-top-menu': activeTopbarItem === 'search'}]"
-					@click="onTopbarItemClick($event,'search')">
-					<span class="p-float-label p-input-icon-left">
-						<i class="topbar-icon pi pi-search"></i>
-						<InputText id="search" type="text" v-model="searchText" placeholder="Search"/>
-					</span>
-				</li>
-			</ul>
+					<li class="layout-topbar-item">
+						<a class="layout-topbar-action rounded-circle" @click="onRightPanelButtonClick($event)" v-ripple>
+							<i class="pi fs-large" :class="{'pi-arrow-left': !isRTL, 'pi-arrow-right': isRTL}"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 	export default {
-		emits: ['menubutton-click', 'topbar-menubutton-click', 'topbaritem-click', 'rightpanel-button-click'],
+		emits: ['menubutton-click', 'topbar-menubutton-click', 'topbaritem-click', 'rightpanel-button-click', 'topbar-mobileactive'],
 		data() {
 			return {
-				searchText: ''
+				search: false,
+				searchClick: false,
+				searchText: '',
+				items: [
+					{
+						label: 'UI KIT',
+						items: [
+							[
+								{
+									label: 'UI KIT 1',
+									items: [
+										{ label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
+										{ label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
+										{ label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
+										{ label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'] },
+										{ label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] }
+									]
+								}
+							],
+							[
+								{
+									label: 'UI KIT 2',
+									items: [
+										{ label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+										{ label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
+										{ label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree'] },
+										{ label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel'] },
+										{ label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] }
+									]
+								}
+							],
+							[
+								{
+									label: 'UI KIT 3',
+									items: [
+										{ label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay'] },
+										{ label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media'] },
+										{ label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'] },
+										{ label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
+										{ label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc'] }
+									]
+								}
+							]
+						]
+					},
+					{
+						label: 'UTILITIES',
+						items: [
+							[
+								{
+									label: 'UTILITIES 1',
+									items: [
+										{ label: 'Display', icon: 'pi pi-fw pi-desktop', routerLink: ['utilities/display'] },
+										{ label: 'Elevation', icon: 'pi pi-fw pi-external-link', routerLink: ['utilities/elevation'] }
+									]
+								},
+								{
+									label: 'UTILITIES 2',
+									items: [
+										{ label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox'] }
+									]
+								}
+							],
+							[
+								{
+									label: 'UTILITIES 3',
+									items: [
+										{ label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons'] }
+									]
+								},
+								{
+									label: 'UTILITIES 4',
+									items: [
+										{ label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text'] },
+										{ label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets'] }
+									]
+								}
+							],
+							[
+								{
+									label: 'UTILITIES 5',
+									items: [
+										{ label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid'] },
+										{ label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing'] },
+										{ label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography'] }
+									]
+								}
+							],
+						]
+					}
+				],
 			}
 		},
 		props: {
-			profileMode: String,
 			horizontal: {
 				type: Boolean,
 				default: false
@@ -200,6 +298,8 @@
 				default: false
 			},
 			activeTopbarItem: String,
+			isRTL: Boolean,
+			mobileTopbarActive: Boolean
 		},
 		methods: {
 			onMenuButtonClick(event) {
@@ -209,13 +309,23 @@
 				this.$emit('topbar-menubutton-click', event)
 			},
 			onTopbarItemClick(event, item) {
+				if(item === 'search' || (item !== 'search' && this.search === true)) {
+					this.search = !this.search;
+					this.searchClick = !this.searchClick;
+				}
+
 				this.$emit('topbaritem-click', {originalEvent: event, item: item})
+			},
+			onTopbarMobileButtonClick(event) {
+				this.$emit('topbar-mobileactive', event);
 			},
 			onRightPanelButtonClick(event) {
 				this.$emit('rightpanel-button-click', event)
 			},
-			goDashboard() {
-				window.location = "/#/"
+			onSearchKeydown(event) {
+				if (event.keyCode == 27) {
+					this.search = false;
+				}
 			}
 		},
 		computed: {

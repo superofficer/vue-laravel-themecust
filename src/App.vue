@@ -1,17 +1,15 @@
 <template>
-	<div class="layout-wrapper" @click="onDocumentClick">
-		<div :class="layoutContainerClass">
-			<AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
-			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
+		<div :class="layoutContainerClass" @click="onDocumentClick">
+			<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :isRTL="isRTL" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
+				@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
-			<transition name="layout-menu-container">
-				<div :class="menuClass" @click="onMenuClick">
-					<div class="menu-scroll-content">
-						<AppInlineProfile v-if="profileMode === 'inline' && layoutMode !== 'horizontal'"></AppInlineProfile>
-						<AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+				<div class="menu-wrapper">
+					<div class="layout-menu-container" @click="onMenuClick">
+							<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :isRTL="isRTL" :menuMode="menuMode"></AppInlineMenu>
+							<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+							<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :isRTL="isRTL" :menuMode="menuMode"></AppInlineMenu>
 					</div>
 				</div>
-			</transition>
 
 			<div class="layout-main">
 
@@ -24,19 +22,21 @@
 				<AppFooter />
 			</div>
 
-			<AppConfig v-model:layoutMode="layoutMode" @menu-mode-change="onMenuModeChange" v-model:darkMenu="darkMenu" @menu-color-change="onMenuColorChange"
-						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" v-model:compactMode="compactMode" @change-theme-style="changeThemeStyle" :theme="theme" :themes="themeColors" @theme-change="changeTheme"></AppConfig>
+			<AppConfig v-model:menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
+						v-model:layoutMode="layoutMode" @rtl-change="onRTLChange" @topbar-theme="onTopbarThemeChange"
+						v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange" :menuMode="menuMode"
+						:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="menuTheme" :menuThemes="menuThemes"
+						:topbarTheme="topbarTheme" :topbarThemes="topbarThemes" v-model:isRTL="isRTL"></AppConfig>
 
-			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
+			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick" :isRTL="isRTL"></AppRightPanel>
 
-			<div class="layout-mask"></div>
-		</div>
+			<div v-if="mobileMenuActive" class="layout-mask modal-in"></div>
 	</div>
 </template>
 
 <script>
 import AppTopBar from './AppTopbar.vue';
-import AppInlineProfile from './AppInlineProfile.vue';
+import AppInlineMenu from './AppInlineMenu.vue';
 import AppRightPanel from './AppRightPanel.vue';
 import AppMenu from './AppMenu.vue';
 import AppConfig from './AppConfig.vue';
@@ -47,8 +47,19 @@ import EventBus from './event-bus';
 export default {
     data() {
         return {
-			layoutMode:'static',
-			profileMode: 'inline',
+			mobileTopbarActive: false,
+			mobileMenuActive: false,
+			search: false,
+			searchClick: false,
+			isRTL: false,
+			topbarTheme: 'blue',
+			menuTheme: 'light',
+			menuMode: 'static',
+			inlineMenuClick: false,
+			inlineMenuPosition: 'bottom',
+			inlineMenuTopActive: false,
+			inlineMenuBottomActive: false,
+			layoutMode: 'light',
 			overlayMenuActive: false,
 			staticMenuDesktopInactive: false,
 			staticMenuMobileActive: false,
@@ -56,34 +67,82 @@ export default {
 			topbarMenuActive: false,
 			activeTopbarItem: null,
 			darkMenu: false,
-			compactMode: false,
-			theme: 'indigo',
-			themeColors: [
-				{ name: 'Indigo Pink', file: 'indigo', image: 'indigo-pink.svg' },
-				{ name: 'Brown Green', file: 'brown', image: 'brown-green.svg' },
-				{ name: 'Blue Amber', file: 'blue', image: 'blue-amber.svg' },
-				{ name: 'BlueGrey Green', file: 'blue-grey', image: 'bluegrey-green.svg' },
-				{ name: 'Dark Blue', file: 'dark-blue', image: 'dark-blue.svg' },
-				{ name: 'Dark Green', file: 'dark-green', image: 'dark-green.svg' },
-				{ name: 'Green Yellow', file: 'green', image: 'green-yellow.svg' },
-				{ name: 'Purple Cyan', file: 'purple-cyan', image: 'purple-cyan.svg' },
-				{ name: 'Purple Amber', file: 'purple-amber', image: 'purple-amber.svg' },
-				{ name: 'Teal Lime', file: 'teal', image: 'teal-lime.svg' },
-				{ name: 'Cyan Amber', file: 'cyan', image: 'cyan-amber.svg' },
-				{ name: 'Grey DeepOrange', file: 'grey', image: 'grey-deeporange.svg' }
+			theme: 'blue',
+			themes: [
+				{name: 'indigo', color: '#2f8ee5'},
+				{name: 'pink', color: '#E91E63'},
+				{name: 'purple', color: '#9C27B0'},
+				{name: 'deeppurple', color: '#673AB7'},
+				{name: 'blue', color: '#2196F3'},
+				{name: 'lightblue', color: '#03A9F4'},
+				{name: 'cyan', color: '#00BCD4'},
+				{name: 'teal', color: '#009688'},
+				{name: 'green', color: '#4CAF50'},
+				{name: 'lightgreen', color: '#8BC34A'},
+				{name: 'lime', color: '#CDDC39'},
+				{name: 'yellow', color: '#FFEB3B'},
+				{name: 'amber', color: '#FFC107'},
+				{name: 'orange', color: '#FF9800'},
+				{name: 'deeporange', color: '#FF5722'},
+				{name: 'brown', color: '#795548'},
+				{name: 'bluegrey', color: '#607D8B'}
+			],
+			menuThemes: [
+				{name: 'light', color: '#FDFEFF'},
+				{name: 'dark', color: '#434B54'},
+				{name: 'indigo', color: '#1A237E'},
+				{name: 'bluegrey', color: '#37474F'},
+				{name: 'brown', color: '#4E342E'},
+				{name: 'cyan', color: '#006064'},
+				{name: 'green', color: '#2E7D32'},
+				{name: 'deeppurple', color: '#4527A0'},
+				{name: 'deeporange', color: '#BF360C'},
+				{name: 'pink', color: '#880E4F'},
+				{name: 'purple', color: '#6A1B9A'},
+				{name: 'teal', color: '#00695C'}
+			],
+			topbarThemes: [
+				{name: 'lightblue', color: '#2E88FF'},
+				{name: 'dark', color: '#363636'},
+				{name: 'white', color: '#FDFEFF'},
+				{name: 'blue', color: '#1565C0'},
+				{name: 'deeppurple', color: '#4527A0'},
+				{name: 'purple', color: '#6A1B9A'},
+				{name: 'pink', color: '#AD1457'},
+				{name: 'cyan', color: '#0097A7'},
+				{name: 'teal', color: '#00796B'},
+				{name: 'green', color: '#43A047'},
+				{name: 'lightgreen', color: '#689F38'},
+				{name: 'lime', color: '#AFB42B'},
+				{name: 'yellow', color: '#FBC02D'},
+				{name: 'amber', color: '#FFA000'},
+				{name: 'orange', color: '#FB8C00'},
+				{name: 'deeporange', color: '#D84315'},
+				{name: 'brown', color: '#5D4037'},
+				{name: 'grey', color: '#616161'},
+				{name: 'bluegrey', color: '#546E7A'},
+				{name: 'indigo', color: '#3F51B5'}
 			],
 			rightPanelActive: false,
 			menuActive: false,
-            menu : [
-				{label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
+            menu: [
 				{
-					label: 'UI Kit', icon: 'pi pi-fw pi-star-o', badge: 6,
+					label: 'Favorites', 
+					icon: 'pi pi-fw pi-home',
 					items: [
-						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
-						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+						{label: 'Dashboard Sales', icon: 'pi pi-fw pi-home', to: '/', badge: 4, badgeStyleClass: 'p-badge-info'},
+						{label: 'Dashboard Analytics', icon: 'pi pi-fw pi-home',
+							to: '/favorites/dashboardanalytics', badge:2, badgeStyleClass: 'p-badge-success'}
+					]
+				},
+				{
+					label: 'UI Kit', icon: 'pi pi-fw pi-star',
+					items: [
+						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input', badge: 6, badgeStyleClass: 'p-badge-danger'},
 						{label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
+						{label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', to: '/invalidstate'},
 						{label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon'},
-						{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
+						{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table', badge: 6, badgeStyleClass: 'p-badge-help'},
 						{label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
 						{label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
 						{label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
@@ -99,23 +158,33 @@ export default {
 				{
 					label: "Utilities", icon:'pi pi-fw pi-compass',
 					items: [
+						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout', badge: '6', badgeStyleClass: 'p-badge-warning'},
 						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
 						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
 						{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
 						{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
+						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
 						{label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
 						{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
 						{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
-						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
-						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
+						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'}
 					]
 				},
 				{
-					label: 'Pages', icon: 'pi pi-fw pi-briefcase', badge: 8, badgeStyleClass: 'teal-badge',
+					label: 'Pages', icon: 'pi pi-fw pi-briefcase',
 					items: [
 						{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
 						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
-						{label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+						{label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/timeline'},
+						{
+							label: 'Landing', 
+							icon: 'pi pi-fw pi-globe',
+							badge: '2', badgeStyleClass: 'p-badge-warning',
+							items: [
+								{label: 'Static', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+								{label: 'Component', icon: 'pi pi-fw pi-globe', to: '/landing'}
+							]
+						},
 						{label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
 						{label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
 						{label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
@@ -123,6 +192,7 @@ export default {
 						{label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
 						{label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
 						{label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
+						{label: 'Contact Us', icon: 'pi pi-fw pi-pencil', to: '/contactus'},
 						{label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
 					]
 				},
@@ -171,14 +241,23 @@ export default {
 						}
 					]
 				},
-				{label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
-				{label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'},
+				{
+					label: 'Start', icon: 'pi pi-fw pi-download',
+					items: [
+						{
+							label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}
+						},
+						{
+							label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'
+						}
+					]
+				}
             ]
         }
     },
     watch: {
         $route() {
-            this.menuActive = false;
+			this.menuActive = this.isStatic() && !this.isMobile();
             this.$toast.removeAllGroups();
         }
     },
@@ -195,25 +274,50 @@ export default {
 					EventBus.emit('reset-active-index');
 				}
 
+				if (this.mobileMenuActive) {
+                    this.mobileMenuActive = false;
+                }
+
 				this.hideOverlayMenu();
+				this.unblockBodyScroll();
 			}
 
 			if(!this.rightPanelClick) {
 				this.rightPanelActive = false;
 			}
 
+			if (!this.searchClick) {
+                this.search = false;
+            }
+
+			if(!this.inlineMenuClick) {
+				this.inlineMenuTopActive = false;
+				this.inlineMenuBottomActive = false;
+			}
+
 			this.topbarItemClick = false;
 			this.menuClick = false;
 			this.rightPanelClick = false;
+			this.searchClick = false;
+			this.inlineMenuClick = false;
         },
 		isHorizontal() {
-			return this.layoutMode === 'horizontal';
+			return this.menuMode === 'horizontal';
 		},
 		isSlim() {
-			return this.layoutMode === 'slim';
+			return this.menuMode === 'slim';
+		},
+		isOverlay() {
+			return this.menuMode === 'overlay';
+		},
+		isStatic() {
+			return this.menuMode === 'static';
 		},
 		isDesktop() {
-			return window.innerWidth > 1024;
+			return window.innerWidth > 991;
+		},
+		isMobile() {
+			return window.innerWidth <= 991;
 		},
 		hideOverlayMenu() {
 			this.rotateMenuButton = false;
@@ -222,17 +326,21 @@ export default {
 		},
 		onMenuButtonClick(event){
 			this.menuClick = true;
+			this.menuActive = !this.menuActive;
+			this.topbarMenuActive = false;
+			this.topbarRightClick = true;
 			this.rotateMenuButton = !this.rotateMenuButton;
 			this.topbarMenuActive = false;
 
-			if(this.layoutMode === 'overlay') {
-				this.overlayMenuActive = !this.overlayMenuActive;
-			}
+			if(this.isDesktop())
+				this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
 			else {
-				if(this.isDesktop())
-					this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
-				else
-					this.staticMenuMobileActive = !this.staticMenuMobileActive;
+				this.mobileMenuActive = !this.mobileMenuActive;
+				if (this.mobileMenuActive) {
+					this.blockBodyScroll();
+				} else {
+					this.unblockBodyScroll();
+				}
 			}
 
 			event.preventDefault();
@@ -252,6 +360,10 @@ export default {
 				this.activeTopbarItem = event.item;
 
 			event.originalEvent.preventDefault();
+		},
+		onTopbarMobileButtonClick(event) {
+			this.mobileTopbarActive = !this.mobileTopbarActive;
+			event.preventDefault();
 		},
 		onRightPanelButtonClick(event){
 			this.rightPanelClick = true;
@@ -278,32 +390,82 @@ export default {
 				this.menuActive = false;
 			}
 		},
-		onMenuModeChange(layoutMode) {
-			this.layoutMode = layoutMode;
-			if(layoutMode === 'horizontal') {
-				this.profileMode = 'top';
+		onMenuModeChange(menuMode) {
+			this.menuMode = menuMode;
+			if(menuMode === 'horizontal') {
+				this.inlineMenuPosition = 'top';
 			}
 		},
 		onMenuColorChange(menuColor) {
-			this.darkMenu = menuColor;
+			this.layoutMode = menuColor;
+
+			this.$appState.inputStyle = menuColor === 'dark' ? 'filled' : 'outlined';
+
+			if (menuColor === 'dark') {
+				this.menuTheme = 'dark';
+				this.topbarTheme = 'dark';
+			}
+			else {
+				this.menuTheme = 'light';
+				this.topbarTheme = 'blue';
+			}
+
+			const layoutLink = document.getElementById('layout-css');
+			const layoutHref = 'assets/layout/css/layout-' + this.layoutMode + '.css';
+			this.replaceLink(layoutLink, layoutHref);
+
+			const themeLink = document.getElementById('theme-css');
+			const urlTokens = themeLink.getAttribute('href').split('/');
+			urlTokens[urlTokens.length - 1] = 'theme-' + this.layoutMode + '.css';
+			const newURL = urlTokens.join('/');
+
+			this.replaceLink(themeLink, newURL);
 		},
-		onProfileModeChange(profileMode) {
-			this.profileMode = profileMode;
+		onInlineMenuPositionChange(position) {
+			this.inlineMenuPosition = position;
+		},
+		onChangeInlineMenu(e, key) {
+			if(key === 'top') {
+				if(this.inlineMenuBottomActive) {
+					this.inlineMenuBottomActive = false;
+				}
+				this.inlineMenuTopActive = !this.inlineMenuTopActive;
+			}
+			if(key === 'bottom') {
+				if(this.inlineMenuTopActive) {
+					this.inlineMenuTopActive = false;
+				}
+				this.inlineMenuBottomActive = !this.inlineMenuBottomActive;
+			}
+
+			this.inlineMenuClick = true;
+			
 		},
 		changeTheme(theme) {
 			this.theme = theme;
-			if (this.compactMode) {
-				this.changeStyleSheetUrl('theme-css', 'theme-' + theme + '-compact.css');
-			} else {
-				this.changeStyleSheetUrl('theme-css', 'theme-' + theme + '.css');
+			this.changeStyleSheetUrl('theme-css', theme);
+		},
+		onTopbarThemeChange(theme) {
+			this.topbarTheme = theme.name;
+
+			const logo = document.getElementById('logo');
+			
+			if (theme.name == 'white' || theme.name == 'yellow' || theme.name == 'amber'  || theme.name == 'orange' || theme.name == 'lime') {
+				logo.src = 'assets/layout/images/logo-dark.svg';
 			}
-			this.changeStyleSheetUrl('layout-css', 'layout-' + theme + '.css');
+			else {
+				logo.src = 'assets/layout/images/logo-light.svg';
+			}
+		},
+		onMenuTheme(menuTheme) {
+			this.menuTheme = menuTheme.name;
 		},
 		changeStyleSheetUrl(id, value) {
 			const element = document.getElementById(id);
 			const urlTokens = element.getAttribute('href').split('/');
-			urlTokens[urlTokens.length - 1] = value;		
-			const newURL = urlTokens.join('/');		
+			urlTokens[urlTokens.length - 2] = value;
+			const newURL = urlTokens.join('/');
+			console.log(newURL)
 			this.replaceLink(element, newURL);
 		},
 		replaceLink(linkElement, href) {
@@ -320,37 +482,49 @@ export default {
 				cloneLinkElement.setAttribute('id', id);
 			});
 		},
-		changeThemeStyle(mode) {
-			this.compactMode = mode;
-			if (mode) {
-				this.changeStyleSheetUrl('theme-css', 'theme-' + this.theme + '-compact.css');
-			}
-			else {
-				this.changeStyleSheetUrl('theme-css', 'theme-' + this.theme + '.css');
-			}
-		}
+		onRTLChange() {
+			this.isRTL = !this.isRTL;
+		},
+		blockBodyScroll() {
+            if (document.body.classList) {
+                document.body.classList.add('blocked-scroll');
+            } else {
+                document.body.className += ' blocked-scroll';
+            }
+        },
+        unblockBodyScroll() {
+            if (document.body.classList) {
+                document.body.classList.remove('blocked-scroll');
+            } else {
+                document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
+                    'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        }
     },
     computed: {
 		layoutContainerClass() {
-            return ['layout-container', {
-				'menu-layout-static': this.layoutMode !== 'overlay',
-				'menu-layout-overlay': this.layoutMode === 'overlay',
-				'layout-menu-overlay-active': this.overlayMenuActive,
-				'menu-layout-slim': this.layoutMode === 'slim',
-				'menu-layout-horizontal': this.layoutMode === 'horizontal',
-				'layout-menu-static-inactive': this.staticMenuDesktopInactive,
-				'layout-menu-static-active': this.staticMenuMobileActive,
-				'p-input-filled': this.$appState.inputStyle === 'filled',
-				'p-ripple-disabled': this.$primevue.ripple === false
-			}];
-        },
-		menuClass(){
-			return ['layout-menu', {'layout-menu-dark': this.darkMenu}];
-		}
+            return [
+				'layout-wrapper', 
+				'layout-menu-' + this.menuTheme + ' layout-topbar-' + this.topbarTheme, 
+				{
+					'layout-menu-static': this.menuMode === 'static',
+					'layout-menu-overlay': this.menuMode === 'overlay',
+					'layout-menu-overlay-active': this.overlayMenuActive,
+					'layout-menu-slim': this.menuMode === 'slim',
+					'layout-menu-horizontal': this.menuMode === 'horizontal',
+					'layout-menu-active': this.menuActive,
+					'layout-menu-mobile-active': this.mobileMenuActive,
+					'layout-rightmenu-active': this.rightPanelActive,
+					'layout-rtl': this.isRTL,
+					'p-input-filled': this.$appState.inputStyle === 'filled',
+					'p-ripple-disabled': this.$primevue.ripple === false
+				}
+			];
+        }
     },
     components: {
         'AppTopBar': AppTopBar,
-        'AppInlineProfile': AppInlineProfile,
+        'AppInlineMenu': AppInlineMenu,
         'AppRightPanel': AppRightPanel,
         'AppMenu': AppMenu,
         'AppConfig': AppConfig,

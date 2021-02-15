@@ -1,5 +1,5 @@
 <template>
-	<AppSubmenu class="ultima-menu ultima-main-menu clearfix" :items="model" :layoutMode="layoutMode" :menuActive="active" :root="true" :parentMenuItemActive="true"/>
+	<AppSubmenu class="layout-menu" :items="model" :menuMode="menuMode" :menuActive="active" :root="true" :parentMenuItemActive="true"/>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ import AppSubmenu from './AppSubmenu';
 export default {
 	props: {
 		model: Array,
-		layoutMode: String,
+		menuMode: String,
 		active: Boolean
 	},
 	components: {

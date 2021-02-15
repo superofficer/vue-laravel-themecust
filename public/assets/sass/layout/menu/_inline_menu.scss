@@ -13,6 +13,7 @@
         }
 
         .layout-inline-menu-action {
+            position: relative;
             cursor: pointer;
         }
 
@@ -21,6 +22,7 @@
             @include material-overlay-transform;
 
             .layout-inline-menu-action-item {
+                position: relative;
                 margin-top: .2rem;
                 border-radius: $borderRadius;
                 transition: all $transitionDuration;
@@ -38,6 +40,53 @@
                         margin-right: .75rem;
                     }
                 }
+            }
+
+            &-enter-from,
+            &-leave-to {
+                opacity: 1;
+                z-index: 100;
+            }
+
+            &-enter-to,
+            &-leave-from {
+                opacity: 0;
+                z-index: 0;
+            }
+
+            &-enter-active {
+                // overflow: hidden;
+                transition: all 0.12s cubic-bezier(0, 0, 0.2, 1);
+            }
+    
+            &-leave-active {
+                // overflow: hidden;
+                transition: all 0.1s linear;
+            }
+        }
+
+        .layout-inline-menu-action-panel-horizontal {
+            &-enter-from,
+            &-leave-to {
+                height: 0;
+                padding-bottom: 0;
+                overflow: hidden;
+            }
+
+            &-enter-to,
+            &-leave-from {
+                height: auto;
+                overflow: visible;
+            }
+
+            &-enter-active {
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
+    
+            &-leave-active {
+                overflow: hidden;
+                transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
             }
         }
     }

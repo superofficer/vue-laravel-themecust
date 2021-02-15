@@ -179,7 +179,7 @@
 			</Panel>
 		</div>
 
-		<div class="p-col-12 p-md-4">
+		<!-- <div class="p-col-12 p-md-4">
 			<div class="card timeline p-fluid">
 				<div class="p-grid">
 					<div class="p-col-3">
@@ -247,7 +247,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="p-col-12 p-md-8">
 			<div class="card">

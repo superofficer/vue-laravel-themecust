@@ -30,8 +30,41 @@
                             }
                         }
                     }
+
+                    .layout-menuitem-tooltip {
+                        left: auto;
+                        right: 63px;
+
+                        .layout-menuitem-tooltip-arrow {
+                            left: auto;
+                            right: 0;
+                            border-width: 5px 0px 5px 5px;
+                            border-left-color: $menuTooltipBgColor;
+                            border-right-color: transparent;
+                        }
+                    }
+                }
+
+                .layout-inline-menu-action,
+                .layout-inline-menu-action-panel {
+                    .layout-inline-menu-action-item {
+                        .layout-menuitem-tooltip {
+                            left: auto;
+                            right: 63px;
+    
+                            .layout-menuitem-tooltip-arrow {
+                                left: auto;
+                                right: 0;
+                                border-width: 5px 0px 5px 5px;
+                                border-left-color: $menuTooltipBgColor;
+                                border-right-color: transparent;
+                            }
+                        }
+                    }
                 }
             }
+
+            
         }
 
         .layout-topbar .layout-topbar-left .layout-menu-button > i {

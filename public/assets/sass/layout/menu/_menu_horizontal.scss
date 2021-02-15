@@ -9,11 +9,6 @@
                 overflow-y: visible;
                 flex-grow: 1;
 
-                // app-menu {
-                //     overflow-y: visible;
-                //     flex-grow: 1;
-                // }
-
                 .layout-menu {
                     display: flex;
                     flex-direction: row;
@@ -21,6 +16,8 @@
                     height: 100%;
                     margin: 0px 1rem;
                     padding-bottom: 0px;
+                    overflow-y: visible;
+                    flex-grow: 1;
 
                     > li {
                         position: relative;

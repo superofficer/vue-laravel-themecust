@@ -1,107 +1,146 @@
 <template>
-    <div :class="containerClass">
-        <a href="#" class="layout-config-button" id="layout-config-button" @click="toggleConfigurator">
-            <i class="pi pi-cog"></i>
-        </a>
-        <a href="#" class="layout-config-close" @click="hideConfigurator">
-            <i class="pi pi-times"></i>
-        </a>
-        <div class="layout-config-content">
+    <Button @click="active = true" icon="pi pi-cog" v-if="!active" class="layout-config-button"></Button>
+    <Sidebar v-model:visible="active" :position="isRTL ? 'left' : 'right'" :showCloseIcon="false"
+		:baseZIndex="1000" class="layout-config p-sidebar-sm fs-small p-p-0">
+        <div class="layout-config-panel p-d-flex p-flex-column">
+            <div class="p-px-3 p-pt-3">
+                <h5>Theme Customization</h5>
+                <span>Ultima offers different themes for layout, topbar, menu etc.</span>
+            </div>
 
-            <h5 style="margin-top: 0">Input Style</h5>
-            <div class="p-formgroup-inline">
-                <div class="p-field-radiobutton">
-                    <RadioButton id="input_outlined" name="inputstyle" value="outlined" :modelValue="value" @update:modelValue="onChange" />
-                    <label for="input_outlined">Outlined</label>
+            <hr class="p-mb-0" />
+
+            <div class="layout-config-options p-p-3">
+                <h6>Layout/Theme Scale</h6>
+                <div class="p-d-flex p-ai-center">
+                    <Button icon="pi pi-minus" @click="decrementScale()" class="p-button-rounded p-button-text" :disabled="scale === scales[0]"></Button>
+                    <i class="pi pi-circle-on p-m-1 scale-icon" v-for="s of scales" :key="s" :class="{'scale-active': s === scale}"></i>
+                    <Button icon="pi pi-plus" @click="incrementScale()" class="p-button-rounded p-button-text" :disabled="scale === scales[scales.length - 1]"></Button>
                 </div>
-                <div class="p-field-radiobutton">
-                    <RadioButton id="input_filled" name="inputstyle" value="filled" :modelValue="value" @update:modelValue="onChange" />
-                    <label for="input_filled">Filled</label>
+
+                <h6>Layout Mode</h6>
+                <div class="p-d-flex">
+                    <div class="p-d-flex p-ai-center">
+                        <RadioButton id="light" name="layoutMode" value="light" v-model="d_layoutMode" @change="changeMenuColor($event, 'light')" />
+                        <label for="layoutMode1" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Light</label>
+                    </div>
+                    <div class="p-d-flex p-ai-center" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
+                        <RadioButton id="dark" name="layoutMode" value="dark" v-model="d_layoutMode" @change="changeMenuColor($event, 'dark')" />
+                        <label for="layoutMode2" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Dark</label>
+                    </div>
                 </div>
-            </div>
 
-            <h5>Ripple Effect</h5>
-            <InputSwitch :modelValue="rippleActive" @update:modelValue="onRippleChange"  />
-
-            <h5>Menu Type</h5>
-            <div class="p-field-radiobutton">
-                <RadioButton id="static" name="layoutMode" value="static" v-model="d_layoutMode" @change="changeMenuMode($event, 'static')" />
-                <label for="static">Static</label>
-            </div>
-            <div class="p-field-radiobutton">
-                <RadioButton id="overlay" name="layoutMode" value="overlay" v-model="d_layoutMode" @change="changeMenuMode($event, 'overlay')" />
-                <label for="overlay">Overlay</label>
-            </div>
-            <div class="p-field-radiobutton">
-                <RadioButton id="horizontal" name="layoutMode" value="horizontal" v-model="d_layoutMode" @change="changeMenuMode($event, 'horizontal')" />
-                <label for="horizontal">Horizontal</label>
-            </div>
-            <div class="p-field-radiobutton">
-                <RadioButton id="slim" name="layoutMode" value="slim" v-model="d_layoutMode" @change="changeMenuMode($event, 'slim')" />
-                <label for="slim">Slim</label>
-            </div>
-
-            <h5>Menu Colors</h5>
-            <div class="p-field-radiobutton">
-                <RadioButton id="dark" name="darkMenu" :value="true" v-model="d_darkMenu" @change="changeMenuColor($event, true)" />
-                <label for="dark">Dark</label>
-            </div>
-
-            <div class="p-field-radiobutton">
-                <RadioButton id="light" name="darkMenu" :value="false" v-model="d_darkMenu" @change="changeMenuColor($event, false)" />
-                <label for="light">Light</label>
-            </div>
-
-            <h5>User Profile</h5>
-            <div class="p-field-radiobutton">
-                <RadioButton id="inline" name="darkMenu" :disabled="layoutMode === 'horizontal'" value="inline" v-model="d_profileMode" @change="changeProfileMode($event, 'inline')" />
-                <label for="inline">Inline</label>
-            </div>
-
-            <div class="p-field-radiobutton">
-                <RadioButton id="top" name="darkMenu" :disabled="layoutMode === 'horizontal'" value="top" v-model="d_profileMode" @change="changeProfileMode($event, 'top')" />
-                <label for="top">Overlay</label>
-            </div>
-
-            <h5>Theme Modes</h5>
-            <div class="p-field-radiobutton">
-                <RadioButton id="compactMode1" name="compactMode" :value="true" v-model="d_compactMode" @change="changeThemeStyle($event, true)" />
-                <label for="compactMode1">Compact</label>
-            </div>
-
-            <div class="p-field-radiobutton">
-                <RadioButton id="compactMode2" name="compactMode" :value="false" v-model="d_compactMode" @change="changeThemeStyle($event, false)" />
-                <label for="compactMode2">Standart</label>
-            </div>
-
-            <h5>Themes</h5>
-            <div class="layout-themes">
-                <div v-for="t of themes" :key="t.name">
-                    <a href="#" @click="changeTheme($event, t.file)">
-                        <img :src="'assets/layout/images/configurator/theme/' + t.image" :alt="t.name">
-                        <i class="pi pi-check" v-if="theme === t.file"></i>
-                    </a>
+                <h6>Menu Mode</h6>
+                <div class="p-d-flex">
+                    <div class="p-d-flex p-flex-column">
+                        <div class="p-d-flex p-ai-center">
+                            <RadioButton name="menuMode" value="static" v-model="d_menuMode" id="menuMode1" @change="changeMenuMode($event, 'static')"></RadioButton>
+                            <label for="menuMode1" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Static</label>
+                        </div>
+                        <div class="p-d-flex p-ai-center p-mt-3">
+                            <RadioButton name="menuMode" value="horizontal" v-model="d_menuMode" id="menuMode2" @change="changeMenuMode($event, 'horizontal')"></RadioButton>
+                            <label for="menuMode2" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Horizontal</label>
+                        </div>
+                    </div>
+                    <div class="p-d-flex p-flex-column" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
+                        <div class="p-d-flex p-ai-center">
+                            <RadioButton name="menuMode" value="overlay" v-model="d_menuMode" id="menuMode3" @change="changeMenuMode($event, 'overlay')"></RadioButton>
+                            <label for="menuMode3" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Overlay</label>
+                        </div>
+                        <div class="p-d-flex p-ai-center p-mt-3">
+                            <RadioButton name="menuMode" value="slim" v-model="d_menuMode" id="menuMode4" @change="changeMenuMode($event, 'slim')"></RadioButton>
+                            <label for="menuMode4" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Slim</label>
+                        </div>
+                    </div>
                 </div>
+
+                <h6>Inline Menu Position</h6>
+                <div class="p-d-flex">
+                    <div class="p-d-flex p-ai-center">
+                        <RadioButton name="inlineMenuPosition" value="top" v-model="d_inlineMenuPosition" @change="changeInlineMenuPosition($event, 'top')" id="inlineMenuPosition1"></RadioButton>
+                        <label for="inlineMenuPosition1" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Top</label>
+                    </div>
+                    <div class="p-d-flex p-ai-center" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
+                        <RadioButton name="inlineMenuPosition" value="bottom" v-model="d_inlineMenuPosition" @change="changeInlineMenuPosition($event, 'bottom')" id="inlineMenuPosition2"></RadioButton>
+                        <label for="inlineMenuPosition2" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Bottom</label>
+                    </div>
+                    <div class="p-d-flex p-ai-center" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
+                        <RadioButton name="inlineMenuPosition" value="both" v-model="d_inlineMenuPosition" @change="changeInlineMenuPosition($event, 'both')" id="inlineMenuPosition3"></RadioButton>
+                        <label for="inlineMenuPosition3" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Both</label>
+                    </div>
+                </div>
+
+                <h6>Input Background</h6>
+                <div class="p-d-flex">
+                    <div class="p-d-flex p-ai-center">
+                        <RadioButton id="input_outlined" name="inputstyle" value="outlined" :modelValue="value" @update:modelValue="onChange" />
+                        <label for="input_outlined" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Outlined</label>
+                    </div>
+                    <div class="p-d-flex p-ai-center" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
+                        <RadioButton id="input_filled" name="inputstyle" value="filled" :modelValue="value" @update:modelValue="onChange" />
+                        <label for="input_filled" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Filled</label>
+                    </div>
+                </div>
+
+                <h6>Ripple Effect</h6>
+                <InputSwitch :modelValue="rippleActive" @update:modelValue="onRippleChange" />
+
+                <h6>RTL</h6>
+                <InputSwitch :modelValue="d_RTL" @update:modelValue="onRTLChange" />
+
+                <h6>Menu Themes</h6>
+                <div v-if="layoutMode !== 'dark'" class="p-grid">
+                    <div v-for="t of menuThemes" :key="t" class="p-col p-col-fixed">
+                        <a style="cursor: pointer" @click="changeMenuTheme($event, t)" class="layout-config-color-option" :title="t.name">
+                            <span class="color" :style="{'background-color': t.color}"></span>
+                            <span class="check p-d-flex p-ai-center p-jc-center" v-if="menuTheme === t.name">
+                                <i class="pi pi-check" style="color: var(--menu-text-color)"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <p v-if="layoutMode==='dark'">Menu themes are only available in light mode by design as large surfaces can emit too much brightness in dark mode.</p>
+
+                <h6>Topbar Themes</h6>
+                <div class="p-grid">
+                    <div v-for="t of topbarThemes" :key="t" class="p-col p-col-fixed">
+                        <a style="cursor: pointer" @click="changeTopbarTheme($event, t)" class="layout-config-color-option" :title="t.name">
+                            <span class="color" :style="{'background-color': t.color}"></span>
+                            <span class="check p-d-flex p-ai-center p-jc-center" v-if="topbarTheme === t.name">
+                                <i class="pi pi-check" style="color: var(--topbar-text-color)"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <h6>Component Themes</h6>
+                <div class="p-grid">
+                    <div v-for="t of themes" :key="t" class="p-col p-col-fixed">
+                        <a style="cursor: pointer" @click="changeComponentTheme($event, t.name)" class="layout-config-color-option" :title="t.name">
+                            <span class="color" :style="{'background-color': t.color}"></span>
+                            <span class="check p-d-flex p-ai-center p-jc-center" v-if="theme === t.name">
+                                <i class="pi pi-check" style="color: var(--primary-color-text)"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
+        </div>    
+    </Sidebar>
 </template>
 
 <script>
 export default {
-    emits: ['menu-mode-change', 'menu-color-change', 'profile-mode-change', 'theme-change', 'change-theme-style'],
+    emits: ['rtlChange', 'menuModeChange', 'menuTheme', 'menuColorChange', 'topbarTheme', 'themeChange', 'inlinemenuChange'],
     props: {
-        layoutMode: {
+        menuMode: {
             type: String,
             default: 'static'
         },
-        darkMenu: {
-            type: Boolean,
-            default: true
-        },
-        profileMode: {
+        layoutMode: {
             type: String,
-            default: 'inline'
+            default: 'light'
         },
         theme: {
             type: String,
@@ -111,7 +150,27 @@ export default {
             type: Array,
             default: null
         },
-        compactMode: {
+        menuTheme: {
+            type: String,
+            default: 'light'
+        },
+        menuThemes: {
+            type: Array,
+            default: null
+        },
+        topbarTheme: {
+            type: String,
+            default: 'blue'
+        },
+        topbarThemes: {
+            type: Array,
+            default: null
+        },
+        inlineMenuPosition: {
+            type: String,
+            default: 'bottom'
+        },
+        isRTL: {
             type: Boolean,
             default: false
         }
@@ -119,10 +178,12 @@ export default {
     data() {
         return {
             active: false,
+            d_menuMode: this.menuMode,
             d_layoutMode: this.layoutMode,
-            d_darkMenu: this.darkMenu,
-            d_profileMode: this.profileMode,
-            d_compactMode: this.compactMode
+            d_RTL: this.isRTL,
+            d_inlineMenuPosition: this.inlineMenuPosition,
+            scale: 14,
+            scales: [12,13,14,15,16],
         }
     },
     watch: {
@@ -132,17 +193,17 @@ export default {
                 this.unbindOutsideClickListener();
             }
         },
+        menuMode(newValue) {
+            this.d_menuMode = newValue;
+        },
         layoutMode(newValue) {
             this.d_layoutMode = newValue;
         },
-        darkMenu(newValue) {
-            this.d_darkMenu = newValue;
+        isRTL(newValue) {
+            this.d_RTL = newValue;
         },
-        profileMode(newValue) {
-            this.d_profileMode = newValue;
-        },
-        compactMode(newValue) {
-            this.d_compactMode = newValue;
+        inlineMenuPosition(newValue) {
+            this.d_inlineMenuPosition = newValue;
         }
     },
     outsideClickListener: null,
@@ -152,6 +213,9 @@ export default {
         },
         onRippleChange(value) {
             this.$primevue.ripple = value;
+        },
+        onRTLChange() {
+            this.$emit('rtl-change');
         },
         toggleConfigurator(event) {
             this.active = !this.active;
@@ -171,17 +235,36 @@ export default {
             this.$emit('menu-mode-change', layoutMode);
             event.preventDefault();
         },
+        changeMenuTheme(event, menuTheme) {
+            this.$emit('menu-theme', menuTheme);
+            event.preventDefault();
+        },
         changeMenuColor(event, menuColor) {
             this.$emit('menu-color-change', menuColor);
             event.preventDefault();
         },
-        changeProfileMode(event, profileMode) {
-            this.$emit('profile-mode-change', profileMode);
+        changeTopbarTheme(event, theme) {
+            this.$emit('topbar-theme', theme);
             event.preventDefault();
         },
-        changeTheme(event, theme) {
+        changeComponentTheme(event, theme) {
             this.$emit('theme-change', theme);
             event.preventDefault();
+        },
+        changeInlineMenuPosition(event, value) {
+            this.$emit('inlinemenu-change', value);
+            event.preventDefault();
+        },
+        decrementScale() {
+            this.scale--;
+            this.applyScale();
+        },
+        incrementScale() {
+            this.scale++;
+            this.applyScale();
+        },
+        applyScale() {
+            document.documentElement.style.fontSize = this.scale + 'px';
         },
         bindOutsideClickListener() {
             if (!this.outsideClickListener) {
@@ -201,10 +284,6 @@ export default {
         },
         isOutsideClicked(event) {
             return !(this.$el.isSameNode(event.target) || this.$el.contains(event.target));
-        },
-        changeThemeStyle(event, compactMode) {
-            this.$emit('change-theme-style', compactMode);
-            event.preventDefault();
         }
     },
     computed: {
