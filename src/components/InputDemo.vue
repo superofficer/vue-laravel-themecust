@@ -61,15 +61,28 @@
 			</div>
 
 			<div class="card">
-				<h5>Slider</h5>
-				<InputText v-model.number="sliderValue" />
-				<Slider v-model="sliderValue" />
+				<div class="p-grid">
+					<div class="p-col-12">
+						<h5>Slider</h5>
+						<InputText v-model.number="sliderValue" />
+						<Slider v-model="sliderValue" />
+					</div>
 
-				<h5>Rating</h5>
-				<Rating v-model="ratingValue"/>
+					<div class="p-col-6">
+						<h5>Rating</h5>
+						<Rating v-model="ratingValue"/>
+					</div>
 
-				<h5>ColorPicker</h5>
-				<ColorPicker style="width: 2rem" v-model="colorValue" />
+					<div class="p-col-6">
+						<h5>ColorPicker</h5>
+						<ColorPicker style="width: 2rem" v-model="colorValue" />
+					</div>
+
+					<div class="p-col-12">
+						<h5>Knob</h5>
+						<Knob v-model="knobValue" :step="10" :min="-50" :max="50" valueTemplate="{value}%" />
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -256,7 +269,8 @@
 					{name: 'Option 3', code: 'O3'},
 				],
 				selectButtonValue2: null,
-				inputGroupValue: false
+				inputGroupValue: false,
+				knobValue: 20
 			}
 		},
 		countryService: null,
