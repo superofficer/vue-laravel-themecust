@@ -1,257 +1,208 @@
 <template>
 	<div class="p-grid dashboard">
-		<div class="p-col-12 p-md-4">
-			<div class="card overview">
-				<div class="overview-content clearfix">
-					<span class="overview-title">Sales</span>
-					<span class="overview-badge">+%90</span>
-					<span class="overview-detail">$22,650 / week</span>
-				</div>
-				<div class="overview-footer">
-					<img src="assets/layout/images/dashboard/sales.svg" style="width: 100%" alt="Sales"/>
-				</div>
-			</div>
-		</div>
-		<div class="p-col-12 p-md-4">
-			<div class="card overview">
-				<div class="overview-content clearfix">
-					<span class="overview-title">Views</span>
-					<span class="overview-badge">+%60</span>
-					<span class="overview-detail">6,520 / day</span>
-				</div>
-				<div class="overview-footer">
-					<img src="assets/layout/images/dashboard/views.svg" style="width: 100%" alt="Views"/>
-				</div>
-			</div>
-		</div>
-		<div class="p-col-12 p-md-4">
-			<div class="card overview">
-				<div class="overview-content clearfix">
-					<span class="overview-title">Users</span>
-					<span class="overview-badge">+%45</span>
-					<span class="overview-detail">5,200 / day</span>
-				</div>
-				<div class="overview-footer">
-					<img src="assets/layout/images/dashboard/progress.svg" style="width: 100%" alt="Progress"/>
-				</div>
-			</div>
-		</div>
-
 		<div class="p-col-12 p-md-6 p-lg-3">
-			<div class="p-grid card colorbox colorbox-1">
-				<div class="p-col-4">
-					<i class="pi pi-check-circle"></i>
-				</div>
-				<div class="p-col-8">
-					<span class="colorbox-name">Tasks</span>
-					<span class="colorbox-count">50</span>
-				</div>
-			</div>
-		</div>
-		<div class="p-col-12 p-md-6 p-lg-3">
-			<div class="p-grid card colorbox colorbox-2">
-				<div class="p-col-4">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2">
+				<div class="p-d-flex p-ai-center muted-text">
 					<i class="pi pi-shopping-cart"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Orders</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
+					</div>
 				</div>
-				<div class="p-col-8">
-					<span class="colorbox-name">Purchases</span>
-					<span class="colorbox-count">1200</span>
-				</div>
-			</div>
-		</div>
-		<div class="p-col-12 p-md-6 p-lg-3">
-			<div class="p-grid card colorbox colorbox-3">
-				<div class="p-col-4">
-					<i class="pi pi-exclamation-circle"></i>
-				</div>
-				<div class="p-col-8">
-					<span class="colorbox-name">Issues</span>
-					<span class="colorbox-count">22</span>
-				</div>
-			</div>
-		</div>
-		<div class="p-col-12 p-md-6 p-lg-3">
-			<div class="p-grid card colorbox colorbox-4">
-				<div class="p-col-4">
-					<i class="pi pi-envelope"></i>
-				</div>
-				<div class="p-col-8">
-					<span class="colorbox-name">Messages</span>
-					<span class="colorbox-count">10</span>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">640</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
+					</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData1" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="p-col-12 p-md-6 p-lg-4 task-list">
-			<Panel header="Tasks">
-				<ul>
-					<li>
-						<Checkbox name="task" value="reports" v-model="tasksCheckbox"/>
-						<span class="task-name">Sales Reports</span>
-						<i class="pi pi-briefcase"></i>
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-dollar"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Revenue</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
+					</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">$57K</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
+					</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData2" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-users"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Customers</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
+					</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">8572</span>
+						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
+					</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData3" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-comments"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Comments</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
+					</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">805</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
+					</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData4" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-lg-6">
+			<div class="card height-100">
+				<div class="card-header">
+					<h5>Contact</h5>
+				<div>
+					<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></button>
+					<Menu :popup="true" :model="items2"></Menu>
+				</div>
+			</div>
+
+				<ul class="widget-list">
+					<li class="p-d-flex p-ai-center p-py-3">
+						<div class="person-item p-d-flex p-ai-center">
+							<img src="assets/demo/images/avatar/xuxuefeng.png">
+							<div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+								<div>Xuxue Feng</div>
+								<small class="muted-text">feng@ultima.org</small>
+							</div>
+						</div>
+						<span class="person-tag indigo-bgcolor p-p-1 fs-small" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">Accounting</span>
+						<span class="person-tag orange-bgcolor p-p-1 fs-small" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Sales</span>
 					</li>
-					<li>
-						<Checkbox name="task" value="pay" v-model="tasksCheckbox"/>
-						<span class="task-name">Pay Invoices</span>
-						<i class="pi pi-file"></i>
+
+					<li class="p-d-flex p-ai-center p-py-3">
+						<div class="person-item p-d-flex p-ai-center">
+							<img src="assets/demo/images/avatar/elwinsharvill.png">
+							<div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+								<div>Elwin Sharvill</div>
+								<small class="muted-text">sharvill@ultima.org</small>
+							</div>
+						</div>
+						<span class="person-tag teal-bgcolor p-p-1 fs-small" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">Finance</span>
+						<span class="person-tag orange-bgcolor p-p-1 fs-small" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Sales</span>
 					</li>
-					<li>
-						<Checkbox name="task" value="dinner" v-model="tasksCheckbox"/>
-						<span class="task-name">Dinner with Tony</span>
-						<i class="pi pi-comments"></i>
+
+					<li class="p-d-flex p-ai-center p-py-3">
+						<div class="person-item p-d-flex p-ai-center">
+							<img src="assets/demo/images/avatar/avatar-1.png">
+							<div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+								<div>Anna Fali</div>
+								<small class="muted-text">fali@ultima.org</small>
+							</div>
+						</div>
+						<span class="person-tag pink-bgcolor p-p-1 fs-small" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">Management</span>
 					</li>
-					<li>
-						<Checkbox name="task" value="meeting" v-model="tasksCheckbox"/>
-						<span class="task-name">Client Meeting</span>
-						<i class="pi pi-users"></i>
+
+					<li class="p-d-flex p-ai-center p-py-3">
+						<div class="person-item p-d-flex p-ai-center">
+							<img src="assets/demo/images/avatar/avatar-2.png">
+							<div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+								<div>Jon Stone</div>
+								<small class="muted-text">stone@ultima.org</small>
+							</div>
+						</div>
+						<span class="person-tag pink-bgcolor p-p-1 fs-small" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">Management</span>
+						<span class="person-tag teal-bgcolor p-p-1 fs-small" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Finance</span>
 					</li>
-					<li>
-						<Checkbox name="task" value="theme" v-model="tasksCheckbox"/>
-						<span class="task-name">New Theme</span>
-						<i class="pi pi-palette"></i>
-					</li>
-					<li>
-						<Checkbox name="task" value="ticket" v-model="tasksCheckbox"/>
-						<span class="task-name">Flight Ticket</span>
-						<i class="pi pi-ticket"></i>
-					</li>
-					<li>
-						<Checkbox name="task" value="charts" v-model="tasksCheckbox"/>
-						<span class="task-name">Generate Charts</span>
-						<i class="pi pi-chart-bar"></i>
+
+					<li class="p-d-flex p-ai-center p-py-3">
+						<div class="person-item p-d-flex p-ai-center">
+							<img src="assets/demo/images/avatar/avatar-3.png">
+							<div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+								<div>Stephen Shaw</div>
+								<small class="muted-text">shaw@ultima.org</small>
+							</div>
+						</div>
+						<span class="person-tag teal-bgcolor p-p-1 fs-small" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">Finance</span>
 					</li>
 				</ul>
-			</Panel>
-		</div>
-		<div class="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
-			<Panel header="Contact Us">
-				<div class="p-grid">
-					<div class="p-col-12">
-						<Dropdown v-model="dropdownCity" :options="dropdownCities" optionLabel="name" placeholder="Select a City"/>
-					</div>
-					<div class="p-col-12">
-						<InputText type="text" placeholder="Name"/>
-					</div>
-					<div class="p-col-12">
-						<InputText type="text" placeholder="Age"/>
-					</div>
-					<div class="p-col-12">
-						<InputText type="text" placeholder="Email"/>
-					</div>
-					<div class="p-col-12">
-						<Button type="button" label="Send" icon="pi pi-check"/>
-					</div>
-				</div>
-			</Panel>
-		</div>
-		<div class="p-col-12 p-lg-4 contacts">
-			<Panel header="Contacts">
-				<ul>
-					<li>
-						<button class="p-link">
-							<img src="assets/layout/images/avatar1.png" width="45" alt="avatar1"/>
-							<span class="name">Joshua Williams</span>
-							<span class="email">joshua@pf-ultima.com</span>
-						</button>
-					</li>
-					<li>
-						<button class="p-link">
-							<img src="assets/layout/images/avatar2.png" width="45" alt="avatar2"/>
-							<span class="name">Emily Clark</span>
-							<span class="email">emily@pf-ultima.com</span>
-						</button>
-					</li>
-					<li>
-						<button class="p-link">
-							<img src="assets/layout/images/avatar3.png" width="45" alt="avatar3"/>
-							<span class="name">Susan Johnson</span>
-							<span class="email">susan@pf-ultima.com</span>
-						</button>
-					</li>
-					<li>
-						<button class="p-link">
-							<img src="assets/layout/images/avatar4.png" width="45" alt="avatar4"/>
-							<span class="name">Kelly Stark</span>
-							<span class="email">kelly@pf-ultima.com</span>
-						</button>
-					</li>
-				</ul>
-			</Panel>
-		</div>
-
-		<!-- <div class="p-col-12 p-md-4">
-			<div class="card timeline p-fluid">
-				<div class="p-grid">
-					<div class="p-col-3">
-						<span class="event-time">just now</span>
-						<i class="pi pi-map-marker" style="color:#009688"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#009688">Katherine May</span>
-						<span class="event-text">Lorem ipsun dolor amet</span>
-						<div class="event-content">
-							<img src="assets/layout/images/dashboard/md.png" alt="md"/>
-						</div>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">12h ago</span>
-						<i class="pi pi-star-o" style="color:#E91E63"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#E91E63">Brandon Santos</span>
-						<span class="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">15h ago</span>
-						<i class="pi pi-comment" style="color:#9c27b0"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#9c27b0">Stephan Ward</span>
-						<span class="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">2d ago</span>
-						<i class="pi pi-globe" style="color:#ff9800"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#ff9800">Jason Smith</span>
-						<span class="event-text">Laudantium, repudiandae, similique!</span>
-						<div class="event-content">
-							<img src="assets/layout/images/dashboard/map.png" alt="map"/>
-						</div>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">1w ago</span>
-						<i class="pi pi-heart" style="color:#607d8b"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner">Kevin Cox</span>
-						<span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">2w ago</span>
-						<i class="pi pi-compass" style="color:#FFC107"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#FFC107">Walter White</span>
-						<span class="event-text">I am the one who knocks!</span>
-					</div>
-
-					<div class="p-col-12">
-						<Button type="button" label="Refresh" icon="pi pi-refresh"></Button>
-					</div>
-				</div>
 			</div>
-		</div> -->
+		</div>
 
-		<div class="p-col-12 p-md-8">
-			<div class="card">
-				<DataTable :value="products" class="p-datatable-customers" :rows="5" style="margin-bottom: 20px" :paginator="true">
+		<div class="p-col-12 p-lg-6">
+			<div class="card height-100">
+				<div class="card-header">
+					<h5>Order Graph</h5>
+					<div>
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
+					</div>
+				</div>
+				<Chart type="line" :data="ordersChart" :options="ordersOptions"></Chart>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-lg-6">
+			<div class="card height-100 widget-timeline">
+			<h5>Timeline</h5>
+				<Timeline :value="timelineEvents" align="left" class="customized-timeline">
+					<template #marker="slotProps">
+						<span class="custom-marker p-shadow-2 p-p-2" :style="{backgroundColor: slotProps.item.color}">
+							<i class="marker-icon" :class="slotProps.item.icon"></i>
+						</span>
+					</template>
+					<template #content="slotProps">
+						<Card class="p-mb-3">>
+							<template #title>
+								{{slotProps.item.status}}
+							</template>
+							<template #subtitle>
+								{{slotProps.item.date}}
+							</template>
+							<template #content>
+								<img v-if="slotProps.item.image" :src="'assets/showcase/images/demo/product/' + slotProps.item.image" :alt="slotProps.item.name" width="200" class="p-shadow-2" />
+								<p>{{slotProps.item.description}}</p>
+							</template>
+						</Card>
+					</template>
+				</Timeline>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-md-12 p-lg-6">
+			<div class="card height-100">
+				<DataTable :value="products" class="p-datatable-customers" :rows="8" style="margin-bottom: 20px" :paginator="true">
 					<Column>
 						<template #header>
 							Logo
@@ -283,203 +234,218 @@
 							View
 						</template>
 						<template #body>
-							<Button icon="pi pi-search" class="p-button-success p-mr-2 p-mb-1"></Button>
-							<Button icon="pi pi-times" class="p-button-danger p-mb-1"></Button>
+							<Button icon="pi pi-search" class="p-button-rounded p-button-text p-mb-1"></Button>
 						</template>
 					</Column>
 				</DataTable>
-
-				<Panel header="Sales Graph">
-					<Chart type="line" :data="chartData"/>
-				</Panel>
 			</div>
 		</div>
 
-		<div class="p-col-12 p-md-8">
-			<Panel header="Calendar" style="height:100%">
-				<FullCalendar  :events="events" :options="fullcalendarOptions" />
-			</Panel>
-		</div>
-		<div class="p-col-12 p-md-4">
-			<Panel header="Activity" style="height:100%">
-				<div class="activity-header">
-					<div class="p-grid">
-						<div class="p-col-6">
-							<span style="font-weight:bold">Last Activity</span>
-							<p>Updated 1 minute ago</p>
-						</div>
-						<div class="p-col-6" style="text-align:right">
-							<Button label="Update" icon="pi pi-refresh"></Button>
-						</div>
+		<div class="p-col-12 p-lg-6">
+			<div class="card height-100">
+				<div class="card-header">
+					<h5>Chat</h5>
+					<div>
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></button>
+						<Menu ref="menu" :popup="true" :model="items3"></Menu>
 					</div>
 				</div>
-				<ul class="activity-list">
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Income</h5>
-							<div class="count">$900</div>
-						</div>
-						<ProgressBar :value="95" :showValue="false" />
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Tax</h5>
-							<div class="count" style="background-color:#f9c851">$250</div>
-						</div>
-						<ProgressBar :value="24" :showValue="false" />
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Invoices</h5>
-							<div class="count" style="background-color:#20d077">$125</div>
-						</div>
-						<ProgressBar :value="55" :showValue="false" />
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Expenses</h5>
-							<div class="count" style="background-color:#f9c851">$250</div>
-						</div>
-						<ProgressBar :value="15" :showValue="false" />
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Bonus</h5>
-							<div class="count" style="background-color:#007be5">$350</div>
-						</div>
-						<ProgressBar :value="5" :showValue="false" />
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Revenue</h5>
-							<div class="count" style="background-color:#ef6262">$500</div>
-						</div>
-						<ProgressBar :value="25" :showValue="false" />
-					</li>
-				</ul>
-			</Panel>
+				<div class="widget-chat">
+					<ul id="chatcontainer">
+						<li v-for="(chartMessage, i) in chatMessages" :key="chartMessage.url" class="p-d-flex p-ai-start" :class="{'from': !!chartMessage.from, 'own p-jc-end': !chartMessage.from, 'p-mb-3': i !== chatMessages.length, 'p-mb-1': i === chatMessages.length}">
+							<img v-if="!!chartMessage.url" :src="chartMessage.url" alt="avatar" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}">
+							<div class="messages p-d-flex p-flex-column" :class="{'p-ai-start': !!chartMessage.from, 'p-ai-end': !chartMessage.from}">
+								<span v-for="(message, j) in chartMessage.messages" :key="message" class="message" :class="{'cyan-bgcolor': !!chartMessage.from, 'pink-bgcolor': !chartMessage.from, 'p-mt-1': j !== chartMessage.messages.length}">
+									{{message}}
+								</span>
+							</div>
+						</li>
+					</ul>
+					<div class="p-inputgroup write-message p-mt-3">
+						<span class="p-inputgroup-addon">
+							<Button icon="pi pi-plus-circle" class="p-button-text p-button-plain"></Button>
+						</span>
+						<InputText ref="input" v-model="chatInput" placeholder="Write your message (Hint: 'PrimeVue')" @keydown="onChatKeydown($event)" />
+						<span class="p-inputgroup-addon">
+							<Button icon="pi pi-video" class="p-button-text p-button-plain"></Button>
+						</span>
+						<span class="p-inputgroup-addon">
+							<Button icon="pi pi-clock" @click="toggleEmojis" class="p-button-text p-button-plain" aria:haspopup="true" aria-controls="overlay_panel"></Button>
+							<OverlayPanel ref="op" class="emoji" appendTo="body" style="width: 45em">
+								<Button type="button" v-for="emoji in chatEmojis" :key="emoji" @click="onEmojiOverlayPanel(emoji)" :label="emoji" 
+									class="emoji-button p-p-2 p-button-text p-button-plain"></Button>
+							</OverlayPanel>
+						</span>
+					</div>
+				</div>
+			</div>
 		</div>
+
+		<div class="p-col-12 p-lg-3">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Activity</h5>
+                <div>
+                    <Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+                    <Menu ref="menu" :popup="true" :model="items"></Menu>
+                </div>
+            </div>
+
+            <ul class="widget-activity">
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Income</div>
+                        <div class="activity-subtext p-mb-2">30 November, 16.20</div>
+                        <ProgressBar :value="50" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Tax</div>
+                        <div class="activity-subtext p-mb-2">1 December, 15.27</div>
+                        <ProgressBar :value="15" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Invoices</div>
+                        <div class="activity-subtext p-mb-2">1 December, 15.28</div>
+                        <ProgressBar :value="78" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Expanses</div>
+                        <div class="activity-subtext p-mb-2">3 December, 09.15</div>
+                        <ProgressBar :value="66" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Bonus</div>
+                        <div class="activity-subtext p-mb-2">1 December, 23.55</div>
+                        <ProgressBar :value="85" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item p-d-flex p-flex-column">
+                        <div class="activity-title p-mb-1">Revenue</div>
+                        <div class="activity-subtext p-mb-2">30 November, 16.20</div>
+                        <ProgressBar :value="54" :showValue="false"></ProgressBar>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-3">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Best Sellers</h5>
+                <div>
+                    <Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></Button>
+                    <Menu :popup="true" :model="items"></Menu>
+                </div>
+            </div>
+            <ul class="widget-bestsellers">
+                <li>
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/blue-band.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Blue Band</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/bracelet.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Bracelet</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/black-watch.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Black Watch</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/bamboo-watch.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Bamboo Watch</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/blue-t-shirt.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Blue T-Shirt</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/game-controller.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Game Controller</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/gold-phone-case.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Phone Case</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item p-d-flex p-ai-center p-p-3 p-mb-2">
+                        <img src="assets/demo/images/product/purple-t-shirt.jpg" alt="product" :class="{'p-mr-3': !isRTL, 'p-ml-3': isRTL}">
+                        <span>Purple T-Shirt</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 	</div>
-
-
 </template>
 
 <script>
 import ProductService from '../service/ProductService';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
 
 export default {
+	inject: ['overviewChartData1', 'overviewChartData2', 'overviewChartData3', 'overviewChartData4', 'overviewChartOptions', 'ordersChart'],
 	data() {
 		return {
-			tasksCheckbox: [],
-			dropdownCities: [
-				{name: 'New York', code: 'NY'},
-				{name: 'Rome', code: 'RM'},
-				{name: 'London', code: 'LDN'},
-				{name: 'Istanbul', code: 'IST'},
-				{name: 'Paris', code: 'PRS'}
+			chatInput: '',
+			ordersOptions: null,
+			items: [
+				{label: 'Update', icon: 'pi pi-fw pi-refresh'},
+				{label: 'Edit', icon: 'pi pi-fw pi-pencil'}
 			],
-			dropdownCity: null,
-			name: '',
-			age: '',
-			message: '',
+			items2: [
+				{label: 'New', icon: 'pi pi-fw pi-plus'},
+				{label: 'Edit', icon: 'pi pi-fw pi-pencil'},
+				{label: 'Delete', icon: 'pi pi-fw pi-trash'}
+			],
+			items3: [
+				{label: 'View Media', icon: 'pi pi-fw pi-images'},
+				{label: 'Starred Messages', icon: 'pi pi-fw pi-star-o'},
+				{label: 'Search', icon: 'pi pi-fw pi-search'}
+			],
+			timelineEvents: [
+				{ status: 'Ordered', date: '15/10/2020 10:30', icon: "pi pi-shopping-cart", color: '#E91E63', description: "Richard Jones (C8012) has ordered a blue t-shirt for $79." },
+				{ status: 'Processing', date: '15/10/2020 14:00', icon: "pi pi-cog", color: '#FB8C00', description: "Order #99207 has processed succesfully." },
+				{ status: 'Shipped', date: '15/10/2020 16:15', icon: "pi pi-compass", color: '#673AB7', description: "Order #99207 has shipped with shipping code 2222302090." },
+				{ status: 'Delivered', date: '16/10/2020 10:00', icon: "pi pi-check-square", color: '#0097A7', description: "Richard Jones (C8012) has recieved his blue t-shirt." }
+			],
 			products: null,
-			chartData: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-				datasets: [
-					{
-						label: 'First Dataset',
-						data: [65, 59, 80, 81, 56, 55, 40],
-						fill: false,
-						borderColor: '#4bc0c0'
-					},
-					{
-						label: 'Second Dataset',
-						data: [28, 48, 40, 19, 86, 27, 90],
-						fill: false,
-						borderColor: '#565656'
-					}
-				]
-			},
-			events: [
-				{
-					"id": 1,
-					"title": "All Day Event",
-					"start": "2017-02-01"
-				},
-				{
-					"id": 2,
-					"title": "Long Event",
-					"start": "2017-02-07",
-					"end": "2017-02-10"
-				},
-				{
-					"id": 3,
-					"title": "Repeating Event",
-					"start": "2017-02-09T16:00:00"
-				},
-				{
-					"id": 4,
-					"title": "Repeating Event",
-					"start": "2017-02-16T16:00:00"
-				},
-				{
-					"id": 5,
-					"title": "Conference",
-					"start": "2017-02-11",
-					"end": "2017-02-13"
-				},
-				{
-					"id": 6,
-					"title": "Meeting",
-					"start": "2017-02-12T10:30:00",
-					"end": "2017-02-12T12:30:00"
-				},
-				{
-					"id": 7,
-					"title": "Lunch",
-					"start": "2017-02-12T12:00:00"
-				},
-				{
-					"id": 8,
-					"title": "Meeting",
-					"start": "2017-02-12T14:30:00"
-				},
-				{
-					"id": 9,
-					"title": "Happy Hour",
-					"start": "2017-02-12T17:30:00"
-				},
-				{
-					"id": 10,
-					"title": "Dinner",
-					"start": "2017-02-12T20:00:00"
-				},
-				{
-					"id": 11,
-					"title": "Birthday Party",
-					"start": "2017-02-13T07:00:00"
-				},
-				{
-					"id": 12,
-					"title": "Click for Google",
-					"url": "http://google.com/",
-					"start": "2017-02-28"
-				}
+			chatMessages: [
+				{ from: 'Ioni Bowcher', url: 'assets/demo/images/avatar/ionibowcher.png', messages: ['Hey M. hope you are well.', 'Our idea is accepted by the board. Now it’s time to execute it'] },
+				{ messages: ['We did it! 🤠'] },
+				{ from: 'Ioni Bowcher', url: 'assets/demo/images/avatar/ionibowcher.png', messages: ['That\'s really good!'] },
+				{ messages: ['But it’s important to ship MVP ASAP'] },
+				{ from: 'Ioni Bowcher', url: 'assets/demo/images/avatar/ionibowcher.png', messages: ['I’ll be looking at the process then, just to be sure 🤓'] },
+				{ messages: ['That’s awesome. Thanks!'] }
 			],
-			fullcalendarOptions: {
-				plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-				defaultView: 'dayGridMonth',
-				defaultDate: '2017-02-01',
-				header: {
-					left: 'prev,next',
-					center: 'title',
-					right: ''
-				},
-				editable: true
-			}
+			chatEmojis:[
+				'😀','😃','😄','😁','😆','😅','😂','🤣','😇','😉','😊','🙂','🙃','😋','😌','😍','🥰','😘','😗','😙','😚','🤪','😜','😝','😛',
+				'🤑','😎','🤓','🧐','🤠','🥳','🤗','🤡','😏','😶','😐','😑','😒','🙄','🤨','🤔','🤫','🤭','🤥','😳','😞','😟','😠','😡','🤬','😔',
+				'😟','😠','😡','🤬','😔','😕','🙁','😬','🥺','😣','😖','😫','😩','🥱','😤','😮','😱','😨','😰','😯','😦','😧','😢','😥','😪','🤤'
+			]
 		}
 	},
 	productService: null,
@@ -487,12 +453,119 @@ export default {
 		this.productService = new ProductService();
 	},
 	mounted() {
-		this.productService.getProductsSmall().then(data => this.products = data);
+		this.productService.getProducts().then(data => this.products = data);
+		this.ordersOptions = this.getOrdersOptions();
+		this.setOverviewColors();
 	},
 	methods: {
 		formatCurrency(value) {
 			return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-		}
+		},
+		toggleMenu(event) {
+			this.$refs.menu.toggle(event);
+		},
+		onEmojiOverlayPanel(chatInput, emoji) {
+			this.$refs.op.hide();
+			this.onEmojiClick(chatInput, emoji);
+		},
+		toggleEmojis(event) {
+			this.$refs.op.toggle(event);
+		},
+		onEmojiClick(emoji) {
+			this.chatInput += emoji;
+		},
+		onChatKeydown(event) {
+			if (event.key === 'Enter') {
+				let message = event.currentTarget.value;
+				let lastMessage = this.chatMessages[this.chatMessages.length - 1];
+
+				if (lastMessage.from) {
+					this.chatMessages.push({ messages: [message] });
+				}
+				else {
+					lastMessage.messages.push(message);
+				}
+
+				if (message.match(/primeng|primereact|primefaces|primevue/i)) {
+					this.chatMessages.push({ from: 'Ioni Bowcher', url: 'assets/demo/images/avatar/ionibowcher.png', messages: ['Always bet on Prime!'] });
+				}
+
+				event.currentTarget.value = '';
+				this.chatInput = '';
+
+				const el = document.getElementById('chatcontainer');
+				setTimeout(() => {
+					el.scroll({
+						top: el.scrollHeight,
+						behavior: 'smooth'
+					});
+				}, 1);
+			}
+		},
+		setOverviewColors() {
+        const { pinkBorderColor, pinkBgColor, tealBorderColor, tealBgColor } = this.getOverviewColors();
+
+        this.overviewChartData1.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData1.datasets[0].backgroundColor[0] = tealBgColor;
+
+        this.overviewChartData2.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData2.datasets[0].backgroundColor[0] = tealBgColor;
+
+        this.overviewChartData3.datasets[0].borderColor[0] = pinkBorderColor;
+        this.overviewChartData3.datasets[0].backgroundColor[0] = pinkBgColor;
+
+        this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
+    },
+	getOverviewColors() {
+        const isLight = this.layoutMode === 'light';
+        return {
+            pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
+            pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
+            tealBorderColor: isLight ? '#009688' : '#26A69A',
+            tealBgColor: isLight ? '#80CBC4' : '#B2DFDB'
+        }
+    },
+		getOrdersOptions() {
+        const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+        const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+        const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+        return {
+            legend: {
+                display: true,
+                labels: {
+                    fontFamily,
+                    fontColor: textColor,
+                }
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontFamily,
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontFamily,
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }]
+            }
+        }
+    }
+	},
+	computed: {
+		isRTL() {
+            return this.$appState.RTL;
+        }
 	}
 }
 </script>
