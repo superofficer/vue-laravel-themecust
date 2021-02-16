@@ -20,10 +20,12 @@
 		},
 		watch: {
 			$route() {
-				this.items = [];
-				const x = this.$router.currentRoute._value.meta.breadcrumb[0];
-				for(let pro in x) {
-					this.items.push({label: x[pro]})
+				if(this.$router.currentRoute._value.meta.breadcrumb) {
+					this.items = [];
+					const x = this.$router.currentRoute._value.meta.breadcrumb[0];
+					for(let pro in x) {
+						this.items.push({label: x[pro]})
+					}
 				}
 			}
 		}
