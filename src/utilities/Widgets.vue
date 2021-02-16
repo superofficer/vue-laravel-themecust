@@ -1,393 +1,517 @@
 <template>
-	<div class="p-grid">
-		<h4>Reusable CSS widgets for your applications.</h4>
-		<div class="p-col-12">
-			<div class="card">
-				<h4>Overview Boxes</h4>
-				<div class="p-grid">
-					<div class="p-col-12 p-md-4">
-						<div class="card widget-overview">
-							<div class="overview-content clearfix">
-								<span class="overview-title">Sales</span>
-								<span class="overview-badge">+%90</span>
-								<span class="overview-detail">$22,650 / week</span>
-							</div>
-							<div class="overview-footer">
-								<img src="assets/layout/images/dashboard/sales.svg" style="width: 100%"/>
-							</div>
-						</div>
+	<div class="p-grid dashboard">
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2 cyan-bgcolor solid-surface-text-color">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-shopping-cart"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Orders</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text solid-surface-text-color" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
 					</div>
-					<div class="p-col-12 p-md-4">
-						<div class="card widget-overview">
-							<div class="overview-content clearfix">
-								<span class="overview-title">Views</span>
-								<span class="overview-badge">+%60</span>
-								<span class="overview-detail">6,520 / day</span>
-							</div>
-							<div class="overview-footer">
-								<img src="assets/layout/images/dashboard/views.svg" style="width: 100%"/>
-							</div>
-						</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">640</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
 					</div>
-					<div class="p-col-12 p-md-4">
-						<div class="card widget-overview">
-							<div class="overview-content clearfix">
-								<span class="overview-title">Users</span>
-								<span class="overview-badge">+%45</span>
-								<span class="overview-detail">5,200 / day</span>
-							</div>
-							<div class="overview-footer">
-								<img src="assets/layout/images/dashboard/progress.svg" style="width: 100%"/>
-							</div>
-						</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData1" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="p-col-12">
-			<div class="card">
-				<h4>Color Boxes</h4>
-				<div class="p-grid">
-					<div class="p-col-12 p-md-6 p-lg-3">
-						<div class="p-grid card widget-colorbox colorbox-1">
-							<div class="p-col-4">
-								<i class="pi pi-check-circle"></i>
-							</div>
-							<div class="p-col-8">
-								<span class="colorbox-name">Tasks</span>
-								<span class="colorbox-count">50</span>
-							</div>
-						</div>
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2 orange-bgcolor solid-surface-text-color">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-dollar"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Revenue</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text solid-surface-text-color" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
 					</div>
-					<div class="p-col-12 p-md-6 p-lg-3">
-						<div class="p-grid card widget-colorbox colorbox-2">
-							<div class="p-col-4">
-								<i class="pi pi-shopping-cart"></i>
-							</div>
-							<div class="p-col-8">
-								<span class="colorbox-name">Purchases</span>
-								<span class="colorbox-count">1200</span>
-							</div>
-						</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">$57K</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
 					</div>
-					<div class="p-col-12 p-md-6 p-lg-3">
-						<div class="p-grid card widget-colorbox colorbox-3">
-							<div class="p-col-4">
-								<i class="pi pi-exclamation-circle"></i>
-							</div>
-							<div class="p-col-8">
-								<span class="colorbox-name">Issues</span>
-								<span class="colorbox-count">22</span>
-							</div>
-						</div>
-					</div>
-					<div class="p-col-12 p-md-6 p-lg-3">
-						<div class="p-grid card widget-colorbox colorbox-4">
-							<div class="p-col-4">
-								<i class="pi pi-envelope"></i>
-							</div>
-							<div class="p-col-8">
-								<span class="colorbox-name">Messages</span>
-								<span class="colorbox-count">10</span>
-							</div>
-						</div>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData2" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="p-col-12 p-md-4">
-			<div class="card widget-timeline p-fluid">
-				<div class="p-grid">
-					<div class="p-col-3">
-						<span class="event-time">just now</span>
-						<i class="pi pi-map-marker" style="color:#009688"></i>
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2 pink-bgcolor solid-surface-text-color">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-users"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Customers</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text solid-surface-text-color" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
 					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#009688">Katherine May</span>
-						<span class="event-text">Lorem ipsun dolor amet</span>
-						<div class="event-content">
-							<img src="assets/layout/images/dashboard/md.png">
-						</div>
+				</div>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">8572</span>
+						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
 					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">12h ago</span>
-						<i class="pi pi-star-o" style="color:#E91E63"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#E91E63">Brandon Santos</span>
-						<span class="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">15h ago</span>
-						<i class="pi pi-comment" style="color:#9c27b0"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#9c27b0">Stephan Ward</span>
-						<span class="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">2d ago</span>
-						<i class="pi pi-globe" style="color:#ff9800"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#ff9800">Jason Smith</span>
-						<span class="event-text">Laudantium, repudiandae, similique!</span>
-						<div class="event-content">
-							<img src="assets/layout/images/dashboard/map.png">
-						</div>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">1w ago</span>
-						<i class="pi pi-heart" style="color:#607d8b"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner">Kevin Cox</span>
-						<span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
-					</div>
-
-					<div class="p-col-3">
-						<span class="event-time">2w ago</span>
-						<i class="pi pi-compass" style="color:#FFC107"></i>
-					</div>
-					<div class="p-col-9">
-						<span class="event-owner" style="color:#FFC107">Walter White</span>
-						<span class="event-text">I am the one who knocks!</span>
-					</div>
-
-					<div class="p-col-12">
-						<Button label="Refresh" icon="pi pi-refresh"></Button>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData3" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="p-col-12 p-md-8">
-			<div class="p-grid">
-				<div class="p-col-12 p-lg-6">
-					<div class="card widget-user-card">
-						<div class="user-card-header">
-							<img src="assets/layout/images/avatar.png" class="user-card-avatar" alt="ultima-layout" />
-						</div>
-						<div class="user-card-body">
-							<div class="user-card-title">JANE WILLIAMS</div>
-							<div class="user-card-subtext">Sales Team</div>
-
-							<div class="p-grid user-card-stats">
-								<div class="p-col-4">
-									<i class="pi pi-users"></i>
-									<div>14 Clients</div>
-								</div>
-								<div class="p-col-4">
-									<i class="pi pi-bookmark"></i>
-									<div>2 Leads</div>
-								</div>
-								<div class="p-col-4">
-									<i class="pi pi-check-square"></i>
-									<div>6 Tasks</div>
-								</div>
-							</div>
-
-							<Button label="Assign" style="width: 100%"></Button>
-						</div>
+		<div class="p-col-12 p-md-6 p-lg-3">
+			<div class="card overview-box p-d-flex p-flex-column p-pt-2 purple-bgcolor solid-surface-text-color">
+				<div class="p-d-flex p-ai-center muted-text">
+					<i class="pi pi-comments"></i>
+					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Comments</h6>
+					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text solid-surface-text-color" @click="toggleMenu"></Button>
+						<Menu ref="menu" :popup="true" :model="items"></Menu>
 					</div>
 				</div>
-
-				<div class="p-col-12 p-lg-6">
-					<div class="card p-fluid">
-						<h4>Contact Form</h4>
-						<div class="p-field">
-							<label for="firstname">First Name</label>
-							<InputText id="firstname" />
-						</div>
-						<div class="p-field">
-							<label for="lastname">Last Name</label>
-							<InputText id="lastname" />
-						</div>
-						<div class="p-field">
-							<label for="email">Email</label>
-							<InputText id="email" />
-						</div>
-						<div class="p-field">
-							<label for="message">Message</label>
-							<Textarea id="message" ></Textarea>
-						</div>
-						<Button label="Send"></Button>
+				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
+					<div class="p-d-flex p-flex-column">
+						<span class="p-mb-1 fs-xlarge">805</span>
+						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
 					</div>
-				</div>
-
-				<div class="p-col-12 p-lg-6">
-					<div class="card widget-contacts">
-						<h4>Contacts</h4>
-						<ul>
-							<li>
-								<a href="#">
-									<img src="assets/layout/images/avatar1.png" width="45">
-									<span class="name">Joshua Williams</span>
-									<span class="email">joshua@pf-ultima.com</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="assets/layout/images/avatar2.png" width="45">
-									<span class="name">Emily Clark</span>
-									<span class="email">emily@pf-ultima.com</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="assets/layout/images/avatar3.png" width="45">
-									<span class="name">Susan Johnson</span>
-									<span class="email">susan@pf-ultima.com</span>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<img src="assets/layout/images/avatar4.png" width="45">
-									<span class="name">Kelly Stark</span>
-									<span class="email">kelly@pf-ultima.com</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="p-col-12 p-lg-6">
-					<div class="widget-pricing-card">
-						<div class="card">
-							<div class="pricing-header">
-								<span class="name">STANDARD</span>
-								<span class="fee">$25</span>
-								<span class="type">Monthly</span>
-							</div>
-							<div class="pricing-content">
-								<ul>
-									<li><i class="pi pi-check"></i><span>Responsive</span></li>
-									<li><i class="pi pi-check"></i><span>Push Messages</span></li>
-									<li><i class="pi pi-check"></i><span>7/24 Support</span></li>
-									<li><i class="pi pi-check"></i><span>Free Shipping</span></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="p-col-12 p-lg-8">
-			<div class="card widget-chat">
-				<h4>Chat</h4>
-				<ul>
-					<li class="clearfix message-from">
-						<img src="assets/layout/images/avatar2.png" alt="ultima-layout"/>
-						<span>Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.</span>
-					</li>
-					<li class="clearfix message-own">
-						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
-						<span>Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.</span>
-					</li>
-					<li class="clearfix message-from">
-						<img src="assets/layout/images/avatar2.png" alt="ultima-layout"/>
-						<span>Chillwave craft beer tote bag stumptown quinoa hashtag.</span>
-					</li>
-					<li class="clearfix message-own">
-						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
-						<span>Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.</span>
-					</li>
-					<li class="clearfix message-own">
-						<span>Sed ut perspiciatis unde omnis iste natus.</span>
-					</li>
-					<li class="clearfix message-from">
-						<img src="assets/layout/images/avatar2.png" alt="ultima-layout"/>
-						<span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</span>
-					</li>
-					<li class="clearfix message-own">
-						<img src="assets/layout/images/avatar1.png" alt="ultima-layout"/>
-						<span>At vero eos et accusamus.</span>
-					</li>
-				</ul>
-				<div class="new-message">
-					<div class="message-attachment">
-						<i class="pi pi-paperclip"></i>
-					</div>
-					<div class="message-input">
-						<input type="text" placeholder="Write a message"/>
+					<div class="p-d-flex p-ai-end">
+						<Chart type="line" :data="overviewChartData4" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="p-col-12 p-lg-4">
-			<div class="card">
-				<h4>Activity</h4>
-				<div class="activity-header">
-					<div class="p-grid">
-						<div class="p-col-6">
-							<span style="font-weight:bold">Last Activity</span>
-							<p>Updated 1 minute ago</p>
-						</div>
-						<div class="p-col-6" style="text-align:right">
-							<Button label="Update" icon="pi pi-refresh"></Button>
-						</div>
-					</div>
+			<div class="card height-100 p-d-flex p-flex-column">
+				<div class="p-d-flex p-jc-center p-p-3 rounded-normal content-alt-bgcolor">
+					<img src="assets/layout/images/widgets/feature-faq.svg" alt="feature-faq">
 				</div>
-				<ul class="widget-activity-list">
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Income</h5>
-							<div class="count">$900</div>
-						</div>
-						<ProgressBar :value="95" :showValue="false"></ProgressBar>
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Tax</h5>
-							<div class="count" style="background-color:#f9c851">$250</div>
-						</div>
-						<ProgressBar :value="24" :showValue="false"></ProgressBar>
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Invoices</h5>
-							<div class="count" style="background-color:#20d077">$125</div>
-						</div>
-						<ProgressBar :value="55" :showValue="false"></ProgressBar>
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Expenses</h5>
-							<div class="count" style="background-color:#f9c851">$250</div>
-						</div>
-						<ProgressBar :value="15" :showValue="false"></ProgressBar>
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Bonus</h5>
-							<div class="count" style="background-color:#007be5">$350</div>
-						</div>
-						<ProgressBar :value="5" :showValue="false"></ProgressBar>
-					</li>
-					<li>
-						<div class="p-d-flex p-jc-between p-ai-center p-mb-3">
-							<h5 class="activity p-m-0">Revenue</h5>
-							<div class="count" style="background-color:#ef6262">$500</div>
-						</div>
-						<ProgressBar :value="25" :showValue="false"></ProgressBar>
-					</li>
-				</ul>
+				<div class="p-d-flex p-flex-column p-ai-center p-mt-3">
+					<h5 class="p-mb-2">Frequently Asked Questions</h5>
+					<p class="muted-text">We answer all your burning questions about Ultima, and some probably never even thought to ask.</p>
+				</div>
+				<div class="p-d-flex p-jc-between p-ai-center p-pt-3 p-mt-auto">
+					<small class="muted-text">46 Questions</small>
+					<Button label="VIEW FAQ"></Button>
+				</div>
 			</div>
 		</div>
+
+		<div class="p-col-12 p-lg-4">
+			<div class="card height-100 p-d-flex p-flex-column">
+				<div class="p-d-flex p-jc-center p-p-3 rounded-normal content-alt-bgcolor">
+					<img src="assets/layout/images/widgets/feature-onboarding.svg" alt="feature-onboarding">
+				</div>
+				<div class="p-d-flex p-flex-column p-ai-center p-mt-3">
+					<h5 class="p-mb-2">Onboarding</h5>
+					<p class="muted-text">Follow the steps to start your Ultima adventure within a few days.</p>
+				</div>
+				<div class="p-d-flex p-jc-between p-ai-center p-pt-3 p-mt-auto">
+					<small class="muted-text">3 Steps Left</small>
+					<Button label="VIEW STEPS"></Button>
+				</div>
+			</div>
+		</div>
+
+		<div class="p-col-12 p-lg-4">
+			<div class="card height-100 p-d-flex p-flex-column">
+				<div class="p-d-flex p-jc-center p-p-3 rounded-normal content-alt-bgcolor">
+					<img src="assets/layout/images/widgets/feature-security.svg" alt="feature-security">
+				</div>
+				<div class="p-d-flex p-flex-column p-ai-center p-mt-3">
+					<h5 class="p-mb-2">Security Center</h5>
+					<p class="muted-text">Security surveillance management and threat protection for your Ultima cloud workloads.</p>
+				</div>
+				<div class="p-d-flex p-jc-between p-ai-center p-pt-3 p-mt-auto">
+					<small class="muted-text">3 Steps Left</small>
+					<Button label="VIEW CENTER"></Button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="p-col-12 p-lg-4">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Documents</h5>
+            </div>
+
+            <ul class="widget-list">
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-star p-p-2 lightblue-bgcolor white-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>Design Team | Sprint 021</div>
+                            <small class="muted-text">21MB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-file-excel p-p-2 yellow-bgcolor text-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>Elite Report 2020-Q4</div>
+                            <small class="muted-text">56.00MB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-image p-p-2 teal-bgcolor white-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>Ultima Marketing Assets</div>
+                            <small class="muted-text">1.29GB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-file p-p-2 bluegrey-bgcolor white-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>Ultima Remastered Docs</div>
+                            <small class="muted-text">26.54KB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-key p-p-2 purple-bgcolor white-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>Keychain</div>
+                            <small class="muted-text">320.09KB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+
+                <li class="p-d-flex p-py-3">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-th-large p-p-2 pink-bgcolor white-color widget-list-item-radius"></i>
+                        <div :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
+                            <div>U03 - Feedback Session</div>
+                            <small class="muted-text">128.45KB</small>
+                        </div>
+                    </div>
+                    <Button type="button" icon="pi pi-copy" class="p-button-outlined" :class="{'p-ml-auto p-mr-1': !isRTL, 'p-mr-auto p-ml-1': isRTL}"></Button>
+                    <Button type="button" icon="pi pi-arrow-down" class="p-button-outlined"></Button>
+                </li>
+            </ul>
+
+            <Button type="button" label="Download All" icon="pi pi-cloud-download" class="p-button-text p-button-plain p-mt-4"></Button>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-8">
+        <div class="p-grid p-m-0 widget-pricing">
+            <div class="p-col-12 p-xl-4">
+                <div class="card p-p-0">
+                    <div class="p-d-flex p-flex-column p-ai-center indigo-bgcolor white-color p-p-6 fs-large">
+                        <span>BASIC</span>
+                        <h1 class="p-text-bold">$5</h1>
+                        <span>Monthly</span>
+                    </div>
+                    <ul class="options">
+                        <li><i class="pi pi-check"></i><span>Responsive</span></li>
+                        <li><i class="pi pi-check"></i><span>Push Messages</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-col-12 p-xl-4">
+                <div class="card p-p-0">
+                    <div class="p-d-flex p-flex-column p-ai-center pink-bgcolor white-color p-p-6 fs-large">
+                        <span>STANDARD</span>
+                        <h1 class="p-text-bold">$25</h1>
+                        <span>Monthly</span>
+                    </div>
+                    <ul class="options">
+                        <li><i class="pi pi-check"></i><span>Responsive</span></li>
+                        <li><i class="pi pi-check"></i><span>Push Messages</span></li>
+                        <li><i class="pi pi-check"></i><span>7/24 Support</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-col-12 p-xl-4 pricing-box pricing-professional">
+                <div class="card p-p-0">
+                    <div class="p-d-flex p-flex-column p-ai-center cyan-bgcolor white-color p-p-6 fs-large">
+                        <span>PROFESSIONAL</span>
+                        <h1 class="p-text-bold">$50</h1>
+                        <span>Monthly</span>
+                    </div>
+                    <ul class="options">
+                        <li><i class="pi pi-check"></i><span>Responsive</span></li>
+                        <li><i class="pi pi-check"></i><span>Push Messages</span></li>
+                        <li><i class="pi pi-check"></i><span>7/24 Support</span></li>
+                        <li><i class="pi pi-check"></i><span>Free Shipping</span></li>
+                        <li><i class="pi pi-check"></i><span>Unlimited Bandwidth</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-4">
+        <div class="card height-100 widget-map">
+            <div class="map-container p-p-3">
+                <span class="p-input-icon-left p-d-block p-fluid">
+                    <i class="pi pi-search"></i>
+                    <InputText type="text" placeholder="Search for delivery" />
+                </span>
+            </div>
+            <div class="p-mt-3 p-d-flex p-ai-center">
+                <div class="actions">
+                    <Button type="button" icon="pi pi-share-alt" class="p-button-rounded p-button-text"></Button>
+                    <Button type="button" icon="pi pi-compass" class="p-button-rounded p-button-text"></Button>
+                    <Button type="button" icon="pi pi-heart" class="p-button-rounded p-button-text"></Button>
+                </div>
+                <span class="muted-text" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">View on </span>
+                <Button type="button" label="Google Maps" class="p-button-text p-button-plain p-px-1"></Button>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-4">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5 class="p-mb-0">Overview</h5>
+            </div>
+            <div class="muted-text fs-small p-my-2">Last 7 Months</div>
+            <hr class="p-mt-0" />
+
+            <ul class="widget-list">
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W1</span>
+                        <small class="muted-text">41/100</small>
+                    </div>
+                    <ProgressBar :value="41" :showValue="false"></ProgressBar>
+                </li>
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W2</span>
+                        <small class="muted-text">23/100</small>
+                    </div>
+                    <ProgressBar :value="23" :showValue="false"></ProgressBar>
+                </li>
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W3</span>
+                        <small class="muted-text">81/100</small>
+                    </div>
+                    <ProgressBar :value="81" :showValue="false"></ProgressBar>
+                </li>
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W4</span>
+                        <small class="muted-text">33/100</small>
+                    </div>
+                    <ProgressBar :value="33" :showValue="false"></ProgressBar>
+                </li>
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W5</span>
+                        <small class="muted-text">37/100</small>
+                    </div>
+                    <ProgressBar :value="37" :showValue="false"></ProgressBar>
+                </li>
+                <li class="p-mb-3">
+                    <div class="p-d-flex p-jc-between p-mb-2">
+                        <span>W6</span>
+                        <small class="muted-text">12/100</small>
+                    </div>
+                    <ProgressBar :value="12" :showValue="false"></ProgressBar>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-4">
+        <div class="card height-100 p-d-flex p-flex-column p-ai-center">
+            <img class="p-mt-3" src="assets/layout/images/widgets/asset-profile.png" alt="profile">
+            <h5 class="p-mb-1">John Doe</h5>
+
+            <div class="location p-d-flex p-ai-center p-mb-5">
+                <i class="pi pi-map-marker p-mr-1" :class="{'p-mr-1': !isRTL, 'p-ml-1': isRTL}"></i>
+                <span>London UK</span>
+            </div>
+
+            <div class="p-d-flex p-jc-between p-as-stretch p-px-3 p-mt-6 p-mb-3">
+                <div class="p-d-flex p-flex-column p-ai-center">
+                    <span>FRIENDS</span>
+                    <span class="fs-large p-text-bold indigo-color p-mt-2">660</span>
+                </div>
+                <div class="p-d-flex p-flex-column p-ai-center">
+                    <span>COMMENTS</span>
+                    <span class="fs-large p-text-bold indigo-color p-mt-2">98K</span>
+                </div>
+                <div class="p-d-flex p-flex-column p-ai-center">
+                    <span>PROJECTS</span>
+                    <span class="fs-large p-text-bold indigo-color p-mt-2">51</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-mb-4">
+        <div class="card widget-overlay p-mt-5 height-100">
+            <div class="overlay-header p-p-3">
+                <Chart type="line" :data="chartData" :options="chartOptions" responsive="true" height="100%"></Chart>
+            </div>
+            <div class="p-d-flex p-flex-column p-jc-center p-ai-center">
+                <span class="fs-xlarge p-mb-1 cyan-color p-text-bold">5.758</span>
+                <span class="p-mb-3 muted-text">Daily Users</span>
+                <i class="pi pi-users p-p-3 cyan-bgcolor white-color rounded-circle fs-xlarge"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-mb-4">
+        <div class="card widget-overlay p-mt-5 height-100">
+            <div class="overlay-header">
+                <img src="assets/layout/images/widgets/image-blog.jpg" alt="image-blog" style="width: 100%; height: 100%;">
+            </div>
+            <div class="p-d-flex p-flex-column p-jc-center p-ai-center">
+                <h4>A New Headquarters</h4>
+                <span class="p-mb-3 cyan-bgcolor white-color p-p-2">Corporate News</span>
+                <span class="p-text-center muted-text description">The decision has been made. To mark the beginning of a new chapter in its history, Ultima will move from the Quartier in Tokyo to a new location in Hong Kong. The new location – near the airport – reflects the requirements of an internationally active brand. New Office concepts provide modern way of close collaboration.</span>
+            </div>
+            <div class="p-d-flex p-ai-center p-mt-4">
+                <Button type="button" label="Learn More" icon="pi pi-plus-circle" class="p-button-text p-button-plain"></button>
+                <Button type="button" icon="pi pi-share-alt" class="p-button-rounded p-button-text" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}"></button>
+                <Button type="button" icon="pi pi-heart" class="p-button-rounded p-button-text"></button>
+            </div>
+        </div>
+    </div>
+
 	</div>
 </template>
 
 <script>
 	export default {
-		name: "Widgets"
+		name: "Widgets",
+		data() {
+			return {
+				overviewChartData1: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+					datasets: [
+						{
+							data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
+							borderColor: [
+								'#4DD0E1',
+							],
+							backgroundColor: [
+								'rgba(77, 208, 225, 0.8)',
+							],
+							borderWidth: 2,
+							fill: true
+						}
+					]
+				},
+				overviewChartData2: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+					datasets: [
+						{
+							data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
+							borderColor: [
+								'#4DD0E1',
+							],
+							backgroundColor: [
+								'rgba(77, 208, 225, 0.8)',
+							],
+							borderWidth: 2,
+							fill: true
+						}
+					]
+				},
+				overviewChartData3: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+					datasets: [
+						{
+							data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
+							borderColor: [
+								'#4DD0E1',
+							],
+							backgroundColor: [
+								'rgba(77, 208, 225, 0.8)',
+							],
+							borderWidth: 2,
+							fill: true
+						}
+					]
+				},
+				overviewChartData4: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+					datasets: [
+						{
+							data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
+							borderColor: [
+								'#4DD0E1',
+							],
+							backgroundColor: [
+								'rgba(77, 208, 225, 0.8)',
+							],
+							borderWidth: 2,
+							fill: true
+						}
+					]
+				},
+				overviewChartOptions: {
+					legend: {
+						display: false
+					},
+					responsive: true,
+					scales: {
+						yAxes: [{
+							display: false
+						}],
+						xAxes: [{
+							display: false
+						}]
+					},
+					tooltips: {
+						enabled: false
+					},
+					elements: {
+						point: {
+							radius: 0
+						}
+					},
+				},
+				items: [
+					{label: 'Update', icon: 'pi pi-fw pi-refresh'},
+					{label: 'Edit', icon: 'pi pi-fw pi-pencil'}
+				],
+			}
+		},
+		methods: {
+			toggleMenu(event) {
+				this.$refs.menu.toggle(event);
+			},
+		},
+        computed: {
+            isRTL() {
+				return this.$appState.RTL;
+			}
+        }
 	}
 </script>
 
