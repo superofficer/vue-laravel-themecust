@@ -16,7 +16,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData1" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart type="line" :data="overviewChartData5" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData2" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart type="line" :data="overviewChartData6" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData3" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart type="line" :data="overviewChartData7" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData4" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart type="line" :data="overviewChartData8" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -374,7 +374,7 @@
     <div class="p-col-12 p-md-6 p-mb-4">
         <div class="card widget-overlay p-mt-5 height-100">
             <div class="overlay-header p-p-3">
-                <Chart type="line" :data="chartData" :options="chartOptions" responsive="true" height="100%"></Chart>
+                <Chart type="line" :data="chartData" :options="chartOptions" responsive="true"></Chart>
             </div>
             <div class="p-d-flex p-flex-column p-jc-center p-ai-center">
                 <span class="fs-xlarge p-mb-1 cyan-color p-text-bold">5.758</span>
@@ -408,94 +408,9 @@
 <script>
 	export default {
 		name: "Widgets",
+        inject: ['overviewChartData5', 'overviewChartData6', 'overviewChartData7', 'overviewChartData8', 'overviewChartOptions2', 'chartData', 'chartOptions'],
 		data() {
 			return {
-				overviewChartData1: {
-					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-					datasets: [
-						{
-							data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
-							borderColor: [
-								'#4DD0E1',
-							],
-							backgroundColor: [
-								'rgba(77, 208, 225, 0.8)',
-							],
-							borderWidth: 2,
-							fill: true
-						}
-					]
-				},
-				overviewChartData2: {
-					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-					datasets: [
-						{
-							data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
-							borderColor: [
-								'#4DD0E1',
-							],
-							backgroundColor: [
-								'rgba(77, 208, 225, 0.8)',
-							],
-							borderWidth: 2,
-							fill: true
-						}
-					]
-				},
-				overviewChartData3: {
-					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-					datasets: [
-						{
-							data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
-							borderColor: [
-								'#4DD0E1',
-							],
-							backgroundColor: [
-								'rgba(77, 208, 225, 0.8)',
-							],
-							borderWidth: 2,
-							fill: true
-						}
-					]
-				},
-				overviewChartData4: {
-					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-					datasets: [
-						{
-							data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
-							borderColor: [
-								'#4DD0E1',
-							],
-							backgroundColor: [
-								'rgba(77, 208, 225, 0.8)',
-							],
-							borderWidth: 2,
-							fill: true
-						}
-					]
-				},
-				overviewChartOptions: {
-					legend: {
-						display: false
-					},
-					responsive: true,
-					scales: {
-						yAxes: [{
-							display: false
-						}],
-						xAxes: [{
-							display: false
-						}]
-					},
-					tooltips: {
-						enabled: false
-					},
-					elements: {
-						point: {
-							radius: 0
-						}
-					},
-				},
 				items: [
 					{label: 'Update', icon: 'pi pi-fw pi-refresh'},
 					{label: 'Edit', icon: 'pi pi-fw pi-pencil'}

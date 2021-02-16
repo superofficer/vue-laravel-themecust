@@ -45,119 +45,26 @@ import AppBreadcrumb from './AppBreadcrumb.vue';
 import EventBus from './event-bus';
 
 export default {
-	provide: {
-		overviewChartData1: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-				datasets: [
-					{
-						data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
-						borderColor: [
-							'#4DD0E1',
-						],
-						backgroundColor: [
-							'rgba(77, 208, 225, 0.8)',
-						],
-						borderWidth: 2,
-						fill: true
-					}
-				]
-		},
-		overviewChartData2: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-				datasets: [
-					{
-						data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
-						borderColor: [
-							'#4DD0E1',
-						],
-						backgroundColor: [
-							'rgba(77, 208, 225, 0.8)',
-						],
-						borderWidth: 2,
-						fill: true
-					}
-				]
-			},
-			overviewChartData3: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-				datasets: [
-					{
-						data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
-						borderColor: [
-							'#4DD0E1',
-						],
-						backgroundColor: [
-							'rgba(77, 208, 225, 0.8)',
-						],
-						borderWidth: 2,
-						fill: true
-					}
-				]
-			},
-			overviewChartData4: {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-				datasets: [
-					{
-						data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
-						borderColor: [
-							'#4DD0E1',
-						],
-						backgroundColor: [
-							'rgba(77, 208, 225, 0.8)',
-						],
-						borderWidth: 2,
-						fill: true
-					}
-				]
-			},
-			overviewChartOptions: {
-				legend: {
-					display: false
-				},
-				responsive: true,
-				scales: {
-					yAxes: [{
-						display: false
-					}],
-					xAxes: [{
-						display: false
-					}]
-				},
-				tooltips: {
-					enabled: false
-				},
-				elements: {
-					point: {
-						radius: 0
-					}
-				},
-			},
-			ordersChart: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                label: 'New Orders',
-                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }, {
-                label: 'Completed Orders',
-                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
-                borderColor: [
-                    '#3F51B5',
-                ],
-                backgroundColor: [
-                    'rgba(63, 81, 181, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true,
-            }]
-			},
+	provide() {
+		return {
+			overviewChartData1: this.overviewChartData1,
+			overviewChartData2: this.overviewChartData2,
+			overviewChartData3: this.overviewChartData3,
+			overviewChartData4: this.overviewChartData4,
+			overviewChartData5: this.overviewChartData5,
+			overviewChartData6: this.overviewChartData6,
+			overviewChartData7: this.overviewChartData7,
+			overviewChartData8: this.overviewChartData8,
+			overviewChartOptions: this.overviewChartOptions,
+			overviewChartOptions2: this.overviewChartOptions2,
+			ordersChart: this.ordersChart,
+			chartData: this.chartData,
+			ordersOptions: this.ordersOptions,
+			chartOptions: this.chartOptions
+		}
+	},
+	mounted() {
+		this.refreshChart();
 	},
     data() {
         return {
@@ -364,7 +271,198 @@ export default {
 						}
 					]
 				}
-            ]
+            ],
+			overviewChartData1: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData2: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData3: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData4: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartOptions: {
+				legend: {
+					display: false
+				},
+				responsive: true,
+				scales: {
+					yAxes: [{
+						display: false
+					}],
+					xAxes: [{
+						display: false
+					}]
+				},
+				tooltips: {
+					enabled: false
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				},
+			},
+			ordersChart: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                label: 'New Orders',
+                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }, {
+                label: 'Completed Orders',
+                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                borderColor: [
+                    '#3F51B5',
+                ],
+                backgroundColor: [
+                    'rgba(63, 81, 181, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true,
+            }]
+			},
+			overviewChartData5: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                data: [50,64,32,24,18,27,20,36,30],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }
+        ]},
+        overviewChartData6: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                data: [11,30,52,35,39,20,14,18,29],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }
+        ]},
+        overviewChartData7: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                data: [20,29,39,36,45,24,28,20,15],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }
+        ]},
+		overviewChartData8: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                data: [30,39,50,21,33,18,10,24,20],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }
+        ]},
+        overviewChartOptions2: {
+            legend: {
+                display: false
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    display: false
+                }],
+                xAxes: [{
+                    display: false
+                }]
+            },
+            tooltips: {
+                enabled: false
+            },
+            elements: {
+                point:{
+                    radius: 0
+                }
+            },
+        },
+
         }
     },
     watch: {
@@ -533,6 +631,15 @@ export default {
 
 			this.replaceLink(themeLink, newURL, this.refreshChart);
 		},
+		refreshChart() {
+			this.ordersOptions = this.getOrdersOptions();
+            // this.setOverviewColors();
+
+			this.chartData = this.getChartData();
+			this.chartOptions = this.getChartOptions();
+
+			this.setOverviewColors();
+		},
 		onInlineMenuPositionChange(position) {
 			this.inlineMenuPosition = position;
 		},
@@ -577,7 +684,6 @@ export default {
 			const urlTokens = element.getAttribute('href').split('/');
 			urlTokens[urlTokens.length - 2] = value;
 			const newURL = urlTokens.join('/');
-			console.log(newURL)
 			this.replaceLink(element, newURL);
 		},
 		replaceLink(linkElement, href, callback) {
@@ -594,6 +700,7 @@ export default {
 				cloneLinkElement.setAttribute('id', id);
 
 				if(callback) {
+					console.log('kdfjn')
 					callback();
 				}
 			});
@@ -612,7 +719,146 @@ export default {
                 document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
                     'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             }
+        },
+		setOverviewColors() {
+        const { pinkBorderColor, pinkBgColor, tealBorderColor, tealBgColor } = this.getOverviewColors();
+
+        this.overviewChartData1.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData1.datasets[0].backgroundColor[0] = tealBgColor;
+
+        this.overviewChartData2.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData2.datasets[0].backgroundColor[0] = tealBgColor;
+
+        this.overviewChartData3.datasets[0].borderColor[0] = pinkBorderColor;
+        this.overviewChartData3.datasets[0].backgroundColor[0] = pinkBgColor;
+
+        this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
+        this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
+
+		const { whiteBgColor, whiteBorderColor} = this.getOverviewColors();
+
+        this.overviewChartData5.datasets[0].borderColor[0] = whiteBorderColor;
+        this.overviewChartData5.datasets[0].backgroundColor[0] = whiteBgColor;
+
+        this.overviewChartData6.datasets[0].borderColor[0] = whiteBorderColor;
+        this.overviewChartData6.datasets[0].backgroundColor[0] = whiteBgColor;
+
+        this.overviewChartData7.datasets[0].borderColor[0] = whiteBorderColor;
+        this.overviewChartData7.datasets[0].backgroundColor[0] = whiteBgColor;
+
+        this.overviewChartData8.datasets[0].borderColor[0] = whiteBorderColor;
+        this.overviewChartData8.datasets[0].backgroundColor[0] = whiteBgColor;
+    },
+	getOverviewColors() {
+        const isLight = this.layoutMode === 'light';
+        return {
+            pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
+            pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
+            tealBorderColor: isLight ? '#009688' : '#26A69A',
+            tealBgColor: isLight ? '#80CBC4' : '#B2DFDB',
+			whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
+            whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
         }
+    },
+		getOrdersOptions() {
+        const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+        const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+        const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+        return {
+            legend: {
+                display: true,
+                labels: {
+                    fontFamily,
+                    fontColor: textColor,
+                }
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontFamily,
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontFamily,
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }]
+            }
+        }
+		},
+		getChartData() {
+        const isLight = this.layoutMode === 'light';
+        const completedColors = {
+            borderColor: isLight ? '#00ACC1' : '#4DD0E1',
+            backgroundColor: isLight ? 'rgb(0, 172, 193, .3)' : 'rgb(77, 208, 225, .3)'
+        };
+        const canceledColors = {
+            borderColor: isLight ? '#FF9800' : '#FFB74D',
+            backgroundColor: isLight ? 'rgb(255, 152, 0, .3)' : 'rgb(255, 183, 77, .3)'
+        };
+
+        return {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'Completed',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    borderColor: completedColors.borderColor,
+                    backgroundColor: completedColors.backgroundColor,
+                    borderWidth: 2,
+                    fill: true
+                },
+                {
+                    label: 'Cancelled',
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                    borderColor: canceledColors.borderColor,
+                    backgroundColor: canceledColors.backgroundColor,
+                    borderWidth: 2,
+                    fill: true
+                }
+            ]
+        };
+    },
+    getChartOptions() {
+        const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+        const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+        return {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: textColor
+                }
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: textColor
+                    },
+                    gridLines: {
+                        color: gridLinesColor
+                    }
+                }]
+            }
+        }
+    }
     },
     computed: {
 		layoutContainerClass() {

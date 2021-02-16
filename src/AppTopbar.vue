@@ -1,7 +1,7 @@
 <template>
 	<div class="layout-topbar p-shadow-4">
 		<div class="layout-topbar-left">
-			<a class="layout-topbar-logo" href="/">
+			<a class="layout-topbar-logo" href="/#/">
 				<img id="logo" src="assets/layout/images/logo-light.svg" alt="ultima-layout" style="height: 2.25rem">
 			</a>
 

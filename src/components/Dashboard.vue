@@ -407,11 +407,10 @@
 import ProductService from '../service/ProductService';
 
 export default {
-	inject: ['overviewChartData1', 'overviewChartData2', 'overviewChartData3', 'overviewChartData4', 'overviewChartOptions', 'ordersChart'],
+	inject: ['overviewChartData1', 'overviewChartData2', 'overviewChartData3', 'overviewChartData4', 'overviewChartOptions', 'ordersChart', 'ordersOptions'],
 	data() {
 		return {
 			chatInput: '',
-			ordersOptions: null,
 			items: [
 				{label: 'Update', icon: 'pi pi-fw pi-refresh'},
 				{label: 'Edit', icon: 'pi pi-fw pi-pencil'}
@@ -454,8 +453,6 @@ export default {
 	},
 	mounted() {
 		this.productService.getProducts().then(data => this.products = data);
-		this.ordersOptions = this.getOrdersOptions();
-		this.setOverviewColors();
 	},
 	methods: {
 		formatCurrency(value) {
@@ -501,66 +498,7 @@ export default {
 					});
 				}, 1);
 			}
-		},
-		setOverviewColors() {
-        const { pinkBorderColor, pinkBgColor, tealBorderColor, tealBgColor } = this.getOverviewColors();
-
-        this.overviewChartData1.datasets[0].borderColor[0] = tealBorderColor;
-        this.overviewChartData1.datasets[0].backgroundColor[0] = tealBgColor;
-
-        this.overviewChartData2.datasets[0].borderColor[0] = tealBorderColor;
-        this.overviewChartData2.datasets[0].backgroundColor[0] = tealBgColor;
-
-        this.overviewChartData3.datasets[0].borderColor[0] = pinkBorderColor;
-        this.overviewChartData3.datasets[0].backgroundColor[0] = pinkBgColor;
-
-        this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
-        this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
-    },
-	getOverviewColors() {
-        const isLight = this.layoutMode === 'light';
-        return {
-            pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
-            pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
-            tealBorderColor: isLight ? '#009688' : '#26A69A',
-            tealBgColor: isLight ? '#80CBC4' : '#B2DFDB'
-        }
-    },
-		getOrdersOptions() {
-        const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
-        const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
-        const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
-        return {
-            legend: {
-                display: true,
-                labels: {
-                    fontFamily,
-                    fontColor: textColor,
-                }
-            },
-            responsive: true,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        fontFamily,
-                        fontColor: textColor
-                    },
-                    gridLines: {
-                        color: gridLinesColor
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        fontFamily,
-                        fontColor: textColor
-                    },
-                    gridLines: {
-                        color: gridLinesColor
-                    }
-                }]
-            }
-        }
-    }
+		}
 	},
 	computed: {
 		isRTL() {

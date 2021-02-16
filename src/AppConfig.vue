@@ -133,6 +133,7 @@
 <script>
 export default {
     emits: ['menuModeChange', 'menuTheme', 'menuColorChange', 'topbarTheme', 'themeChange', 'inlinemenuChange'],
+    provide: ['ordersOptions'],
     props: {
         menuMode: {
             type: String,
