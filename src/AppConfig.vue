@@ -86,7 +86,7 @@
                 <InputSwitch :modelValue="rippleActive" @update:modelValue="onRippleChange" />
 
                 <h6>RTL</h6>
-                <InputSwitch :modelValue="d_RTL" @update:modelValue="onRTLChange" />
+                <InputSwitch :modelValue="isRTL" @update:modelValue="onRTLChange" />
 
                 <h6>Menu Themes</h6>
                 <div v-if="layoutMode !== 'dark'" class="p-grid">
@@ -193,9 +193,6 @@ export default {
         },
         layoutMode(newValue) {
             this.d_layoutMode = newValue;
-        },
-        isRTL(newValue) {
-            this.d_RTL = newValue;
         },
         inlineMenuPosition(newValue) {
             this.d_inlineMenuPosition = newValue;
