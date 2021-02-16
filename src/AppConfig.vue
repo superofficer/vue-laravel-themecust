@@ -212,7 +212,7 @@ export default {
             this.$appState.inputStyle = value;
         },
         onRippleChange(value) {
-            this.$primevue.ripple = value;
+            this.$primevue.config.ripple = value;
         },
         onRTLChange() {
             this.$emit('rtl-change');
@@ -291,7 +291,7 @@ export default {
             return ['layout-config', {'layout-config-active': this.active}];
         },
         rippleActive() {
-            return this.$primevue.ripple;
+            return this.$primevue.config.ripple;
         },
         value() {
             return this.$appState.inputStyle;
