@@ -1212,7 +1212,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                     both cases.</p>
 
                 <h4>Utilites</h4>
-                <p>Ultima provides various helper features such as material iconset compatible with PrimeNG components and helper classes. Visit utils page for details.</p>
+                <p>Ultima provides various helper features such as material iconset compatible with PrimeVue components and helper classes. Visit utils page for details.</p>
 
                 <h4>PrimeFlex Grid System</h4>
                 <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeVue. PrimeFlex is
