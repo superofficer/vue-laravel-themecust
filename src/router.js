@@ -330,11 +330,6 @@ const routes = [
         component: () => import('./pages/Access.vue')
     },
     {
-        path: '/wizard',
-        name: 'wizard',
-        component: () => import('./pages/Wizard.vue')
-    },
-    {
         path: '/landing',
         name: 'landing',
         component: () => import('./pages/Landing.vue')
