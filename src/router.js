@@ -286,14 +286,6 @@ const routes = [
         },
     },
     {
-        path: '/contactus',
-        name: 'contactus',
-        component: () => import('./pages/ContactUsDemo.vue'),
-        meta: {
-            breadcrumb: [{ parent: 'Pages', label: 'Contact Us' }],
-        },
-    },
-    {
         path: '/empty',
         name: 'empty',
         component: () => import('./components/EmptyPage.vue'),
@@ -333,6 +325,11 @@ const routes = [
         path: '/landing',
         name: 'landing',
         component: () => import('./pages/Landing.vue')
+    },
+    {
+        path: '/contactus',
+        name: 'contactus',
+        component: () => import('./pages/ContactUs.vue')
     }
 ];
 

@@ -1,16 +1,31 @@
 <template>
-	<div class="exception-body accessdenied-page">
-		<div class="exception-type">
-			<img src="assets/layout/images/401.svg" alt="ultima"/>
+	<div class="pages-body accessdenied-page p-d-flex p-flex-column">
+		<div class="topbar p-p-3 p-d-flex p-jc-between p-flex-row p-ai-center">
+			<div class="topbar-left p-ml-3 p-d-flex" @click="goDashboard">
+				<div class="logo">
+					<img src="assets/layout/images/logo2x.png" alt=""/>
+				</div>
+			</div>
+			<div class="topbar-right p-mr-3 p-d-flex">
+				<Button type="button" label="DASHBOARD" @click="goDashboard"
+					class="p-button-text p-button-plain topbar-button"></button>
+			</div>
 		</div>
 
-		<div class="card exception-panel">
-			<i class="pi pi-lock"></i>
-			<h1>Access Denied</h1>
-			<div class="exception-detail">You are not authorized to access this resource.</div>
-			<Button label="Homepage" @click="goDashboard" />
+		<div class="p-as-center p-mt-auto p-mb-auto">
+			<div class="pages-panel card p-d-flex p-flex-column">
+				<div class="pages-header p-px-3 p-py-1">
+					<h2>ACCESS DENIED</h2>
+				</div>
+				<div class="card p-mt-3 p-px-6">
+					<img src="assets/layout/images/pages/error.png" alt=""/>
+				</div>
+				<div class="pages-detail p-pb-6">Requested resource is not available.</div>
+				<Button type="button" label="GO BACK TO DASHBOARD" @click="goDashboard" class="p-button-text"></Button>
+			</div>
 		</div>
 	</div>
+
 </template>
 
 <script>

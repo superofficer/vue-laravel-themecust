@@ -1,31 +1,56 @@
 <template>
-	<div class="login-body">
-		<div class="login-type">
-			<div class="card login-panel p-fluid">
-				<div class="p-grid">
-					<div class="p-col-12">
-						<img src="assets/layout/images/logo-ultima.svg" alt="ultima"/>
-					</div>
-					<div class="p-col-12">
-						<span class="p-float-label">
-							<InputText id="username" type="text" v-model="username"/>
-							<label for="username">Username</label>
-						</span>
-					</div>
-					<div class="p-col-12">
-						<span class="p-float-label">
-							<InputText id="password" type="text" v-model="password"/>
-							<label for="password">Password</label>
-						</span>
-					</div>
-					<div class="p-col-12">
-						<Button label="Sign In" icon="pi pi-user" @click="goDashboard" />
-						<Button label="Forgot Password" icon="pi pi-question-circle" class="p-button-secondary"/>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="pages-body login-page p-d-flex p-flex-column">
+    <div class="topbar p-p-3 p-d-flex p-jc-between p-flex-row p-ai-center">
+        <div class="topbar-left p-ml-3 p-d-flex" routerLink="/">
+            <div class="logo">
+                <img src="assets/layout/images/logo2x.png" alt=""/>
+            </div>
+        </div>
+        <div class="topbar-right p-mr-3 p-d-flex">
+            <Button type="button" label="DASHBOARD" @click="goDashboard"
+                    class="p-button-text p-button-plain topbar-button"></Button>
+        </div>
+    </div>
+
+    <div class="p-as-center p-mt-auto p-mb-auto">
+        <div class="pages-panel card p-d-flex p-flex-column">
+            <div class="pages-header p-px-3 p-py-1">
+                <h2>LOGIN</h2>
+            </div>
+
+            <h4>Welcome</h4>
+
+            <div class="pages-detail p-mb-6 p-px-6">Please use the form to sign-in Ultima network</div>
+
+            <div class="input-panel p-d-flex p-flex-column p-px-3">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-envelope"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <InputText type="text" id="email" />
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+
+                <div class="p-inputgroup p-mt-3 p-mb-6">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-lock"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <InputText type="password" id="password" />
+                        <label for="password">Password</label>
+                    </span>
+                </div>
+
+            </div>
+
+            <Button class="login-button p-mb-6 p-px-3" label="LOGIN"></Button>
+
+        </div>
+    </div>
+</div>
+
 </template>
 
 <script>
