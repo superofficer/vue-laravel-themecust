@@ -1,6 +1,5 @@
 <template>
     <div class="layout-inline-menu" :class="{'layout-inline-menu-active': active}">
-	<!-- <div :class="{'layout-inline-menu': true, 'layout-inline-menu-active': FIXME: inlineMenuActive[key]}" :style="style"> -->
     <a class="layout-inline-menu-action p-d-flex p-dir-row p-ai-center" :class="menuMode === 'horizontal' ? 'p-p-3 p-p-lg-1 p-py-3' : 'p-p-3'" @click="onClick($event)">
         <img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
         <span class="p-d-flex p-flex-column" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
@@ -18,10 +17,6 @@
 		<span class="layout-inline-menu-action-tooltip-text p-tooltip-text">Amy Elsner</span>
 	</span>
     
-
-    <!-- FIXME:
-    [@menu]="inlineMenuActive[key] ? isHorizontalActive() ? 'visible' : 'visibleAnimated' : isHorizontalActive() ? 'hidden' : 'hiddenAnimated'"
-     -->
     <transition :name="menuMode === 'horizontal' ? 'layout-inline-menu-action-panel-horizontal' : 'layout-inline-menu-action-panel'">
         <ul v-show="active" :class="['layout-inline-menu-action-panel', { 'layout-inline-menu-action-panel-horizontal' : menuMode === 'horizontal'}]">
             <li class="layout-inline-menu-action-item">
@@ -72,12 +67,12 @@
 
 <script>
 	export default {
+        name: "AppInlineMenu",
         props: {
             active: {
                 type: Boolean,
                 default: false
             },
-            isRTL: Boolean,
             menuMode: String,
             inlineMenuKey: String
         },
@@ -87,7 +82,11 @@
 				event.preventDefault();
 			}
 		},
-		name: "AppInlineMenu"
+        computed: {
+            isRTL() {
+				return this.$appState.RTL;
+			}
+        }
 	}
 </script>
 

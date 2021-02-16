@@ -15,6 +15,11 @@
 				type: String,
 				default: 'light'
 			}
+		},
+		computed: {
+			isRTL() {
+				return this.$appState.RTL;
+			}
 		}
 	}
 </script>

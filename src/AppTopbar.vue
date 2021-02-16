@@ -298,7 +298,6 @@
 				default: false
 			},
 			activeTopbarItem: String,
-			isRTL: Boolean,
 			mobileTopbarActive: Boolean
 		},
 		methods: {
@@ -333,6 +332,9 @@
 				return ['topbar-items animated fadeInDown', {
 					'topbar-items-visible': this.topbarMenuActive
 				}];
+			},
+			isRTL() {
+				return this.$appState.RTL;
 			}
 		}
 	}

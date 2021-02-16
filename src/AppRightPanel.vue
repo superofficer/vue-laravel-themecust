@@ -74,10 +74,10 @@
 
 <script>
 	export default {
+		name: "AppRightPanel",
 		emits: ['content-click'],
 		props: {
-			expanded: Boolean,
-			isRTL: Boolean
+			expanded: Boolean
 		},
 		data() {
 			return {
@@ -89,7 +89,11 @@
 				this.d_expanded = value;
 			}
 		},
-		name: "AppRightPanel"
+		computed: {
+            isRTL() {
+				return this.$appState.RTL;
+			}
+        }
 	}
 </script>
 

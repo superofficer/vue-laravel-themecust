@@ -132,7 +132,7 @@
 
 <script>
 export default {
-    emits: ['rtlChange', 'menuModeChange', 'menuTheme', 'menuColorChange', 'topbarTheme', 'themeChange', 'inlinemenuChange'],
+    emits: ['menuModeChange', 'menuTheme', 'menuColorChange', 'topbarTheme', 'themeChange', 'inlinemenuChange'],
     props: {
         menuMode: {
             type: String,
@@ -169,10 +169,6 @@ export default {
         inlineMenuPosition: {
             type: String,
             default: 'bottom'
-        },
-        isRTL: {
-            type: Boolean,
-            default: false
         }
     },
     data() {
@@ -180,7 +176,6 @@ export default {
             active: false,
             d_menuMode: this.menuMode,
             d_layoutMode: this.layoutMode,
-            d_RTL: this.isRTL,
             d_inlineMenuPosition: this.inlineMenuPosition,
             scale: 14,
             scales: [12,13,14,15,16],
@@ -214,8 +209,8 @@ export default {
         onRippleChange(value) {
             this.$primevue.config.ripple = value;
         },
-        onRTLChange() {
-            this.$emit('rtl-change');
+        onRTLChange(value) {
+            this.$appState.RTL = value;
         },
         toggleConfigurator(event) {
             this.active = !this.active;
@@ -295,6 +290,9 @@ export default {
         },
         value() {
             return this.$appState.inputStyle;
+        },
+        isRTL() {
+            return this.$appState.RTL;
         }
     }
 }

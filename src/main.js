@@ -12,6 +12,7 @@ import Button from 'primevue/button';
 import Breadcrumb from 'primevue/breadcrumb';
 import Calendar from 'primevue/calendar';
 import Card from 'primevue/card';
+import CascadeSelect from 'primevue/cascadeselect';
 import Carousel from 'primevue/carousel';
 import Chart from 'primevue/chart';
 import Checkbox from 'primevue/checkbox';
@@ -23,6 +24,7 @@ import DataTable from 'primevue/datatable';
 import DataView from 'primevue/dataview';
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
 import Dialog from 'primevue/dialog';
+import Divider from 'primevue/divider';
 import Dropdown from 'primevue/dropdown';
 import Fieldset from 'primevue/fieldset';
 import FileUpload from 'primevue/fileupload';
@@ -34,6 +36,7 @@ import InputSwitch from 'primevue/inputswitch';
 import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
 import InputNumber from 'primevue/inputnumber';
+import Knob from 'primevue/knob';
 import Listbox from 'primevue/listbox';
 import MegaMenu from 'primevue/megamenu';
 import Menu from 'primevue/menu';
@@ -56,6 +59,8 @@ import SelectButton from 'primevue/selectbutton';
 import Slider from 'primevue/slider';
 import Sidebar from 'primevue/sidebar';
 import SplitButton from 'primevue/splitbutton';
+import Splitter from 'primevue/splitter';
+import SplitterPanel from 'primevue/splitterpanel';
 import Steps from 'primevue/steps';
 import TabMenu from 'primevue/tabmenu';
 import TieredMenu from 'primevue/tieredmenu';
@@ -65,6 +70,7 @@ import ToastService from 'primevue/toastservice';
 import Toolbar from 'primevue/toolbar';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
+import Timeline from 'primevue/timeline';
 import ToggleButton from 'primevue/togglebutton';
 import Tooltip from 'primevue/tooltip';
 import Tree from 'primevue/tree';
@@ -90,7 +96,8 @@ import Access from './pages/Access';
 import Error from './pages/Error';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import Wizard from './pages/Wizard';
+import Landing from './pages/Landing';
+import ContactUs from './pages/ContactUs';
 const app = createApp({
     computed: {
         ViewComponent () {
@@ -103,8 +110,10 @@ const app = createApp({
 					return Access;
 				case '/notfound':
 					return NotFound;
-				case '/wizard':
-						return Wizard;
+				case '/landing':
+					return Landing;
+				case '/contactus': 
+					return ContactUs;
 				default:
 					return App;
 			}
@@ -117,8 +126,7 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router);
 
-app.config.globalProperties.$appState = reactive({ inputStyle: 'outlined' });
-// app.config.globalProperties.$primevue = reactive({ ripple: true });
+app.config.globalProperties.$appState = reactive({ inputStyle: 'filled', RTL: false });
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
@@ -134,6 +142,7 @@ app.component('Button', Button);
 app.component('Calendar', Calendar);
 app.component('Card', Card);
 app.component('Carousel', Carousel);
+app.component('CascadeSelect', CascadeSelect);
 app.component('Chart', Chart);
 app.component('Checkbox', Checkbox);
 app.component('Chips', Chips);
@@ -144,6 +153,7 @@ app.component('DataTable', DataTable);
 app.component('DataView', DataView);
 app.component('DataViewLayoutOptions', DataViewLayoutOptions);
 app.component('Dialog', Dialog);
+app.component('Divider', Divider);
 app.component('Dropdown', Dropdown);
 app.component('Fieldset', Fieldset);
 app.component('FileUpload', FileUpload);
@@ -155,6 +165,7 @@ app.component('InputNumber', InputNumber);
 app.component('InputSwitch', InputSwitch);
 app.component('InputText', InputText);
 app.component('Galleria', Galleria);
+app.component('Knob', Knob);
 app.component('Listbox', Listbox);
 app.component('MegaMenu', MegaMenu);
 app.component('Menu', Menu);
@@ -176,12 +187,15 @@ app.component('SelectButton', SelectButton);
 app.component('Slider', Slider);
 app.component('Sidebar', Sidebar);
 app.component('SplitButton', SplitButton);
+app.component('Splitter', Splitter);
+app.component('SplitterPanel', SplitterPanel);
 app.component('Steps', Steps);
 app.component('TabMenu', TabMenu);
 app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
 app.component('Textarea', Textarea);
 app.component('TieredMenu', TieredMenu);
+app.component('Timeline', Timeline);
 app.component('Toast', Toast);
 app.component('Toolbar', Toolbar);
 app.component('ToggleButton', ToggleButton);
