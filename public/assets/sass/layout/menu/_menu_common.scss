@@ -129,7 +129,14 @@
                 }
 
                 .layout-menuitem-tooltip {
-                    display: none;
+                    left: 63px;
+                    top: 10px;
+
+                    .layout-menuitem-tooltip-text {
+                        font-weight: 700;
+                        white-space: nowrap;
+                        text-align: center;
+                    }
                 }
             }
         }

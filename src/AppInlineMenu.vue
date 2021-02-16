@@ -5,16 +5,12 @@
         <span class="p-d-flex p-flex-column" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
             <span class="p-text-bold">Amy Elsner</span>
             <small>Webmaster</small>
-            <span class=" p-tooltip">
-					<span class=" p-tooltip-arrow"></span>
-					<span class=" p-tooltip-text">Amy</span>
-				</span>
         </span>
         <i class="layout-inline-menu-icon pi pi-angle-down" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}"></i>
     </a>
-    <span class="layout-inline-menu-action-tooltip p-tooltip">
-		<span class="layout-inline-menu-action-tooltip-arrow p-tooltip-arrow"></span>
-		<span class="layout-inline-menu-action-tooltip-text p-tooltip-text">Amy Elsner</span>
+    <span class="layout-inline-menu-tooltip p-tooltip">
+		<span class="layout-inline-menu-tooltip-arrow p-tooltip-arrow"></span>
+		<span class="layout-inline-menu-tooltip-text p-tooltip-text">Amy Elsner</span>
 	</span>
     
     <transition :name="menuMode === 'horizontal' ? 'layout-inline-menu-action-panel-horizontal' : 'layout-inline-menu-action-panel'">
@@ -24,9 +20,9 @@
                     <i class="pi pi-cog pi-fw"></i>
                     <span>Settings</span>
                 </a>
-                <span class="layout-inline-menu-action-item-tooltip p-tooltip">
-					<span class="layout-inline-menu-action-item-tooltip-arrow p-tooltip-arrow"></span>
-					<span class="layout-inline-menu-action-item-tooltip-text p-tooltip-text">Settings</span>
+                <span class="layout-inline-menu-tooltip p-tooltip">
+					<span class="layout-inline-menu-tooltip-arrow p-tooltip-arrow"></span>
+					<span class="layout-inline-menu-tooltip-text p-tooltip-text">Settings</span>
 				</span>
             </li>
             <li class="layout-inline-menu-action-item">
@@ -34,9 +30,9 @@
                     <i class="pi pi-file-o pi-fw"></i>
                     <span>Terms of Usage</span>
                 </a>
-                <span class="layout-inline-menu-action-item-tooltip p-tooltip">
-					<span class="layout-inline-menu-action-item-tooltip-arrow p-tooltip-arrow"></span>
-					<span class="layout-inline-menu-action-item-tooltip-text p-tooltip-text">Terms of Usage</span>
+                <span class="layout-inline-menu-tooltip p-tooltip">
+					<span class="layout-inline-menu-tooltip-arrow p-tooltip-arrow"></span>
+					<span class="layout-inline-menu-tooltip-text p-tooltip-text">Terms of Usage</span>
 				</span>
             </li>
             <li class="layout-inline-menu-action-item">
@@ -44,9 +40,9 @@
                     <i class="pi pi-compass pi-fw"></i>
                     <span>Support</span>
                 </a>
-                <span class="layout-inline-menu-action-item-tooltip p-tooltip">
-					<span class="layout-inline-menu-action-item-tooltip-arrow p-tooltip-arrow"></span>
-					<span class="layout-inline-menu-action-item-tooltip-text p-tooltip-text">Support</span>
+                <span class="layout-inline-menu-tooltip p-tooltip">
+					<span class="layout-inline-menu-tooltip-arrow p-tooltip-arrow"></span>
+					<span class="layout-inline-menu-tooltip-text p-tooltip-text">Support</span>
 				</span>
             </li>
             <li class="layout-inline-menu-action-item">
@@ -54,9 +50,9 @@
                     <i class="pi pi-power-off pi-fw"></i>
                     <span>Logout</span>
                 </a>
-                <span class="layout-inline-menu-action-item-tooltip p-tooltip">
-					<span class="layout-inline-menu-action-item-tooltip-arrow p-tooltip-arrow"></span>
-					<span class="layout-inline-menu-action-item-tooltip-text p-tooltip-text">Logout</span>
+                <span class="layout-inline-menu-tooltip p-tooltip">
+					<span class="layout-inline-menu-tooltip-arrow p-tooltip-arrow"></span>
+					<span class="layout-inline-menu-tooltip-text p-tooltip-text">Logout</span>
 				</span>
             </li>
     </ul>
@@ -85,7 +81,10 @@
         computed: {
             isRTL() {
 				return this.$appState.RTL;
-			}
+			},
+            isHor() {
+                return this.menuMode === 'horizontal';
+            }
         }
 	}
 </script>

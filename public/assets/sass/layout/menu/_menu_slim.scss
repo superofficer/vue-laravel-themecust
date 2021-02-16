@@ -57,90 +57,26 @@
                                 display: block;
                             }
                         }
-
-                        .layout-menuitem-tooltip {
-                            display: none;
-                            padding: 0 5px;
-                            position: absolute;
-                            left: 63px;
-                            top: 10px;
-                            line-height: 1;
-    
-                            .layout-menuitem-tooltip-text {
-                                padding: 6px 8px;
-                                font-weight: 700;
-                                font-size: 13px;
-                                color: $menuTooltipTextColor;
-                                min-width: 75px;
-                                white-space: nowrap;
-                                text-align: center;
-                            }
-    
-                            .layout-menuitem-tooltip-arrow {
-                                position: absolute;
-                                width: 0;
-                                height: 0;
-                                border-color: transparent;
-                                border-style: solid;
-                                top: 50%;
-                                left: 0;
-                                margin-top: -5px;
-                                border-width: 5px 5px 5px 0;
-                                border-right-color: $menuTooltipBgColor;
-                            }
-                        }
                     }
                 }
 
                 .layout-inline-menu {
+                    > a {
+                        &:hover + .layout-inline-menu-tooltip { 
+                            display: block;
+                        }
+                    }
 
                     .layout-inline-menu-action-panel {
                         padding: 0;
                     }
 
-                    .layout-inline-menu-action,
                     .layout-inline-menu-action-panel {
-                        .layout-inline-menu-action, 
                         .layout-inline-menu-action-item {
 
                             > a {
-                                &:hover + .layout-inline-menu-action-tooltip,
-                                &:hover + .layout-inline-menu-action-item-tooltip { 
+                                &:hover + .layout-inline-menu-tooltip { 
                                     display: block;
-                                }
-                            }
-
-                            .layout-inline-menu-action-item-tooltip {
-                                .layout-menuitem-tooltip {
-                                    display: none;
-                                    padding: 0 5px;
-                                    position: absolute;
-                                    left: 63px;
-                                    top: 10px;
-                                    line-height: 1;
-            
-                                    .layout-menuitem-tooltip-text {
-                                        padding: 6px 8px;
-                                        font-weight: 700;
-                                        font-size: 13px;
-                                        color: $menuTooltipTextColor;
-                                        min-width: 75px;
-                                        white-space: nowrap;
-                                        text-align: center;
-                                    }
-            
-                                    .layout-menuitem-tooltip-arrow {
-                                        position: absolute;
-                                        width: 0;
-                                        height: 0;
-                                        border-color: transparent;
-                                        border-style: solid;
-                                        top: 50%;
-                                        left: 0;
-                                        margin-top: -5px;
-                                        border-width: 5px 5px 5px 0;
-                                        border-right-color: $menuTooltipBgColor;
-                                    }
                                 }
                             }
                         }

@@ -89,5 +89,16 @@
                 transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
             }
         }
+
+        .layout-inline-menu-tooltip {
+            left: 63px;
+            top: 10px;
+
+            .layout-inline-menu-tooltip-text {
+                font-weight: 700;
+                white-space: nowrap;
+                text-align: center;
+            }
+        }
     }
 }
