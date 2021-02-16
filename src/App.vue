@@ -1,13 +1,13 @@
 <template>
 		<div :class="layoutContainerClass" @click="onDocumentClick">
-			<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :isRTL="isRTL" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
+			<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
 				@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
 				<div class="menu-wrapper">
 					<div class="layout-menu-container" @click="onMenuClick">
-							<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :isRTL="isRTL" :menuMode="menuMode"></AppInlineMenu>
+							<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :menuMode="menuMode"></AppInlineMenu>
 							<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
-							<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :isRTL="isRTL" :menuMode="menuMode"></AppInlineMenu>
+							<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :menuMode="menuMode"></AppInlineMenu>
 					</div>
 				</div>
 
@@ -19,16 +19,16 @@
 					<router-view />
 				</div>
 
-				<AppFooter />
+				<AppFooter :layoutMode="layoutMode" />
 			</div>
 
 			<AppConfig v-model:menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
-						v-model:layoutMode="layoutMode" @rtl-change="onRTLChange" @topbar-theme="onTopbarThemeChange"
+						v-model:layoutMode="layoutMode" @topbar-theme="onTopbarThemeChange"
 						v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange" :menuMode="menuMode"
 						:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="menuTheme" :menuThemes="menuThemes"
-						:topbarTheme="topbarTheme" :topbarThemes="topbarThemes" v-model:isRTL="isRTL"></AppConfig>
+						:topbarTheme="topbarTheme" :topbarThemes="topbarThemes"></AppConfig>
 
-			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick" :isRTL="isRTL"></AppRightPanel>
+			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
 
 			<div v-if="mobileMenuActive" class="layout-mask modal-in"></div>
 	</div>
@@ -45,13 +45,126 @@ import AppBreadcrumb from './AppBreadcrumb.vue';
 import EventBus from './event-bus';
 
 export default {
+	provide: {
+		overviewChartData1: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+		},
+		overviewChartData2: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData3: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData4: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartOptions: {
+				legend: {
+					display: false
+				},
+				responsive: true,
+				scales: {
+					yAxes: [{
+						display: false
+					}],
+					xAxes: [{
+						display: false
+					}]
+				},
+				tooltips: {
+					enabled: false
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				},
+			},
+			ordersChart: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                label: 'New Orders',
+                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }, {
+                label: 'Completed Orders',
+                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                borderColor: [
+                    '#3F51B5',
+                ],
+                backgroundColor: [
+                    'rgba(63, 81, 181, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true,
+            }]
+			},
+	},
     data() {
         return {
 			mobileTopbarActive: false,
 			mobileMenuActive: false,
 			search: false,
 			searchClick: false,
-			isRTL: false,
 			topbarTheme: 'blue',
 			menuTheme: 'light',
 			menuMode: 'static',
@@ -188,7 +301,6 @@ export default {
 						{label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
 						{label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
 						{label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
-						{label: 'Wizard', icon: 'pi pi-fw pi-star', to: '/wizard'},
 						{label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
 						{label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
 						{label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
@@ -419,7 +531,7 @@ export default {
 			urlTokens[urlTokens.length - 1] = 'theme-' + this.layoutMode + '.css';
 			const newURL = urlTokens.join('/');
 
-			this.replaceLink(themeLink, newURL);
+			this.replaceLink(themeLink, newURL, this.refreshChart);
 		},
 		onInlineMenuPositionChange(position) {
 			this.inlineMenuPosition = position;
@@ -468,7 +580,7 @@ export default {
 			console.log(newURL)
 			this.replaceLink(element, newURL);
 		},
-		replaceLink(linkElement, href) {
+		replaceLink(linkElement, href, callback) {
 			const id = linkElement.getAttribute('id');
 			const cloneLinkElement = linkElement.cloneNode(true);
 
@@ -480,10 +592,11 @@ export default {
 			cloneLinkElement.addEventListener('load', () => {
 				linkElement.remove();
 				cloneLinkElement.setAttribute('id', id);
+
+				if(callback) {
+					callback();
+				}
 			});
-		},
-		onRTLChange() {
-			this.isRTL = !this.isRTL;
 		},
 		blockBodyScroll() {
             if (document.body.classList) {
@@ -515,9 +628,9 @@ export default {
 					'layout-menu-active': this.menuActive,
 					'layout-menu-mobile-active': this.mobileMenuActive,
 					'layout-rightmenu-active': this.rightPanelActive,
-					'layout-rtl': this.isRTL,
+					'layout-rtl': this.$appState.RTL,
 					'p-input-filled': this.$appState.inputStyle === 'filled',
-					'p-ripple-disabled': this.$primevue.ripple === false
+					'p-ripple-disabled': this.$primevue.config.ripple === false
 				}
 			];
         }
