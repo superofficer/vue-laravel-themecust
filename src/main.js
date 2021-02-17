@@ -1,6 +1,6 @@
 import { createApp, h } from 'vue';
 import { reactive } from 'vue';
-import App from './App.vue';
+import AppWrapper from './AppWrapper.vue';
 import router from './router';
 import PrimeVue from 'primevue/config';
 import AutoComplete from 'primevue/autocomplete';
@@ -92,34 +92,8 @@ router.beforeEach(function(to, from, next) {
     next();
 });
 
-import Access from './pages/Access';
-import Error from './pages/Error';
-import Login from './pages/Login';
-import NotFound from './pages/NotFound';
-import Landing from './pages/Landing';
-import ContactUs from './pages/ContactUs';
 const app = createApp({
-    computed: {
-        ViewComponent () {
-			switch (this.$route.path) {
-				case '/login':
-					return Login;
-				case '/error':
-					return Error;
-				case '/access':
-					return Access;
-				case '/notfound':
-					return NotFound;
-				case '/landing':
-					return Landing;
-				case '/contactus': 
-					return ContactUs;
-				default:
-					return App;
-			}
-		}
-    },
-    render () { return h(this.ViewComponent) }
+    render () { return h(AppWrapper); }
 });
 
 app.use(PrimeVue, { ripple: true });
