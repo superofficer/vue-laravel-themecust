@@ -1,11 +1,11 @@
 <template>
 	<ul v-if="items" role="menu">
         <template v-for="(item,i) of items">
-            <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="['layout-root-menuitem', {'active-menuitem': activeIndex === i && !item.to && !item.disabled}]" role="menuitem">
+            <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[{'layout-root-menuitem': root, 'active-menuitem': activeIndex === i && !item.disabled}]" role="menuitem">
 				<div v-if="root">
 					<span class="layout-menuitem-text">{{item.label}}</span>
 				</div>
-                <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" exact
+                <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" active-class="active-route" exact
                    @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" v-ripple>
                     <i :class="['layout-menuitem-icon', item.icon]"></i>
                     <span class="layout-menuitem-text">{{item.label}}</span>
@@ -24,7 +24,7 @@
 					<span class="layout-menuitem-tooltip-text p-tooltip-text">{{item.label}}</span>
 				</span>
                 <transition name="layout-menu">
-                    <appsubmenu v-show="item.items && (root && (!isSlim() || (isSlim() && (mobileMenuActive || activeIndex !== null))) ? true : activeIndex === i)" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :menuMode="menuMode"
+                    <appsubmenu v-show="item.items && (root && (!isSlim() || (isSlim() && activeIndex !== null)) ? true : activeIndex === i)" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :menuMode="menuMode"
                             :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></appsubmenu>
                 </transition>
             </li>
