@@ -17,6 +17,10 @@
                         }
 
                         > a {
+                            .layout-menuitem-text {
+                                margin-right: .75rem;
+                            }
+
                             .p-badge,
                             .layout-submenu-toggler {
                                 margin-left: 0;

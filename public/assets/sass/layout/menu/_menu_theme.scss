@@ -27,6 +27,15 @@
                     &:hover {
                         background-color: $menuItemHoverBgColor;
                     }
+
+                    &.router-link-active, &.router-link-exact-active {
+                        color: $activeMenuItemTextColor;
+                        background-color: $activeMenuItemBgColor;
+
+                        i {
+                            color: $activeMenuItemTextColor;
+                        }
+                    }
                 }
 
                 &.active-menuitem {
