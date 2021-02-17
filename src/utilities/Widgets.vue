@@ -2,7 +2,7 @@
 	<div class="p-grid dashboard">
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="card overview-box p-d-flex p-flex-column p-pt-2 cyan-bgcolor solid-surface-text-color">
-				<div class="p-d-flex p-ai-center muted-text">
+				<div class="p-d-flex p-ai-center">
 					<i class="pi pi-shopping-cart"></i>
 					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Orders</h6>
 					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
@@ -13,7 +13,7 @@
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
 					<div class="p-d-flex p-flex-column">
 						<span class="p-mb-1 fs-xlarge">640</span>
-						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
+						<span class="overview-status p-p-1 fs-small">1420 Completed</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
 						<Chart type="line" :data="overviewChartData5" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
@@ -24,7 +24,7 @@
 
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="card overview-box p-d-flex p-flex-column p-pt-2 orange-bgcolor solid-surface-text-color">
-				<div class="p-d-flex p-ai-center muted-text">
+				<div class="p-d-flex p-ai-center">
 					<i class="pi pi-dollar"></i>
 					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Revenue</h6>
 					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
@@ -35,7 +35,7 @@
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
 					<div class="p-d-flex p-flex-column">
 						<span class="p-mb-1 fs-xlarge">$57K</span>
-						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
+						<span class="overview-status p-p-1 fs-small">$9,640 Income</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
 						<Chart type="line" :data="overviewChartData6" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
@@ -46,7 +46,7 @@
 
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="card overview-box p-d-flex p-flex-column p-pt-2 pink-bgcolor solid-surface-text-color">
-				<div class="p-d-flex p-ai-center muted-text">
+				<div class="p-d-flex p-ai-center">
 					<i class="pi pi-users"></i>
 					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Customers</h6>
 					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
@@ -57,7 +57,7 @@
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
 					<div class="p-d-flex p-flex-column">
 						<span class="p-mb-1 fs-xlarge">8572</span>
-						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
+						<span class="overview-status p-p-1 fs-small">25402 Registered</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
 						<Chart type="line" :data="overviewChartData7" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
@@ -68,7 +68,7 @@
 
 		<div class="p-col-12 p-md-6 p-lg-3">
 			<div class="card overview-box p-d-flex p-flex-column p-pt-2 purple-bgcolor solid-surface-text-color">
-				<div class="p-d-flex p-ai-center muted-text">
+				<div class="p-d-flex p-ai-center">
 					<i class="pi pi-comments"></i>
 					<h6 class="p-m-0" :class="{'p-pl-2': !isRTL, 'p-pr-2': isRTL}">Comments</h6>
 					<div :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}">
@@ -79,7 +79,7 @@
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
 					<div class="p-d-flex p-flex-column">
 						<span class="p-mb-1 fs-xlarge">805</span>
-						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
+						<span class="overview-status p-p-1 fs-small">85 Responded</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
 						<Chart type="line" :data="overviewChartData8" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
