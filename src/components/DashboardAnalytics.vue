@@ -7,7 +7,7 @@
                 <Button label="Vertical/Stacked Data" class="p-button-text" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}" @click="changeMonthlyDataView()"></Button>
             </div>
 
-            <Chart type="bar" :data="chartMonthlyData" :options="chartMonthlyOptions" responsive="true" height="400px"></Chart>
+            <Chart ref="monthly" type="bar" :data="chartMonthlyData" :options="chartMonthlyOptions" responsive="true" :height="400"></Chart>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                 <span>November 22 - November 29</span>
                 <Button label="Semi/Full Data" class="p-button-text" :class="{'p-ml-auto': !isRTL, 'p-mr-auto': isRTL}" @click="changeDoughnutDataView()"></Button>
             </div>
-            <Chart type="doughnut" :data="doughnutData" :options="doughnutOptions" responsive="true"></Chart>
+            <Chart ref="doughnut" type="doughnut" :data="doughnutData" :options="doughnutOptions" responsive="true"></Chart>
             <div class="p-d-flex p-flex-column p-jc-center">
                 <div class="p-d-flex p-flex-row p-ai-center p-mt-4 p-px-3">
                     <i class="pi pi-thumbs-up p-p-3 rounded-circle lightgreen-bgcolor solid-surface-text-color"></i>
@@ -141,7 +141,7 @@
                     </span>
                 </div>
                 <div class="p-px-4">
-                    <Chart type="line" :data="storeAData" :options="storeOptions" responsive="true"></Chart>
+                    <Chart ref="storeA" type="line" :data="storeAData" :options="storeOptions" responsive="true"></Chart>
                 </div>
             </div>
             <div class="p-lg-3 p-md-6 p-sm-12 p-p-0">
@@ -156,7 +156,7 @@
                     </span>
                 </div>
                 <div class="p-px-4">
-                    <Chart type="line" :data="storeBData" :options="storeOptions" responsive="true"></Chart>
+                    <Chart ref="storeB" type="line" :data="storeBData" :options="storeOptions" responsive="true"></Chart>
                 </div>
             </div>
             <div class="p-lg-3 p-md-6 p-sm-12 p-p-0">
@@ -171,7 +171,7 @@
                     </span>
                 </div>
                 <div class="p-px-4">
-                    <Chart type="line" :data="storeCData" :options="storeOptions" responsive="true"></Chart>
+                    <Chart ref="storeC" type="line" :data="storeCData" :options="storeOptions" responsive="true"></Chart>
                 </div>
             </div>
             <div class="p-lg-3 p-md-6 p-sm-12 p-p-0">
@@ -186,7 +186,7 @@
                     </span>
                 </div>
                 <div class="p-px-4">
-                    <Chart type="line" :data="storeDData" :options="storeOptions" responsive="true"></Chart>
+                    <Chart ref="storeD" type="line" :data="storeDData" :options="storeOptions" responsive="true"></Chart>
                 </div>
             </div>
         </div>
@@ -347,7 +347,7 @@
                     </div>
                 </div>
                 <div class="p-col-12 p-md-6 right p-d-flex p-jc-center">
-                    <Chart type="pie" :data="pieData" :options="pieOptions"></Chart>
+                    <Chart ref="pie" type="pie" :data="pieData" :options="pieOptions"></Chart>
                 </div>
             </div>
         </div>
@@ -360,6 +360,7 @@
 import ProductService from '../service/ProductService';
 
 export default {
+    inject: ['chartMonthlyData', 'chartMonthlyOptions', 'doughnutData', 'doughnutOptions', 'pieData', 'pieOptions'],
     data() {
         return {
             products: null,
@@ -367,6 +368,11 @@ export default {
                 {label: 'Update', icon: 'pi pi-fw pi-refresh'},
                 {label: 'Edit', icon: 'pi pi-fw pi-pencil'}
             ],
+            storeInterval: null,
+            storeATotalValue: 100,
+            storeBTotalValue: 120,
+            storeCTotalValue: 150,
+            storeDTotalValue: 80,
             storeAData: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
             datasets: [{
@@ -449,7 +455,15 @@ export default {
                     radius: 0
                 }
             },
-        }
+        },
+        storeADiff: null,
+        storeAStatus: null,
+        storeBDiff: null,
+        storeBStatus: null,
+        storeCDiff: null,
+        storeCStatus: null,
+        storeDDiff: null,
+        storeDStatus: null,
         }
     },
     productService: null,
@@ -458,6 +472,7 @@ export default {
 	},
 	mounted() {
 		this.productService.getProducts().then(data => this.products = data);
+        this.setStoreInterval();
 	},
 	methods: {
 		formatCurrency(value) {
@@ -465,12 +480,97 @@ export default {
 		},
         toggle(event) {
             this.$refs.menu.toggle(event);
+        },
+        calculateStore(storeData, totalValue) {
+            let randomNumber = +((Math.random() * 500).toFixed(2));
+            let data = storeData.datasets[0].data;
+            let length = data.length;
+            data.push(randomNumber);
+            data.shift();
+
+            let diff = +((data[length - 1] - data[length - 2]).toFixed(2));
+            let status = diff === 0 ? 0 : (diff > 0 ? 1 : -1);
+            totalValue = +((totalValue + diff).toFixed(2));
+
+            return { diff, totalValue, status };
+        },
+        setStoreInterval () {
+            this.storeInterval = setInterval(() => {
+            requestAnimationFrame(() => {
+                let { diff: storeADiff, totalValue: storeATotalValue, status: storeAStatus } = this.calculateStore(this.storeAData, this.storeATotalValue);
+                this.storeADiff = storeADiff;
+                this.storeATotalValue = storeATotalValue;
+                this.storeAStatus = storeAStatus;
+                this.$refs.storeA.chart.update();
+
+                let { diff: storeBDiff, totalValue: storeBTotalValue, status: storeBStatus } = this.calculateStore(this.storeBData, this.storeBTotalValue);
+                this.storeBDiff = storeBDiff;
+                this.storeBTotalValue = storeBTotalValue;
+                this.storeBStatus = storeBStatus;
+                this.$refs.storeB.chart.update();
+
+                let { diff: storeCDiff, totalValue: storeCTotalValue, status: storeCStatus } = this.calculateStore(this.storeCData, this.storeCTotalValue);
+                this.storeCDiff = storeCDiff;
+                this.storeCTotalValue = storeCTotalValue;
+                this.storeCStatus = storeCStatus;
+                this.$refs.storeC.chart.update();
+
+                let { diff: storeDDiff, totalValue: storeDTotalValue, status: storeDStatus } = this.calculateStore(this.storeDData, this.storeDTotalValue);
+                this.storeDDiff = storeDDiff;
+                this.storeDTotalValue = storeDTotalValue;
+                this.storeDStatus = storeDStatus;
+                this.$refs.storeD.chart.update();
+            })
+        }, 2000);
+        },
+        changeMonthlyDataView() {
+        if (this.$refs.monthly.chart.options.scales.xAxes[0].stacked) {
+            this.$refs.monthly.chart.options.scales.xAxes[0].stacked = false;
+            this.$refs.monthly.chart.options.scales.yAxes[0].stacked = false;
         }
+        else {
+            this.$refs.monthly.chart.options.scales.xAxes[0].stacked = true;
+            this.$refs.monthly.chart.options.scales.yAxes[0].stacked = true;
+        }
+
+        this.$refs.monthly.chart.update();
+    },
+    changeDoughnutDataView() {
+        if (this.$refs.doughnut.chart.options.circumference === Math.PI) {
+            this.$refs.doughnut.chart.options.circumference = 2 * Math.PI;
+            this.$refs.doughnut.chart.options.rotation = -Math.PI / 2;
+        } else {
+            this.$refs.doughnut.chart.options.circumference = Math.PI;
+            this.$refs.doughnut.chart.options.rotation = -Math.PI;
+        }
+
+        this.$refs.doughnut.chart.update();
+    },
+    togglePieDoughnut() {
+        this.$refs.pie.chart.options.cutoutPercentage = this.$refs.pie.chart.options.cutoutPercentage ? 0 : 50;
+        this.$refs.pie.chart.update();
+    },
+    changePieDoughnutDataView() {
+        if (this.$refs.pie.chart.options.circumference === Math.PI) {
+            this.$refs.pie.chart.options.circumference = 2 * Math.PI;
+            this.$refs.pie.chart.options.rotation = -Math.PI / 2;
+        } else {
+            this.$refs.pie.chart.options.circumference = Math.PI;
+            this.$refs.pie.chart.options.rotation = -Math.PI;
+        }
+
+        this.$refs.pie.chart.update();
+    }
     },
     computed: {
         isRTL() {
 			return this.$appState.RTL;
 		}
+    },
+    beforeUnmount() {
+        if (this.storeInterval) {
+            clearInterval(this.storeInterval);
+        }
     }
 }
 </script>
