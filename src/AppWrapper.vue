@@ -10,7 +10,7 @@
 
 <script>
     import App from './App.vue';
-    import Error from './pages/Access';
+    import Error from './pages/Error';
     import Access from './pages/Access';
     import Login from './pages/Login';
     import NotFound from './pages/NotFound';
