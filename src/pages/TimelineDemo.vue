@@ -105,24 +105,22 @@ export default {
 ::v-deep(.p-timeline-event-opposite) {
     line-height: 1;
 }
-
 @media screen and (max-width: 960px) {
-    ::v-deep(.customized-timeline .p-timeline-event:nth-child(even)) {
-        flex-direction: row !important;
-        
-        .p-timeline-event-content {
-            text-align: left !important;
+    ::v-deep(.customized-timeline) {
+        .p-timeline-event:nth-child(even) {
+            flex-direction: row !important;
+            
+            .p-timeline-event-content {
+                text-align: left !important;
+            }
+        }
+        .p-timeline-event-opposite {
+            flex: 0;
+        }
+        .p-card {
+            margin-top: 1rem;
         }
     }
-
-    ::v-deep(.customized-timeline .p-timeline-event-opposite) {
-        flex: 0;
-    }
-
-    ::v-deep(.customized-timeline .p-card) {
-        margin-top: 1rem;
-    }
-    
 }
 
 </style>
