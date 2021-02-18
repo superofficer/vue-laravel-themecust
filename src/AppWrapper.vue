@@ -40,15 +40,6 @@
             },
             onTopbarThemeChange(theme) {
                 this.topbarTheme = theme.name;
-
-                const logo = document.getElementById('logo');
-    
-                if (theme.name == 'white' || theme.name == 'yellow' || theme.name == 'amber'  || theme.name == 'orange' || theme.name == 'lime') {
-                    logo.src = 'assets/layout/images/logo-dark.svg';
-                }
-                else {
-                    logo.src = 'assets/layout/images/logo-light.svg';
-                }
             },
             onMenuTheme(menuTheme) {
                 this.menuTheme = menuTheme.name;
@@ -66,32 +57,7 @@
                     this.menuTheme = 'light';
                     this.topbarTheme = 'blue';
                 }
-
-                const layoutLink = document.getElementById('layout-css');
-                const layoutHref = 'assets/layout/css/layout-' + this.layoutMode + '.css';
-                this.replaceLink(layoutLink, layoutHref);
-
-                const themeLink = document.getElementById('theme-css');
-                const urlTokens = themeLink.getAttribute('href').split('/');
-                urlTokens[urlTokens.length - 1] = 'theme-' + this.layoutMode + '.css';
-                const newURL = urlTokens.join('/');
-
-                this.replaceLink(themeLink, newURL);
-            },
-            replaceLink(linkElement, href) {
-                const id = linkElement.getAttribute('id');
-                const cloneLinkElement = linkElement.cloneNode(true);
-
-                cloneLinkElement.setAttribute('href', href);
-                cloneLinkElement.setAttribute('id', id + '-clone');
-
-                linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-
-                cloneLinkElement.addEventListener('load', () => {
-                    linkElement.remove();
-                    cloneLinkElement.setAttribute('id', id);
-                });
-            },
+            }
         },
         components: {
             "App": App,

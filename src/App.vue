@@ -411,6 +411,19 @@ export default {
 		},
 		onMenuColorChange(menuColor) {
 			this.$emit('menu-color-change', menuColor);
+
+			const layoutLink = document.getElementById('layout-css');
+			const layoutHref = 'assets/layout/css/layout-' + menuColor + '.css';
+			this.replaceLink(layoutLink, layoutHref);
+
+			const themeLink = document.getElementById('theme-css');
+			const urlTokens = themeLink.getAttribute('href').split('/');
+			urlTokens[urlTokens.length - 1] = 'theme-' + menuColor + '.css';
+			const newURL = urlTokens.join('/');
+
+			this.replaceLink(themeLink, newURL, () => {
+				this.$appState.isNewThemeLoaded = true;
+			});
 		},
 		onInlineMenuPositionChange(position) {
 			this.inlineMenuPosition = position;
@@ -438,6 +451,16 @@ export default {
 		},
 		onTopbarThemeChange(theme) {
 			this.$emit('topbar-theme', theme);
+
+			const themeName = theme.name;
+			const logo = document.getElementById('logo');
+
+			if (themeName == 'white' || themeName == 'yellow' || themeName == 'amber'  || themeName == 'orange' || themeName == 'lime') {
+				logo.src = 'assets/layout/images/logo-dark.svg';
+			}
+			else {
+				logo.src = 'assets/layout/images/logo-light.svg';
+			}
 		},
 		onMenuTheme(menuTheme) {
 			this.$emit('menu-theme', menuTheme);
@@ -449,7 +472,7 @@ export default {
 			const newURL = urlTokens.join('/');
 			this.replaceLink(element, newURL);
 		},
-		replaceLink(linkElement, href) {
+		replaceLink(linkElement, href, callback) {
 			const id = linkElement.getAttribute('id');
 			const cloneLinkElement = linkElement.cloneNode(true);
 
@@ -461,6 +484,10 @@ export default {
 			cloneLinkElement.addEventListener('load', () => {
 				linkElement.remove();
 				cloneLinkElement.setAttribute('id', id);
+
+				if (callback) {
+					callback();
+				}
 			});
 		},
 		blockBodyScroll() {

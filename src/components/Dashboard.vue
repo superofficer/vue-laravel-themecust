@@ -531,30 +531,30 @@ export default {
 				},
 			},
 			ordersChart: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                label: 'New Orders',
-                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }, {
-                label: 'Completed Orders',
-                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
-                borderColor: [
-                    '#3F51B5',
-                ],
-                backgroundColor: [
-                    'rgba(63, 81, 181, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true,
-            }]
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [{
+					label: 'New Orders',
+					data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
+					borderColor: [
+						'#4DD0E1',
+					],
+					backgroundColor: [
+						'rgba(77, 208, 225, 0.8)',
+					],
+					borderWidth: 2,
+					fill: true
+				}, {
+					label: 'Completed Orders',
+					data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+					borderColor: [
+						'#3F51B5',
+					],
+					backgroundColor: [
+						'rgba(63, 81, 181, 0.8)',
+					],
+					borderWidth: 2,
+					fill: true,
+				}]
 			},
 			ordersOptions: null
 		}
@@ -566,6 +566,14 @@ export default {
 	mounted() {
 		this.productService.getProducts().then(data => this.products = data);
 		this.refreshChart();
+	},
+	watch: {
+		'$appState.isNewThemeLoaded'(isLoaded) {
+			if (isLoaded) {
+				this.refreshChart();
+				this.$appState.isNewThemeLoaded = false;
+			}
+		}
 	},
 	methods: {
 		formatCurrency(value) {
