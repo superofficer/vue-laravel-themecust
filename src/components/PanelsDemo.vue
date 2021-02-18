@@ -261,7 +261,7 @@
 			}
 		},
 		methods: {
-			toggle() {
+			toggle(event) {
 				this.$refs.menu.toggle(event);
 			}
 		}
