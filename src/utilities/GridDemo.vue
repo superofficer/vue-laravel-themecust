@@ -19,10 +19,10 @@
 		<Button type="button" icon="pi pi-plus" title="Add Column" @click="addColumn" :disabled="columns.length === 20" style="margin-right: .5em" />
 		<Button type="button" icon="pi pi-minus" title="Remove Column" @click="removeColumn" :disabled="columns.length === 1" />
 
-		<div style="margin-top: .5em">
+		<div style="margin-top: 1em">
 			<transition-group name="dynamic-box" tag="div" class="p-grid">
 				<div v-for="col of columns" :key="col" class="p-col">
-					<div class="box">{{col}}</div>
+					<div class="box">{{col+1}}</div>
 				</div>
 			</transition-group>
 		</div>

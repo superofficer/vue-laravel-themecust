@@ -80,7 +80,7 @@
                     Eget egestas purus viverra accumsan in nisl nisi. Suscipit adipiscing bibendum est ultricies integer.
                     Mattis aliquam faucibus purus in massa tempor nec.
                 </p>
-                <ScrollTop target="parent" class="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up"></ScrollTop>
+                <ScrollTop target="parent" class="custom-scrolltop" :threshold="100" icon="pi pi-arrow-up"></ScrollTop>
             </ScrollPanel>
         </div>
     </div>
