@@ -449,7 +449,7 @@ export default {
 			const newURL = urlTokens.join('/');
 			this.replaceLink(element, newURL);
 		},
-		replaceLink(linkElement, href, callback) {
+		replaceLink(linkElement, href) {
 			const id = linkElement.getAttribute('id');
 			const cloneLinkElement = linkElement.cloneNode(true);
 
@@ -461,11 +461,6 @@ export default {
 			cloneLinkElement.addEventListener('load', () => {
 				linkElement.remove();
 				cloneLinkElement.setAttribute('id', id);
-
-				if(callback) {
-					console.log('kdfjn')
-					callback();
-				}
 			});
 		},
 		blockBodyScroll() {
