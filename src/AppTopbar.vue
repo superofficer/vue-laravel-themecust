@@ -5,7 +5,7 @@
 				<img id="logo" src="assets/layout/images/logo-light.svg" alt="ultima-layout" style="height: 2.25rem">
 			</a>
 
-			<a class="layout-menu-button p-shadow-6" @click="onMenuButtonClick($event)" v-ripple>
+			<a class="layout-menu-button p-shadow-6 p-ripple" @click="onMenuButtonClick($event)" v-ripple>
 				<i class="pi pi-chevron-right"></i>
 			</a>
 
