@@ -18,11 +18,6 @@
     import ContactUs from './pages/ContactUs';
 
 	export default {
-        provide() {
-            return {
-                layoutMode: this.layoutMode,
-            }
-        },
         data() {
             return {
                 theme: 'blue',
