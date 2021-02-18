@@ -2,18 +2,18 @@
     <div class="p-grid">
         <div class="p-col-12">
             <div class="card docs">
-                <h4>Current Version</h4>
-                <p>Vue 3.0.2 and PrimeVue 3.x</p>
+                <h5>Current Version</h5>
+                <p>Vue 3.0.2 and PrimeVue 3.2.4</p>
 
-                <h4>Dependencies</h4>
+                <h5>Dependencies</h5>
 				<p>
-					Apollo has no direct dependency other than PrimeVue. More
+					Ultima has no direct dependency other than PrimeVue. More
 					information about dependencies is available at
 					<a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
 					article.
 				</p>
 
-                <h4>Getting Started</h4>
+                <h5>Getting Started</h5>
                 <p>Ultima is an application template for Vue based on the <a href="https://www.primefaces.org/primevue-3-0-0-final-released-for-vue-3/">PrimeVue 3.0.0 Is Ready For PrimeTime</a>
 					article.
                 </p>
@@ -37,7 +37,7 @@ npm run serve
 
                 <p>The application should run at http://localhost:8080/, you may now start with the development of your application.</p>
 
-                <h4>Important CLI Commands</h4>
+                <h5>Important CLI Commands</h5>
                 <p>Following commands are derived from create-app-app.</p>
 <pre v-code><code>
 "npm run serve": Starts the development server
@@ -47,54 +47,157 @@ npm run serve
 
 </code></pre>
 
-                <h4>Structure</h4>
+                <h5>Structure</h5>
                 <p>Ultima consists of 2 main parts; the application layout and the resources. <i>App.vue</i> inside src folder is the main component containing the template for the base layout
                     whereas required resources such as SASS structure for the layout are placed inside the <b>src/assets/layout</b> folder.</p>
 
-                <h4>Template</h4>
+                <h5>Template</h5>
                 <p>Main layout is the template of the <i>App.vue</i>, it is divided into a couple of child components such as topbar, content, menu and footer. Here is template of the
                     <i>App.vue</i> component that implements the logic such as menu state, layout modes and other configurable options.
                 </p>
 <pre v-code><code>
 &lt;template&gt;
-    &lt;div class="layout-wrapper" @click="onDocumentClick"&gt;
-        &lt;div :class="layoutContainerClass"&gt;
-            &lt;AppTopBar :profileMode="profileMode" :horizontal="layoutMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem"
-                       @menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"&gt;&lt;/AppTopBar&gt;
+	&lt;div :class="layoutContainerClass" @click="onDocumentClick"&gt;
+		&lt;AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
+			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"&gt;&lt;/AppTopBar&gt;
 
-            &lt;transition name="layout-menu-container"&gt;
-                &lt;div :class="menuClass" @click="onMenuClick"&gt;
-                    &lt;div class="menu-scroll-content"&gt;
-                        &lt;AppInlineProfile v-if="profileMode === 'inline' &amp;&amp; layoutMode !== 'horizontal'"&gt;&lt;/AppInlineProfile&gt;
-                        &lt;AppMenu :model="menu" :layoutMode="layoutMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"&gt;&lt;/AppMenu&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/transition&gt;
+			&lt;div class="menu-wrapper"&gt;
+				&lt;div class="layout-menu-container" @click="onMenuClick"&gt;
+						&lt;AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :menuMode="menuMode"&gt;&lt;/AppInlineMenu&gt;
+						&lt;AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"&gt;&lt;/AppMenu&gt;
+						&lt;AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :menuMode="menuMode"&gt;&lt;/AppInlineMenu&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
 
-            &lt;div class="layout-main"&gt;
+		&lt;div class="layout-main"&gt;
 
-                &lt;AppBreadcrumb&gt;&lt;/AppBreadcrumb&gt;
+			&lt;AppBreadcrumb&gt;&lt;/AppBreadcrumb&gt;
 
-                &lt;div class="layout-content"&gt;
-                    &lt;router-view /&gt;
+			&lt;div class="layout-content"&gt;
+				&lt;router-view /&gt;
+			&lt;/div&gt;
 
-                    &lt;AppFooter /&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
+			&lt;AppFooter :layoutMode="layoutMode" /&gt;
+		&lt;/div&gt;
 
-            &lt;AppConfig v-model:layoutMode="layoutMode" @menu-mode-change="onMenuModeChange" v-model:darkMenu="darkMenu" @menu-color-change="onMenuColorChange"
-						v-model:profileMode="profileMode" @profile-mode-change="onProfileModeChange" :theme="theme" :themes="themeColors" @theme-change="changeTheme"&gt;&lt;/AppConfig&gt;
+		&lt;AppConfig :menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
+				:layoutMode="d_layoutMode" @topbar-theme="onTopbarThemeChange"
+				v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange"
+				:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="d_menuTheme" :menuThemes="menuThemes"
+				:topbarTheme="d_topbarTheme" :topbarThemes="topbarThemes"&gt;&lt;/AppConfig&gt;
 
-            &lt;AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"&gt;&lt;/AppRightPanel&gt;
+		&lt;AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"&gt;&lt;/AppRightPanel&gt;
 
-            &lt;div class="layout-mask"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+		&lt;div v-if="mobileMenuActive" class="layout-mask modal-in"&gt;&lt;/div&gt;
+	&lt;/div&gt;
 &lt;/template&gt;
 
 </code></pre>
 
-                <h4>Menu</h4>
+                <h5>Topbar</h5>
+                <img src="assets/layout/images/doc/topbar-doc.jpg" alt="topbar" class="p-mb-3" style="max-width: 60%;"/>
+                <p>It is a separate component defined in AppTopbar.vue file. This menu can be fully customized according to the application's needs.
+                    There are special classes in the topbar to provide some interactions such as hover, expand/collapse state etc. The pseudo code is as follows.</p>
+
+<pre v-code><code>
+&lt;elementTag class=&quot;layout-topbar&quot;&gt;
+    &lt;elementTag class=&quot;layout-topbar-left&quot;&gt;
+        &lt;elementTag class=&quot;layout-topbar-logo&quot;&gt;
+            // custom implementation to add logo
+        &lt;/elementTag&gt;
+
+        &lt;elementTag class=&quot;layout-menu-button&quot; @click=&quot;onMenuButtonClick($event)&quot; v-ripple&gt;
+            // custom implementation to add menu button
+        &lt;/elementTag&gt;
+
+        &lt;elementTag class=&quot;layout-topbar-mobile-button&quot; @click=&quot;onTopbarMobileButtonClick($event)&quot; v-ripple&gt;
+            // custom implementation to add mobile menu button
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+
+    &lt;elementTag class=&quot;layout-topbar-right&quot; :class=&quot;&#123;'layout-topbar-mobile-active': mobileTopbarActive&#125;&quot;&gt;
+        &lt;elementTag class=&quot;layout-topbar-actions-left&quot;&gt;
+            // custom implementation. Maybe, a megaMenu component can be added.
+        &lt;/elementTag&gt;
+        &lt;elementTag class=&quot;layout-topbar-actions-right&quot;&gt;
+            &lt;elementTag class=&quot;layout-topbar-items&quot;&gt;
+                &lt;elementTag class=&quot;layout-topbar-item layout-search-item&quot;&gt;
+                    &lt;elementTag class=&quot;layout-topbar-action&quot; @click=&quot;onTopbarItemClick($event, 'search')&quot; v-ripple&gt;
+                        // custom implementation
+                    &lt;/elementTag&gt;
+
+                    &lt;elementTag class=&quot;layout-search-panel&quot; v-if=&quot;search&quot; &gt;
+                        // custom implementation
+                        &lt;InputText type=&quot;text&quot; placeholder=&quot;Search&quot; @click=&quot;searchClick = true;&quot; @keydown=&quot;onSearchKeydown($event)&quot;/&gt;
+                    &lt;/elementTag&gt;
+                &lt;/elementTag&gt;
+                // A unique class can be defined to keep track of the expanded/collapsed states of each item. For example, The 'custom-class' is defined for this item.
+                &lt;elementTag class=&quot;layout-topbar-item custom-class&quot;&gt;
+                    &lt;elementTag class=&quot;layout-topbar-action&quot; @click=&quot;onTopbarItemClick($event, 'custom-class')&quot; v-ripple&gt;
+                        // custom implementation. Used to open this action panel.
+                    &lt;/elementTag&gt;
+
+                    &lt;elementTag class=&quot;layout-topbar-action-panel&quot;&gt;
+                        &lt;elementTag&gt;
+                            // custom implementation
+                        &lt;/elementTag&gt;
+                        //OR
+                        // The 'layout-topbar-action-item' class is defined so that an element can have hover state.
+                        &lt;elementTag class=&quot;layout-topbar-action-item&quot;&gt;
+                            // custom implementation
+                        &lt;/elementTag&gt;
+                    &lt;/elementTag&gt;
+                &lt;/elementTag&gt;
+            &lt;/elementTag&gt;
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</code></pre>        
+                <small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+
+
+            <h5>Right Menu</h5>
+            <img src="assets/layout/images/doc/rightmenu-doc.jpg" alt="rightmenu" class="p-mb-3" style="max-width: 60%; height: 300px;"/>
+            <p>It is a separate component defined in AppRightMenu.vue file based on PrimeVue <a href="https://primefaces.org/PrimeVue/showcase/#/sidebar">Sidebar</a> component.
+                All properties of the sidebar component are available. The menu can be fully customized according to the application's needs.
+                There are special methods and classes in the right menu to provide some interactions. The pseudo code is as follows.</p>
+
+<pre v-code><code>
+// in AppTopbar.vue or elsewhere
+&lt;elementTag @click=&quot;onRightMenuButtonClick($event)&quot; v-ripple&gt;
+    // custom implementation
+&lt;/elementTag&gt;
+
+// in AppRightMenu.vue
+&lt;Sidebar v-model:visible=&quot;rightMenuActive&quot; :baseZIndex=&quot;1000&quot; :class=&quot;'layout-rightmenu p-sidebar-sm'&quot;&gt;
+    // custom implementation
+&lt;/Sidebar&gt;
+
+</code></pre>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Inline Menu</h5>
+            <img src="assets/layout/images/doc/inlinemenu-doc.jpg" alt="rightmenu" class="p-mb-3" style="max-width: 60%; height: 450px;"/>
+            <p>It is a separate component defined in AppInlineMenu.vue file. This menu can be fully customized according to the application's needs and it is created according to its location within the element with the layout-menu-container class.
+                There are special classes in the inline menu to provide some interactions. The pseudo code is as follows.</p>
+<pre v-code><code>
+&lt;elementTag :class=&quot;&#123;'layout-inline-menu-active': active&#125;&quot;&gt;
+    &lt;elementTag class=&quot;layout-inline-menu-action&quot; @click=&quot;onClick($event)&quot;&gt;
+        // custom implementation
+        &lt;elementTag class=&quot;layout-inline-menu-icon&quot;&gt;&lt;/elementTag&gt; // custom icon
+    &lt;/elementTag&gt;
+
+    &lt;elementTag class=&quot;layout-inline-menu-action-panel&quot;&gt;
+        &lt;elementTag class=&quot;layout-inline-menu-action-item&quot;&gt;
+            // custom implementation
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</code></pre>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+                <h5>Menu</h5>
                 <p>Menu is a separate component defined in <i>AppMenu.vue</i> file. In order to define the menuitems,
                     navigate to data section of <i>App.vue</i> file and define your own model as a nested structure using the menu property.
                     Here is the menu component from the demo application. Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
@@ -103,104 +206,132 @@ npm run serve
 <pre v-code.script><code>
 data() &#123;
     return &#123;
-        menu : [
-            {label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
-            {
-                label: 'UI Kit', icon: 'pi pi-fw pi-star-o', badge: 6,
-                items: [
-                    {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
-                    {label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
+        menu: [
+			{
+				label: 'Favorites', 
+				icon: 'pi pi-fw pi-home',
+				items: [
+					{label: 'Dashboard Sales', icon: 'pi pi-fw pi-home', to: '/', badge: 4, badgeStyleClass: 'p-badge-info'},
+					{label: 'Dashboard Analytics', icon: 'pi pi-fw pi-home',
+						to: '/favorites/dashboardanalytics', badge:2, badgeStyleClass: 'p-badge-success'}
+				]
+			},
+			{
+				label: 'UI Kit', icon: 'pi pi-fw pi-star',
+				items: [
+					{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input', badge: 6, badgeStyleClass: 'p-badge-danger'},
 					{label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
-                    {label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon'},
-                    {label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
-                    {label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
-                    {label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
-                    {label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
-                    {label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
-                    {label: "Media", icon: "pi pi-fw pi-image", to: "/media"},
-                    {label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menus'},
-                    {label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
-                    {label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
-                    {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
-                    {label: 'Misc', icon: 'pi pi-fw pi-circle-off', to: '/misc'},
-                ]
-            },
-            {
-                label: "Utilities", icon:'pi pi-fw pi-compass',
-                items: [
-                    {label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
-                    {label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
-                    {label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
-                    {label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
-                    {label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
-                    {label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
-                    {label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
-                    {label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
-                    {label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
-                ]
-            },
-            {
-                label: 'Pages', icon: 'pi pi-fw pi-briefcase', badge: 8, badgeStyleClass: 'teal-badge',
-                items: [
-                    {label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
-                    {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
-                    {label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
-                    {label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
-                    {label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
-                    {label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
-                    {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
-                    {label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
-                    {label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
-                ]
-            },
-            {
-                label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
-                items: [
-                    {
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
-                        items: [
-                            {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'},
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-align-left'}
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
-                        items: [
-                            {
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-align-left'},
-                                ]
-                            },
-                            {
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'},
-                                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-align-left'}
-                                ]
-                            },
-                        ]
-                    }
-                ]
-            },
-            {label: 'Buy Now', icon: 'pi pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}},
-            {label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'},
+					{label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', to: '/invalidstate'},
+					{label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon'},
+					{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table', badge: 6, badgeStyleClass: 'p-badge-help'},
+					{label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
+					{label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
+					{label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
+					{label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
+					{label: "Media", icon: "pi pi-fw pi-image", to: "/media"},
+					{label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menus'},
+					{label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
+					{label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
+					{label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
+					{label: 'Misc', icon: 'pi pi-fw pi-circle-off', to: '/misc'},
+				]
+			},
+			{
+				label: "Utilities", icon:'pi pi-fw pi-compass',
+				items: [
+					{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout', badge: '6', badgeStyleClass: 'p-badge-warning'},
+					{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
+					{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
+					{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
+					{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
+					{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
+					{label: 'Widgets', icon:'pi pi-fw pi-star-o', to:'/widgets'},
+					{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
+					{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
+					{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'}
+				]
+			},
+			{
+				label: 'Pages', icon: 'pi pi-fw pi-briefcase',
+				items: [
+					{label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud'},
+					{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
+					{label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/timeline'},
+					{
+						label: 'Landing', 
+						icon: 'pi pi-fw pi-globe',
+						badge: '2', badgeStyleClass: 'p-badge-warning',
+						items: [
+							{label: 'Static', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+							{label: 'Component', icon: 'pi pi-fw pi-globe', to: '/landing'}
+						]
+					},
+					{label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
+					{label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice'},
+					{label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help'},
+					{label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
+					{label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
+					{label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
+					{label: 'Contact Us', icon: 'pi pi-fw pi-pencil', to: '/contactus'},
+					{label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
+				]
+			},
+			{
+				label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
+				items: [
+					{
+						label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
+						items: [
+							{
+								label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
+								items: [
+									{label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'},
+								]
+							},
+							{
+								label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
+								items: [
+									{label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-align-left'}
+								]
+							},
+						]
+					},
+					{
+						label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
+						items: [
+							{
+								label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
+								items: [
+									{label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-align-left'},
+								]
+							},
+							{
+								label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
+								items: [
+									{label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'},
+									{label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-align-left'}
+								]
+							},
+						]
+					}
+				]
+			},
+			{
+				label: 'Start', icon: 'pi pi-fw pi-download',
+				items: [
+					{
+						label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store"}
+					},
+					{
+						label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'
+					}
+				]
+			}
         ]
     &#125;
 &#125;
@@ -208,7 +339,30 @@ data() &#123;
 </code></pre>
 </div>
 
-                <h4>Integration with an Existing CLI Project</h4>
+                            <h5>Breadcrumb</h5>
+            <img src="assets/layout/images/doc/breadcrumb-doc.jpg" alt="breadcrumb" class="p-mb-3" style="max-width: 60%;"/>
+            <p>It is a separate component defined in AppBreadcrumb.vue file based on PrimeVue <a href="https://primefaces.org/PrimeVue/showcase/#/breadcrumb">Breadcrumb</a> component.
+                All properties of the breadcrumb component are available. The pseudo code is as follows.</p>
+<pre v-code><code>
+&lt;elementTag class=&quot;layout-breadcrumb-container&quot;&gt;
+    &lt;Breadcrumb :home="home" :model=&quot;items&quot; class=&quot;layout-breadcrumb&quot;&gt;&lt;/Breadcrumb&gt;
+    &lt;elementTag class=&quot;layout-breadcrumb-buttons&quot;&gt;
+        // custom implementation for right buttons
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</code></pre>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Footer</h5>
+            <p>It is a separate component defined in AppFooter.vue file. The pseudo code is as follows.</p>
+<pre v-code><code>
+&lt;elementTag class=&quot;layout-footer&quot;&gt;
+    // custom implementation
+&lt;/elementTag&gt;
+</code></pre>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+                <h5>Integration with an Existing CLI Project</h5>
 				<p>
 					To setup Ultima in an existing project, follow the steps
 					below;
@@ -222,7 +376,7 @@ data() &#123;
 				<p>Install PrimeVue</p>
 
 <pre v-code><code>
-npm install primevue@3.0.1 --save
+npm install primevue@latest --save
 npm install	primeicons@latest --save
 
 </code></pre>
@@ -239,36 +393,58 @@ import './App.scss'; 	                            //your styles and overrides
                 <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on the fly by changing the path however
                     if this is not a requirement, you may also add them to the styles configuration above so they go inside the bundle.</p>
 
-                <h4>Integration with an Existing Non-CLI Project</h4>
+                <h5>Integration with an Existing Non-CLI Project</h5>
                 <p>For an existing project that do not use CLI, setup steps are more or less similar. Start with installing the dependencies listed above in package.json</p>
                 <p>Copy the <i>src/assets</i> folder to your application and include the resources listed above with a module bundler like webpack or using link-script tags.</p>
                 <p>Finally copy the contents of App.vue to your application's main component template such as <i>app/index.html</i> along
                     with the sub components which are AppMenu.vue, AppTopbar.vue and AppFooter.vue.</p>
 
-                <h4>Theme</h4>
-                <p>Ultima provides 12 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
+                <h5>Theme</h5>
+                <p>Ultima provides 34 PrimeVue themes out of the box, setup of a theme simple including the css of theme to your page that are located inside public/assets/sass/theme folder.</p>
                 <p>In the demo application, theme css file is added to the index page to enable themeswitcher functionality however since VueCLI supports
                     SASS compilation via webpack, you may also import the sass of the theme to App.vue as well.</p>
                 <ul>
-                    <li>theme-blue-grey</li>
-                    <li>theme-blue</li>
-                    <li>theme-brown</li>
-                    <li>theme-cyan</li>
-                    <li>theme-dark-blue</li>
-                    <li>theme-dark-green</li>
-                    <li>theme-green</li>
-                    <li>theme-grey</li>
-                    <li>theme-indigo</li>
-                    <li>theme-purple-amber</li>
-                    <li>theme-purple-cyan</li>
-                    <li>theme-teal</li>
+                    <li>amber/theme-light</li>
+                    <li>amber/theme-dark</li>
+                    <li>blue/theme-light</li>
+                    <li>blue/theme-dark</li>
+                    <li>bluegrey/theme-light</li>
+                    <li>bluegrey/theme-dark</li>
+                    <li>brown/theme-light</li>
+                    <li>brown/theme-dark</li>
+                    <li>cyan/theme-light</li>
+                    <li>cyan/theme-dark</li>
+                    <li>deeporange/theme-light</li>
+                    <li>deeporange/theme-dark</li>
+                    <li>deeppurple/theme-light</li>
+                    <li>deeppurple/theme-dark</li>
+                    <li>green/theme-light</li>
+                    <li>green/theme-dark</li>
+                    <li>indigo/theme-light</li>
+                    <li>indigo/theme-dark</li>
+                    <li>lightblue/theme-light</li>
+                    <li>lightblue/theme-dark</li>
+                    <li>lightgreen/theme-light</li>
+                    <li>lightgreen/theme-dark</li>
+                    <li>lime/theme-light</li>
+                    <li>lime/theme-dark</li>
+                    <li>orange/theme-light</li>
+                    <li>orange/theme-dark</li>
+                    <li>pink/theme-light</li>
+                    <li>pink/theme-dark</li>
+                    <li>purple/theme-light</li>
+                    <li>purple/theme-dark</li>
+                    <li>teal/theme-light</li>
+                    <li>teal/theme-dark</li>
+                    <li>yellow/theme-light</li>
+                    <li>yellow/theme-dark</li>
                 </ul>
 
                 <p>A custom theme can be developed by the following steps.</p>
                 <ul>
                     <li>Choose a custom theme name such as theme-myown.</li>
-                    <li>Create a file named theme-myown.scss under <i>public/assets/sass/theme folder</i>.</li>
-                    <li>Define the variables listed below and import the <i>/sass/theme/_theme.scss</i> file.</li>
+                    <li>Create a file named theme-myown.scss under <i>public/assets/theme folder</i>.</li>
+                    <li>Define the variables listed below and import the <i>/sass/theme/_theme_light.scss</i> file.</li>
                     <li>Build the scss to generate css.</li>
                     <li>Include the theme file to your application.</li>
                 </ul>
@@ -276,12 +452,14 @@ import './App.scss'; 	                            //your styles and overrides
                 <p>Here are the variables required to create a theme which are the primary and accent colors along with their shades.</p>
 
 <pre v-code.css><code>
-$primaryColor:#3F51B5;
+$primaryColor:#2196F3;
+$primaryLightestColor: #E3F2FD;
+$primaryMenuTextColor: $primaryColor;
 $primaryTextColor:#ffffff;
-$accentColor:#ff4081;
-$accentTextColor:#ffffff;
+$accentColor:#f37f21;
+$accentTextColor:#212121;
 
-@import '../sass/theme/_theme';
+@import '../sass/theme/_theme_light';
 
 </code></pre>
 
@@ -299,89 +477,27 @@ sass --watch public/assets:public/assets
 
 </code></pre>
 
+                <p>For both cases, several .scss files such as _layout.scss, _theme.scss or _variables.scss has to be present relative to your scss files, these are available inside the assets/sass folder in the distribution.</p>
+                <p>In case you'd like to customize the structure not just the colors, the _variables.scss is where the structural variables (e.g. font size, paddings) for the layout are defined.</p>
 
-                <p>Same can also be applied to layout itself;</p>
-                <ul>
-                    <li>Choose a layout name such as layout-myown.</li>
-                    <li>Create an empty file named layout-myown.scss inside <i>assets/layout/css</i> folder.</li>
-                    <li>Define the variables listed below and import the <i>../sass/layout/_layout.scss</i> file.</li>
-                    <li>Build the scss to generate css</li>
-                    <li>Serve the css by importing it using a link tag or a bundler.</li>
-                </ul>
-
-                <p>Here are the variables required to create a layout, you may need to change the last line according to the
-                    relative path of the sass folder in your application.</p>
+                <h6>sass/variables/layout/_layout_common.scss</h6>
 <pre v-code.css><code>
-$primaryColor: #3F51B5;
-$primaryDarkColor: #283593;
-$primaryLightColor: #9fa8da;
-$primaryTextColor:#ffffff;
-$accentColor: #E91E63;
-$accentDarkColor: #ad1457;
-$accentLightColor: #f48fb1;
-$accentTextColor: #ffffff;
-$darkMenuBgColor: #424242;
-$darkMenuHoverColor: #676767;
-$darkMenuRouterLinkActiveColor: #9fa8da;
-$lightMenuRouterLinkActiveColor: #3F51B5;
-$horizontalLightMenuRouterLinkActiveColor: #9fa8da;
-
-@import '../../sass/layout/_layout';
-
-</code></pre>
-
-                <p>In case you would like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
-
-                <h5>sass/layout/_variables.scss</h5>
-<pre v-code.css><code>
-/* Common */
 //general
-$fontSize:14px;
-$fontFamily:Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
-$textColor:#212121;
-$textSecondaryColor:#616161;
-$borderRadius:4px;
-$letterSpacing:.25px;
-$transitionDuration:.2s;
-
-//icons
-$iconWidth:20px;
-$iconHeight:20px;
-$iconFontSize:20px;
-
-//list item hover
-$hoverBgColor:#e8e8e8;
-$hoverTextColor:#000000;
-
-$dividerColor:#dbdbdb;
-$dividerLightColor:#f8f8f8;
-
-$bodyBgColor:#f7f7f7;
-$maskBgColor:#424242;
-$topbarButtonColor:#ffffff;
-$topbarButtonHoverColor:#e8e8e8;
-$topbarSearchBorderColor:#ffffff;
-$topbarSearchColor:#ffffff;
-$layoutMenuBgColor:#ffffff;
-$layoutMenuScrollbarBgColor:#aaaaaa;
-$layoutMenuItemIconColor:#757575;
-$layoutMenuItemActiveColor:#e8e8e8;
-$rightPanelBgColor:#ffffff;
-$topbarSubmenuBgColor:#ffffff;
-$profileMenuBorderBottomColor:#d6d5d5;
-$profileMenuDarkBorderBottomColor:#545454;
-$darkMenuColor:#ffffff;
-$slimMenuTooltipColor:#ffffff;
-$activeMenuItemBadgeColor:#ffffff;
-$activeMenuItemBadgeTextColor:#212121;
-$lineHeight:18px;
+$fontSize:14px !default;
+$fontFamily: 'Roboto' !default;
+$borderRadius:5px !default;
+$animationDuration:.2s !default;
+$animationTimingFunction:cubic-bezier(.05,.74,.2,.99) !default;
+$letterSpacing:normal !default;
+$transitionDuration:.2s !default;
+$mobileBreakpoint:991px !default;
 
 </code></pre>
 
-                <h5>sass/theme/_variables.scss</h5>
-<div style="overflow: auto; height: 400px; margin-bottom: 10px">
+                <h6>sass/variables/theme/_theme_light.scss</h6>
+<div style="height:400px;overflow: auto;">
 <pre v-code.css><code>
-$emphasis-high:rgba(0,0,0,0.87);
+$emphasis-high:rgba(0,0,0,.87);
 $emphasis-medium:rgba(0,0,0,.60);
 $emphasis-low:rgba(0,0,0,.38);
 $emphasis-lower:rgba(0,0,0,.12);
@@ -566,8 +682,8 @@ $dangerButtonTextActiveColor:#ffffff;
 $dangerButtonActiveBorderColor:transparent;
 $dangerButtonFocusShadow:none;
 
-$linkButtonColor:transparent;
-$linkButtonHoverColor:transparent;
+$linkButtonColor:$primaryColor;
+$linkButtonHoverColor:$primaryColor;
 $linkButtonTextHoverDecoration:underline;
 $linkButtonFocusShadow:none;
 
@@ -618,7 +734,7 @@ $toggleButtonIconActiveColor:$textSecondaryColor;
 $toggleButtonActiveHoverBg:#d9d8d9;
 $toggleButtonActiveHoverBorderColor:#d9d8d9;
 $toggleButtonTextActiveHoverColor:$textColor;
-$toggleButtonIconActiveHoverColor:$textSecondaryColor;;
+$toggleButtonIconActiveHoverColor:$textSecondaryColor;
 
 //inplace
 $inplacePadding:$inputPadding;
@@ -968,10 +1084,6 @@ $dialogContentPadding: 0 1.5rem 1.5rem 1.5rem;
 $dialogFooterBorder:0 none;
 $dialogFooterPadding:1rem 1.5rem;
 
-//confirmpopup
-$confirmPopupContentPadding:1.5rem;
-$confirmPopupFooterPadding:0 1.5rem 1rem 1.5rem;
-
 //tooltip
 $tooltipBg:rgba(97,97,97,.9);
 $tooltipTextColor:#ffffff;
@@ -1144,81 +1256,46 @@ $skeletonAnimationBg:rgba(255,255,255,0.4);
 $splitterGutterBg:rgba(0,0,0,.04);
 $splitterGutterHandleBg:rgba(0,0,0,.12);
 
-:root {
---surface-a:#ffffff;
---surface-b:#fafafa;
---surface-c:rgba(0,0,0,.04);
---surface-d:rgba(0,0,0,.12);
---surface-e:#ffffff;
---surface-f:#ffffff;
---text-color:#{$textColor};
---text-color-secondary:#{textSecondaryColor};
---primary-color:#{$primaryColor};
---primary-color-text:#{$primaryTextColor};
---font-family:#{$fontFamily};
-}
+:root &#123;
+    --surface-a:#ffffff;
+    --surface-b:#fafafa;
+    --surface-c:rgba(0,0,0,.04);
+    --surface-d:rgba(0,0,0,.12);
+    --surface-e:#ffffff;
+    --surface-f:#ffffff;
+    --text-color:#&#123;$textColor&#125;;
+    --text-color-secondary:#&#123;$textSecondaryColor&#125;;
+    --primary-color:#&#123;$primaryColor&#125;;
+    --primary-menu-text-color:#&#123;$primaryMenuTextColor&#125;;
+    --primary-lightest-color:#&#123;$primaryLightestColor&#125;;
+    --primary-color-text:#&#123;$primaryTextColor&#125;;
+    --font-family:#&#123;$fontFamily&#125;;
+&#125;
 
 </code></pre>
 </div>
 
-                <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on
-                    the fly by changing the path however if this is not a requirement, you may also import them in App.vue so that webpack adds them to the bundle.</p>
-
-                <h4>Menu Item Badges</h4>
-                <p>Badges are numerical indicators associated with a link.
-                    The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
-<pre v-code><code>
-label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
-
-</code></pre>
-                <p>Default badge uses the accent color of ultima layout and there are three more alternative colors.</p>
-                <ul>
-                    <li>red-badge</li>
-                    <li>purple-badge</li>
-                    <li>teal-badge</li>
-                </ul>
-
-                <h4>Menu Modes</h4>
+                <h5>Menu Modes</h5>
                 <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.vue is used to define which mode to use by adding specific classes. List
                     below indicates the style classes for each mode.</p>
 
                 <ul>
-                    <li>Static: "layout-wrapper menu-layout-static"</li>
-                    <li>Overlay: "layout-wrapper menu-layout-overlay"</li>
-                    <li>Slim: "layout-wrapper menu-layout-slim"</li>
-                    <li>Horizontal: "layout-wrapper menu-layout-horizontal"</li>
+                    <li>Static: "layout-wrapper layout-menu-static"</li>
+                    <li>Overlay: "layout-wrapper layout-menu-overlay"</li>
+                    <li>Slim: "layout-wrapper layout-menu-slim"</li>
+                    <li>Horizontal: "layout-wrapper layout-menu-horizontal"</li>
                 </ul>
 
                 <p>For example to create a horizontal menu, the div element should be in following form;</p>
 <pre v-code><code>
-&lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
+&lt;div class="layout-wrapper layout-menu-horizontal"&gt;
 
 </code></pre>
 
                 <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
                     application has an example implementation of such use case. Refer to App.vue for an example.</p>
 
-                <h4>Dark Menu</h4>
-                <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
-
-<pre v-code><code>
-&lt;div className="layout-menu layout-menu-dark"&gt;
-
-</code></pre>
-
-                <h4>Profile Modes</h4>
-                <p>There are two possible locations for the user profile menu, first option is inline located inside the main menu and second option is the topbar menu. For inline mode,
-                    profile content should be placed above the menu and for inline mode content goes in topbar-items list. The sample demo application provides examples for
-                    both cases.</p>
-
-                <h4>Utilites</h4>
-                <p>Ultima provides various helper features such as material iconset compatible with PrimeVue components and helper classes. Visit utils page for details.</p>
-
-                <h4>PrimeFlex Grid System</h4>
-                <p>Ultima uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeVue. PrimeFlex is
-                    available at npm and defined at package.json of Ultima so that it gets installed by default.</p>
-
-                <h4>Customizing Styles</h4>
+                <h5>Customizing Styles</h5>
                 <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the
                     scss files under sass folder to avoid maintenance issues after an update.</p>
 
@@ -1229,7 +1306,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                     <li><b>_theme_styles</b>: Styles for the theme.</li>
                 </ul>
 
-                <h4>Migration Guide</h4>
+                <h5>Migration Guide</h5>
                 <p>Every change is included in <b>CHANGELOG.md</b> file at the root folder of the distribution along with the instructions to update.</p>
             </div>
         </div>
