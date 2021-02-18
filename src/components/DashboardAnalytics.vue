@@ -814,3 +814,48 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+	/* Responsive */
+	.p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+		display: none;
+	}
+
+	@media screen and (max-width: 960px) {
+		::v-deep(.p-datatable) {
+			&.p-datatable-customers {
+				.p-datatable-thead > tr > th,
+				.p-datatable-tfoot > tr > td {
+					display: none !important;
+				}
+
+				.p-datatable-tbody > tr {
+					border-bottom: 1px solid #dee2e6;
+					> td {
+						text-align: left;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border: 0 none !important;
+						width: 100% !important;
+						float: left;
+						clear: left;
+						border: 0 none;
+
+						.p-column-title {
+							padding: .4rem;
+							min-width: 30%;
+							display: inline-block;
+							margin: -.4rem 1rem -.4rem -.4rem;
+							font-weight: bold;
+						}
+
+						.p-progressbar {
+							margin-top: .5rem;
+						}
+					}
+				}
+			}
+		}
+	}
+</style>
