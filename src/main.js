@@ -107,7 +107,7 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router);
 
-app.config.globalProperties.$appState = reactive({ inputStyle: 'filled', RTL: false });
+app.config.globalProperties.$appState = reactive({ inputStyle: 'filled', RTL: false, isNewThemeLoaded: false });
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
