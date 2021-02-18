@@ -1,36 +1,36 @@
 <template>
-		<div :class="layoutContainerClass" @click="onDocumentClick">
-			<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
-				@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
+	<div :class="layoutContainerClass" @click="onDocumentClick">
+		<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
+			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
 
-				<div class="menu-wrapper">
-					<div class="layout-menu-container" @click="onMenuClick">
-							<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :menuMode="menuMode"></AppInlineMenu>
-							<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
-							<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :menuMode="menuMode"></AppInlineMenu>
-					</div>
+			<div class="menu-wrapper">
+				<div class="layout-menu-container" @click="onMenuClick">
+						<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :menuMode="menuMode"></AppInlineMenu>
+						<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+						<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :menuMode="menuMode"></AppInlineMenu>
 				</div>
-
-			<div class="layout-main">
-
-				<AppBreadcrumb></AppBreadcrumb>
-
-				<div class="layout-content">
-					<router-view />
-				</div>
-
-				<AppFooter :layoutMode="layoutMode" />
 			</div>
 
-			<AppConfig :menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
-						:layoutMode="d_layoutMode" @topbar-theme="onTopbarThemeChange"
-						v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange"
-						:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="d_menuTheme" :menuThemes="menuThemes"
-						:topbarTheme="d_topbarTheme" :topbarThemes="topbarThemes"></AppConfig>
+		<div class="layout-main">
 
-			<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
+			<AppBreadcrumb></AppBreadcrumb>
 
-			<div v-if="mobileMenuActive" class="layout-mask modal-in"></div>
+			<div class="layout-content">
+				<router-view />
+			</div>
+
+			<AppFooter :layoutMode="layoutMode" />
+		</div>
+
+		<AppConfig :menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
+				:layoutMode="d_layoutMode" @topbar-theme="onTopbarThemeChange"
+				v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange"
+				:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="d_menuTheme" :menuThemes="menuThemes"
+				:topbarTheme="d_topbarTheme" :topbarThemes="topbarThemes"></AppConfig>
+
+		<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
+
+		<div v-if="mobileMenuActive" class="layout-mask modal-in"></div>
 	</div>
 </template>
 
