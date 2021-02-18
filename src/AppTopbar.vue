@@ -9,7 +9,7 @@
 				<i class="pi pi-chevron-right"></i>
 			</a>
 
-			<a class="layout-topbar-mobile-button" @click="onTopbarMobileButtonClick($event)" v-ripple>
+			<a class="layout-topbar-mobile-button p-ripple" @click="onTopbarMobileButtonClick($event)" v-ripple>
 				<i class="pi pi-ellipsis-v fs-large"></i>
 			</a>
 		</div>
@@ -22,7 +22,7 @@
 			<div class="layout-topbar-actions-right">
 				<ul class="layout-topbar-items">
 					<li class="layout-topbar-item layout-search-item">
-						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'search')" v-ripple>
+						<a class="layout-topbar-action rounded-circle p-ripple" @click="onTopbarItemClick($event, 'search')" v-ripple>
 							<i class="pi pi-search fs-large"></i>
 						</a>
 
@@ -36,7 +36,7 @@
 					</li>
 
 					<li class="layout-topbar-item notifications">
-						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'notifications')" v-ripple>
+						<a class="layout-topbar-action rounded-circle p-ripple" @click="onTopbarItemClick($event, 'notifications')" v-ripple>
 							<span class="p-overlay-badge" v-badge.warning>
 								<i class="pi pi-bell fs-large"></i>
 							</span>
@@ -100,7 +100,7 @@
 					</li>
 
 					<li class="layout-topbar-item app">
-						<a class="layout-topbar-action rounded-circle" @click="onTopbarItemClick($event, 'apps')" v-ripple>
+						<a class="layout-topbar-action rounded-circle p-ripple" @click="onTopbarItemClick($event, 'apps')" v-ripple>
 							<i class="pi pi-table fs-large"></i>
 						</a>
 
@@ -147,7 +147,7 @@
 					</li>
 
 					<li class="layout-topbar-item">
-						<a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle" @click="onTopbarItemClick($event, 'profile')" v-ripple>
+						<a class="layout-topbar-action p-d-flex p-dir-row p-jc-center p-ai-center p-px-2 rounded-circle p-ripple" @click="onTopbarItemClick($event, 'profile')" v-ripple>
 							<img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
 						</a>
 
@@ -180,7 +180,7 @@
 					</li>
 
 					<li class="layout-topbar-item">
-						<a class="layout-topbar-action rounded-circle" @click="onRightPanelButtonClick($event)" v-ripple>
+						<a class="layout-topbar-action rounded-circle p-ripple" @click="onRightPanelButtonClick($event)" v-ripple>
 							<i class="pi fs-large" :class="{'pi-arrow-left': !isRTL, 'pi-arrow-right': isRTL}"></i>
 						</a>
 					</li>
