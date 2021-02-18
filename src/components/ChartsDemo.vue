@@ -37,7 +37,6 @@
 
 <script>
 export default {
-	inject: ['layoutMode'],
 	data() {
 		return {
 			lineData: null,
@@ -77,6 +76,14 @@ export default {
 	mounted() {
 		this.refreshChart();
 	},
+    watch: {
+        '$appState.isNewThemeLoaded'(isLoaded) {
+            if (isLoaded) {
+                this.refreshChart();
+                this.$appState.isNewThemeLoaded = false;
+            }
+        }
+    },
 	methods: {
 		refreshChart() {
 			this.lineData = this.getLineData();
@@ -88,9 +95,9 @@ export default {
             this.chartsOptions3 = this.getChartOptions3();
 		},
 		getLineData() {
-        const isLight = this.layoutMode === 'light';
-        const dataset1Color = isLight ? '#00ACC1' : '#4DD0E1';
-        const dataset2Color = isLight ? '#FF9800' : '#FFB74D';
+        const isLight = this.$appState.isNewThemeLoaded;
+        const dataset1Color = isLight ? '#4DD0E1' : '#00ACC1';
+        const dataset2Color = isLight ? '#FFB74D' : '#FF9800';
 
         return {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -114,9 +121,9 @@ export default {
     },
 
     getBarData() {
-        const isLight = this.layoutMode === 'light';
-        const dataset1Color = isLight ? '#00ACC1' : '#4DD0E1';
-        const dataset2Color = isLight ? '#FF9800' : '#FFB74D';
+        const isLight = this.$appState.isNewThemeLoaded;
+        const dataset1Color = isLight ? '#4DD0E1' : '#00ACC1';
+        const dataset2Color = isLight ? '#FFB74D' : '#FF9800';
 
         return {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -188,24 +195,24 @@ export default {
     },
 
     getColors() {
-        const isLight = this.layoutMode === 'light';
+        const isLight = this.$appState.isNewThemeLoaded;
         return {
-            pinkColor: isLight ? '#EC407A' : '#F48FB1',
-            purpleColor: isLight ? '#AB47BC' : '#CE93D8',
-            deeppurpleColor: isLight ? '#7E57C2' : '#B39DDB',
-            indigoColor: isLight ? '#5C6BC0' : '#9FA8DA',
-            blueColor: isLight ? '#42A5F5' : '#90CAF9',
-            lightblueColor: isLight ? '#29B6F6' : '#81D4FA',
-            cyanColor: isLight ? '#00ACC1' : '#4DD0E1',
-            tealColor: isLight ? '#26A69A' : '#80CBC4',
-            greenColor: isLight ? '#66BB6A' : '#A5D6A7',
-            lightgreenColor: isLight ? '#9CCC65' : '#C5E1A5',
-            limeColor: isLight ? '#D4E157' : '#E6EE9C',
-            yellowColor: isLight ? 'FFEE58' : '#FFF59D',
-            amberColor: isLight ? '#FFCA28' : '#FFE082',
-            orangeColor: isLight ? '#FFA726' : '#FFCC80',
-            deeporangeColor: isLight ? '#FF7043' : '#FFAB91',
-            brownColor: isLight ? '#8D6E63' : '#BCAAA4'
+            pinkColor: isLight ? '#F48FB1' : '#EC407A',
+            purpleColor: isLight ? '#CE93D8' : '#AB47BC',
+            deeppurpleColor: isLight ? '#B39DDB' : '#7E57C2',
+            indigoColor: isLight ? '#9FA8DA' : '#5C6BC0',
+            blueColor: isLight ? '#90CAF9' : '#42A5F5',
+            lightblueColor: isLight ? '#81D4FA' : '#29B6F6',
+            cyanColor: isLight ? '#4DD0E1' : '#00ACC1',
+            tealColor: isLight ? '#80CBC4' : '#26A69A',
+            greenColor: isLight ? '#A5D6A7' : '#66BB6A',
+            lightgreenColor: isLight ? '#C5E1A5' : '#9CCC65',
+            limeColor: isLight ? '#E6EE9C' : '#D4E157',
+            yellowColor: isLight ? '#FFF59D' : 'FFEE58',
+            amberColor: isLight ? '#FFE082' : '#FFCA28',
+            orangeColor: isLight ? '#FFCC80' : '#FFA726',
+            deeporangeColor: isLight ? '#FFAB91' : '#FF7043',
+            brownColor: isLight ? '#BCAAA4' : '#8D6E63'
         }
     },
 

@@ -675,12 +675,12 @@ export default {
 			this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
 		},
 		getOverviewColors() {
-            const isLight = this.layoutMode === 'light';
+            const isLight = this.$appState.isNewThemeLoaded;
             return {
-                pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
-                pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
-                tealBorderColor: isLight ? '#009688' : '#26A69A',
-                tealBgColor: isLight ? '#80CBC4' : '#B2DFDB',
+                pinkBorderColor: isLight ? '#EC407A' : '#E91E63',
+                pinkBgColor: isLight ? '#F8BBD0' : '#F48FB1',
+                tealBorderColor: isLight ? '#26A69A' : '#009688',
+                tealBgColor: isLight ? '#B2DFDB' : '#80CBC4',
                 whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
                 whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
             }

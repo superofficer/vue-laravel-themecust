@@ -408,7 +408,6 @@
 <script>
 	export default {
 		name: "Widgets",
-        inject: ['layoutMode'],
 		data() {
 			return {
 				items: [
@@ -499,7 +498,14 @@
 		},
         mounted() {
             this.refreshChart();
-            this.setOverviewColors();
+        },
+        watch: {
+            '$appState.isNewThemeLoaded'(isLoaded) {
+                if (isLoaded) {
+                    this.refreshChart();
+                    this.$appState.isNewThemeLoaded = false;
+                }
+            }
         },
 		methods: {
 			toggleMenu(event) {
@@ -508,16 +514,17 @@
             refreshChart() {
                 this.chartData = this.getChartData();
                 this.chartOptions = this.getChartOptions();
+                this.setOverviewColors();
             },
             getChartData() {
-                const isLight = this.layoutMode === 'light';
+                const isLight = this.$appState.isNewThemeLoaded;
                 const completedColors = {
-                    borderColor: isLight ? '#00ACC1' : '#4DD0E1',
-                    backgroundColor: isLight ? 'rgb(0, 172, 193, .3)' : 'rgb(77, 208, 225, .3)'
+                    borderColor: isLight ? '#4DD0E1' : '#00ACC1',
+                    backgroundColor: isLight ? 'rgb(77, 208, 225, .3)' : 'rgb(0, 172, 193, .3)'
                 };
                 const canceledColors = {
-                    borderColor: isLight ? '#FF9800' : '#FFB74D',
-                    backgroundColor: isLight ? 'rgb(255, 152, 0, .3)' : 'rgb(255, 183, 77, .3)'
+                    borderColor: isLight ? '#FFB74D' : '#FF9800',
+                    backgroundColor: isLight ? 'rgb(255, 183, 77, .3)' : 'rgb(255, 152, 0, .3)'
                 };
 
                 return {
@@ -574,7 +581,7 @@
                 }
             },
             getOverviewColors() {
-                const isLight = this.layoutMode === 'light';
+                const isLight = this.$appState.isNewThemeLoaded;
                 return {
                     whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
                     whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
