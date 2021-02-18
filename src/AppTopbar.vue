@@ -107,37 +107,37 @@
 						<div class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
 							<div class="p-grid p-nogutter">
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-image action indigo-bgcolor white-color"></i>
 										<span>Products</span>
 									</a>
 								</div>
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-file-pdf action orange-bgcolor white-color"></i>
 										<span>Reports</span>
 									</a>
 								</div>
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-dollar action teal-bgcolor white-color"></i>
 										<span>Balance</span>
 									</a>
 								</div>
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-cog action pink-bgcolor white-color"></i>
 										<span>Settings</span>
 									</a>
 								</div>
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-key action bluegrey-bgcolor white-color"></i>
 										<span>Credentials</span>
 									</a>
 								</div>
 								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-jc-center p-flex-column text-color" v-ripple>
+									<a class="p-d-flex p-ai-center p-jc-center p-flex-column text-color p-ripple" v-ripple>
 										<i class="pi pi-sitemap action cyan-bgcolor white-color"></i>
 										<span>Sitemap</span>
 									</a>
@@ -153,25 +153,25 @@
 
 						<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'profile'">
 							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
 									<i class="pi pi-cog" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Settings</span>
 								</a>
 							</li>
 							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
 									<i class="pi pi-file-o" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Terms of Usage</span>
 								</a>
 							</li>
 							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
 									<i class="pi pi-compass" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Support</span>
 								</a>
 							</li>
 							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center" v-ripple>
+								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
 									<i class="pi pi-power-off" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
 									<span>Logout</span>
 								</a>
