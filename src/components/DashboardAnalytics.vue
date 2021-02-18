@@ -360,7 +360,7 @@
 import ProductService from '../service/ProductService';
 
 export default {
-    inject: ['chartMonthlyData', 'chartMonthlyOptions', 'doughnutData', 'doughnutOptions', 'pieData', 'pieOptions'],
+    inject: ['layoutMode'],
     data() {
         return {
             products: null,
@@ -374,96 +374,102 @@ export default {
             storeCTotalValue: 150,
             storeDTotalValue: 80,
             storeAData: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                data: [55, 3, 45, 6, 44, 58, 84, 68, 64],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }
-            ]
-        },
-        storeBData: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                data: [81, 75, 63, 100, 69, 79, 38, 37, 76],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }
-            ]
-        },
-        storeCData: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                data: [99, 55, 22, 72, 24, 79, 35, 91, 48],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }
-            ]
-        },
-        storeDData: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
-            datasets: [{
-                data: [5, 51, 68, 82, 28, 21, 29, 45, 44],
-                borderColor: [
-                    '#4DD0E1',
-                ],
-                backgroundColor: [
-                    'rgba(77, 208, 225, 0.8)',
-                ],
-                borderWidth: 2,
-                fill: true
-            }
-            ]
-        },
-        storeOptions: {
-            legend: {
-                display: false
-            },
-            responsive: true,
-            aspectRatio: 4,
-            scales: {
-                yAxes: [{
-                    display: false
-                }],
-                xAxes: [{
-                    display: false
-                }]
-            },
-            tooltips: {
-                enabled: false
-            },
-            elements: {
-                point: {
-                    radius: 0
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                datasets: [{
+                    data: [55, 3, 45, 6, 44, 58, 84, 68, 64],
+                    borderColor: [
+                        '#4DD0E1',
+                    ],
+                    backgroundColor: [
+                        'rgba(77, 208, 225, 0.8)',
+                    ],
+                    borderWidth: 2,
+                    fill: true
                 }
+                ]
             },
-        },
-        storeADiff: null,
-        storeAStatus: null,
-        storeBDiff: null,
-        storeBStatus: null,
-        storeCDiff: null,
-        storeCStatus: null,
-        storeDDiff: null,
-        storeDStatus: null,
+            storeBData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                datasets: [{
+                    data: [81, 75, 63, 100, 69, 79, 38, 37, 76],
+                    borderColor: [
+                        '#4DD0E1',
+                    ],
+                    backgroundColor: [
+                        'rgba(77, 208, 225, 0.8)',
+                    ],
+                    borderWidth: 2,
+                    fill: true
+                }
+                ]
+            },
+            storeCData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                datasets: [{
+                    data: [99, 55, 22, 72, 24, 79, 35, 91, 48],
+                    borderColor: [
+                        '#4DD0E1',
+                    ],
+                    backgroundColor: [
+                        'rgba(77, 208, 225, 0.8)',
+                    ],
+                    borderWidth: 2,
+                    fill: true
+                }
+                ]
+            },
+            storeDData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                datasets: [{
+                    data: [5, 51, 68, 82, 28, 21, 29, 45, 44],
+                    borderColor: [
+                        '#4DD0E1',
+                    ],
+                    backgroundColor: [
+                        'rgba(77, 208, 225, 0.8)',
+                    ],
+                    borderWidth: 2,
+                    fill: true
+                }
+                ]
+            },
+            storeOptions: {
+                legend: {
+                    display: false
+                },
+                responsive: true,
+                aspectRatio: 4,
+                scales: {
+                    yAxes: [{
+                        display: false
+                    }],
+                    xAxes: [{
+                        display: false
+                    }]
+                },
+                tooltips: {
+                    enabled: false
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                },
+            },
+            storeADiff: null,
+            storeAStatus: null,
+            storeBDiff: null,
+            storeBStatus: null,
+            storeCDiff: null,
+            storeCStatus: null,
+            storeDDiff: null,
+            storeDStatus: null,
+            chartMonthlyData: null,
+            chartMonthlyOptions: null,
+            doughnutData: null,
+            doughnutOptions: null,
+            pieData: null,
+            pieOptions: null,
         }
     },
     productService: null,
@@ -473,6 +479,7 @@ export default {
 	mounted() {
 		this.productService.getProducts().then(data => this.products = data);
         this.setStoreInterval();
+        this.refreshChart();
 	},
 	methods: {
 		formatCurrency(value) {
@@ -524,43 +531,269 @@ export default {
         }, 2000);
         },
         changeMonthlyDataView() {
-        if (this.$refs.monthly.chart.options.scales.xAxes[0].stacked) {
-            this.$refs.monthly.chart.options.scales.xAxes[0].stacked = false;
-            this.$refs.monthly.chart.options.scales.yAxes[0].stacked = false;
-        }
-        else {
-            this.$refs.monthly.chart.options.scales.xAxes[0].stacked = true;
-            this.$refs.monthly.chart.options.scales.yAxes[0].stacked = true;
-        }
+            if (this.$refs.monthly.chart.options.scales.xAxes[0].stacked) {
+                this.$refs.monthly.chart.options.scales.xAxes[0].stacked = false;
+                this.$refs.monthly.chart.options.scales.yAxes[0].stacked = false;
+            }
+            else {
+                this.$refs.monthly.chart.options.scales.xAxes[0].stacked = true;
+                this.$refs.monthly.chart.options.scales.yAxes[0].stacked = true;
+            }
 
-        this.$refs.monthly.chart.update();
-    },
-    changeDoughnutDataView() {
-        if (this.$refs.doughnut.chart.options.circumference === Math.PI) {
-            this.$refs.doughnut.chart.options.circumference = 2 * Math.PI;
-            this.$refs.doughnut.chart.options.rotation = -Math.PI / 2;
-        } else {
-            this.$refs.doughnut.chart.options.circumference = Math.PI;
-            this.$refs.doughnut.chart.options.rotation = -Math.PI;
-        }
+            this.$refs.monthly.chart.update();
+        },
+        changeDoughnutDataView() {
+            if (this.$refs.doughnut.chart.options.circumference === Math.PI) {
+                this.$refs.doughnut.chart.options.circumference = 2 * Math.PI;
+                this.$refs.doughnut.chart.options.rotation = -Math.PI / 2;
+            } else {
+                this.$refs.doughnut.chart.options.circumference = Math.PI;
+                this.$refs.doughnut.chart.options.rotation = -Math.PI;
+            }
 
-        this.$refs.doughnut.chart.update();
-    },
-    togglePieDoughnut() {
-        this.$refs.pie.chart.options.cutoutPercentage = this.$refs.pie.chart.options.cutoutPercentage ? 0 : 50;
-        this.$refs.pie.chart.update();
-    },
-    changePieDoughnutDataView() {
-        if (this.$refs.pie.chart.options.circumference === Math.PI) {
-            this.$refs.pie.chart.options.circumference = 2 * Math.PI;
-            this.$refs.pie.chart.options.rotation = -Math.PI / 2;
-        } else {
-            this.$refs.pie.chart.options.circumference = Math.PI;
-            this.$refs.pie.chart.options.rotation = -Math.PI;
-        }
+            this.$refs.doughnut.chart.update();
+        },
+        togglePieDoughnut() {
+            this.$refs.pie.chart.options.cutoutPercentage = this.$refs.pie.chart.options.cutoutPercentage ? 0 : 50;
+            this.$refs.pie.chart.update();
+        },
+        changePieDoughnutDataView() {
+            if (this.$refs.pie.chart.options.circumference === Math.PI) {
+                this.$refs.pie.chart.options.circumference = 2 * Math.PI;
+                this.$refs.pie.chart.options.rotation = -Math.PI / 2;
+            } else {
+                this.$refs.pie.chart.options.circumference = Math.PI;
+                this.$refs.pie.chart.options.rotation = -Math.PI;
+            }
 
-        this.$refs.pie.chart.update();
-    }
+            this.$refs.pie.chart.update();
+        },
+        refreshChart() {
+            this.chartMonthlyData = this.getChartMonthlyData();
+            this.chartMonthlyOptions = this.getMonthlyChartOptions();
+            this.doughnutData = this.getDoughnutData();
+            this.doughnutOptions = this.getDoughnutOptions();
+            this.pieData = this.getPieData();
+            this.pieOptions = this.getPieOptions();
+        },
+        getChartMonthlyData() {
+            const { limeColor, amberColor, orangeColor, blueColor, lightblueColor,
+                cyanColor, tealColor, greenColor, lightgreenColor } = this.getColors();
+
+            return {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: '2012',
+                        data: [6, 25, 97, 12, 7, 70, 42],
+                        borderColor: blueColor,
+                        backgroundColor: blueColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2013',
+                        data: [81, 3, 5, 11, 59, 47, 99],
+                        borderColor: lightblueColor,
+                        backgroundColor: lightblueColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2014',
+                        data: [68, 47, 46, 46, 61, 70, 94],
+                        borderColor: cyanColor,
+                        backgroundColor: cyanColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2015',
+                        data: [31, 9, 18, 76, 6, 11, 79],
+                        borderColor: tealColor,
+                        backgroundColor: tealColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2016',
+                        data: [85, 37, 47, 29, 2, 10, 54],
+                        borderColor: greenColor,
+                        backgroundColor: greenColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2017',
+                        data: [28, 48, 40, 19, 86, 27, 90],
+                        borderColor: lightgreenColor,
+                        backgroundColor: lightgreenColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2018',
+                        data: [89, 18, 95, 18, 97, 61, 54],
+                        borderColor: limeColor,
+                        backgroundColor: limeColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2019',
+                        data: [18, 36, 39, 58, 41, 50, 72],
+                        borderColor: amberColor,
+                        backgroundColor: amberColor,
+                        borderWidth: 2,
+                        fill: true
+                    },
+                    {
+                        label: '2020',
+                        data: [31, 4, 35, 74, 47, 35, 46],
+                        borderColor: orangeColor,
+                        backgroundColor: orangeColor,
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]
+            };
+        },
+        getMonthlyChartOptions() {
+            const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+            const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+            const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+            return {
+                legend: {
+                    display: true,
+                    labels: {
+                        fontFamily,
+                        fontColor: textColor
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            fontFamily,
+                            fontColor: textColor
+                        },
+                        gridLines: {
+                            color: gridLinesColor
+                        }
+                    }],
+                    xAxes: [{
+                        categoryPercentage: .9,
+                        barPercentage: .8,
+                        ticks: {
+                            fontFamily,
+                            fontColor: textColor
+                        },
+                        gridLines: {
+                            color: gridLinesColor
+                        }
+                    }]
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        },
+        getPieData() {
+            const { limeColor, blueColor, tealColor } = this.getColors();
+            const borderColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+            return {
+                labels: ['O', 'D', 'R'],
+                datasets: [
+                    {
+                        data: [300, 50, 100],
+                        backgroundColor: [
+                            blueColor,
+                            tealColor,
+                            limeColor
+                        ],
+                        borderColor
+                    }
+                ]
+            }
+        },
+        getPieOptions() {
+            const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+            const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+            return {
+                responsive: true,
+                aspectRatio: 1,
+                legend: {
+                    position: 'top',
+                    labels: {
+                        fontFamily,
+                        fontColor: textColor
+                    }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+        },
+        getDoughnutData() {
+            const { blueColor, lightblueColor, cyanColor, tealColor, greenColor,
+                lightgreenColor, orangeColor } = this.getColors();
+            const borderColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+
+            return {
+                labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                datasets: [
+                    {
+                        data: [11, 29, 71, 33, 28, 95, 6],
+                        backgroundColor: [blueColor, lightblueColor, cyanColor, tealColor, greenColor, lightgreenColor, orangeColor],
+                        borderColor
+                    }
+                ]
+            };
+        },
+        getDoughnutOptions() {
+            const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+            const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+            return {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                    labels: {
+                        fontFamily,
+                        fontColor: textColor
+                    }
+                },
+                circumference: Math.PI,
+                rotation: -Math.PI,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+        },
+        getColors() {
+            const isLight = this.layoutMode === 'light';
+            return {
+                pinkColor: isLight ? '#EC407A' : '#F48FB1',
+                purpleColor: isLight ? '#AB47BC' : '#CE93D8',
+                deeppurpleColor: isLight ? '#7E57C2' : '#B39DDB',
+                indigoColor: isLight ? '#5C6BC0' : '#9FA8DA',
+                blueColor: isLight ? '#42A5F5' : '#90CAF9',
+                lightblueColor: isLight ? '#29B6F6' : '#81D4FA',
+                cyanColor: isLight ? '#00ACC1' : '#4DD0E1',
+                tealColor: isLight ? '#26A69A' : '#80CBC4',
+                greenColor: isLight ? '#66BB6A' : '#A5D6A7',
+                lightgreenColor: isLight ? '#9CCC65' : '#C5E1A5',
+                limeColor: isLight ? '#D4E157' : '#E6EE9C',
+                yellowColor: isLight ? 'FFEE58' : '#FFF59D',
+                amberColor: isLight ? '#FFCA28' : '#FFE082',
+                orangeColor: isLight ? '#FFA726' : '#FFCC80',
+                deeporangeColor: isLight ? '#FF7043' : '#FFAB91',
+                brownColor: isLight ? '#8D6E63' : '#BCAAA4'
+            }
+        },
     },
     computed: {
         isRTL() {

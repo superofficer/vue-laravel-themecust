@@ -407,7 +407,6 @@
 import ProductService from '../service/ProductService';
 
 export default {
-	inject: ['overviewChartData1', 'overviewChartData2', 'overviewChartData3', 'overviewChartData4', 'overviewChartOptions', 'ordersChart', 'ordersOptions'],
 	data() {
 		return {
 			chatInput: '',
@@ -444,7 +443,120 @@ export default {
 				'😀','😃','😄','😁','😆','😅','😂','🤣','😇','😉','😊','🙂','🙃','😋','😌','😍','🥰','😘','😗','😙','😚','🤪','😜','😝','😛',
 				'🤑','😎','🤓','🧐','🤠','🥳','🤗','🤡','😏','😶','😐','😑','😒','🙄','🤨','🤔','🤫','🤭','🤥','😳','😞','😟','😠','😡','🤬','😔',
 				'😟','😠','😡','🤬','😔','😕','🙁','😬','🥺','😣','😖','😫','😩','🥱','😤','😮','😱','😨','😰','😯','😦','😧','😢','😥','😪','🤤'
-			]
+			],
+			overviewChartData1: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [50, 64, 32, 24, 18, 27, 20, 36, 30],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData2: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [11, 30, 52, 35, 39, 20, 14, 18, 29],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData3: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [20, 29, 39, 36, 45, 24, 28, 20, 15],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartData4: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+				datasets: [
+					{
+						data: [30, 39, 50, 21, 33, 18, 10, 24, 20],
+						borderColor: [
+							'#4DD0E1',
+						],
+						backgroundColor: [
+							'rgba(77, 208, 225, 0.8)',
+						],
+						borderWidth: 2,
+						fill: true
+					}
+				]
+			},
+			overviewChartOptions: {
+				legend: {
+					display: false
+				},
+				responsive: true,
+				scales: {
+					yAxes: [{
+						display: false
+					}],
+					xAxes: [{
+						display: false
+					}]
+				},
+				tooltips: {
+					enabled: false
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				},
+			},
+			ordersChart: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                label: 'New Orders',
+                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                borderColor: [
+                    '#4DD0E1',
+                ],
+                backgroundColor: [
+                    'rgba(77, 208, 225, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true
+            }, {
+                label: 'Completed Orders',
+                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                borderColor: [
+                    '#3F51B5',
+                ],
+                backgroundColor: [
+                    'rgba(63, 81, 181, 0.8)',
+                ],
+                borderWidth: 2,
+                fill: true,
+            }]
+			},
+			ordersOptions: null
 		}
 	},
 	productService: null,
@@ -453,6 +565,7 @@ export default {
 	},
 	mounted() {
 		this.productService.getProducts().then(data => this.products = data);
+		this.refreshChart();
 	},
 	methods: {
 		formatCurrency(value) {
@@ -498,7 +611,72 @@ export default {
 					});
 				}, 1);
 			}
-		}
+		},
+		refreshChart() {
+			this.ordersOptions = this.getOrdersOptions();
+            this.setOverviewColors();
+		},
+		getOrdersOptions() {
+                const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+                const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+                const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
+                return {
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontFamily,
+                            fontColor: textColor,
+                        }
+                    },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontFamily,
+                                fontColor: textColor
+                            },
+                            gridLines: {
+                                color: gridLinesColor
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontFamily,
+                                fontColor: textColor
+                            },
+                            gridLines: {
+                                color: gridLinesColor
+                            }
+                        }]
+                    }
+                }
+            },
+		setOverviewColors() {
+			const { pinkBorderColor, pinkBgColor, tealBorderColor, tealBgColor } = this.getOverviewColors();
+
+			this.overviewChartData1.datasets[0].borderColor[0] = tealBorderColor;
+			this.overviewChartData1.datasets[0].backgroundColor[0] = tealBgColor;
+
+			this.overviewChartData2.datasets[0].borderColor[0] = tealBorderColor;
+			this.overviewChartData2.datasets[0].backgroundColor[0] = tealBgColor;
+
+			this.overviewChartData3.datasets[0].borderColor[0] = pinkBorderColor;
+			this.overviewChartData3.datasets[0].backgroundColor[0] = pinkBgColor;
+
+			this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
+			this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
+		},
+		getOverviewColors() {
+            const isLight = this.layoutMode === 'light';
+            return {
+                pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
+                pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
+                tealBorderColor: isLight ? '#009688' : '#26A69A',
+                tealBgColor: isLight ? '#80CBC4' : '#B2DFDB',
+                whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
+                whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
+            }
+        },
 	},
 	computed: {
 		isRTL() {

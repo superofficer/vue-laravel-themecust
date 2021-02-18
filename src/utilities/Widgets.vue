@@ -408,19 +408,193 @@
 <script>
 	export default {
 		name: "Widgets",
-        inject: ['overviewChartData5', 'overviewChartData6', 'overviewChartData7', 'overviewChartData8', 'overviewChartOptions2', 'chartData', 'chartOptions'],
+        inject: ['layoutMode'],
 		data() {
 			return {
 				items: [
 					{label: 'Update', icon: 'pi pi-fw pi-refresh'},
 					{label: 'Edit', icon: 'pi pi-fw pi-pencil'}
 				],
-			}
+                chartData: null,
+                chartOptions: null,
+                overviewChartData5: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                    datasets: [{
+                        data: [50,64,32,24,18,27,20,36,30],
+                        borderColor: [
+                            '#4DD0E1',
+                        ],
+                        backgroundColor: [
+                            'rgba(77, 208, 225, 0.8)',
+                        ],
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]},
+                overviewChartData6: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                    datasets: [{
+                        data: [11,30,52,35,39,20,14,18,29],
+                        borderColor: [
+                            '#4DD0E1',
+                        ],
+                        backgroundColor: [
+                            'rgba(77, 208, 225, 0.8)',
+                        ],
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]},
+                overviewChartData7: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                    datasets: [{
+                        data: [20,29,39,36,45,24,28,20,15],
+                        borderColor: [
+                            '#4DD0E1',
+                        ],
+                        backgroundColor: [
+                            'rgba(77, 208, 225, 0.8)',
+                        ],
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]},
+                overviewChartData8: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+                    datasets: [{
+                        data: [30,39,50,21,33,18,10,24,20],
+                        borderColor: [
+                            '#4DD0E1',
+                        ],
+                        backgroundColor: [
+                            'rgba(77, 208, 225, 0.8)',
+                        ],
+                        borderWidth: 2,
+                        fill: true
+                    }
+                ]},
+                overviewChartOptions2: {
+                    legend: {
+                        display: false
+                    },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            display: false
+                        }],
+                        xAxes: [{
+                            display: false
+                        }]
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                },
+            }
 		},
+        mounted() {
+            this.refreshChart();
+            this.setOverviewColors();
+        },
 		methods: {
 			toggleMenu(event) {
 				this.$refs.menu.toggle(event);
 			},
+            refreshChart() {
+                this.chartData = this.getChartData();
+                this.chartOptions = this.getChartOptions();
+            },
+            getChartData() {
+                const isLight = this.layoutMode === 'light';
+                const completedColors = {
+                    borderColor: isLight ? '#00ACC1' : '#4DD0E1',
+                    backgroundColor: isLight ? 'rgb(0, 172, 193, .3)' : 'rgb(77, 208, 225, .3)'
+                };
+                const canceledColors = {
+                    borderColor: isLight ? '#FF9800' : '#FFB74D',
+                    backgroundColor: isLight ? 'rgb(255, 152, 0, .3)' : 'rgb(255, 183, 77, .3)'
+                };
+
+                return {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    datasets: [
+                        {
+                            label: 'Completed',
+                            data: [65, 59, 80, 81, 56, 55, 40],
+                            borderColor: completedColors.borderColor,
+                            backgroundColor: completedColors.backgroundColor,
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: 'Cancelled',
+                            data: [28, 48, 40, 19, 86, 27, 90],
+                            borderColor: canceledColors.borderColor,
+                            backgroundColor: canceledColors.backgroundColor,
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                };
+            },
+            getChartOptions() {
+                const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
+                const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
+                return {
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: textColor
+                        }
+                    },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: textColor
+                            },
+                            gridLines: {
+                                color: gridLinesColor
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: textColor
+                            },
+                            gridLines: {
+                                color: gridLinesColor
+                            }
+                        }]
+                    }
+                }
+            },
+            getOverviewColors() {
+                const isLight = this.layoutMode === 'light';
+                return {
+                    whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
+                    whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
+                }
+            },
+            setOverviewColors() {
+                const { whiteBgColor, whiteBorderColor} = this.getOverviewColors();
+
+                this.overviewChartData5.datasets[0].borderColor[0] = whiteBorderColor;
+                this.overviewChartData5.datasets[0].backgroundColor[0] = whiteBgColor;
+
+                this.overviewChartData6.datasets[0].borderColor[0] = whiteBorderColor;
+                this.overviewChartData6.datasets[0].backgroundColor[0] = whiteBgColor;
+
+                this.overviewChartData7.datasets[0].borderColor[0] = whiteBorderColor;
+                this.overviewChartData7.datasets[0].backgroundColor[0] = whiteBgColor;
+
+                this.overviewChartData8.datasets[0].borderColor[0] = whiteBorderColor;
+                this.overviewChartData8.datasets[0].backgroundColor[0] = whiteBgColor;
+            }
 		},
         computed: {
             isRTL() {
