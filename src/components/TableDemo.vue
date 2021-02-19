@@ -2,7 +2,7 @@
 	<div class="p-grid">
 		<div class="p-col-12">
 			<div class="card">
-				<h4>Default</h4>
+				<h5>Default</h5>
 				<p>Pagination, sorting, filtering and checkbox selection.</p>
 				<DataTable :value="customer1" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers1"
 							:filters="filters1" :loading="loading1">
@@ -70,7 +70,7 @@
 		</div>
 		<div class="p-col-12">
 			<div class="card">
-				<h4>Customized</h4>
+				<h5>Customized</h5>
 				<p>Scrollable table with gridlines (<mark>.p-datatable-gridlines</mark>), striped rows (<mark>.p-datatable-striped</mark>) and smaller paddings (<mark>p-datatable-sm</mark>).</p>
 				<DataTable :value="customer2" :paginator="true" class="p-datatable-striped p-datatable-sm p-datatable-gridlines p-datatable-customers"
 							:rows="10" dataKey="id" :rowHover="true" v-model:selection="selectedCustomers2" :filters="filters2" :loading="loading2">
@@ -135,7 +135,7 @@
 
 		<div class="p-col-12">
 			<div class="card">
-				<h4>Row Expand</h4>
+				<h5>Row Expand</h5>
 
 				<Toast />
 				<DataTable :value="products" class="p-datatable-customers" v-model:expandedRows="expandedRows" dataKey="id" @row-expand="onRowExpand" @row-collapse="onRowCollapse">
@@ -229,8 +229,9 @@
 
 		<div class="p-col-12">
 			<div class="card">
-				<h4>Row Group</h4>
-				<DataTable :value="customer3" class="p-datatable-customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1">
+				<h5>Row Group and Scrolling</h5>
+				<DataTable :value="customer3" class="p-datatable-customers" rowGroupMode="subheader" groupRowsBy="representative.name"
+						sortMode="single" sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px">
 					<Column field="representative.name" header="Representative">
 						<template #body="slotProps">
 							<span class="p-column-title">Representative</span>
