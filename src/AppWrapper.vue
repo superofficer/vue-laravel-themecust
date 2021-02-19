@@ -5,7 +5,7 @@
     <NotFound v-else-if="$route.path === '/notfound'" />
     <Landing v-else-if="$route.path === '/landing'" />
     <ContactUs v-else-if="$route.path === '/contactus'" />
-    <App :topbarTheme="topbarTheme" :layoutMode="layoutMode" :menuTheme="menuTheme" @menu-color-change="onMenuColorChange" @topbar-theme="onTopbarThemeChange" v-else />
+    <App :topbarTheme="topbarTheme" :layoutMode="layoutMode" :menuTheme="menuTheme" @menu-theme="onMenuTheme" @topbar-theme="onTopbarThemeChange" @layout-mode-change="onLayoutChange" v-else />
 </template>
 
 <script>
@@ -27,31 +27,15 @@
             }
         },
         methods: {
-            onThemeChange(theme) {
-                this.theme = theme;
-            },
             onLayoutChange(layout) {
-                this.layout = layout;
+                this.layoutMode = layout;
+                this.menuTheme = layout;
             },
             onTopbarThemeChange(theme) {
                 this.topbarTheme = theme.name;
             },
             onMenuTheme(menuTheme) {
                 this.menuTheme = menuTheme.name;
-            },
-            onMenuColorChange(menuColor) {
-                this.layoutMode = menuColor;
-
-                this.$appState.inputStyle = menuColor === 'dark' ? 'filled' : 'outlined';
-
-                if (menuColor === 'dark') {
-                    this.menuTheme = 'dark';
-                    this.topbarTheme = 'dark';
-                }
-                else {
-                    this.menuTheme = 'light';
-                    this.topbarTheme = 'blue';
-                }
             }
         },
         components: {

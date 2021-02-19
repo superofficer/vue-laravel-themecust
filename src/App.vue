@@ -22,7 +22,7 @@
 			<AppFooter :layoutMode="layoutMode" />
 		</div>
 
-		<AppConfig :menuMode="menuMode" @menu-mode-change="onMenuModeChange" @menu-color-change="onMenuColorChange" @menu-theme="onMenuTheme"
+		<AppConfig :menuMode="menuMode" @menu-mode-change="onMenuModeChange" @layout-mode-change="onLayoutModeChange" @menu-theme="onMenuTheme"
 				:layoutMode="d_layoutMode" @topbar-theme="onTopbarThemeChange"
 				v-model:inlineMenuPosition="inlineMenuPosition" @inlinemenu-change="onInlineMenuPositionChange"
 				:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="d_menuTheme" :menuThemes="menuThemes"
@@ -45,7 +45,7 @@ import AppBreadcrumb from './AppBreadcrumb.vue';
 import EventBus from './event-bus';
 
 export default {
-	emits: ['menu-color-change', 'menu-theme'],
+	emits: ['layout-mode-change', 'menu-theme', 'menuTheme', 'topbar-theme', 'topbarTheme', 'layoutModeChange'],
 	props: {
 		topbarTheme: String,
 		menuTheme: String,
@@ -409,8 +409,8 @@ export default {
 				this.inlineMenuPosition = 'top';
 			}
 		},
-		onMenuColorChange(menuColor) {
-			this.$emit('menu-color-change', menuColor);
+		onLayoutModeChange(menuColor) {
+			this.$emit('layout-mode-change', menuColor);
 
 			const layoutLink = document.getElementById('layout-css');
 			const layoutHref = 'assets/layout/css/layout-' + menuColor + '.css';
@@ -505,145 +505,6 @@ export default {
                     'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             }
         },
-		setOverviewColors() {
-			const { pinkBorderColor, pinkBgColor, tealBorderColor, tealBgColor } = this.getOverviewColors();
-
-			this.overviewChartData1.datasets[0].borderColor[0] = tealBorderColor;
-			this.overviewChartData1.datasets[0].backgroundColor[0] = tealBgColor;
-
-			this.overviewChartData2.datasets[0].borderColor[0] = tealBorderColor;
-			this.overviewChartData2.datasets[0].backgroundColor[0] = tealBgColor;
-
-			this.overviewChartData3.datasets[0].borderColor[0] = pinkBorderColor;
-			this.overviewChartData3.datasets[0].backgroundColor[0] = pinkBgColor;
-
-			this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
-			this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
-
-			const { whiteBgColor, whiteBorderColor} = this.getOverviewColors();
-
-			this.overviewChartData5.datasets[0].borderColor[0] = whiteBorderColor;
-			this.overviewChartData5.datasets[0].backgroundColor[0] = whiteBgColor;
-
-			this.overviewChartData6.datasets[0].borderColor[0] = whiteBorderColor;
-			this.overviewChartData6.datasets[0].backgroundColor[0] = whiteBgColor;
-
-			this.overviewChartData7.datasets[0].borderColor[0] = whiteBorderColor;
-			this.overviewChartData7.datasets[0].backgroundColor[0] = whiteBgColor;
-
-			this.overviewChartData8.datasets[0].borderColor[0] = whiteBorderColor;
-			this.overviewChartData8.datasets[0].backgroundColor[0] = whiteBgColor;
-		},
-		getOverviewColors() {
-			const isLight = this.layoutMode === 'light';
-			return {
-				pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
-				pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
-				tealBorderColor: isLight ? '#009688' : '#26A69A',
-				tealBgColor: isLight ? '#80CBC4' : '#B2DFDB',
-				whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
-				whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
-			}
-		},
-		getOrdersOptions() {
-			const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
-			const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
-			const fontFamily = getComputedStyle(document.body).getPropertyValue('--font-family');
-			return {
-				legend: {
-					display: true,
-					labels: {
-						fontFamily,
-						fontColor: textColor,
-					}
-				},
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							fontFamily,
-							fontColor: textColor
-						},
-						gridLines: {
-							color: gridLinesColor
-						}
-					}],
-					xAxes: [{
-						ticks: {
-							fontFamily,
-							fontColor: textColor
-						},
-						gridLines: {
-							color: gridLinesColor
-						}
-					}]
-				}
-        }
-		},
-		getChartData() {
-			const isLight = this.layoutMode === 'light';
-			const completedColors = {
-				borderColor: isLight ? '#00ACC1' : '#4DD0E1',
-				backgroundColor: isLight ? 'rgb(0, 172, 193, .3)' : 'rgb(77, 208, 225, .3)'
-			};
-			const canceledColors = {
-				borderColor: isLight ? '#FF9800' : '#FFB74D',
-				backgroundColor: isLight ? 'rgb(255, 152, 0, .3)' : 'rgb(255, 183, 77, .3)'
-			};
-
-			return {
-				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-				datasets: [
-					{
-						label: 'Completed',
-						data: [65, 59, 80, 81, 56, 55, 40],
-						borderColor: completedColors.borderColor,
-						backgroundColor: completedColors.backgroundColor,
-						borderWidth: 2,
-						fill: true
-					},
-					{
-						label: 'Cancelled',
-						data: [28, 48, 40, 19, 86, 27, 90],
-						borderColor: canceledColors.borderColor,
-						backgroundColor: canceledColors.backgroundColor,
-						borderWidth: 2,
-						fill: true
-					}
-				]
-			};
-    },
-		getChartOptions() {
-			const textColor = getComputedStyle(document.body).getPropertyValue('--text-color') || 'rgba(0, 0, 0, 0.87)';
-			const gridLinesColor = getComputedStyle(document.body).getPropertyValue('--divider-color') || 'rgba(160, 167, 181, .3)';
-			return {
-				legend: {
-					display: true,
-					labels: {
-						fontColor: textColor
-					}
-				},
-				responsive: true,
-				scales: {
-					yAxes: [{
-						ticks: {
-							fontColor: textColor
-						},
-						gridLines: {
-							color: gridLinesColor
-						}
-					}],
-					xAxes: [{
-						ticks: {
-							fontColor: textColor
-						},
-						gridLines: {
-							color: gridLinesColor
-						}
-					}]
-				}
-			}
-		}
     },
     computed: {
 		layoutContainerClass() {

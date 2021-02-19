@@ -21,11 +21,11 @@
                 <h6>Layout Mode</h6>
                 <div class="p-d-flex">
                     <div class="p-d-flex p-ai-center">
-                        <RadioButton id="light" name="layoutMode" value="light" v-model="d_layoutMode" @change="changeMenuColor($event, 'light')" />
+                        <RadioButton id="light" name="layoutMode" value="light" v-model="d_layoutMode" @change="changeLayoutMode($event, 'light')" />
                         <label for="layoutMode1" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Light</label>
                     </div>
                     <div class="p-d-flex p-ai-center" :class="{'p-ml-4': !isRTL, 'p-mr-4': isRTL}">
-                        <RadioButton id="dark" name="layoutMode" value="dark" v-model="d_layoutMode" @change="changeMenuColor($event, 'dark')" />
+                        <RadioButton id="dark" name="layoutMode" value="dark" v-model="d_layoutMode" @change="changeLayoutMode($event, 'dark')" />
                         <label for="layoutMode2" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">Dark</label>
                     </div>
                 </div>
@@ -132,8 +132,7 @@
 
 <script>
 export default {
-    emits: ['menuModeChange', 'menuTheme', 'menuColorChange', 'topbarTheme', 'themeChange', 'inlinemenuChange','menu-mode-change', 'menu-color-change', 'inlinemenu-change'],
-    provide: ['ordersOptions'],
+    emits: ['menuModeChange', 'menuTheme', 'layoutModeChange', 'topbarTheme', 'themeChange', 'inlinemenuChange', 'menu-mode-change', 'topbar-theme', 'menu-theme', 'layout-mode-change', 'menu-color-change', 'inlinemenu-change', 'theme-change'],
     props: {
         menuMode: {
             type: String,
@@ -232,8 +231,8 @@ export default {
             this.$emit('menu-theme', menuTheme);
             event.preventDefault();
         },
-        changeMenuColor(event, menuColor) {
-            this.$emit('menu-color-change', menuColor);
+        changeLayoutMode(event, menuColor) {
+            this.$emit('layout-mode-change', menuColor);
             event.preventDefault();
         },
         changeTopbarTheme(event, theme) {
