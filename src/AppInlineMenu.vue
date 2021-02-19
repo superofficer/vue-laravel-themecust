@@ -1,6 +1,6 @@
 <template>
     <div class="layout-inline-menu" :class="{'layout-inline-menu-active': active}">
-    <a class="layout-inline-menu-action p-d-flex p-dir-row p-ai-center" :class="menuMode === 'horizontal' ? 'p-p-3 p-p-lg-1 p-py-3' : 'p-p-3'" @click="onClick($event)">
+    <a class="layout-inline-menu-action p-d-flex p-dir-row p-ai-center" :class="menuMode === 'horizontal' ? 'p-p-3 p-p-lg-1 p-py-3' : 'p-p-3'" :style="{'min-width': menuMode === 'horizontal' ? '165px' : 0} " @click="onClick($event)">
         <img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
         <span class="p-d-flex p-flex-column" :class="{'p-ml-2': !isRTL, 'p-mr-2': isRTL}">
             <span class="p-text-bold">Amy Elsner</span>

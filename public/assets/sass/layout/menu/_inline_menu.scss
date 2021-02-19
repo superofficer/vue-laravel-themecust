@@ -1,5 +1,6 @@
 .menu-wrapper {
     .layout-inline-menu {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -64,50 +65,33 @@
         }
 
         .layout-inline-menu-action-panel-horizontal {
-            // @include material-overlay-transform;
-            // overflow: visible;
-            // &.layout-inline-menu-action-panel-horizontal-enter-from,
-            // &.layout-inline-menu-action-panel-horizontal-leave-to {
-            //     padding: 0;
-            // }
-
-            // &.layout-inline-menu-action-panel-horizontal-enter-to,
-            // &.layout-inline-menu-action-panel-horizontal-leave-from {
-            //     padding-top: 110px ;
-            //     z-index: 100;
-            // }
-
-            // &.layout-inline-menu-action-panel-horizontal-enter-active {
-            //     opacity: 0;
-            //     transition: all 1s cubic-bezier(0.86, 0, 0.07, 1), z-index 1s cubic-bezier(0.86, 0, 0.07, 1);
-            // }
-
-            // &.layout-inline-menu-action-panel-horizontal-leave-active {
-            //     opacity: 0;
-            //     transition: all 1s cubic-bezier(0.86, 0, 0.07, 1), z-index 1s cubic-bezier(0.86, 0, 0.07, 1);
-            // }
+            position: absolute;
+            top: 3rem;
+            left: 0px;
 
             &.layout-inline-menu-action-panel-horizontal-enter-from,
-                        &.layout-inline-menu-action-panel-horizontal-leave-to {
-                            opacity: 0;
-                            transform: scaleY(0.8);
-                        }
+            &.layout-inline-menu-action-panel-horizontal-leave-to {
+                opacity: 0;
+                transform: scaleY(0.8);
+                z-index: 100;
+            }
     
-                        &.layout-inline-menu-action-panel-horizontal-enter-to,
-                        &.layout-inline-menu-action-panel-horizontal-leave-from {
-                            opacity: 1;
-                            transform: none;
-                        }
+            &.layout-inline-menu-action-panel-horizontal-enter-to,
+            &.layout-inline-menu-action-panel-horizontal-leave-from {
+                opacity: 1;
+                transform: none;
+                z-index: 0;
+            }
     
-                        &.layout-inline-menu-action-panel-horizontal-leave-active {
-                            transition: opacity .4s cubic-bezier(0.86, 0, 0.07, 1),
-                                transform .4s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
+            &.layout-inline-menu-action-panel-horizontal-leave-active {
+                transition: transform .4s cubic-bezier(0.86, 0, 0.07, 1), 
+                    opacity .4s cubic-bezier(0.86, 0, 0.07, 1), z-index .4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
     
-                        &.layout-inline-menu-action-panel-horizontal-enter-active {
-                            transition: opacity .4s cubic-bezier(0.86, 0, 0.07, 1),
-                                transform .4s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
+            &.layout-inline-menu-action-panel-horizontal-enter-active {
+                transition: transform .4s cubic-bezier(0.86, 0, 0.07, 1), 
+                    opacity .4s cubic-bezier(0.86, 0, 0.07, 1), z-index .4s cubic-bezier(0.86, 0, 0.07, 1);
+            }
         }
 
         .layout-inline-menu-tooltip {
