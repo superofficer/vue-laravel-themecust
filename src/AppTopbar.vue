@@ -26,11 +26,11 @@
 							<i class="pi pi-search fs-large"></i>
 						</a>
 
-						<div class="layout-search-panel p-inputgroup" v-show="search">
+						<div class="layout-search-panel p-inputgroup" v-show="searchActive" @click="onSearchContainerClick">
 							<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-							<InputText type="text" placeholder="Search" @click="search = true;" @keydown="onSearchKeydown($event)" />
+							<InputText type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
 							<span class="p-inputgroup-addon">
-								<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="search = false;"></Button>
+								<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="changeSearchActive"></Button>
 							</span>
 						</div>
 					</li>
@@ -192,11 +192,9 @@
 
 <script>
 	export default {
-		emits: ['menubutton-click', 'topbar-menubutton-click', 'topbaritem-click', 'rightpanel-button-click', 'topbar-mobileactive'],
+		emits: ['menubutton-click', 'topbar-menubutton-click', 'topbaritem-click', 'rightpanel-button-click', 'topbar-mobileactive', 'search-click', 'search-toggle'],
 		data() {
 			return {
-				search: false,
-				searchClick: false,
 				searchText: '',
 				items: [
 					{
@@ -298,32 +296,38 @@
 				default: false
 			},
 			activeTopbarItem: String,
-			mobileTopbarActive: Boolean
+			mobileTopbarActive: Boolean,
+			searchActive: Boolean
 		},
 		methods: {
+			onSearchContainerClick(event) {
+				this.$emit("search-click", event);
+			},
+			changeSearchActive(event) {
+				this.$emit('search-toggle', event);
+			},
 			onMenuButtonClick(event) {
 				this.$emit('menubutton-click', event);
 			},
 			onTopbarMenuButtonClick(event) {
-				this.$emit('topbar-menubutton-click', event)
+				this.$emit('topbar-menubutton-click', event);
 			},
 			onTopbarItemClick(event, item) {
-				if(item === 'search' || (item !== 'search' && this.search === true)) {
-					this.search = !this.search;
-					this.searchClick = !this.searchClick;
+				if(item === 'search') {
+					this.$emit('search-toggle', event);
 				}
 
-				this.$emit('topbaritem-click', {originalEvent: event, item: item})
+				this.$emit('topbaritem-click', {originalEvent: event, item: item});
 			},
 			onTopbarMobileButtonClick(event) {
 				this.$emit('topbar-mobileactive', event);
 			},
 			onRightPanelButtonClick(event) {
-				this.$emit('rightpanel-button-click', event)
+				this.$emit('rightpanel-button-click', event);
 			},
-			onSearchKeydown(event) {
-				if (event.keyCode == 27) {
-					this.search = false;
+			onSearchKeydown(event) { 
+				if (event.keyCode == 13) {
+					this.$emit('search-toggle', event);
 				}
 			}
 		},

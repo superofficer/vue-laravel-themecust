@@ -1,7 +1,8 @@
 <template>
 	<div :class="layoutContainerClass" @click="onDocumentClick">
 		<AppTopBar :horizontal="menuMode==='horizontal'" :topbarMenuActive="topbarMenuActive" :activeTopbarItem="activeTopbarItem" :mobileTopbarActive="mobileTopbarActive" @topbar-mobileactive="onTopbarMobileButtonClick"
-			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"></AppTopBar>
+			@menubutton-click="onMenuButtonClick" @topbar-menubutton-click="onTopbarMenuButtonClick" @topbaritem-click="onTopbarItemClick" @rightpanel-button-click="onRightPanelButtonClick"
+			:searchActive="searchActive" @search-toggle="onSearchToggle" @search-click="onSearchClick" @search-hide="onSearchHide"></AppTopBar>
 
 			<div class="menu-wrapper">
 				<div class="layout-menu-container" @click="onMenuClick">
@@ -60,6 +61,7 @@ export default {
 			mobileMenuActive: false,
 			search: false,
 			searchClick: false,
+			searchActive: false,
 			menuMode: 'static',
 			inlineMenuClick: false,
 			inlineMenuPosition: 'bottom',
@@ -276,6 +278,10 @@ export default {
     },
     methods: {
 		onDocumentClick() {
+			if (!this.searchClick && this.searchActive) {
+                this.onSearchHide();
+            }
+
 			if(!this.topbarItemClick) {
 				this.activeTopbarItem = null;
 				this.topbarMenuActive = false;
@@ -299,10 +305,6 @@ export default {
 				this.rightPanelActive = false;
 			}
 
-			if (!this.searchClick) {
-                this.search = false;
-            }
-
 			if(!this.inlineMenuClick) {
 				this.inlineMenuTopActive = false;
 				this.inlineMenuBottomActive = false;
@@ -313,6 +315,17 @@ export default {
 			this.rightPanelClick = false;
 			this.searchClick = false;
 			this.inlineMenuClick = false;
+        },
+		onSearchToggle() {
+            this.searchActive = !this.searchActive;
+            this.searchClick = true;
+        },
+		onSearchClick() {
+            this.searchClick = true;
+        },
+        onSearchHide() {
+            this.searchActive = false;
+            this.searchClick = false;
         },
 		isHorizontal() {
 			return this.menuMode === 'horizontal';
