@@ -26,13 +26,15 @@
 							<i class="pi pi-search fs-large"></i>
 						</a>
 
-						<div class="layout-search-panel p-inputgroup" v-show="searchActive" @click="onSearchContainerClick">
-							<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-							<InputText type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
-							<span class="p-inputgroup-addon">
-								<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="changeSearchActive"></Button>
-							</span>
-						</div>
+						<transition name="layout-topbar-item">
+							<div class="layout-search-panel p-inputgroup" v-show="searchActive" @click="onSearchContainerClick">
+								<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+								<InputText type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
+								<span class="p-inputgroup-addon">
+									<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="changeSearchActive"></Button>
+								</span>
+							</div>
+						</transition>
 					</li>
 
 					<li class="layout-topbar-item notifications">
@@ -42,60 +44,60 @@
 							</span>
 						</a>
 
-						<transition name="layout-submenu-container">
-						<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'notifications'">
-							<li class="p-mb-3">
-								<span class="p-px-3 fs-small">You have <b>4</b> new notifications</span>
-							</li>
-							<li class="layout-topbar-action-item">
-								<div class="p-d-flex p-flex-row p-ai-center">
-									<img src="assets/demo/images/avatar/amyelsner.png"/>
-									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
-										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
-											<span class="fs-small p-text-bold">Jerome Bell</span>
-											<small>42 mins ago</small>
+						<transition name="layout-topbar-item">
+							<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'notifications'">
+								<li class="p-mb-3">
+									<span class="p-px-3 fs-small">You have <b>4</b> new notifications</span>
+								</li>
+								<li class="layout-topbar-action-item">
+									<div class="p-d-flex p-flex-row p-ai-center">
+										<img src="assets/demo/images/avatar/amyelsner.png"/>
+										<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+											<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+												<span class="fs-small p-text-bold">Jerome Bell</span>
+												<small>42 mins ago</small>
+											</div>
+											<span class="fs-small">How to write content about your photographs?</span>
 										</div>
-										<span class="fs-small">How to write content about your photographs?</span>
 									</div>
-								</div>
-							</li>
-							<li class="layout-topbar-action-item">
-								<div class="p-d-flex p-flex-row p-ai-center">
-									<img src="assets/demo/images/avatar/annafali.png"/>
-									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
-										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
-											<span class="fs-small p-text-bold">Cameron Williamson</span>
-											<small>48 mins ago</small>
+								</li>
+								<li class="layout-topbar-action-item">
+									<div class="p-d-flex p-flex-row p-ai-center">
+										<img src="assets/demo/images/avatar/annafali.png"/>
+										<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+											<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+												<span class="fs-small p-text-bold">Cameron Williamson</span>
+												<small>48 mins ago</small>
+											</div>
+											<span class="fs-small">Start a blog to reach your creative peak.</span>
 										</div>
-										<span class="fs-small">Start a blog to reach your creative peak.</span>
 									</div>
-								</div>
-							</li>
-							<li class="layout-topbar-action-item">
-								<div class="p-d-flex p-flex-row p-ai-center">
-									<img src="assets/demo/images/avatar/bernardodominic.png"/>
-									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
-										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
-											<span class="fs-small p-text-bold">Anna Miles</span>
-											<small>1 day ago</small>
+								</li>
+								<li class="layout-topbar-action-item">
+									<div class="p-d-flex p-flex-row p-ai-center">
+										<img src="assets/demo/images/avatar/bernardodominic.png"/>
+										<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+											<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+												<span class="fs-small p-text-bold">Anna Miles</span>
+												<small>1 day ago</small>
+											</div>
+											<span class="fs-small">Caring is the new marketing</span>
 										</div>
-										<span class="fs-small">Caring is the new marketing</span>
 									</div>
-								</div>
-							</li>
-							<li class="layout-topbar-action-item">
-								<div class="p-d-flex p-flex-row p-ai-center">
-									<img src="assets/demo/images/avatar/stephenshaw.png"/>
-									<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
-										<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
-											<span class="fs-small p-text-bold">Arlene Mccoy</span>
-											<small>4 day ago</small>
+								</li>
+								<li class="layout-topbar-action-item">
+									<div class="p-d-flex p-flex-row p-ai-center">
+										<img src="assets/demo/images/avatar/stephenshaw.png"/>
+										<div class="p-d-flex p-flex-column" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}" style="flex-grow: 1;">
+											<div class="p-d-flex p-ai-center p-jc-between p-mb-1">
+												<span class="fs-small p-text-bold">Arlene Mccoy</span>
+												<small>4 day ago</small>
+											</div>
+											<span class="fs-small">Starting your traveling blog with Vasco.</span>
 										</div>
-										<span class="fs-small">Starting your traveling blog with Vasco.</span>
 									</div>
-								</div>
-							</li>
-						</ul>
+								</li>
+							</ul>
 						</transition>
 					</li>
 
@@ -104,46 +106,48 @@
 							<i class="pi pi-table fs-large"></i>
 						</a>
 
-						<div class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
+						<transition name="layout-topbar-item">
 							<div class="p-grid p-nogutter">
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-image action indigo-bgcolor white-color"></i>
-										<span>Products</span>
-									</a>
-								</div>
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-file-pdf action orange-bgcolor white-color"></i>
-										<span>Reports</span>
-									</a>
-								</div>
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-dollar action teal-bgcolor white-color"></i>
-										<span>Balance</span>
-									</a>
-								</div>
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-cog action pink-bgcolor white-color"></i>
-										<span>Settings</span>
-									</a>
-								</div>
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-key action bluegrey-bgcolor white-color"></i>
-										<span>Credentials</span>
-									</a>
-								</div>
-								<div class="layout-topbar-action-item p-col-4">
-									<a class="p-d-flex p-ai-center p-jc-center p-flex-column text-color p-ripple" v-ripple>
-										<i class="pi pi-sitemap action cyan-bgcolor white-color"></i>
-										<span>Sitemap</span>
-									</a>
+								<div class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-image action indigo-bgcolor white-color"></i>
+											<span>Products</span>
+										</a>
+									</div>
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-file-pdf action orange-bgcolor white-color"></i>
+											<span>Reports</span>
+										</a>
+									</div>
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-dollar action teal-bgcolor white-color"></i>
+											<span>Balance</span>
+										</a>
+									</div>
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-cog action pink-bgcolor white-color"></i>
+											<span>Settings</span>
+										</a>
+									</div>
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-key action bluegrey-bgcolor white-color"></i>
+											<span>Credentials</span>
+										</a>
+									</div>
+									<div class="layout-topbar-action-item p-col-4">
+										<a class="p-d-flex p-ai-center p-jc-center p-flex-column text-color p-ripple" v-ripple>
+											<i class="pi pi-sitemap action cyan-bgcolor white-color"></i>
+											<span>Sitemap</span>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						</transition>
 					</li>
 
 					<li class="layout-topbar-item">
@@ -151,32 +155,34 @@
 							<img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
 						</a>
 
-						<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'profile'">
-							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
-									<i class="pi pi-cog" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
-									<span>Settings</span>
-								</a>
-							</li>
-							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
-									<i class="pi pi-file-o" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
-									<span>Terms of Usage</span>
-								</a>
-							</li>
-							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
-									<i class="pi pi-compass" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
-									<span>Support</span>
-								</a>
-							</li>
-							<li class="layout-topbar-action-item">
-								<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
-									<i class="pi pi-power-off" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
-									<span>Logout</span>
-								</a>
-							</li>
-						</ul>
+						<transition name="layout-topbar-item">
+							<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'profile'">
+								<li class="layout-topbar-action-item">
+									<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
+										<i class="pi pi-cog" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+										<span>Settings</span>
+									</a>
+								</li>
+								<li class="layout-topbar-action-item">
+									<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
+										<i class="pi pi-file-o" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+										<span>Terms of Usage</span>
+									</a>
+								</li>
+								<li class="layout-topbar-action-item">
+									<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
+										<i class="pi pi-compass" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+										<span>Support</span>
+									</a>
+								</li>
+								<li class="layout-topbar-action-item">
+									<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
+										<i class="pi pi-power-off" :class="{'p-mr-2': !isRTL, 'p-ml-2': isRTL}"></i>
+										<span>Logout</span>
+									</a>
+								</li>
+							</ul>
+						</transition>
 					</li>
 
 					<li class="layout-topbar-item">
