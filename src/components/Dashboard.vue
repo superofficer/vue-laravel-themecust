@@ -203,21 +203,18 @@
 		<div class="p-col-12 p-md-12 p-lg-6">
 			<div class="card height-100">
 				<DataTable :value="products" class="p-datatable-customers" :rows="8" style="margin-bottom: 20px" :paginator="true">
-					<Column>
-						<template #header>
-							Logo
-						</template>
+					<Column header="Logo">
 						<template #body="slotProps">
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50" />
 						</template>
 					</Column>
-					<Column field="name" header="Name" :sortable="true">
+					<Column field="name" header="Name" :sortable="true" headerStyle="width: 10em" bodyStyle="width: 10em">
 						<template #body="slotProps">
 							<span class="p-column-title">Name</span>
 							{{slotProps.data.name}}
 						</template>
 					</Column>
-					<Column field="category" header="Category" :sortable="true">
+					<Column field="category" header="Category" :sortable="true" headerStyle="width: 9em" bodyStyle="width: 9em">
 						<template #body="slotProps">
 							<span class="p-column-title">Category</span>
 							{{slotProps.data.category}}
@@ -229,14 +226,11 @@
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
-					<Column>
-						<template #header>
-							View
-						</template>
-						<template #body>
-							<Button icon="pi pi-search" class="p-button-rounded p-button-text p-mb-1"></Button>
-						</template>
-					</Column>
+					<Column bodyStyle="text-align: right">
+                        <template #body>
+                            <Button icon="pi pi-search" class="p-button-rounded p-button-text p-mb-1"></Button>
+                        </template>
+                    </Column>
 				</DataTable>
 			</div>
 		</div>
