@@ -41,9 +41,15 @@
                     }
                 }
 
-                .layout-inline-menu .layout-inline-menu-tooltip {
-                    left: auto;
-                    right: 63px;
+                .layout-inline-menu {
+                    .layout-inline-menu-action-item > a > span {
+                        margin-right: .75rem;
+                    }
+
+                    .layout-inline-menu-tooltip {
+                        left: auto;
+                        right: 63px;
+                    }
                 }
             }
         }
