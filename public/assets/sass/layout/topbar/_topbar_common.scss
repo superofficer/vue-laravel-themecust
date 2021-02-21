@@ -83,6 +83,7 @@
                     display: flex;
                     align-items: center;
                     position: relative;
+                    transform-origin: top;
 
                     .layout-topbar-action {
                         user-select: none;
@@ -109,6 +110,23 @@
                             cursor: pointer;
                             padding: 1rem;
                         }
+
+                        &.layout-topbar-action-panel-enter-from{
+                            opacity: 0;
+                            transform: scaleY(0.8);
+                        }
+                    
+                        &.layout-topbar-action-panel-leave-to {
+                            opacity: 0;
+                        }
+                    
+                        &.layout-topbar-action-panel-leave-active {
+                            transition: opacity .1s linear;
+                        }
+                    
+                        &.layout-topbar-action-panel-enter-active {
+                            transition: transform .4s cubic-bezier(0, 0, 0.2, 1), opacity .4s cubic-bezier(0, 0, 0.2, 1);
+                        }
                     }
 
                     &.layout-search-item {
@@ -120,6 +138,23 @@
                             left: 0;
                             z-index: 1000;
                             @include material-overlay-transform;
+
+                            &.layout-search-panel-enter-from{
+                                opacity: 0;
+                                transform: scaleY(0.8);
+                            }
+                        
+                            &.layout-search-panel-leave-to {
+                                opacity: 0;
+                            }
+                        
+                            &.layout-search-panel-leave-active {
+                                transition: opacity .1s linear;
+                            }
+                        
+                            &.layout-search-panel-enter-active {
+                                transition: transform .4s cubic-bezier(0, 0, 0.2, 1), opacity .4s cubic-bezier(0, 0, 0.2, 1);
+                            }
 
                             input {
                                 border-radius: 0;
@@ -153,30 +188,6 @@
                                 border-bottom-right-radius: 0;
                             }
                         }
-                    }
-
-                    &.layout-topbar-item-enter-from,
-                    &.layout-topbar-item-leave-to {
-                        opacity: 0;
-                        transform: scaleY(0.8);
-                    }
-                
-                    &.layout-topbar-item-enter-to,
-                    &.layout-topbar-item-leave-from {
-                        opacity: 1;
-                        transform: none;
-                    }
-                
-                    &.layout-topbar-item-leave-active {
-                        overflow: hidden;
-                        transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1), 
-                            opacity 1s cubic-bezier(0.86, 0, 0.07, 1);
-                    }
-                
-                    &.layout-topbar-item-enter-active {
-                        overflow: hidden;
-                        transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1), 
-                            opacity 1s cubic-bezier(0.86, 0, 0.07, 1);
                     }
                 }
             }

@@ -26,7 +26,7 @@
 							<i class="pi pi-search fs-large"></i>
 						</a>
 
-						<transition name="layout-topbar-item">
+						<transition name="layout-search-panel">
 							<div class="layout-search-panel p-inputgroup" v-show="searchActive" @click="onSearchContainerClick">
 								<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
 								<InputText type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
@@ -44,7 +44,7 @@
 							</span>
 						</a>
 
-						<transition name="layout-topbar-item">
+						<transition name="layout-topbar-action-panel">
 							<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'notifications'">
 								<li class="p-mb-3">
 									<span class="p-px-3 fs-small">You have <b>4</b> new notifications</span>
@@ -106,9 +106,8 @@
 							<i class="pi pi-table fs-large"></i>
 						</a>
 
-						<transition name="layout-topbar-item">
-							<div class="p-grid p-nogutter">
-								<div class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
+						<transition name="layout-topbar-action-panel">
+								<div class="p-grid p-nogutter layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'apps'">	
 									<div class="layout-topbar-action-item p-col-4">
 										<a class="p-d-flex p-ai-center p-flex-column text-color p-ripple" v-ripple>
 											<i class="pi pi-image action indigo-bgcolor white-color"></i>
@@ -146,7 +145,6 @@
 										</a>
 									</div>
 								</div>
-							</div>
 						</transition>
 					</li>
 
@@ -155,7 +153,7 @@
 							<img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
 						</a>
 
-						<transition name="layout-topbar-item">
+						<transition name="layout-topbar-action-panel">
 							<ul class="layout-topbar-action-panel p-shadow-6" v-show="activeTopbarItem === 'profile'">
 								<li class="layout-topbar-action-item">
 									<a class="p-d-flex p-flex-row p-ai-center p-ripple" v-ripple>
