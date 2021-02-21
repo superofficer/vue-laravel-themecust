@@ -139,12 +139,26 @@
                     <Column field="name" header="Name" :style="{width:'200px'}" frozen></Column>
                     <Column field="id" header="Id" :style="{width:'100px'}" :frozen="idFrozen"></Column>
                     <Column field="name" header="Name" :style="{width:'200px'}"></Column>
-                    <Column field="country.name" header="Country" :style="{width:'200px'}"></Column>
+                    <Column field="country.name" header="Country" :style="{width:'200px'}">
+						<template #body="{data}">
+							<img src="assets/demo/flags/flag_placeholder.png" :class="'flag flag-' + data.country.code" width="30" />
+							<span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.country.name}}</span>
+						</template>
+					</Column>
                     <Column field="date" header="Date" :style="{width:'200px'}"></Column>
                     <Column field="company" header="Company" :style="{width:'200px'}"></Column>
-                    <Column field="status" header="Status" :style="{width:'200px'}"></Column>
+                    <Column field="status" header="Status" :style="{width:'200px'}">
+						<template #body="{data}">
+                            <span :class="'customer-badge status-' + data.status">{{data.status}}</span>
+                        </template>
+					</Column>
                     <Column field="activity" header="Activity" :style="{width:'200px'}"></Column>
-                    <Column field="representative.name" header="Representative" :style="{width:'200px'}"></Column>
+                    <Column field="representative.name" header="Representative" :style="{width:'200px'}">
+						<template #body="{data}">
+                            <img :alt="data.representative.name" :src="'assets/demo/images/avatar/' + data.representative.image" width="32" style="vertical-align: middle" />
+                            <span style="margin-left: .5em; vertical-align: middle" class="image-text">{{data.representative.name}}</span>
+                        </template>
+					</Column>
                     <Column field="balance" header="Balance" :style="{width:'200px'}" frozen alignFrozen="right">
                         <template #body="{data}">
                              <span class="p-text-bold">{{formatCurrency(data.balance)}}</span>
