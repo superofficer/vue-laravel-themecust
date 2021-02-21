@@ -3,7 +3,7 @@
         <div class="p-col-12">
             <div class="card docs">
                 <h5>Current Version</h5>
-                <p>Vue 3.0.2 and PrimeVue 3.2.4</p>
+                <p>Vue 3.0.2 and PrimeVue 3.x</p>
 
                 <h5>Dependencies</h5>
 				<p>
