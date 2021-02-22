@@ -341,7 +341,7 @@
                     </div>
                 </div>
                 <div class="p-col-12 p-md-6 right p-d-flex p-jc-center">
-                    <Chart ref="pie" type="pie" :data="pieData" :options="pieOptions"></Chart>
+                    <Chart ref="pie" type="pie" :data="pieData" :options="pieOptions" :height="350"></Chart>
                 </div>
             </div>
         </div>
