@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.0.2 (2020-02-22)
+
+**Migration Guide**
+
+- Update to PrimeVue 3.3.0-rc.1
+- Update App*.vue files (AppWrapper.vue, App.vue, AppMenu.vue, AppInlineMenu.vue, App.Submenu.vue, AppRightPanel.vue, AppTopbar.vue, AppBreadcrumb.vue, AppFooter.vue and AppConfig.vue).
+- Update main.js and router.js.
+- Use AppRightPanel.vue instead of AppRightMenu.vue.
+- Update theme files.
+- Update layout files.
+
+**Implemented New Features and Enhancements:**
+
+- Implemented new Ultima design
+- Added dark mode, topbar and menu colors
+
 ## 3.0.1 (2020-12-10)
 
 **Migration Guide**
