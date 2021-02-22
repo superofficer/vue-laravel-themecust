@@ -297,6 +297,10 @@ export default {
                     this.mobileMenuActive = false;
                 }
 
+				if (this.isOverlay()) {
+                    this.menuActive = false;
+                }
+
 				this.hideOverlayMenu();
 				this.unblockBodyScroll();
 			}
@@ -532,6 +536,7 @@ export default {
 					'layout-menu-horizontal': this.menuMode === 'horizontal',
 					'layout-menu-active': this.menuActive,
 					'layout-menu-mobile-active': this.mobileMenuActive,
+					'layout-topbar-mobile-active': this.mobileTopbarActive,
 					'layout-rightmenu-active': this.rightPanelActive,
 					'layout-rtl': this.$appState.RTL,
 					'p-input-filled': this.$appState.inputStyle === 'filled',
