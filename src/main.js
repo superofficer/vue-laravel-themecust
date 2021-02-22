@@ -22,6 +22,9 @@ import Chip from 'primevue/chip';
 import Chips from 'primevue/chips';
 import ColorPicker from 'primevue/colorpicker';
 import Column from 'primevue/column';
+import ConfirmDialog from 'primevue/confirmdialog';
+import ConfirmPopup from 'primevue/confirmpopup';
+import ConfirmationService from 'primevue/confirmationservice';
 import ContextMenu from 'primevue/contextmenu';
 import DataTable from 'primevue/datatable';
 import DataView from 'primevue/dataview';
@@ -104,6 +107,7 @@ const app = createApp({
 });
 
 app.use(PrimeVue, { ripple: true });
+app.use(ConfirmationService);
 app.use(ToastService);
 app.use(router);
 
@@ -132,6 +136,8 @@ app.component('Chip', Chip);
 app.component('Chips', Chips);
 app.component('ColorPicker', ColorPicker);
 app.component('Column', Column);
+app.component('ConfirmDialog', ConfirmDialog);
+app.component('ConfirmPopup', ConfirmPopup);
 app.component('ContextMenu', ContextMenu);
 app.component('DataTable', DataTable);
 app.component('DataView', DataView);

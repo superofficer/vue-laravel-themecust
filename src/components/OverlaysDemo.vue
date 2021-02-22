@@ -105,7 +105,7 @@
 				<Button icon="pi pi-external-link" @click="visibleFull = true" class="p-button-warning"/>
 			</div>
 		</div>
-		<div class="p-col-12">
+		<div class="p-col-12 p-lg-6">
 			<div class="card">
 				<h5>Tooltip</h5>
 				<div class="p-formgroup-inline">
@@ -115,6 +115,13 @@
 
 					<Button type="button" class="p-mt-2" label="Save" icon="pi pi-check" v-tooltip="'Click to proceed'" />
 				</div>
+			</div>
+		</div>
+		<div class="p-col-12 p-lg-6">
+			<div class="card">
+				<h5>ConfirmPopup</h5>
+				<ConfirmPopup></ConfirmPopup>
+				<Button @click="confirm1($event)" icon="pi pi-check" label="Confirm" class="p-mr-2"></Button>
 			</div>
 		</div>
 	</div>
@@ -170,6 +177,19 @@
 			onProductSelect(event) {
 				this.$refs.op.hide();
 				this.$toast.add({severity:'info', summary: 'Product Selected', detail: event.data.name, life: 3000});
+			},
+			confirm1(event) {
+				this.$confirm.require({
+					target: event.currentTarget,
+					message: 'Are you sure you want to proceed?',
+					icon: 'pi pi-exclamation-triangle',
+					accept: () => {
+						this.$toast.add({severity:'info', summary:'Confirmed', detail:'You have accepted', life: 3000});
+					},
+					reject: () => {
+						this.$toast.add({severity:'info', summary:'Rejected', detail:'You have rejected', life: 3000});
+					}
+				});
 			}
 		}
 	}
