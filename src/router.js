@@ -32,7 +32,7 @@ const routes = [
         name: 'invalidstate',
         component: () => import('./components/InvalidStateDemo.vue'),
         meta: {
-            breadcrumb: [{ parent: 'UI Kit', label: 'Form Layout' }],
+            breadcrumb: [{ parent: 'UI Kit', label: 'Invalid State' }],
         },
     },
     {
