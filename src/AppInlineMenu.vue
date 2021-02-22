@@ -13,8 +13,8 @@
 		<span class="layout-inline-menu-tooltip-text p-tooltip-text">Amy Elsner</span>
 	</span>
     
-    <transition :name="menuMode === 'horizontal' &&  !isMobile()? 'layout-inline-menu-action-panel-horizontal' : 'layout-inline-menu-action-panel'">
-        <ul v-show="active" :class="['layout-inline-menu-action-panel', { 'layout-inline-menu-action-panel-horizontal' : menuMode === 'horizontal'}]">
+    <transition :name="menuMode === 'horizontal' && !isMobile() ? 'layout-inline-menu-action-panel-horizontal' : 'layout-inline-menu-action-panel'">
+        <ul v-show="active" :class="['layout-inline-menu-action-panel', { 'layout-inline-menu-action-panel-horizontal' : menuMode === 'horizontal' && !isMobile()}]">
             <li class="layout-inline-menu-action-item">
                 <a class="p-d-flex p-flex-row p-ai-center">
                     <i class="pi pi-cog pi-fw"></i>
@@ -76,15 +76,15 @@
 			onClick(event) {
                 this.$emit('change-inlinemenu', !this.active, this.inlineMenuKey);
 				event.preventDefault();
-			}
-		},
-        computed: {
-            isRTL() {
-				return this.$appState.RTL;
 			},
             isMobile() {
                 return window.innerWidth <= 991;
             }
+		},
+        computed: {
+            isRTL() {
+				return this.$appState.RTL;
+			}
         }
 	}
 </script>
