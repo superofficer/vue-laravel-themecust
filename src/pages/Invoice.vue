@@ -1,6 +1,6 @@
 <template>
 	<div class="layout-invoice-page">
-    <Button type="button" label="Print" icon="pi pi-print" @click="print" class="p-mb-3"></button>
+    <Button type="button" label="Print" icon="pi pi-print" @click="printClick" class="p-mb-3"></button>
 
     <div class="p-grid layout-invoice-content">
         <div class="p-col-12">
