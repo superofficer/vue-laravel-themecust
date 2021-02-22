@@ -24,7 +24,7 @@
 					<span class="layout-menuitem-tooltip-text p-tooltip-text">{{item.label}}</span>
 				</span>
                 <transition name="layout-menu">
-                    <appsubmenu v-show="item.items && (root && (!isSlim() || (isSlim() && activeIndex !== null)) ? true : activeIndex === i)" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :menuMode="menuMode"
+                    <appsubmenu v-show="item.items && (root && (!isSlim() || (isSlim() && (mobileMenuActive || activeIndex !== null))) ? true : activeIndex === i)" :items="visible(item) && item.items" @menuitem-click="$emit('menuitem-click', $event)" :menuMode="menuMode"
                             :menuActive="menuActive" :parentMenuItemActive="activeIndex === i"></appsubmenu>
                 </transition>
             </li>
@@ -53,6 +53,7 @@ export default {
 			default: false
 		},
 		menuMode: String,
+		mobileMenuActive: Boolean
 	},
 	data() {
 		return {

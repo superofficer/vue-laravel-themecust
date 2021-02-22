@@ -1,5 +1,5 @@
 <template>
-	<AppSubmenu class="layout-menu" :items="model" :menuMode="menuMode" :menuActive="active" :root="true" :parentMenuItemActive="true"/>
+	<AppSubmenu class="layout-menu" :items="model" :menuMode="menuMode" :menuActive="active" :root="true" :parentMenuItemActive="true" :mobileMenuActive="mobileMenuActive"/>
 </template>
 
 <script>
@@ -9,7 +9,8 @@ export default {
 	props: {
 		model: Array,
 		menuMode: String,
-		active: Boolean
+		active: Boolean,
+		mobileMenuActive: Boolean
 	},
 	components: {
 		'AppSubmenu': AppSubmenu
