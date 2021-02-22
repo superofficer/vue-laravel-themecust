@@ -93,12 +93,6 @@ export default {
             if (item.items) {
                 this.activeIndex = index === this.activeIndex ? null : index;
             }
-			else {
-				const ink = this.getInk(event.currentTarget);
-				if (ink) {
-					this.removeClass(ink, 'p-ink-active');
-				}
-			}
 
 			this.$emit('menuitem-click', {
 				originalEvent: event,
