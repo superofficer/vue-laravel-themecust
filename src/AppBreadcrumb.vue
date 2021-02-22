@@ -20,11 +20,19 @@
 		},
 		watch: {
 			$route() {
+				this.watchRouter();
+			}
+		},
+		created() {
+			this.watchRouter();
+		},
+		methods: {
+			watchRouter() {
 				if(this.$router.currentRoute.value.meta.breadcrumb) {
 					this.items = [];
 					const x = this.$router.currentRoute.value.meta.breadcrumb[0];
 					for(let pro in x) {
-						this.items.push({label: x[pro]})
+						this.items.push({label: x[pro]});
 					}
 				}
 			}
