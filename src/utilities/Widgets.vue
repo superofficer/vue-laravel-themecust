@@ -376,7 +376,7 @@
             <div class="overlay-header p-p-3">
                 <Chart type="line" :data="chartData" :options="chartOptions" responsive="true"></Chart>
             </div>
-            <div class="p-d-flex p-flex-column p-jc-center p-ai-center">
+            <div class="p-d-flex p-flex-column p-jc-center p-ai-center p-mt-3">
                 <span class="fs-xlarge p-mb-1 cyan-color p-text-bold">5.758</span>
                 <span class="p-mb-3 muted-text">Daily Users</span>
                 <i class="pi pi-users p-p-3 cyan-bgcolor white-color rounded-circle fs-xlarge"></i>
