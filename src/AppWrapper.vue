@@ -29,6 +29,7 @@
         methods: {
             onLayoutChange(layout) {
                 this.layoutMode = layout;
+                this.$appState.layoutMode = layout;
                 this.menuTheme = layout;
                 
                 if (layout === 'dark') {

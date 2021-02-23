@@ -16,7 +16,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData1" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData1" type="line" :data="overviewChartData1" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData2" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData2" type="line" :data="overviewChartData2" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData3" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData3" type="line" :data="overviewChartData3" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData4" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData4" type="line" :data="overviewChartData4" :options="overviewChartOptions" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -667,9 +667,14 @@ export default {
 
 			this.overviewChartData4.datasets[0].borderColor[0] = tealBorderColor;
 			this.overviewChartData4.datasets[0].backgroundColor[0] = tealBgColor;
+
+			this.$refs.overviewChartData1.reinit();
+			this.$refs.overviewChartData2.reinit();
+			this.$refs.overviewChartData3.reinit();
+			this.$refs.overviewChartData4.reinit();
 		},
 		getOverviewColors() {
-            const isLight = this.$appState.isNewThemeLoaded;
+            const isLight = this.$appState.layoutMode === 'light';
             return {
                 pinkBorderColor: isLight ? '#EC407A' : '#E91E63',
                 pinkBgColor: isLight ? '#F8BBD0' : '#F48FB1',

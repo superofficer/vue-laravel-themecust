@@ -111,7 +111,7 @@ app.use(ConfirmationService);
 app.use(ToastService);
 app.use(router);
 
-app.config.globalProperties.$appState = reactive({ inputStyle: 'filled', RTL: false, isNewThemeLoaded: false });
+app.config.globalProperties.$appState = reactive({ inputStyle: 'filled', RTL: false, isNewThemeLoaded: false, layoutMode: 'light' });
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);

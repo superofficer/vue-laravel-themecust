@@ -16,7 +16,7 @@
 						<span class="overview-status p-p-1 fs-small">1420 Completed</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData5" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData5" type="line" :data="overviewChartData5" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 						<span class="overview-status p-p-1 fs-small">$9,640 Income</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData6" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData6" type="line" :data="overviewChartData6" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						<span class="overview-status p-p-1 fs-small">25402 Registered</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData7" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData7" type="line" :data="overviewChartData7" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 						<span class="overview-status p-p-1 fs-small">85 Responded</span>
 					</div>
 					<div class="p-d-flex p-ai-end">
-						<Chart type="line" :data="overviewChartData8" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
+						<Chart ref="overviewChartData8" type="line" :data="overviewChartData8" :options="overviewChartOptions2" responsive="true" :height="60" :width="160"></Chart>
 					</div>
 				</div>
 			</div>
@@ -517,14 +517,14 @@
                 this.setOverviewColors();
             },
             getChartData() {
-                const isLight = this.$appState.isNewThemeLoaded;
+                const isLight = this.$appState.layoutMode === 'light';
                 const completedColors = {
-                    borderColor: isLight ? '#4DD0E1' : '#00ACC1',
-                    backgroundColor: isLight ? 'rgb(77, 208, 225, .3)' : 'rgb(0, 172, 193, .3)'
+                    borderColor: isLight ? '#00ACC1' : '#4DD0E1',
+                    backgroundColor: isLight ? 'rgb(0, 172, 193, .3)' : 'rgb(77, 208, 225, .3)'
                 };
                 const canceledColors = {
-                    borderColor: isLight ? '#FFB74D' : '#FF9800',
-                    backgroundColor: isLight ? 'rgb(255, 183, 77, .3)' : 'rgb(255, 152, 0, .3)'
+                    borderColor: isLight ? '#FF9800' : '#FFB74D',
+                    backgroundColor: isLight ? 'rgb(255, 152, 0, .3)' : 'rgb(255, 183, 77, .3)'
                 };
 
                 return {
@@ -581,7 +581,7 @@
                 }
             },
             getOverviewColors() {
-                const isLight = this.$appState.isNewThemeLoaded;
+                const isLight = this.$appState.layoutMode === 'light';
                 return {
                     whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
                     whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
@@ -601,6 +601,11 @@
 
                 this.overviewChartData8.datasets[0].borderColor[0] = whiteBorderColor;
                 this.overviewChartData8.datasets[0].backgroundColor[0] = whiteBgColor;
+
+                this.$refs.overviewChartData5.reinit();
+                this.$refs.overviewChartData6.reinit();
+                this.$refs.overviewChartData7.reinit();
+                this.$refs.overviewChartData8.reinit();
             }
 		},
         computed: {
