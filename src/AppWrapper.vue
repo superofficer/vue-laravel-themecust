@@ -28,12 +28,13 @@
         },
         methods: {
             onLayoutChange(layout) {
+                this.layoutMode = layout;
+                this.menuTheme = layout;
+                
                 if (layout === 'dark') {
-                    this.menuTheme = 'dark';
                     this.topbarTheme = 'dark';
                 }
                 else {
-                    this.menuTheme = 'light';
                     this.topbarTheme = 'blue';
                 }
             },
