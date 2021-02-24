@@ -4,12 +4,11 @@
 
 **Migration Guide**
 
-- Update to PrimeVue 3.3.0-rc.1
+- Update to PrimeVue 3.3.0.
 - Update App*.vue files (AppWrapper.vue, App.vue, AppMenu.vue, AppInlineMenu.vue, App.Submenu.vue, AppRightPanel.vue, AppTopbar.vue, AppBreadcrumb.vue, AppFooter.vue and AppConfig.vue).
 - Update main.js and router.js.
 - Use AppRightPanel.vue instead of AppRightMenu.vue.
-- Update theme files.
-- Update layout files.
+- Update theme files and layout files.
 
 **Implemented New Features and Enhancements:**
 
