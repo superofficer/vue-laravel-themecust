@@ -212,7 +212,6 @@ export default {
         },
 
         smoothScroll(id){
-            console.log(id)
             document.querySelector(id).scrollIntoView({
                 behavior: 'smooth'
             });
