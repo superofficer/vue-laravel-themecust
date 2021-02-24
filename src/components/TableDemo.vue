@@ -117,7 +117,7 @@
                             </div>
                         </template>
                     </Column>
-                    <Column field="verified" header="Verified" dataType="boolean" headerStyle="width: 8rem" bodyClass="p-text-center">
+                    <Column field="verified" header="Verified" dataType="boolean" headerStyle="width: 8rem">
                         <template #body="{data}">
                             <span class="p-column-title">Verified</span>
                             <i class="pi" :class="{'true-icon pi-check-circle': data.verified, 'false-icon pi-times-circle': !data.verified}"></i>
@@ -448,6 +448,10 @@
 
 		.p-datatable-tbody > tr > td {
 			cursor: auto;
+
+			&:last-child {
+				text-align: center;
+			}
 		}
 
 		.p-dropdown-label:not(.p-placeholder) {
@@ -583,7 +587,7 @@
 					border-bottom: 1px solid var(--surface-d);
 
 					> td {
-						text-align: left;
+						text-align: left !important;
 						display: block;
 						border: 0 none !important;
 						width: 100% !important;
