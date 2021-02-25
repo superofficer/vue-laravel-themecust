@@ -131,7 +131,7 @@ export default {
 				{name: 'indigo', color: '#3F51B5'}
 			],
 			rightPanelActive: false,
-			menuActive: false,
+			menuActive: true,
             menu: [
 				{
 					label: 'Favorites', 

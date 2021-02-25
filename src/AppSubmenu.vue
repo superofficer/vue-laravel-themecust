@@ -46,7 +46,7 @@ export default {
 		},
 		menuActive: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		parentMenuItemActive: {
 			type: Boolean,
