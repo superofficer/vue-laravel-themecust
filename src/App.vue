@@ -29,8 +29,7 @@
 				:theme="theme" :themes="themes" @theme-change="changeTheme" :menuTheme="d_menuTheme" :menuThemes="menuThemes"
 				:topbarTheme="d_topbarTheme" :topbarThemes="topbarThemes"></AppConfig>
 
-		<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick"></AppRightPanel>
-
+		<AppRightPanel :expanded="rightPanelActive" @content-click="onRightPanelClick" @hide="onHideClick"></AppRightPanel>
 		<div v-if="mobileMenuActive" class="layout-mask modal-in"></div>
 	</div>
 </template>
@@ -403,6 +402,9 @@ export default {
 		},
 		onRightPanelClick(){
 			this.rightPanelClick = true;
+		},
+		onHideClick(expanded){
+			this.rightPanelActive = expanded;
 		},
 		onMenuClick() {
 			this.menuClick = true;

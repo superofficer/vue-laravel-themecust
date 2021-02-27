@@ -1,5 +1,5 @@
 <template>
-	<Sidebar v-model:visible="d_expanded" @click="$emit('content-click',$event)" :position="isRTL ? 'left' : 'right'" :showCloseIcon="false"
+	<Sidebar v-model:visible="d_expanded" @hide="$emit('hide', d_expanded)" @click="$emit('content-click',$event)" :position="isRTL ? 'left' : 'right'" :showCloseIcon="false"
 		:baseZIndex="1000" class="layout-rightmenu p-sidebar-sm fs-small p-py-3 " :class="isRTL ? 'p-pl-0 p-pr-3' : 'p-pl-3 p-pr-0'">
 		<div class="online-members p-d-flex p-flex-column p-mt-3" :class="{'p-ml-3': !isRTL, 'p-mr-3': isRTL}">
 			<h6 class="header">ONLINE MEMBERS</h6>
@@ -75,7 +75,7 @@
 <script>
 	export default {
 		name: "AppRightPanel",
-		emits: ['content-click'],
+		emits: ['content-click', 'hide'],
 		props: {
 			expanded: Boolean
 		},
