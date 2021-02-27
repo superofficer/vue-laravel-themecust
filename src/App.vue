@@ -67,8 +67,6 @@ export default {
 			inlineMenuTopActive: false,
 			inlineMenuBottomActive: false,
 			overlayMenuActive: false,
-			staticMenuDesktopInactive: false,
-			staticMenuMobileActive: false,
 			rotateMenuButton: false,
 			topbarMenuActive: false,
 			activeTopbarItem: null,
@@ -292,10 +290,6 @@ export default {
 					EventBus.emit('reset-active-index');
 				}
 
-				if (this.mobileMenuActive) {
-                    this.mobileMenuActive = false;
-                }
-
 				if (this.isOverlay()) {
                     this.menuActive = false;
                 }
@@ -351,7 +345,7 @@ export default {
 		hideOverlayMenu() {
 			this.rotateMenuButton = false;
 			this.overlayMenuActive = false;
-			this.staticMenuMobileActive = false;
+			this.mobileMenuActive = false;
 		},
 		onMenuButtonClick(event){
 			this.menuClick = true;
@@ -361,9 +355,7 @@ export default {
 			this.rotateMenuButton = !this.rotateMenuButton;
 			this.topbarMenuActive = false;
 
-			if(this.isDesktop())
-				this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
-			else {
+			if(!this.isDesktop()) {
 				this.mobileMenuActive = !this.mobileMenuActive;
 				if (this.mobileMenuActive) {
 					this.blockBodyScroll();
