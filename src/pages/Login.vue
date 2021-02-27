@@ -63,7 +63,7 @@
 		},
 		methods: {
 			goDashboard(){
-				window.location = "/#/"
+				window.location = "/"
 			}
 		}
 	}
