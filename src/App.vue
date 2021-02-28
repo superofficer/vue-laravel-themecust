@@ -416,6 +416,12 @@ export default {
 		},
 		onMenuModeChange(menuMode) {
 			this.menuMode = menuMode;
+			this.overlayMenuActive = false;
+			
+			if(menuMode === 'static') {
+				this.menuActive = true;
+			}
+
 			if(menuMode === 'horizontal') {
 				this.inlineMenuPosition = 'top';
 			}
