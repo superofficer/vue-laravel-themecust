@@ -31,6 +31,9 @@
                 this.layoutMode = layout;
                 this.$appState.layoutMode = layout;
                 this.menuTheme = layout;
+
+                const logo = document.getElementById('logo');
+                logo.src = 'assets/layout/images/logo-light.svg';
                 
                 if (layout === 'dark') {
                     this.topbarTheme = 'dark';
@@ -41,6 +44,16 @@
             },
             onTopbarThemeChange(theme) {
                 this.topbarTheme = theme.name;
+
+                const themeName = theme.name;
+                const logo = document.getElementById('logo');
+
+                if (themeName == 'white' || themeName == 'yellow' || themeName == 'amber'  || themeName == 'orange' || themeName == 'lime') {
+                    logo.src = 'assets/layout/images/logo-dark.svg';
+                }
+                else {
+                    logo.src = 'assets/layout/images/logo-light.svg';
+                }
             },
             onMenuTheme(menuTheme) {
                 this.menuTheme = menuTheme.name;

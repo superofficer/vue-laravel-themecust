@@ -471,16 +471,6 @@ export default {
 		},
 		onTopbarThemeChange(theme) {
 			this.$emit('topbar-theme', theme);
-
-			const themeName = theme.name;
-			const logo = document.getElementById('logo');
-
-			if (themeName == 'white' || themeName == 'yellow' || themeName == 'amber'  || themeName == 'orange' || themeName == 'lime') {
-				logo.src = 'assets/layout/images/logo-dark.svg';
-			}
-			else {
-				logo.src = 'assets/layout/images/logo-light.svg';
-			}
 		},
 		onMenuTheme(menuTheme) {
 			this.$emit('menu-theme', menuTheme);
