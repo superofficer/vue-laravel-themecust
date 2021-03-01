@@ -34,10 +34,9 @@
                         position: fixed;
                         left: 1rem;
                         right: 1rem;
+                        overflow: scroll;
 
                         .p-megamenu-grid {
-                            flex-wrap: wrap;
-
                             > [class*="p-megamenu-col-"] {
                                 flex: 1 1 auto;
                                 width: auto;
