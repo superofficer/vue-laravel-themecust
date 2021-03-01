@@ -233,7 +233,7 @@
             <DataTable :value="products" class="p-datatable-customers" :rows="4" style="margin-bottom: 20px" :paginator="true">
 					<Column header="Logo">
 						<template #body="slotProps">
-							<img :src="'assets/demo/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50" />
+							<img :src="'assets/demo/images/product/' + slotProps.data.image" class="p-shadow-4" :alt="slotProps.data.image" width="50" />
 						</template>
 					</Column>
 					<Column field="name" header="Name" :sortable="true">
