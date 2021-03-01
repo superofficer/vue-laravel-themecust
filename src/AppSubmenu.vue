@@ -86,11 +86,11 @@ export default {
                 event.preventDefault();
             }
 			else {
-				if(this.menuMode === 'static')
-					return;
-				const ink = this.getInk(event.currentTarget);
-				if (ink) {
-					this.removeClass(ink, 'p-ink-active');
+				if(this.menuMode !== 'static') {
+					const ink = this.getInk(event.currentTarget);
+					if (ink) {
+						this.removeClass(ink, 'p-ink-active');
+					}
 				}
 			}
 
