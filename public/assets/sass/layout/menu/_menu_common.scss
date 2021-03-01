@@ -20,26 +20,6 @@
             padding-bottom: 2rem;
             overflow-y: auto;
 
-            &-enter-from,
-            &-leave-to {
-                max-height: 0;
-            }
-    
-            &-enter-to,
-            &-leave-from {
-                max-height: 1000px;
-            }
-
-            &-enter-active {
-                overflow: hidden;
-                transition: max-height 1s ease-in-out;
-            }
-    
-            &-leave-active {
-                overflow: hidden;
-                transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
-            }
-
             li {
                 border-radius: 4px;
 
@@ -103,6 +83,26 @@
                             transform: rotate(-180deg);
                         }
                     }
+
+                    .layout-menu-enter-from,
+            .layout-menu-leave-to {
+                max-height: 0;
+            }
+    
+            .layout-menu-enter-to,
+            .layout-menu-leave-from {
+                max-height: 1000px;
+            }
+
+            .layout-menu-enter-active {
+                overflow: hidden;
+                transition: max-height 1s ease-in-out;
+            }
+    
+            .layout-menu-leave-active {
+                overflow: hidden;
+                transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+            }
                 }
 
                 > ul {
