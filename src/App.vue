@@ -426,7 +426,7 @@ export default {
 			}
 
 			if(menuMode === 'horizontal') {
-				this.inlineMenuPosition = 'top';
+				this.inlineMenuPosition = 'bottom';
 			}
 		},
 		onLayoutModeChange(menuColor) {
