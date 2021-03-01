@@ -46,5 +46,22 @@
                 }
             }
         }
+
+        .layout-topbar-right {
+            .layout-topbar-actions-left {
+                .layout-megamenu {
+    
+                    &.p-megamenu .p-megamenu-root-list > .p-menuitem {
+                        > .p-menuitem-link {
+                            .p-menuitem-text,
+                            .p-menuitem-icon,
+                            .p-submenu-icon {
+                                margin-right: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
