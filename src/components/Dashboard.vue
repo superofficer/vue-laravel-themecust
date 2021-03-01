@@ -11,7 +11,7 @@
 					</div>
 				</div>
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
-					<div class="p-d-flex p-flex-column">
+					<div class="p-d-flex p-flex-column" style="width: 80px;">
 						<span class="p-mb-1 fs-xlarge">640</span>
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">1420 Completed</span>
 					</div>
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
-					<div class="p-d-flex p-flex-column">
+					<div class="p-d-flex p-flex-column" style="width: 80px;">
 						<span class="p-mb-1 fs-xlarge">$57K</span>
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">$9,640 Income</span>
 					</div>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
-					<div class="p-d-flex p-flex-column">
+					<div class="p-d-flex p-flex-column" style="width: 80px;">
 						<span class="p-mb-1 fs-xlarge">8572</span>
 						<span class="overview-status p-p-1 pink-bgcolor fs-small">25402 Registered</span>
 					</div>
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="p-d-flex p-jc-between p-mt-3 p-flex-wrap">
-					<div class="p-d-flex p-flex-column">
+					<div class="p-d-flex p-flex-column" style="width: 80px;">
 						<span class="p-mb-1 fs-xlarge">805</span>
 						<span class="overview-status p-p-1 teal-bgcolor fs-small">85 Responded</span>
 					</div>
