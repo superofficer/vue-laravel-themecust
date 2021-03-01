@@ -26,10 +26,10 @@
 							<i class="pi pi-search fs-large"></i>
 						</a>
 
-						<transition name="layout-search-panel">
+						<transition name="layout-search-panel" @enter="onEnter">
 							<div class="layout-search-panel p-inputgroup" v-show="searchActive" @click="onSearchContainerClick">
 								<span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-								<InputText type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
+								<InputText ref="searchInput" type="text" placeholder="Search" @keydown="onSearchKeydown($event)" />
 								<span class="p-inputgroup-addon">
 									<Button icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" @click="changeSearchActive"></Button>
 								</span>
@@ -332,6 +332,11 @@
 			onSearchKeydown(event) { 
 				if (event.keyCode == 13) {
 					this.$emit('search-toggle', event);
+				}
+			},
+			onEnter() {
+				if (this.$refs.searchInput) {
+					this.$refs.searchInput.$el.focus();
 				}
 			}
 		},
