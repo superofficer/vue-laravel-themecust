@@ -233,7 +233,7 @@
 							{{formatCurrency(slotProps.data.price)}}
 						</template>
 					</Column>
-					<Column bodyStyle="text-align: right">
+					<Column header="View" headerStyle="text-align: right">
                         <template #body>
                             <Button icon="pi pi-search" class="p-button-rounded p-button-text p-mb-1"></Button>
                         </template>
