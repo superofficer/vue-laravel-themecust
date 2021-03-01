@@ -230,7 +230,7 @@
 
     <div class="p-col-12 p-md-6">
         <div class="card">
-            <DataTable :value="products" class="p-datatable-customers" :rows="4" style="margin-bottom: 20px" :paginator="true">
+            <DataTable :value="products" class="p-datatable-customers" :rows="4" style="margin-bottom: 20px" :paginator="true" responsiveLayout="scroll">>
 					<Column header="Logo">
 						<template #body="slotProps">
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" class="p-shadow-4" :alt="slotProps.data.image" width="50" />
@@ -807,46 +807,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	/* Responsive */
-	.p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
-		display: none;
-	}
-
-	@media screen and (max-width: 960px) {
-		::v-deep(.p-datatable) {
-			&.p-datatable-customers {
-				.p-datatable-thead > tr > th,
-				.p-datatable-tfoot > tr > td {
-					display: none !important;
-				}
-
-				.p-datatable-tbody > tr {
-					border-bottom: 1px solid var(--surface-d);
-					> td {
-						text-align: left;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						border: 0 none !important;
-						width: 100% !important;
-						float: left;
-						clear: left;
-						border: 0 none;
-
-						.p-column-title {
-							padding: .4rem;
-							min-width: 30%;
-							display: inline-block;
-							margin: -.4rem 1rem -.4rem -.4rem;
-							font-weight: bold;
-						}
-
-						.p-progressbar {
-							margin-top: .5rem;
-						}
-					}
-				}
-			}
-		}
-	}
+	
 </style>
