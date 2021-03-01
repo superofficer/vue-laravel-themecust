@@ -1,6 +1,5 @@
 <template>
 	<ul v-if="items" role="menu">
-		{{isSlimOrHorItemClick}}
         <template v-for="(item,i) of items">
             <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[{'layout-root-menuitem': root, 'active-menuitem': activeIndex === i && !item.disabled}]" role="menuitem">
 				<div v-if="root">
