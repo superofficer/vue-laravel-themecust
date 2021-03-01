@@ -175,7 +175,14 @@
 
 		<div class="p-col-12 p-lg-6">
 			<div class="card height-100 widget-timeline">
-			<h5>Timeline</h5>
+				<div class="card-header">
+					<h5>Timeline</h5>
+					<div>
+						<Button icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" @click="toggleMenu"></button>
+						<Menu :popup="true" :model="items2"></Menu>
+					</div>
+				</div>
+			
 				<Timeline :value="timelineEvents" align="left" class="customized-timeline">
 					<template #marker="slotProps">
 						<span class="custom-marker p-shadow-2 p-p-2" :style="{backgroundColor: slotProps.item.color}">
@@ -183,7 +190,7 @@
 						</span>
 					</template>
 					<template #content="slotProps">
-						<Card class="p-mb-3">>
+						<Card class="p-mb-3">
 							<template #title>
 								{{slotProps.item.status}}
 							</template>
