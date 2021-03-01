@@ -386,7 +386,7 @@
 
     <div class="p-col-12 p-md-6 p-mb-4">
         <div class="card widget-overlay p-mt-5 height-100">
-            <div class="overlay-header">
+            <div class="overlay-header" style=" height: 20rem">
                 <img src="assets/layout/images/widgets/image-blog.jpg" alt="image-blog" style="width: 100%; height: 100%;">
             </div>
             <div class="p-d-flex p-flex-column p-jc-center p-ai-center">
