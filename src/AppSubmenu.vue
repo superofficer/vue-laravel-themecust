@@ -85,6 +85,14 @@ export default {
             if (item.items) {
                 event.preventDefault();
             }
+			else {
+				if(this.menuMode === 'static')
+					return;
+				const ink = this.getInk(event.currentTarget);
+				if (ink) {
+					this.removeClass(ink, 'p-ink-active');
+				}
+			}
 
 			if (this.root) {
 				this.$emit('root-menuitem-click', {
