@@ -1,5 +1,5 @@
 <template>
-	<AppSubmenu class="layout-menu" :items="model" :menuMode="menuMode" :menuActive="active" :root="true" :parentMenuItemActive="true" :mobileMenuActive="mobileMenuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"/>
+	<AppSubmenu class="layout-menu" :items="model" :menuMode="menuMode" :menuActive="active" :isSlimOrHorItemClick="isSlimOrHorItemClick" :root="true" :parentMenuItemActive="true" :mobileMenuActive="mobileMenuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"/>
 </template>
 
 <script>
@@ -12,7 +12,8 @@ export default {
 		model: Array,
 		menuMode: String,
 		active: Boolean,
-		mobileMenuActive: Boolean
+		mobileMenuActive: Boolean,
+		isSlimOrHorItemClick: Boolean
 	},
 	components: {
 		'AppSubmenu': AppSubmenu

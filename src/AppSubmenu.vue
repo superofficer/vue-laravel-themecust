@@ -1,19 +1,20 @@
 <template>
 	<ul v-if="items" role="menu">
+		{{isSlimOrHorItemClick}}
         <template v-for="(item,i) of items">
             <li v-if="visible(item) && !item.separator" :key="item.label || i" :class="[{'layout-root-menuitem': root, 'active-menuitem': activeIndex === i && !item.disabled}]" role="menuitem">
 				<div v-if="root">
 					<span class="layout-menuitem-text">{{item.label}}</span>
 				</div>
                 <router-link v-if="item.to" :to="item.to" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target" active-class="active-route" exact
-                   @mouseenter="onMenuItemMouseEnter(i)" @click="onMenuItemClick($event,item,i)" v-ripple>
+                   @mouseenter="onMenuItemMouseEnter(i)" @mouseleave="onMenuItemMouseLeave" @click="onMenuItemClick($event,item,i)" v-ripple>
                     <i :class="['layout-menuitem-icon', item.icon]"></i>
                     <span class="layout-menuitem-text">{{item.label}}</span>
 					<span class="p-badge p-component p-badge-no-gutter" :class="item.badgeStyleClass" v-if="item.badge && !root">{{item.badge}}</span>
                     <i v-if="item.items" class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
                 </router-link>
                 <a v-if="!item.to" :href="item.url||'#'" :style="item.style" :class="[item.class, 'p-ripple', {'p-disabled': item.disabled}]" :target="item.target"
-                   @click="onMenuItemClick($event,item,i)" @mouseenter="onMenuItemMouseEnter(i)" v-ripple>
+                   @click="onMenuItemClick($event,item,i)" @mouseenter="onMenuItemMouseEnter(i)" @mouseleave="onMenuItemMouseLeave" v-ripple>
                     <i :class="['layout-menuitem-icon', item.icon]"></i>
                     <span class="layout-menuitem-text">{{item.label}}</span>
 					<span class="p-badge p-component p-badge-no-gutter" :class="item.badgeStyleClass" v-if="item.badge && !root">{{item.badge}}</span>
@@ -53,11 +54,13 @@ export default {
 			default: false
 		},
 		menuMode: String,
-		mobileMenuActive: Boolean
+		mobileMenuActive: Boolean,
+		isSlimOrHorItemClick: Boolean
 	},
 	data() {
 		return {
-			activeIndex : null
+			activeIndex : null,
+			hoverMenuActive: false
 		}
 	},
 	mounted() {
@@ -101,10 +104,17 @@ export default {
 			});
 		},
 		onMenuItemMouseEnter(index) {
-			if(this.root && this.menuActive && this.isHorizontalOrSlim() && !this.isMobile()) {
+			if(this.isSlimOrHorItemClick) {
+				this.hoverMenuActive = true;
+			}
+
+			if(this.root && this.hoverMenuActive && this.isHorizontalOrSlim() && !this.isMobile()) {
 				this.activeIndex =  index;
 			}
         },
+		onMenuItemMouseLeave() {
+			this.hoverMenuActive = false;
+		},
 		isHorizontalOrSlim() {
 			return (this.menuMode === 'horizontal' || this.menuMode === 'slim');
 		},

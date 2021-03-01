@@ -7,7 +7,7 @@
 			<div class="menu-wrapper">
 				<div class="layout-menu-container" @click="onMenuClick">
 						<AppInlineMenu v-if="inlineMenuPosition === 'top' || inlineMenuPosition === 'both'" v-model:active="inlineMenuTopActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="top" :menuMode="menuMode"></AppInlineMenu>
-						<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" :mobileMenuActive="mobileMenuActive" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
+						<AppMenu :model="menu" :menuMode="menuMode" :active="menuActive" :mobileMenuActive="mobileMenuActive" :isSlimOrHorItemClick="isSlimOrHorItemClick" @menuitem-click="onMenuItemClick" @root-menuitem-click="onRootMenuItemClick"></AppMenu>
 						<AppInlineMenu v-if="inlineMenuPosition === 'bottom' || inlineMenuPosition === 'both'" v-model:active="inlineMenuBottomActive" @change-inlinemenu="onChangeInlineMenu" inlineMenuKey="bottom" :menuMode="menuMode"></AppInlineMenu>
 				</div>
 			</div>
@@ -61,7 +61,7 @@ export default {
 			search: false,
 			searchClick: false,
 			searchActive: false,
-			menuMode: 'static',
+			menuMode: 'slim',
 			inlineMenuClick: false,
 			inlineMenuPosition: 'bottom',
 			inlineMenuTopActive: false,
@@ -70,6 +70,7 @@ export default {
 			rotateMenuButton: false,
 			topbarMenuActive: false,
 			activeTopbarItem: null,
+			isSlimOrHorItemClick: false,
 			darkMenu: false,
 			theme: 'blue',
 			themes: [
@@ -287,6 +288,7 @@ export default {
 			if(!this.menuClick) {
 				if(this.isHorizontal() || this.isSlim()) {
 					this.menuActive = false;
+					this.isSlimOrHorItemClick = false;
 					EventBus.emit('reset-active-index');
 				}
 
@@ -402,6 +404,7 @@ export default {
 			this.menuClick = true;
 		},
 		onRootMenuItemClick() {
+			this.isSlimOrHorItemClick = true;
 			this.menuActive = !this.menuActive;
 		},
 		onMenuItemClick(event) {
