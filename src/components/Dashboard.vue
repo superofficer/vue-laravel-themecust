@@ -676,10 +676,10 @@ export default {
 		getOverviewColors() {
             const isLight = this.$appState.layoutMode === 'light';
             return {
-                pinkBorderColor: isLight ? '#EC407A' : '#E91E63',
-                pinkBgColor: isLight ? '#F8BBD0' : '#F48FB1',
-                tealBorderColor: isLight ? '#26A69A' : '#009688',
-                tealBgColor: isLight ? '#B2DFDB' : '#80CBC4',
+                pinkBorderColor: isLight ? '#E91E63' : '#EC407A',
+				pinkBgColor: isLight ? '#F48FB1' : '#F8BBD0',
+				tealBorderColor: isLight ? '#009688' : '#26A69A',
+				tealBgColor: isLight ? '#80CBC4' : '#B2DFDB',
                 whiteBorderColor: isLight ? '#ffffff' : '#ffffff',
                 whiteBgColor: isLight ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.35)',
             }
