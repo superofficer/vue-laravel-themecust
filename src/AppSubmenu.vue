@@ -86,6 +86,10 @@ export default {
                 event.preventDefault();
             }
 			else {
+                if(this.isHorizontalOrSlim()){
+                    this.hoverMenuActive = false;
+                }
+
 				if(this.menuMode !== 'static') {
 					const ink = this.getInk(event.currentTarget);
 					if (ink) {
@@ -95,6 +99,8 @@ export default {
 			}
 
 			if (this.root) {
+                this.hoverMenuActive = !this.hoverMenuActive;
+
 				this.$emit('root-menuitem-click', {
 					originalEvent: event,
 					isSameIndex: index === this.activeIndex

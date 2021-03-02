@@ -403,12 +403,18 @@ export default {
 		onMenuClick() {
 			this.menuClick = true;
 		},
-		onRootMenuItemClick() {
-			this.isSlimOrHorItemClick = true;
+		onRootMenuItemClick(event) {
+            if(event.isSameIndex) {
+                this.isSlimOrHorItemClick = false;
+            }
+            else {
+                this.isSlimOrHorItemClick = true;
+            }
 			this.menuActive = !this.menuActive;
 		},
 		onMenuItemClick(event) {
 			if(!event.item.items) {
+                this.isSlimOrHorItemClick = false;
 				this.hideOverlayMenu();
 				EventBus.emit('reset-active-index');
 			}

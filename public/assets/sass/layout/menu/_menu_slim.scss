@@ -41,19 +41,16 @@
                             > ul {
                                 &.layout-menu-enter-from{
                                     opacity: 0;
-                                    transform: scaleY(0.95);
+                                    transform: none;
                                 }
-                            
+
                                 &.layout-menu-leave-to {
                                     opacity: 0;
                                 }
-                            
-                                &.layout-menu-leave-active {
-                                    transition: opacity .1s linear;
-                                }
-                            
+
+                                &.layout-menu-leave-active,
                                 &.layout-menu-enter-active {
-                                    transition: transform .1s cubic-bezier(0, 0, 0.2, 1), opacity .1s cubic-bezier(0, 0, 0.2, 1);
+                                    transition: none;
                                 }
                             }
                         }
