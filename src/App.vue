@@ -61,7 +61,7 @@ export default {
 			search: false,
 			searchClick: false,
 			searchActive: false,
-			menuMode: 'static',
+			menuMode: 'slim',
 			inlineMenuClick: false,
 			inlineMenuPosition: 'bottom',
 			inlineMenuTopActive: false,
