@@ -230,7 +230,7 @@
 
     <div class="p-col-12 p-md-6">
         <div class="card">
-            <DataTable :value="products" class="p-datatable-customers" :rows="4" style="margin-bottom: 20px" :paginator="true" responsiveLayout="scroll">>
+            <DataTable :value="products" class="p-datatable-customers" :rows="4" style="margin-bottom: 20px" :paginator="true" responsiveLayout="scroll">
 					<Column header="Logo">
 						<template #body="slotProps">
 							<img :src="'assets/demo/images/product/' + slotProps.data.image" class="p-shadow-4" :alt="slotProps.data.image" width="50" />
