@@ -45,28 +45,6 @@
                             max-height: 32rem;
                             min-width: 16rem;
                             border-radius: $borderRadius;
-
-                            &.layout-menu-enter-from,
-                        &.layout-menu-leave-to {
-                            opacity: 0;
-                            transform: translateX(20px);
-                        }
-    
-                        &.layout-menu-enter-to,
-                        &.layout-menu-leave-from {
-                            opacity: 1;
-                            transform: none;
-                        }
-    
-                        &.layout-menu-leave-active {
-                            transition: opacity .4s cubic-bezier(0.86, 0, 0.07, 1),
-                                transform .4s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
-    
-                        &.layout-menu-enter-active {
-                            transition: opacity .4s cubic-bezier(0.86, 0, 0.07, 1),
-                                transform .4s cubic-bezier(0.86, 0, 0.07, 1);
-                        }
                         }
 
                         &.active-menuitem {
