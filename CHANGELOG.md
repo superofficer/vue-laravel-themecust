@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.1.1
+## 3.1.1 (2021-03-02)
 
 **Migration Guide**
 
@@ -12,7 +12,7 @@
 - Menu mode changing issues
 - Topbar theme changing issues
 
-## 3.1.0 (2020-02-24)
+## 3.1.0 (2021-02-24)
 
 **Migration Guide**
 
