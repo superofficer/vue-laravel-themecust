@@ -1,11 +1,23 @@
 # Changelog
 
+## 3.1.1
+
+**Migration Guide**
+
+- Update to PrimeVue 3.3.2
+- Update App*.vue files (AppWrapper.vue, App.vue and AppSubmenu.vue)
+- Update theme files and layout files.
+
+**Fixed Bugs**
+- Menu mode changing issues
+- Topbar theme changing issues
+
 ## 3.1.0 (2020-02-24)
 
 **Migration Guide**
 
 - Update to PrimeVue 3.3.0.
-- Update App*.vue files (AppWrapper.vue, App.vue, AppMenu.vue, AppInlineMenu.vue, App.Submenu.vue, AppRightPanel.vue, AppTopbar.vue, AppBreadcrumb.vue, AppFooter.vue and AppConfig.vue).
+- Update App*.vue files (AppWrapper.vue, App.vue, AppMenu.vue, AppInlineMenu.vue, AppSubmenu.vue, AppRightPanel.vue, AppTopbar.vue, AppBreadcrumb.vue, AppFooter.vue and AppConfig.vue).
 - Update main.js and router.js.
 - Use AppRightPanel.vue instead of AppRightMenu.vue.
 - Update theme files and layout files.
